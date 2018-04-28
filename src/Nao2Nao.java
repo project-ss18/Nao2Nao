@@ -1,4 +1,4 @@
-import Interview.Interview;
+import Controller.Interview;
 import Robot.Robot;
 
 import java.util.List;
@@ -9,34 +9,34 @@ public class Nao2Nao {
     private static String InterviewPath = "Interviews\\";
     // In Config auslagern
 
-    public static List<Robot> Robots;
-    public static List<Interview> AlleInterviews;
-    public static Interview CurrentInterview;
+    public static List<Robot> robotList;
+    public static List<Interview> interviewList;
+    public static Interview currentInterview;
 
     public static void main(String[] args) {
 
-        System.out.println("Bitte wählen Sie eine Interview-ID zum abspielen aus:");
-        AlleInterviews = Interview.GetAllInterviews();
+        System.out.println("Bitte wählen Sie eine Model-ID zum abspielen aus:");
+        interviewList = Interview.GetAllInterviews();
 
-        for(Interview IteratedInterview: AlleInterviews)
+        for(Interview IteratedInterview: interviewList)
         {
             IteratedInterview.GetInterviewOverview();
         }
 
         int input_ID = Integer.parseInt(System.console().readLine());
-        CurrentInterview = Interview.FindInterview(input_ID, AlleInterviews);
+        currentInterview = Interview.FindInterview(input_ID, interviewList);
 
-        for(int i = 1; i != CurrentInterview.InterviewBusinessObject.get_MemberCount(); ++i)
+        /*for(int i = 1; i != currentInterview.InterviewBusinessObject.get_MemberCount(); ++i)
         {
             System.out.print("IP-Adresse für Roboter " + String.valueOf(i) + " : ");
             String input_IP = System.console().readLine();
-            Robots.add(new Robot(input_IP));
-        }
+            robotList.add(new Robot(input_IP));
+        }*/
 
-        System.out.println("Das Interview ist bereit! Enter drücken um zu starten!");
+        System.out.println("Das Model ist bereit! Enter drücken um zu starten!");
         System.console().readLine();
 
-        CurrentInterview.StartInterview();
+        currentInterview.StartInterview();
     }
 
 

@@ -1,13 +1,13 @@
-package Interview;
+package Controller;
 
-import BusinessLogic.Interview.BoInterview;
+import Model.InterviewModel;
 
 import java.util.List;
 
 public class Interview {
 
     // Instance Vars
-    public BoInterview InterviewBusinessObject;
+    public InterviewModel InterviewBusinessObject;
     // Instance Vars
 
     // Functions
@@ -19,7 +19,7 @@ public class Interview {
 
     private void Initialize(String Path)
     {
-        InterviewBusinessObject = new BoInterview(Path);
+        //InterviewBusinessObject = new InterviewModel();
     }
 
     // Playback Funktionen
@@ -53,13 +53,13 @@ public class Interview {
         return null;
     }
 
-    public static Interview.Interview FindInterview(int ID, List<Interview> AlleInterviews)
+    public static Controller.Interview FindInterview(int ID, List<Interview> AlleInterviews)
     {
-        return new Interview.Interview("");
+        return new Controller.Interview("");
     }
-    public static Interview.Interview FindInterview(String Name, List<Interview> AlleInterviews)
+    public static Controller.Interview FindInterview(String Name, List<Interview> AlleInterviews)
     {
-        return new Interview.Interview("");
+        return new Controller.Interview("");
     }
     // Static Functions
 

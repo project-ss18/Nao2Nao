@@ -1,4 +1,6 @@
-package Interview;
+package Model;
+
+import InterviewModel;
 
 import java.util.ArrayList;
 

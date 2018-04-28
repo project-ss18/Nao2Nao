@@ -1,4 +1,4 @@
-package Interview;
+package Model;
 
 import java.util.ArrayList;
 
@@ -51,10 +51,10 @@ public class InterviewModel {
     // Getter/ Setter
 
 
-    public InterviewModel(int _interviewID, String _interviewName, String _interviewDescription, int _interviewMemberCount)
+    public InterviewModel(int interviewID, String interviewName, String interviewDescription, int interviewMemberCount)
     {
         interviewBlocks = new ArrayList<InterviewBlockModel>();
-        Initialize(_interviewID, _interviewName, _interviewDescription, _interviewMemberCount);
+        Initialize(interviewID, interviewName, interviewDescription, interviewMemberCount);
     }
 
     private void Initialize(int _interviewID, String _interviewName, String _interviewDescription, int _interviewMemberCount)

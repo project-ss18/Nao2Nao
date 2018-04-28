@@ -1,4 +1,4 @@
-package Interview;
+package Model;
 
 public enum ActionType {
     Question,
