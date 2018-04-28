@@ -13,8 +13,12 @@ import Interview.*;
 
 public class Nao2Nao {
 
-    public static void main(String[] args) {
 
+    public static List<Robot> robotList;
+    public static InterviewPlayer currentInterviewPlayer;
+
+
+    public static void main(String[] args) {
 /*
         System.out.println("Bitte wählen Sie eine InterviewPlayer-ID zum abspielen aus:");
         interviewPlayerList = InterviewPlayer.GetAllInterviews();
@@ -51,6 +55,7 @@ public class Nao2Nao {
             // Pfad zur resources Datei
             FileReader reader = new FileReader("/home/manu/Schreibtisch/Studium/4.Semester/Projekt/Nao2Nao/src/resources/interview.xml"); //funktioniert noch nicht mit ralativem Pfad
             InputSource inputSource = new InputSource(reader);
+
 
             // DTD kann optional übergeben werden
             // inputSource.setSystemId("X:\\personen.dtd");
