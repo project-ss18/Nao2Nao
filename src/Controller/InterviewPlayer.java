@@ -34,15 +34,6 @@ public class InterviewPlayer {
     // Playback Funktionen
 
     // Print Funktionen
-    public String GetInterviewText()
-    {
-        return InterviewBusinessObject.GetInterviewText();
-    }
-    public String GetInterviewOverview()
-    {
-        return "";
-    }
-    // Print Funktionen
 
     // Functions
 

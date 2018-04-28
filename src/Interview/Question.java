@@ -23,6 +23,7 @@ public class Question extends Action {
     public void setPhrase(String phrase) {
         this.phrase=phrase;
     }
+
     public String getPhrase(){
         return phrase;
     }

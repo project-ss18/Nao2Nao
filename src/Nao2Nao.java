@@ -56,8 +56,9 @@ public class Nao2Nao {
             XMLReader xmlReader = XMLReaderFactory.createXMLReader();
 
             // Pfad zur resources Datei
-            FileReader reader = new FileReader("/home/e/IdeaProjects/Nao2Nao/src/resources/interview.xml");
+            FileReader reader = new FileReader("/home/manu/Schreibtisch/Studium/4.Semester/Projekt/Nao2Nao/src/resources/interview.xml"); //funktioniert noch nicht mit ralativem Pfad
             InputSource inputSource = new InputSource(reader);
+
 
             // DTD kann optional übergeben werden
             // inputSource.setSystemId("X:\\personen.dtd");
@@ -68,8 +69,8 @@ public class Nao2Nao {
             // Parsen wird gestartet
             xmlReader.parse(inputSource);
 
-
-           System.out.println(ContentHandler.getInterview().getBlock(1).getQuestion(1).getAnswer(1).getPhrase());
+            //Test
+            System.out.println(ContentHandler.getInterview().getBlock(1).getQuestion(1).getAnswer(1).getPhrase());
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

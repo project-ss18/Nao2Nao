@@ -7,5 +7,4 @@ public abstract class Action {
     protected String gesture;
     protected Block block;
 
-
 }

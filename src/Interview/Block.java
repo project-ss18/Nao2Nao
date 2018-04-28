@@ -1,7 +1,5 @@
 package Interview;
 
-
-
 import java.util.ArrayList;
 
 public class Block {
@@ -11,8 +9,7 @@ public class Block {
     private int bid;
 
 
-    public Block(int blockID, Interview interview)
-    {
+    public Block(int blockID, Interview interview) {
         bid =blockID;
         this.interview= interview;
         this.interview.addBlock(this);
@@ -29,6 +26,7 @@ public class Block {
         }
         return null;
     }
+
     public int getBid()
     {
         return bid;
@@ -38,7 +36,6 @@ public class Block {
     {
         this.bid = bid;
     }
-
 
     @Override
     public String toString()

@@ -13,6 +13,7 @@ public class Answer extends Action {
     public void setPhrase(String phrase) {
         this.phrase=phrase;
     }
+
     public String getPhrase(){
         return phrase;
     }
@@ -20,5 +21,4 @@ public class Answer extends Action {
     public int getId(){
         return this.id;
     }
-
 }
