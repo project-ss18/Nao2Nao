@@ -13,16 +13,8 @@ import Interview.*;
 
 public class Nao2Nao {
 
-    // In Config auslagern
-    private static String InterviewPath = "Interviews\\";
-    // In Config auslagern
-
-    public static List<Robot> robotList;
-    public static List<InterviewPlayer> interviewPlayerList;
-    public static InterviewPlayer currentInterviewPlayer;
-    public static Interview interview;
-
     public static void main(String[] args) {
+
 /*
         System.out.println("Bitte wählen Sie eine InterviewPlayer-ID zum abspielen aus:");
         interviewPlayerList = InterviewPlayer.GetAllInterviews();
@@ -35,17 +27,18 @@ public class Nao2Nao {
         int input_ID = Integer.parseInt(System.console().readLine());
         currentInterviewPlayer = InterviewPlayer.FindInterview(input_ID, interviewPlayerList);
 
-        /*for(int i = 1; i != currentInterviewPlayer.InterviewBusinessObject.get_MemberCount(); ++i)
+        for(int i = 1; i != currentInterviewPlayer.InterviewBusinessObject.get_MemberCount(); ++i)
         {
             System.out.print("IP-Adresse für Roboter " + String.valueOf(i) + " : ");
             String input_IP = System.console().readLine();
             robotList.add(new Robot(input_IP));
-        }*/
-/*
+        }
+
         System.out.println("Das InterviewPlayer ist bereit! Enter drücken um zu starten!");
         System.console().readLine();
 
         currentInterviewPlayer.StartInterview();
+*/
 
         /*
         resources-Teil von Manu
@@ -58,7 +51,6 @@ public class Nao2Nao {
             // Pfad zur resources Datei
             FileReader reader = new FileReader("/home/manu/Schreibtisch/Studium/4.Semester/Projekt/Nao2Nao/src/resources/interview.xml"); //funktioniert noch nicht mit ralativem Pfad
             InputSource inputSource = new InputSource(reader);
-
 
             // DTD kann optional übergeben werden
             // inputSource.setSystemId("X:\\personen.dtd");
