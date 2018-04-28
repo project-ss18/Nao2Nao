@@ -15,7 +15,7 @@ public class Nao2Nao {
 
     public static void main(String[] args) {
 
-        System.out.println("Bitte wählen Sie eine Model-ID zum abspielen aus:");
+        System.out.println("Bitte wählen Sie eine Interview-ID zum abspielen aus:");
         interviewList = Interview.GetAllInterviews();
 
         for(Interview IteratedInterview: interviewList)
@@ -33,7 +33,7 @@ public class Nao2Nao {
             robotList.add(new Robot(input_IP));
         }*/
 
-        System.out.println("Das Model ist bereit! Enter drücken um zu starten!");
+        System.out.println("Das Interview ist bereit! Enter drücken um zu starten!");
         System.console().readLine();
 
         currentInterview.StartInterview();

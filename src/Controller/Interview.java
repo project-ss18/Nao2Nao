@@ -1,6 +1,6 @@
 package Controller;
 
-import Model.InterviewModel;
+import Interview.InterviewModel;
 
 import java.util.List;
 
