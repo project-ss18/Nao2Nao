@@ -1,25 +1,25 @@
 package Controller;
 
-import Interview.InterviewModel;
+import Interview.Interview;
 
 import java.util.List;
 
-public class Interview {
+public class InterviewPlayer {
 
     // Instance Vars
-    public InterviewModel InterviewBusinessObject;
+    public Interview InterviewBusinessObject;
     // Instance Vars
 
     // Functions
 
-    public Interview(String Path)
+    public InterviewPlayer(String Path)
     {
         Initialize(Path);
     }
 
     private void Initialize(String Path)
     {
-        //InterviewBusinessObject = new InterviewModel();
+        //InterviewBusinessObject = new InterviewPlayer();
     }
 
     // Playback Funktionen
@@ -48,18 +48,18 @@ public class Interview {
 
 
     // Static Functions
-    public static List<Interview> GetAllInterviews()
+    public static List<InterviewPlayer> GetAllInterviews()
     {
         return null;
     }
 
-    public static Controller.Interview FindInterview(int ID, List<Interview> AlleInterviews)
+    public static InterviewPlayer FindInterview(int ID, List<InterviewPlayer> alleInterviewPlayers)
     {
-        return new Controller.Interview("");
+        return new InterviewPlayer("");
     }
-    public static Controller.Interview FindInterview(String Name, List<Interview> AlleInterviews)
+    public static InterviewPlayer FindInterview(String Name, List<InterviewPlayer> alleInterviewPlayers)
     {
-        return new Controller.Interview("");
+        return new InterviewPlayer("");
     }
     // Static Functions
 

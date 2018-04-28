@@ -2,23 +2,37 @@ package Interview;
 
 import java.util.ArrayList;
 
-public class InterviewModel {
+public class Interview {
 
     // Objects
-    public ArrayList<InterviewBlockModel> interviewBlockModels;
+    public ArrayList<Block> blockList = new ArrayList<Block>();
 
     // Attribute
-    private String id;
+    private int id;
     private String description;
-    private InterviewBlockModel interviewBlock;
+    private Block interviewBlock;
 
 
     // Getter/ Setter
 
-    public InterviewModel()
+    public Interview(int id)
     {
+        this.id=id;
     }
 
+    public void addBlock(Block v)
+    {
+        blockList.add(v);
+    }
+
+    public Block getBlock(int id) {
+        for (Block v : blockList) {
+            if (v.getBid() == id) {
+                return v;
+            }
+        }
+        return null;
+    }
     public String getDescription() {
         return description;
     }
@@ -28,20 +42,20 @@ public class InterviewModel {
     }
 
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
 
-    public InterviewBlockModel getInterviewBlock() {
+    public Block getInterviewBlock() {
         return interviewBlock;
     }
 
-    public void setInterviewBlock(InterviewBlockModel interviewBlock) {
+    public void setInterviewBlock(Block interviewBlock) {
         this.interviewBlock = interviewBlock;
     }
 
@@ -54,9 +68,9 @@ public class InterviewModel {
 
 
 /*
-    public InterviewModel(int interviewID, String interviewName, String interviewDescription, int interviewMemberCount)
+    public InterviewPlayer(int interviewID, String interviewName, String interviewDescription, int interviewMemberCount)
     {
-        interviewBlockModels = new ArrayList<InterviewBlockModel>();
+        interviewBlockModels = new ArrayList<Block>();
         Initialize(interviewID, interviewName, interviewDescription, interviewMemberCount);
     }
 
@@ -70,9 +84,9 @@ public class InterviewModel {
         // Objekt initialisieren
     }
 
-    public boolean AddInterviewBlock(InterviewBlockModel _interviewBlockModel)
+    public boolean AddInterviewBlock(Block _interviewBlockModel)
     {
-        for(InterviewBlockModel CurrentBlock : interviewBlockModels)
+        for(Block CurrentBlock : interviewBlockModels)
         {
         if(CurrentBlock.getBid() == _interviewBlockModel.getBid())
         {

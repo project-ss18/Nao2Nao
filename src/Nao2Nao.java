@@ -1,4 +1,4 @@
-import Controller.Interview;
+import Controller.InterviewPlayer;
 import Robot.Robot;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -18,33 +18,34 @@ public class Nao2Nao {
     // In Config auslagern
 
     public static List<Robot> robotList;
-    public static List<Interview> interviewList;
-    public static Interview currentInterview;
+    public static List<InterviewPlayer> interviewPlayerList;
+    public static InterviewPlayer currentInterviewPlayer;
+    public static Interview interview;
 
     public static void main(String[] args) {
 /*
-        System.out.println("Bitte wählen Sie eine Interview-ID zum abspielen aus:");
-        interviewList = Interview.GetAllInterviews();
+        System.out.println("Bitte wählen Sie eine InterviewPlayer-ID zum abspielen aus:");
+        interviewPlayerList = InterviewPlayer.GetAllInterviews();
 
-        for(Interview IteratedInterview: interviewList)
+        for(InterviewPlayer IteratedInterview: interviewPlayerList)
         {
             IteratedInterview.GetInterviewOverview();
         }
 
         int input_ID = Integer.parseInt(System.console().readLine());
-        currentInterview = Interview.FindInterview(input_ID, interviewList);
+        currentInterviewPlayer = InterviewPlayer.FindInterview(input_ID, interviewPlayerList);
 
-        /*for(int i = 1; i != currentInterview.InterviewBusinessObject.get_MemberCount(); ++i)
+        /*for(int i = 1; i != currentInterviewPlayer.InterviewBusinessObject.get_MemberCount(); ++i)
         {
             System.out.print("IP-Adresse für Roboter " + String.valueOf(i) + " : ");
             String input_IP = System.console().readLine();
             robotList.add(new Robot(input_IP));
         }*/
 /*
-        System.out.println("Das Interview ist bereit! Enter drücken um zu starten!");
+        System.out.println("Das InterviewPlayer ist bereit! Enter drücken um zu starten!");
         System.console().readLine();
 
-        currentInterview.StartInterview();
+        currentInterviewPlayer.StartInterview();
 
         /*
         resources-Teil von Manu
@@ -62,15 +63,13 @@ public class Nao2Nao {
             // inputSource.setSystemId("X:\\personen.dtd");
 
             // PersonenContentHandler wird übergeben
-            xmlReader.setContentHandler(new InterviewContentHandler());
+            xmlReader.setContentHandler(new ContentHandler());
 
             // Parsen wird gestartet
             xmlReader.parse(inputSource);
 
-            InterviewModel test = new InterviewModel();
 
-
-
+           System.out.println(ContentHandler.getInterview().getBlock(1).getQuestion(1).getAnswer(1).getPhrase());
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -80,7 +79,6 @@ public class Nao2Nao {
             e.printStackTrace();
         }
     }
-
-    }
+}
 
 
