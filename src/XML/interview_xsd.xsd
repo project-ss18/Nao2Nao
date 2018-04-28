@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<xsd:complexType name="interview">
+		<xsd:sequence>
+            <xsd:element ref="iid"/>
+			<xsd:element ref="description"/>
+			<xsd:element ref="interviewBlock" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="interviewBlock">
+		<xsd:sequence>
+			<xsd:element ref="bid"/>
+			<xsd:element ref="question"/>
+			<xsd:element ref="answer" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="question">
+		<xsd:sequence>
+			<xsd:element ref="id"/>
+			<xsd:element ref="text"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="answer">
+		<xsd:sequence>
+			<xsd:element ref="id"/>
+			<xsd:element ref="text"/>
+		</xsd:sequence>
+	</xsd:complexType>	
+	
+	
+<xsd:element name="interview" type="interview" />
+   <xsd:element name="iid" type="xsd:string" />
+<xsd:element name="description" type="xsd:string" />
+<xsd:element name="interviewBlock" type="interviewBlock" />
+<xsd:element name="bid" type="xsd:string" />
+<xsd:element name="question" type="question" />
+<xsd:element name="id" type="xsd:string" />
+<xsd:element name="answer" type="answer" />
+<xsd:element name="text" type="xsd:string" />
+
+</xsd:schema>
+

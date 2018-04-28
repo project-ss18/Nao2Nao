@@ -1,6 +1,6 @@
 package Interview;
 
-import InterviewModel;
+
 
 import java.util.ArrayList;
 
@@ -11,27 +11,33 @@ public class InterviewBlockModel {
     // Objects
 
     // Attribute
-    private int BlockOrderID;
+    private String bid;
     // Attribute
 
     // Getter / Setter
-    public int getBlockOrderID() {
-        return BlockOrderID;
+    public String getBid() {
+        return bid;
     }
-    public void setBlockOrderID(int blockOrderID) {
-        BlockOrderID = blockOrderID;
+    public void setBid(String bid) {
+        this.bid = bid;
     }
-    // Getter / Setter
 
-    public InterviewBlockModel(int _blockID)
+    public InterviewBlockModel()
+    {
+        //iaction = new ArrayList<InterviewAction>();
+    }
+
+    public InterviewBlockModel(String _blockID)
     {
         blockActions = new ArrayList<InterviewActionModel>();
         Initialize(_blockID);
     }
 
-    private void Initialize(int _blockID)
+    // Getter / Setter
+
+    private void Initialize(String _blockID)
     {
-        setBlockOrderID(_blockID);
+        setBid(_blockID);
     }
 
     public boolean AddInterviewAction(InterviewActionModel interviewAction)
@@ -45,6 +51,12 @@ public class InterviewBlockModel {
         }
         blockActions.add(interviewAction);
         return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "bid: " + this.bid;
     }
 
 }

@@ -5,55 +5,58 @@ import java.util.ArrayList;
 public class InterviewModel {
 
     // Objects
-    public ArrayList<InterviewBlockModel> interviewBlocks;
-    // Objects
+    public ArrayList<InterviewBlockModel> interviewBlockModels;
 
     // Attribute
-    private int interviewID;
-    private String interviewName;
-    private String interviewDescription;
-    private int interviewMemberCount;
-    // Attribute
+    private String id;
+    private String description;
+    private InterviewBlockModel interviewBlock;
+
 
     // Getter/ Setter
-    public int getInterviewID() {
-        return interviewID;
+
+    public InterviewModel()
+    {
     }
 
-    private void setInterviewID(int interviewID) {
-        this.interviewID = interviewID;
+    public String getDescription() {
+        return description;
     }
 
-    public String getInterviewName() {
-        return interviewName;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    private void setInterviewName(String interviewName) {
-        this.interviewName = interviewName;
+
+    public String getId() {
+        return id;
     }
 
-    public String getInterviewDescription() {
-        return interviewDescription;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    private void setInterviewDescription(String interviewDescription) {
-        this.interviewDescription = interviewDescription;
 
+    public InterviewBlockModel getInterviewBlock() {
+        return interviewBlock;
     }
 
-    public int getInterviewMemberCount() {
-        return interviewMemberCount;
+    public void setInterviewBlock(InterviewBlockModel interviewBlock) {
+        this.interviewBlock = interviewBlock;
     }
 
-    private void setInterviewMemberCount(int interviewMemberCount) {
-        this.interviewMemberCount = interviewMemberCount;
+    @Override
+    public String toString()
+    {
+        return "id: " + this.id + " decription: " + this.description;
     }
-    // Getter/ Setter
 
 
+
+/*
     public InterviewModel(int interviewID, String interviewName, String interviewDescription, int interviewMemberCount)
     {
-        interviewBlocks = new ArrayList<InterviewBlockModel>();
+        interviewBlockModels = new ArrayList<InterviewBlockModel>();
         Initialize(interviewID, interviewName, interviewDescription, interviewMemberCount);
     }
 
@@ -67,21 +70,21 @@ public class InterviewModel {
         // Objekt initialisieren
     }
 
-    public boolean AddInterviewBlock(InterviewBlockModel _interviewBlock)
+    public boolean AddInterviewBlock(InterviewBlockModel _interviewBlockModel)
     {
-        for(InterviewBlockModel CurrentBlock : interviewBlocks)
+        for(InterviewBlockModel CurrentBlock : interviewBlockModels)
         {
-        if(CurrentBlock.getBlockOrderID() == _interviewBlock.getBlockOrderID())
+        if(CurrentBlock.getBid() == _interviewBlockModel.getBid())
         {
             return false;
         }
         }
 
-        interviewBlocks.add(_interviewBlock);
+        interviewBlockModels.add(_interviewBlockModel);
         return true;
     }
 
-
+*/
 
     // Print Methods
     public String GetInterviewText()
