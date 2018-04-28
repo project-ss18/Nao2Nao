@@ -9,8 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
-
-import static Controller.Interview.*;
+import Interview.*;
 
 public class Nao2Nao {
 
@@ -48,27 +47,27 @@ public class Nao2Nao {
         currentInterview.StartInterview();
 
         /*
-        XML-Teil von Manu
+        resources-Teil von Manu
          */
 
         try {
             // XMLReader erzeugen
             XMLReader xmlReader = XMLReaderFactory.createXMLReader();
 
-            // Pfad zur XML Datei
-            FileReader reader = new FileReader("/src/XML/interview.xml");
+            // Pfad zur resources Datei
+            FileReader reader = new FileReader("/home/e/IdeaProjects/Nao2Nao/src/resources/interview.xml");
             InputSource inputSource = new InputSource(reader);
 
             // DTD kann optional übergeben werden
             // inputSource.setSystemId("X:\\personen.dtd");
 
             // PersonenContentHandler wird übergeben
-            xmlReader.setContentHandler(new Interview.InterviewContentHandler());
+            xmlReader.setContentHandler(new InterviewContentHandler());
 
             // Parsen wird gestartet
             xmlReader.parse(inputSource);
 
-            Interview.InterviewModel test = new Interview.InterviewModel();
+            InterviewModel test = new InterviewModel();
 
 
 
