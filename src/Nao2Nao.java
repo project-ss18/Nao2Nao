@@ -1,5 +1,5 @@
-import Controller.InterviewPlayer;
-import Robot.Robot;
+import controller.InterviewPlayer;
+import userInterface.Robot;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -8,13 +8,14 @@ import org.xml.sax.helpers.XMLReaderFactory;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
-import Interview.*;
+import java.util.ArrayList;
+
+import interview.*;
 
 public class Nao2Nao {
 
 
-    public static List<Robot> robotList;
+    public static ArrayList<Robot> robotList;
     public static InterviewPlayer currentInterviewPlayer;
     private final static String PATH = "./src/resources/";
 
@@ -36,7 +37,7 @@ public class Nao2Nao {
         {
             System.out.print("IP-Adresse für Roboter " + String.valueOf(i) + " : ");
             String input_IP = System.console().readLine();
-            robotList.add(new Robot(input_IP));
+            robotList.add(new userInterface(input_IP));
         }
 
         System.out.println("Das InterviewPlayer ist bereit! Enter drücken um zu starten!");

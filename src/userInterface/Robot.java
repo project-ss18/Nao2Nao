@@ -1,4 +1,4 @@
-package Robot;
+package userInterface;
 
 public class Robot {
 

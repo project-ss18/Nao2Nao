@@ -1,6 +1,6 @@
-package Controller;
+package controller;
 
-import Interview.Interview;
+import interview.Interview;
 
 import java.util.List;
 

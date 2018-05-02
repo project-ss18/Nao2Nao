@@ -1,4 +1,4 @@
-package Interview;
+package interview;
 
 public abstract class Action {
 

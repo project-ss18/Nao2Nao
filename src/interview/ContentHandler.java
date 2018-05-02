@@ -1,4 +1,4 @@
-package Interview;
+package interview;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.Locator;
