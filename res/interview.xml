@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<interview iid = "001">
+
+	<description>Erstes interview</description>
+	
+	<block bid ="001">
+		<question qid = "001">
+			<phrase>Wie geht es dir</phrase>
+			<gesture></gesture>
+		</question>
+		<answer aid = "001">
+			<phrase>Mir geht es gut</phrase>
+			<gesture></gesture>
+		</answer>
+		<answer aid = "002">
+			<phrase>Mir geht es schlecht</phrase>
+			<gesture></gesture>
+		</answer>	
+	</block>
+		
+	<block bid = "001">
+		<question qid = "002">
+			<phrase>Wie heißt du</phrase>
+		</question>
+		<answer aid = "003">
+			<phrase>Ich heiße NAO</phrase>
+		</answer>
+	</block>
+		
+</interview>
+			
