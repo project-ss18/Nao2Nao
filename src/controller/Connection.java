@@ -6,12 +6,14 @@ import com.aldebaran.qi.Application;
 import com.aldebaran.qi.Future;
 import com.aldebaran.qi.Session;
 
-public class Connection {
+public class Connection{
 
     private Application app;
     private Session session;
     private Future<Void> fut;
-    AnyObject tts = null;
+    private AnyObject ttsSay = null;
+    private AnyObject ttsGesture = null;
+
 
     public Connection(String IP_ADRESS, String[] args) throws Exception{
             app = new Application(args);
@@ -19,21 +21,22 @@ public class Connection {
             fut = session.connect("tcp://" + IP_ADRESS + "9559");
             fut.get();
 
-            tts = session.service("ALTextToSpeech");
+            ttsSay = session.service("ALTextToSpeech");
+            ttsGesture = session.service("ALRobotPosture");
+
     }
 
     public void say(String args) throws Exception{
-        tts.call("say", args);
+        ttsSay.call("say", args);
     }
 
     public void gesture(String args)throws Exception{
-        tts.call("gesture", args );
-
+        ttsGesture.call("gesture", args );
     }
 
 
     public void ping()throws Exception {
-        boolean ping = tts.<Boolean>call("ping").get();
+        boolean ping = ttsSay.<Boolean>call("ping").get();
         if (!ping) {
             System.out.println("Could not ping TTS");
         } else {
