@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import interview.*;
 
@@ -46,38 +47,29 @@ public class Nao2Nao {
         currentInterviewPlayer.StartInterview();
 */
 
-        /*
-        resources-Teil von Manu
-         */
+        // Interview auswählen
+        Scanner s = new Scanner(System.in);
 
-        try {
-            // XMLReader erzeugen
-            XMLReader xmlReader = XMLReaderFactory.createXMLReader();
-
-            // Pfad zur resources Datei
-            FileReader reader = new FileReader(PATH + "interview.xml");
-            InputSource inputSource = new InputSource(reader);
-
-
-            // DTD kann optional übergeben werden
-            // inputSource.setSystemId("X:\\personen.dtd");
-
-            // PersonenContentHandler wird übergeben
-            xmlReader.setContentHandler(new ContentHandler());
-
-            // Parsen wird gestartet
-            xmlReader.parse(inputSource);
-
-            //Test
-            System.out.println(ContentHandler.getInterview().getBlock(1).getQuestion(1).getAnswer(1).getPhrase());
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
+        System.out.println("Bitte wählen Sie eine InterviewPlayer-ID zum abspielen aus:");
+        for(InterviewPlayer CurrentInterview: InterviewPlayer.GetAllInterviews())
+        {
+            CurrentInterview.print();
         }
+        System.out.print("Bitte Interview-Namen angeben:");
+        String InterviewName = s.next();
+
+        currentInterviewPlayer = new InterviewPlayer(PATH + InterviewName);
+        // Interview auswählen
+
+        // Roboter initialisieren
+
+        System.out.print("IP-Adresse für Roboter 1: ");
+        String IPAdresse1 = s.next();
+
+        System.out.print("IP-Adresse für Roboter 2: ");
+        String IPAdresse2 = s.next();
+
+        // Roboter initialisieren
     }
 }
 
