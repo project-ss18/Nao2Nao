@@ -11,7 +11,7 @@ public class Block {
 
     public Block(int blockID, Interview interview) {
         bid =blockID;
-        this.interview= interview;
+        this.interview = interview;
         this.interview.addBlock(this);
     }
 

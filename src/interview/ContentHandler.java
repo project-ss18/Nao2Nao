@@ -68,7 +68,7 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
             interview.setDescription(currentValue);
         }
 
-        if (localName.equals("text")) {
+        if (localName.equals("phrase")) {
             if(type){
                 answerList.get(answerCounter-1).setPhrase(currentValue);
             }else if(type==false){
