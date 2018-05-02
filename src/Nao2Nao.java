@@ -24,14 +24,9 @@ public class Nao2Nao {
         }
         System.out.print("Bitte Interview-Namen angeben:");
         String InterviewName = s.next();
-        for(InterviewPlayer CurrentInterview: InterviewPlayer.GetAllInterviews())
-        {
-        if(CurrentInterview.XMLFile.getName() == InterviewName)
-        {
-            currentInterviewPlayer = CurrentInterview;
-        }
-        }
-        
+
+        currentInterviewPlayer = new InterviewPlayer("./res/" + InterviewName);
+
         // Interview auswählen
 
         // Roboter initialisieren
@@ -48,7 +43,8 @@ public class Nao2Nao {
         // Roboter initialisieren
 
         // Interview abspielen
-        System.out.print("Drücken Sie eine Taste um das Interview zu starten.");
+        System.out.print("Drücken Sie ENTER um das Interview zu starten.");
+        s.next();
         currentInterviewPlayer.StartInterview(robotList.get(1), robotList.get(2));
         // Interview abspielen
     }
