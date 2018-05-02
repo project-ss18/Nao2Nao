@@ -65,11 +65,17 @@ public class Nao2Nao {
 
         System.out.print("IP-Adresse für Roboter 1: ");
         String IPAdresse1 = s.next();
+        robotList.add(new Robot(IPAdresse1));
 
         System.out.print("IP-Adresse für Roboter 2: ");
         String IPAdresse2 = s.next();
-
+        robotList.add(new Robot(IPAdresse2));
         // Roboter initialisieren
+
+        // Interview abspielen
+        System.out.print("Drücken Sie eine Taste um das Interview zu starten.");
+        currentInterviewPlayer.StartInterview(robotList);
+        // Interview abspielen
     }
 }
 

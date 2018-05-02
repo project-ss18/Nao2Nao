@@ -6,6 +6,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
+import userInterface.Robot;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class InterviewPlayer {
     // Instance Vars
     public Interview InterviewBusinessObject;
     public String filename;
-    private final static String PATH = "./src/resources/";
+    private final static String PATH = "./res/";
     // Instance Vars
 
     // Functions
@@ -59,7 +60,7 @@ public class InterviewPlayer {
     }
 
     // Playback Funktionen
-    public void StartInterview()
+    public void StartInterview(ArrayList<Robot> AlleRoboter)
     {
 
     }
