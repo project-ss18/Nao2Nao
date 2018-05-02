@@ -9,7 +9,7 @@ public class Robot {
         IP_ADDRESS = address;
         ID = id;
     }
-
+    //
     public String getIPAdress() {
         return IP_ADDRESS;
     }
