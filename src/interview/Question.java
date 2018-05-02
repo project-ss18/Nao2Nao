@@ -16,7 +16,7 @@ public class Question extends Action {
         return answerList.size();
     }
     public Answer getAnswer(int index){
-        return answerList.get(index);
+        return answerList.get(index-1);
     }
 
     public void addAnswer(Answer a){

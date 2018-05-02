@@ -17,22 +17,17 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class InterviewPlayer {
 
-    // Instance Vars
-    public Interview InterviewBusinessObject;
+
+    public Interview interview;
     public File XMLFile;
     private final static String PATH = "./res/";
-    // Instance Vars
 
-    // Functions
-
-    public InterviewPlayer(String FileName)
-    {
+    public InterviewPlayer(String FileName) {
         XMLFile = new File(FileName);
-        Initialize(FileName);
+        initialize(FileName);
     }
 
-    private void Initialize(String FileName)
-    {
+    private void initialize(String FileName) {
         try {
             // XMLReader erzeugen
             XMLReader xmlReader = XMLReaderFactory.createXMLReader();
@@ -51,7 +46,7 @@ public class InterviewPlayer {
             // Parsen wird gestartet
             xmlReader.parse(inputSource);
 
-          InterviewBusinessObject = ContentHandler.getInterview();
+          interview = ContentHandler.getInterview();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -63,62 +58,51 @@ public class InterviewPlayer {
     }
 
     // Playback Funktionen
-    public void StartInterview(Robot Roboter1, Robot Roboter2) throws Exception
-    {
+    public void startInterview(Robot Roboter1, Robot Roboter2) throws Exception {
+        for(Block currentBlock : interview.getBlockList()) {
+            // Frage auslesen und abspielen
+            Roboter1.say(currentBlock.getQuestion(1).getPhrase());
+            int AnswerCount = currentBlock.getQuestion(1).getAnswerCount();
+            Thread.sleep(5000);
 
-        for(Block CurrentBlock : InterviewBusinessObject.getBlockList())
-        {
-            // Frage auslesen und abspielen
-            Roboter1.say(CurrentBlock.getQuestion(1).getPhrase());
-            // Frage auslesen und abspielen
-            // Antwort auswählen und abspielen
-            int AnswerCount = CurrentBlock.getQuestion(1).getAnswerCount();
             int AnswerNumber = ThreadLocalRandom.current().nextInt(1, AnswerCount + 1);
-            Roboter2.say(CurrentBlock.getQuestion(1).getAnswer(AnswerNumber).getPhrase());
+            Roboter2.say(currentBlock.getQuestion(1).getAnswer(AnswerNumber).getPhrase());
+            Thread.sleep(5000);
             // Antwort auswählen und abspielen
         }
+    }
+    public void PauseInterview() {
 
     }
-    public void PauseInterview()
-    {
 
-    }
-    // Playback Funktionen
-
-    // Print Funktionen
-
-    // Functions
-
-    // print
-    public void print()
-    {
-        System.out.println("Interview: '" + XMLFile.getName() + "'");
+    public static void print() {
+        for (InterviewPlayer interviewPlayer : getAllInterviews()){
+            System.out.println("Interview: '" + interviewPlayer.XMLFile.getName() + "'");
+        }
     }
     // print
 
     // Static Functions
-    public static List<InterviewPlayer> GetAllInterviews()
+    public static List<InterviewPlayer> getAllInterviews()
     {
         ArrayList<InterviewPlayer> InterviewObjects = new ArrayList<InterviewPlayer>();
         File folder = new File(PATH);
         File[] listofInterviews = folder.listFiles();
 
-        for(File CurrentInterview : listofInterviews)
+        for(File currentInterview : listofInterviews)
         {
-            if(CurrentInterview.isFile() && CurrentInterview.getName().endsWith(".xml"))
+            if(currentInterview.isFile() && currentInterview.getName().endsWith(".xml"))
             {
-               InterviewObjects.add(new InterviewPlayer(PATH + CurrentInterview.getName()));
+               InterviewObjects.add(new InterviewPlayer(PATH + currentInterview.getName()));
             }
         }
         return InterviewObjects;
     }
 
-    public static InterviewPlayer FindInterview(int ID, List<InterviewPlayer> alleInterviewPlayers)
-    {
+    public static InterviewPlayer findInterview(int ID, List<InterviewPlayer> alleInterviewPlayers) {
         return new InterviewPlayer("");
     }
-    public static InterviewPlayer FindInterview(String Name, List<InterviewPlayer> alleInterviewPlayers)
-    {
+    public static InterviewPlayer findInterview(String Name, List<InterviewPlayer> alleInterviewPlayers) {
         return new InterviewPlayer("");
     }
     // Static Functions

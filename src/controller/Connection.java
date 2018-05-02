@@ -8,17 +8,22 @@ import com.aldebaran.qi.Session;
 
 public class Connection{
 
-    private Application app;
+    private static Application app;
     private Session session;
     private Future<Void> fut;
     private AnyObject ttsSay = null;
     private AnyObject ttsGesture = null;
 
+    private static boolean b = false;
+
 
     public Connection(String IP_ADRESS, String[] args) throws Exception{
-            app = new Application(args);
+            if(!b) {
+                app = new Application(args);
+                b = true;
+            }
             session = new Session();
-            fut = session.connect("tcp://" + IP_ADRESS + "9559");
+            fut = session.connect("tcp://" + IP_ADRESS + ":9559");
             fut.get();
 
             ttsSay = session.service("ALTextToSpeech");

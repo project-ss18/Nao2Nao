@@ -19,11 +19,11 @@
 		</answer>	
 	</block>
 		
-	<block bid = "001">
-		<question qid = "002">
+	<block bid = "002">
+		<question qid = "001">
 			<phrase>Wie heißt du</phrase>
 		</question>
-		<answer aid = "003">
+		<answer aid = "001">
 			<phrase>Ich heiße NAO</phrase>
 		</answer>
 	</block>
