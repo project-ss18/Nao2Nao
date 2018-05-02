@@ -1,6 +1,8 @@
 <component name="libraryTable">
   <library name="java-naoqi-sdk-2.1.4.13-win32-vs2010">
-    <CLASSES />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/OneDrive/Nao2Nao-Interaktionen/NAO-api/java-naoqi-sdk-2.1.4.13-win32-vs2010.jar!/" />
+    </CLASSES>
     <JAVADOC />
     <SOURCES />
   </library>
