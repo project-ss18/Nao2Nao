@@ -45,39 +45,15 @@ public class Nao2Nao {
 
         currentInterviewPlayer.StartInterview();
 */
+        System.out.println("Bitte wählen Sie eine InterviewPlayer-ID zum abspielen aus:");
+        interviewPlayerList = InterviewPlayer.GetAllInterviews();
 
-        /*
-        resources-Teil von Manu
-         */
-
-        try {
-            // XMLReader erzeugen
-            XMLReader xmlReader = XMLReaderFactory.createXMLReader();
-
-            // Pfad zur resources Datei
-            FileReader reader = new FileReader(PATH + "interview.xml");
-            InputSource inputSource = new InputSource(reader);
-
-
-            // DTD kann optional übergeben werden
-            // inputSource.setSystemId("X:\\personen.dtd");
-
-            // PersonenContentHandler wird übergeben
-            xmlReader.setContentHandler(new ContentHandler());
-
-            // Parsen wird gestartet
-            xmlReader.parse(inputSource);
-
-            //Test
-            System.out.println(ContentHandler.getInterview().getBlock(1).getQuestion(1).getAnswer(1).getPhrase());
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
+        for(InterviewPlayer IteratedInterview: interviewPlayerList)
+        {
+            IteratedInterview.GetInterviewOverview();
         }
+
+
     }
 }
 
