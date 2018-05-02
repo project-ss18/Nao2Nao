@@ -2,39 +2,21 @@ package userInterface;
 
 public class Robot {
 
-    // Instance Vars
-    private String _IPAdress;
-    private int _ID;
-    // Instance Vars
+    private final String IP_ADDRESS;
+    private final int ID;
 
-    // Getter/ Setter
-    public String get_IPAdress()
-    {
-        return _IPAdress;
+    public Robot(String address, int id) {
+        IP_ADDRESS = address;
+        ID = id;
     }
 
-    public void set_IPAdress(String _IPAdress)
-    {
-        this._IPAdress = _IPAdress;
-        // Connect with this IP-Adress
+    public String getIPAdress() {
+        return IP_ADDRESS;
     }
 
-    public int get_ID()
-    {
-        return _ID;
+    public int get_ID(){
+        return ID;
     }
 
-    private void set_ID(int _ID)
-    {
-        this._ID = _ID;
-    }
-    // Getter/ Setter
-
-    // Functions
-    public Robot(String IPAdress)
-    {
-
-    }
-    // Functions
 
 }
