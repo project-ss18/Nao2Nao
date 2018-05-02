@@ -16,6 +16,7 @@ public class Nao2Nao {
 
     public static List<Robot> robotList;
     public static InterviewPlayer currentInterviewPlayer;
+    private final static String PATH = "./src/resources/";
 
 
     public static void main(String[] args) {
@@ -53,7 +54,7 @@ public class Nao2Nao {
             XMLReader xmlReader = XMLReaderFactory.createXMLReader();
 
             // Pfad zur resources Datei
-            FileReader reader = new FileReader("/home/manu/Schreibtisch/Studium/4.Semester/Projekt/Nao2Nao/src/resources/interview.xml"); //funktioniert noch nicht mit ralativem Pfad
+            FileReader reader = new FileReader(PATH + "interview.xml");
             InputSource inputSource = new InputSource(reader);
 
 
