@@ -26,6 +26,10 @@ public class Connection {
         tts.call("say", args);
     }
 
+    public void gesture(String args)throws Exception{
+        tts.call("gesture", args );
+    }
+
 
     public void ping()throws Exception {
         boolean ping = tts.<Boolean>call("ping").get();

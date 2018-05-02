@@ -10,7 +10,7 @@ public class Nao2Nao {
     public static ArrayList<Robot> robotList;
     public static InterviewPlayer currentInterviewPlayer;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 /*
         System.out.println("Bitte wählen Sie eine InterviewPlayer-ID zum abspielen aus:");
         interviewPlayerList = InterviewPlayer.GetAllInterviews();
@@ -52,13 +52,15 @@ public class Nao2Nao {
 
         // Roboter initialisieren
 
+        String[] emptyArray = new String[0];
         System.out.print("IP-Adresse für Roboter 1: ");
         String IPAdresse1 = s.next();
-        robotList.add(new Robot(IPAdresse1, 1));
+        robotList.add(new Robot(IPAdresse1, 1, emptyArray));
+
 
         System.out.print("IP-Adresse für Roboter 2: ");
         String IPAdresse2 = s.next();
-        robotList.add(new Robot(IPAdresse2, 2));
+        robotList.add(new Robot(IPAdresse2, 2, emptyArray));
         // Roboter initialisieren
 
         // Interview abspielen

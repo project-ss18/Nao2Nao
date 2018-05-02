@@ -30,4 +30,7 @@ public class Robot {
         CONNECTION.say(args);
     }
 
+    public void gesture(String args)throws Exception{
+        CONNECTION.gesture(args);
+    }
 }
