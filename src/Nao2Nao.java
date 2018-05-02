@@ -13,40 +13,30 @@ public class Nao2Nao {
 
     public static void main(String[] args) throws Exception {
 
-        // Interview auswählen
+        //--------------------------Interview Liste ausgeben--------------------------\\
         Scanner s = new Scanner(System.in);
-
         System.out.println("Bitte wählen Sie eine InterviewPlayer-ID zum abspielen aus:");
+        InterviewPlayer.print();
 
-        for(InterviewPlayer CurrentInterview: InterviewPlayer.GetAllInterviews())
-        {
-            CurrentInterview.print();
-        }
+        //--------------------------Selektiertes Interview eingliedern--------------------------\\
         System.out.print("Bitte Interview-Namen angeben:");
         String InterviewName = s.next();
-
         currentInterviewPlayer = new InterviewPlayer("./res/" + InterviewName);
 
-        // Interview auswählen
-
-        // Roboter initialisieren
-
-        String[] emptyArray = new String[0];
+        //--------------------------Roboter 1 erstellen--------------------------\\
         System.out.print("IP-Adresse für Roboter 1: ");
-        String IPAdresse1 = s.next();
-        robotList.add(new Robot(IPAdresse1, 1, emptyArray));
+        String ipRobot1 = s.next();
+        Robot r = new Robot(ipRobot1, 1, args);
 
-
+        //--------------------------Roboter 2 erstellen--------------------------\\
         System.out.print("IP-Adresse für Roboter 2: ");
-        String IPAdresse2 = s.next();
-        robotList.add(new Robot(IPAdresse2, 2, emptyArray));
-        // Roboter initialisieren
+        String ipRobot2 = s.next();
+        Robot r1=new Robot(ipRobot2, 2, args);
 
-        // Interview abspielen
-        System.out.print("Drücken Sie ENTER um das Interview zu starten.");
-        s.next();
-        currentInterviewPlayer.StartInterview(robotList.get(1), robotList.get(2));
-        // Interview abspielen
+        //--------------------------Interview ablaufen lassen--------------------------\\
+        System.out.print("Drücken Sie eine Taste um das Interview zu starten.");
+        currentInterviewPlayer.startInterview(r,r1);
+
     }
 }
 
