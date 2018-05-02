@@ -7,15 +7,15 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class InterviewPlayer {
 
     // Instance Vars
     public Interview InterviewBusinessObject;
+    public String filename;
     private final static String PATH = "./src/resources/";
     // Instance Vars
 
@@ -23,6 +23,7 @@ public class InterviewPlayer {
 
     public InterviewPlayer(String FileName)
     {
+        filename = FileName;
         Initialize(FileName);
     }
 
@@ -72,11 +73,28 @@ public class InterviewPlayer {
 
     // Functions
 
+    // print
+    public void print()
+    {
+        System.out.println("Interview " + filename);
+    }
+    // print
 
     // Static Functions
     public static List<InterviewPlayer> GetAllInterviews()
     {
-        return null;
+        ArrayList<InterviewPlayer> InterviewObjects = new ArrayList<InterviewPlayer>();
+        File folder = new File(PATH);
+        File[] listofInterviews = folder.listFiles();
+
+        for(File CurrentInterview : listofInterviews)
+        {
+            if(CurrentInterview.isFile())
+            {
+               InterviewObjects.add(new InterviewPlayer((CurrentInterview.getAbsolutePath())));
+            }
+        }
+        return InterviewObjects;
     }
 
     public static InterviewPlayer FindInterview(int ID, List<InterviewPlayer> alleInterviewPlayers)

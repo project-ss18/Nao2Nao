@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import interview.*;
 
@@ -45,15 +46,30 @@ public class Nao2Nao {
 
         currentInterviewPlayer.StartInterview();
 */
+
+        // Interview auswählen
+        Scanner s = new Scanner(System.in);
+
         System.out.println("Bitte wählen Sie eine InterviewPlayer-ID zum abspielen aus:");
-        interviewPlayerList = InterviewPlayer.GetAllInterviews();
-
-        for(InterviewPlayer IteratedInterview: interviewPlayerList)
+        for(InterviewPlayer CurrentInterview: InterviewPlayer.GetAllInterviews())
         {
-            IteratedInterview.GetInterviewOverview();
+            CurrentInterview.print();
         }
+        System.out.print("Bitte Interview-Namen angeben:");
+        String InterviewName = s.next();
 
+        currentInterviewPlayer = new InterviewPlayer(PATH + InterviewName);
+        // Interview auswählen
 
+        // Roboter initialisieren
+
+        System.out.print("IP-Adresse für Roboter 1: ");
+        String IPAdresse1 = s.next();
+
+        System.out.print("IP-Adresse für Roboter 2: ");
+        String IPAdresse2 = s.next();
+
+        // Roboter initialisieren
     }
 }
 
