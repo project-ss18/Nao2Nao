@@ -1,5 +1,7 @@
 package controller;
 
+import interview.Action;
+import interview.Block;
 import interview.ContentHandler;
 import interview.Interview;
 import org.xml.sax.InputSource;
@@ -11,6 +13,7 @@ import userInterface.Robot;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class InterviewPlayer {
 
@@ -60,8 +63,20 @@ public class InterviewPlayer {
     }
 
     // Playback Funktionen
-    public void StartInterview(ArrayList<Robot> AlleRoboter)
+    public void StartInterview(Robot Roboter1, Robot Roboter2) throws Exception
     {
+
+        for(Block CurrentBlock : InterviewBusinessObject.getBlockList())
+        {
+            // Frage auslesen und abspielen
+            Roboter1.say(CurrentBlock.getQuestion(1).getPhrase());
+            // Frage auslesen und abspielen
+            // Antwort auswählen und abspielen
+            int AnswerCount = CurrentBlock.getQuestion(1).getAnswerCount();
+            int AnswerNumber = ThreadLocalRandom.current().nextInt(1, AnswerCount + 1);
+            Roboter2.say(CurrentBlock.getQuestion(1).getAnswer(AnswerNumber).getPhrase());
+            // Antwort auswählen und abspielen
+        }
 
     }
     public void PauseInterview()

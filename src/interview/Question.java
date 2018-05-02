@@ -12,6 +12,9 @@ public class Question extends Action {
         v.addQuestion(this);
     }
 
+    public int getAnswerCount() {
+        return answerList.size();
+    }
     public Answer getAnswer(int index){
         return answerList.get(index);
     }
