@@ -16,7 +16,7 @@ public class InterviewPlayer {
 
     // Instance Vars
     public Interview InterviewBusinessObject;
-    public String filename;
+    public File XMLFile;
     private final static String PATH = "./res/";
     // Instance Vars
 
@@ -24,7 +24,7 @@ public class InterviewPlayer {
 
     public InterviewPlayer(String FileName)
     {
-        filename = FileName;
+        XMLFile = new File(FileName);
         Initialize(FileName);
     }
 
@@ -35,7 +35,7 @@ public class InterviewPlayer {
             XMLReader xmlReader = XMLReaderFactory.createXMLReader();
 
             // Pfad zur resources Datei
-            FileReader reader = new FileReader(PATH + FileName);
+            FileReader reader = new FileReader(FileName);
             InputSource inputSource = new InputSource(reader);
 
 
@@ -77,7 +77,7 @@ public class InterviewPlayer {
     // print
     public void print()
     {
-        System.out.println("Interview " + filename);
+        System.out.println("Interview: '" + XMLFile.getName() + "'");
     }
     // print
 
@@ -90,9 +90,9 @@ public class InterviewPlayer {
 
         for(File CurrentInterview : listofInterviews)
         {
-            if(CurrentInterview.isFile())
+            if(CurrentInterview.isFile() && CurrentInterview.getName().endsWith(".xml"))
             {
-               InterviewObjects.add(new InterviewPlayer((CurrentInterview.getAbsolutePath())));
+               InterviewObjects.add(new InterviewPlayer(PATH + CurrentInterview.getName()));
             }
         }
         return InterviewObjects;

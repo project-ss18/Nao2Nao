@@ -1,25 +1,14 @@
 import controller.InterviewPlayer;
 import userInterface.Robot;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.XMLReaderFactory;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import interview.*;
 
 public class Nao2Nao {
 
 
     public static ArrayList<Robot> robotList;
     public static InterviewPlayer currentInterviewPlayer;
-    private final static String PATH = "./src/resources/";
-
 
     public static void main(String[] args) {
 /*
@@ -58,7 +47,7 @@ public class Nao2Nao {
         System.out.print("Bitte Interview-Namen angeben:");
         String InterviewName = s.next();
 
-        currentInterviewPlayer = new InterviewPlayer(PATH + InterviewName);
+        currentInterviewPlayer = new InterviewPlayer(InterviewName);
         // Interview auswählen
 
         // Roboter initialisieren
