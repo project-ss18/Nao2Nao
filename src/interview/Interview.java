@@ -9,7 +9,8 @@ public class Interview {
     private int id;
     private String description;
     private String posture;
-        private Block interviewBlock;
+    private Block interviewBlock;
+
 
     public Interview(int id)
     {
@@ -20,7 +21,6 @@ public class Interview {
     {
         blockList.add(v);
     }
-
 
     public ArrayList<Block> getBlockList() {
         return blockList;

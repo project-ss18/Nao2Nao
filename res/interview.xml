@@ -3,7 +3,7 @@
 <interview iid = "001">
 
 	<description>Erstes interview</description>
-    <posture>Stand</posture>
+    <posture>Sit</posture>
 	
 	<block bid ="001">
 		<question qid = "001">

@@ -9,8 +9,6 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 import userInterface.Robot;
-
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +19,9 @@ public class InterviewPlayer {
     public Interview interview;
     public File XMLFile;
     private final static String PATH = "./res/";
-    private String standartGestures = "^start(animations/Stand/Gestures/";
-    private String bodytalk = "^start(animations/Stand/BodyTalk/";
+    private String standGestures = "^start(animations/Stand/Gestures/";
+    private String standBodytalk = "^start(animations/Stand/BodyTalk/";
+    private String sitBodytalk = "^start(animations/Sit/BodyTalk/";
     private String endTag = ")";
     private String wait = "^wait(animations/Stand/Gestures/";
 
@@ -33,21 +32,16 @@ public class InterviewPlayer {
 
     private void initialize(String FileName) {
         try {
-            // XMLReader erzeugen
+
             XMLReader xmlReader = XMLReaderFactory.createXMLReader();
 
-            // Pfad zur resources Datei
+            //------------------- Pfad XML-Datei -------------------//
             FileReader reader = new FileReader(FileName);
             InputSource inputSource = new InputSource(reader);
 
-
-            // DTD kann optional übergeben werden
-            // inputSource.setSystemId("X:\\personen.dtd");
-
-            // PersonenContentHandler wird übergeben
             xmlReader.setContentHandler(new ContentHandler());
 
-            // Parsen wird gestartet
+            //------------------- Start Parser -------------------//
             xmlReader.parse(inputSource);
 
           interview = ContentHandler.getInterview();
@@ -65,31 +59,28 @@ public class InterviewPlayer {
     public void startInterview(Robot Roboter1, Robot Roboter2) throws Exception {
         for(Block currentBlock : interview.getBlockList()) {
 
-            // Frage auslesen und abspielen
-            //Roboter1.say(currentBlock.getQuestion(1).getPhrase());
-
             Roboter1.goToPosture(interview.getPosture());
-            //Roboter1.animatedSay(bodytalk + currentBlock.getQuestion(1).getGesture() + endTag + currentBlock.getQuestion(1).getPhrase() + wait + endTag);
+            Roboter2.goToPosture(interview.getPosture());
+
+            Roboter1.animatedSay(standBodytalk + currentBlock.getQuestion(1).getGesture() + endTag + currentBlock.getQuestion(1).getPhrase() + wait + endTag);
             int AnswerCount = currentBlock.getQuestion(1).getAnswerCount();
             Thread.sleep(2000);
 
             int AnswerNumber = ThreadLocalRandom.current().nextInt(1, AnswerCount + 1);
-            //Roboter2.say(currentBlock.getQuestion(1).getAnswer(AnswerNumber).getPhrase());
-            //Roboter2.animatedSay(standartGestures + currentBlock.getQuestion(1).getAnswer(AnswerNumber).getGesture() + endTag + currentBlock.getQuestion(1).getAnswer(AnswerNumber).getPhrase() + wait + endTag);
+            Roboter2.animatedSay(standGestures + currentBlock.getQuestion(1).getAnswer(AnswerNumber).getGesture() + endTag + currentBlock.getQuestion(1).getAnswer(AnswerNumber).getPhrase() + wait + endTag);
             Thread.sleep(2000);
+
             // Antwort auswählen und abspielen
         }
     }
     public void PauseInterview() {
     }
-
     public static void print() {
         for (InterviewPlayer interviewPlayer : getAllInterviews()){
             System.out.println("Interview: '" + interviewPlayer.XMLFile.getName() + "'");
         }
     }
-    // print
-    // Static Functions
+
     public static List<InterviewPlayer> getAllInterviews()
     {
         ArrayList<InterviewPlayer> InterviewObjects = new ArrayList<InterviewPlayer>();
@@ -109,9 +100,8 @@ public class InterviewPlayer {
     public static InterviewPlayer findInterview(int ID, List<InterviewPlayer> alleInterviewPlayers) {
         return new InterviewPlayer("");
     }
+
     public static InterviewPlayer findInterview(String Name, List<InterviewPlayer> alleInterviewPlayers) {
         return new InterviewPlayer("");
     }
-    // Static Functions
-
 }

@@ -6,7 +6,6 @@ import org.xml.sax.SAXException;
 
 import java.util.ArrayList;
 
-
 public class ContentHandler implements org.xml.sax.ContentHandler {
 
     private static Interview interview;
@@ -21,7 +20,6 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
 
     private static boolean type = false;//false == question
 
-
     public void characters(char[] ch, int start, int length)
             throws SAXException {
         currentValue = new String(ch, start, length);
@@ -34,7 +32,6 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
     public void setInterview(Interview interview) {
         this.interview = interview;
     }
-
 
     // Methode wird aufgerufen wenn der Parser zu einem Start-Tag kommt
     public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
@@ -87,7 +84,6 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
                 questionList.get(questCounter-1).setGesture(currentValue);
             }
         }
-
     }
 
     public void endDocument() throws SAXException {}
