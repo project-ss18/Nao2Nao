@@ -38,4 +38,8 @@ public class Robot {
     public void animatedSay(String args)throws Exception{
         CONNECTION.gesture(args);
     }
+
+    public void goToPosture(String args)throws Exception{
+        CONNECTION.posture(args);
+    }
 }

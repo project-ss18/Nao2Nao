@@ -21,7 +21,8 @@ public class InterviewPlayer {
     public Interview interview;
     public File XMLFile;
     private final static String PATH = "./res/";
-    private String start = "^start(animations/Stand/Gestures/";
+    private String standartGestures = "^start(animations/Stand/Gestures/";
+    private String bodytalk = "^start(animations/Stand/BodyTalk/";
     private String endTag = ")";
     private String wait = "^wait(animations/Stand/Gestures/";
 
@@ -63,15 +64,18 @@ public class InterviewPlayer {
     // Playback Funktionen
     public void startInterview(Robot Roboter1, Robot Roboter2) throws Exception {
         for(Block currentBlock : interview.getBlockList()) {
+
             // Frage auslesen und abspielen
             //Roboter1.say(currentBlock.getQuestion(1).getPhrase());
-            Roboter1.animatedSay(start + currentBlock.getQuestion(1).getGesture() + endTag + currentBlock.getQuestion(1).getPhrase() + wait + endTag);
+
+            Roboter1.goToPosture(interview.getPosture());
+            //Roboter1.animatedSay(bodytalk + currentBlock.getQuestion(1).getGesture() + endTag + currentBlock.getQuestion(1).getPhrase() + wait + endTag);
             int AnswerCount = currentBlock.getQuestion(1).getAnswerCount();
             Thread.sleep(2000);
 
             int AnswerNumber = ThreadLocalRandom.current().nextInt(1, AnswerCount + 1);
             //Roboter2.say(currentBlock.getQuestion(1).getAnswer(AnswerNumber).getPhrase());
-            Roboter2.animatedSay(start + currentBlock.getQuestion(1).getAnswer(AnswerNumber).getGesture() + endTag + currentBlock.getQuestion(1).getAnswer(AnswerNumber).getPhrase() + wait + endTag);
+            //Roboter2.animatedSay(standartGestures + currentBlock.getQuestion(1).getAnswer(AnswerNumber).getGesture() + endTag + currentBlock.getQuestion(1).getAnswer(AnswerNumber).getPhrase() + wait + endTag);
             Thread.sleep(2000);
             // Antwort auswählen und abspielen
         }
