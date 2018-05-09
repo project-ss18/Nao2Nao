@@ -35,7 +35,7 @@ public class Robot {
         CONNECTION.say(args);
     }
 
-    public void gesture(String args)throws Exception{
+    public void animatedSay(String args)throws Exception{
         CONNECTION.gesture(args);
     }
 }

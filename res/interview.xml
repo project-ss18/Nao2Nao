@@ -7,24 +7,37 @@
 	<block bid ="001">
 		<question qid = "001">
 			<phrase>Wie geht es dir</phrase>
-			<gesture>Standing</gesture>
+			<gesture>Hey_1</gesture>
 		</question>
 		<answer aid = "001">
 			<phrase>Mir geht es gut</phrase>
-			<gesture>Standing</gesture>
+			<gesture>Excited_2</gesture>
 		</answer>
 		<answer aid = "002">
 			<phrase>Mir geht es schlecht</phrase>
-			<gesture>	LyingBack</gesture>
+			<gesture>Excited_1</gesture>
 		</answer>	
 	</block>
 		
 	<block bid = "002">
 		<question qid = "001">
 			<phrase>Wie heißt du</phrase>
+			<gesture>Excited_1</gesture>
 		</question>
 		<answer aid = "001">
 			<phrase>Ich heiße NAO</phrase>
+			<gesture>Excited_1</gesture>
+		</answer>
+	</block>
+
+	<block bid = "003">
+		<question qid = "001">
+			<phrase>War das schon das ganze Interview</phrase>
+			<gesture>Excited_1</gesture>
+		</question>
+		<answer aid = "001">
+			<phrase>Ja das war eine kleine Kostprobe, es wird noch viel kommen</phrase>
+			<gesture>Excited_1</gesture>
 		</answer>
 	</block>
 		

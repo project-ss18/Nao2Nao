@@ -75,6 +75,15 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
                 questionList.get(questCounter-1).setPhrase(currentValue);
             }
         }
+
+        if (localName.equals("gesture")) {
+            if(type){
+                answerList.get(answerCounter-1).setGesture(currentValue);
+            }else if(type==false){
+                questionList.get(questCounter-1).setGesture(currentValue);
+            }
+        }
+
     }
 
     public void endDocument() throws SAXException {}
