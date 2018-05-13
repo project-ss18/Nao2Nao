@@ -3,11 +3,12 @@
 <interview iid = "001">
 
 	<description>Erstes interview</description>
+    <posture>Sit</posture>
 	
 	<block bid ="001">
 		<question qid = "001">
 			<phrase>Wie geht es dir</phrase>
-			<gesture>Hey_1</gesture>
+			<gesture>BodyTalk_1</gesture>
 		</question>
 		<answer aid = "001">
 			<phrase>Mir geht es gut</phrase>
@@ -22,7 +23,7 @@
 	<block bid = "002">
 		<question qid = "001">
 			<phrase>Wie heißt du</phrase>
-			<gesture>Excited_1</gesture>
+			<gesture>BodyTalk_1</gesture>
 		</question>
 		<answer aid = "001">
 			<phrase>Ich heiße NAO</phrase>
@@ -33,7 +34,7 @@
 	<block bid = "003">
 		<question qid = "001">
 			<phrase>War das schon das ganze Interview</phrase>
-			<gesture>Excited_1</gesture>
+			<gesture>BodyTalk_1</gesture>
 		</question>
 		<answer aid = "001">
 			<phrase>Ja das war eine kleine Kostprobe, es wird noch viel kommen</phrase>

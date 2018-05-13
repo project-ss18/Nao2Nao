@@ -15,6 +15,7 @@ public class Question extends Action {
     public int getAnswerCount() {
         return answerList.size();
     }
+
     public Answer getAnswer(int index){
         return answerList.get(index-1);
     }
@@ -30,7 +31,6 @@ public class Question extends Action {
     public String getPhrase(){
         return phrase;
     }
-
 
     public void setGesture(String gesture) {
         this.gesture=gesture;

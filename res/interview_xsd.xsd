@@ -6,6 +6,7 @@
 		<xsd:sequence>
             <xsd:element ref="iid"/>
 			<xsd:element ref="description"/>
+			<xsd:element ref="posture"/>
 			<xsd:element ref="interviewBlock" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:complexType>
@@ -36,6 +37,7 @@
 <xsd:element name="interview" type="interview" />
 <xsd:element name="iid" type="xsd:int" />
 <xsd:element name="description" type="xsd:string" />
+<xsd:element name="posture" type="xsd:string" />
 <xsd:element name="interviewBlock" type="interviewBlock" />
 <xsd:element name="bid" type="xsd:int" />
 <xsd:element name="question" type="question" />

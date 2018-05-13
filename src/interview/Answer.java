@@ -26,7 +26,6 @@ public class Answer extends Action {
         return gesture;
     }
 
-
     public int getId(){
         return this.id;
     }
