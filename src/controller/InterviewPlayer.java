@@ -1,6 +1,5 @@
 package controller;
 
-import interview.Action;
 import interview.Block;
 import interview.ContentHandler;
 import interview.Interview;
@@ -10,7 +9,6 @@ import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 import userInterface.Robot;
 
-import javax.xml.stream.FactoryConfigurationError;
 import java.lang.Runnable;
 import java.io.*;
 import java.util.ArrayList;
@@ -26,11 +24,25 @@ public class InterviewPlayer implements Runnable{
     private String endTag = ")";
     private String wait = "^wait(animations/Stand/Gestures/";
 
+
     private boolean pauseInterview = false;
-    private Robot Roboter1;
-    private Robot Roboter2;
-    private Thread AktuellesInterview;
-    private boolean ThreadStarted = false;
+    private Robot roboter1;
+    private Robot roboter2;
+    private Thread rurrentInterview;
+    private boolean threadStarted = false;
+
+    // ---------- Getter and Setter ----------
+    public boolean isInterviewPaused() {
+        return pauseInterview;
+    }
+
+    public void pauseInterview() {
+        this.pauseInterview = true;
+    }
+    public void resumeInterview(boolean pauseInterview) {
+        this.pauseInterview = false;
+    }
+    // ---------- Getter and Setter ----------
 
     public InterviewPlayer(String FileName) {
         XMLFile = new File(FileName);
@@ -67,45 +79,15 @@ public class InterviewPlayer implements Runnable{
         }
     }
 
-    // Playback Funktionen
-    @Override public void run(){
-        for(Block currentBlock : interview.getBlockList()) {
-            try
-            {
-                // Frage auslesen und abspielen
-                Roboter1.animatedSay(start + currentBlock.getQuestion(1).getGesture() + endTag + currentBlock.getQuestion(1).getPhrase() + wait + endTag);
-                int AnswerCount = currentBlock.getQuestion(1).getAnswerCount();
-                // Frage auslesen und abspielen
-
-                // Antwort auswählen und abspielen
-                int AnswerNumber = ThreadLocalRandom.current().nextInt(1, AnswerCount + 1);
-                Roboter2.animatedSay(start + currentBlock.getQuestion(1).getAnswer(AnswerNumber).getGesture() + endTag + currentBlock.getQuestion(1).getAnswer(AnswerNumber).getPhrase() + wait + endTag);
-                // Antwort auswählen und abspielen
-
-                while(pauseInterview == true)
-                {
-                    Thread.sleep(1000);
-                }
-            }
-            catch (Exception ex)
-            {
-
-            }
-
-
-        }
-    }
-
-
     public void startInterview(Robot _Roboter1, Robot _Roboter2) throws Exception {
-        if(ThreadStarted == false)
+        if(threadStarted == false)
         {
-            Roboter1 = _Roboter1;
-            Roboter2 = _Roboter2;
+            roboter1 = _Roboter1;
+            roboter2 = _Roboter2;
 
-            AktuellesInterview = new Thread(this);
-            AktuellesInterview.start();
-            ThreadStarted = true;
+            rurrentInterview = new Thread(this);
+            rurrentInterview.start();
+            threadStarted = true;
 
         }
         else
@@ -149,4 +131,33 @@ public class InterviewPlayer implements Runnable{
     }
     // Static Functions
 
+
+    // ---------- New Thread -----------
+    // Playback Funktionen
+    @Override public void run(){
+        for(Block currentBlock : interview.getBlockList()) {
+            try
+            {
+                // Frage auslesen und abspielen
+                Roboter1.animatedSay(start + currentBlock.getQuestion(1).getGesture() + endTag + currentBlock.getQuestion(1).getPhrase() + wait + endTag);
+                int AnswerCount = currentBlock.getQuestion(1).getAnswerCount();
+                // Frage auslesen und abspielen
+
+                // Antwort auswählen und abspielen
+                int AnswerNumber = ThreadLocalRandom.current().nextInt(1, AnswerCount + 1);
+                Roboter2.animatedSay(start + currentBlock.getQuestion(1).getAnswer(AnswerNumber).getGesture() + endTag + currentBlock.getQuestion(1).getAnswer(AnswerNumber).getPhrase() + wait + endTag);
+                // Antwort auswählen und abspielen
+
+                while(pauseInterview == true)
+                {
+                    Thread.sleep(1000);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
+    // ---------- New Thread -----------
 }
