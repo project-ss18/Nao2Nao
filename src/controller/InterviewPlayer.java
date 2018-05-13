@@ -139,13 +139,13 @@ public class InterviewPlayer implements Runnable{
             try
             {
                 // Frage auslesen und abspielen
-                Roboter1.animatedSay(start + currentBlock.getQuestion(1).getGesture() + endTag + currentBlock.getQuestion(1).getPhrase() + wait + endTag);
+                roboter1.animatedSay(start + currentBlock.getQuestion(1).getGesture() + endTag + currentBlock.getQuestion(1).getPhrase() + wait + endTag);
                 int AnswerCount = currentBlock.getQuestion(1).getAnswerCount();
                 // Frage auslesen und abspielen
 
                 // Antwort auswählen und abspielen
                 int AnswerNumber = ThreadLocalRandom.current().nextInt(1, AnswerCount + 1);
-                Roboter2.animatedSay(start + currentBlock.getQuestion(1).getAnswer(AnswerNumber).getGesture() + endTag + currentBlock.getQuestion(1).getAnswer(AnswerNumber).getPhrase() + wait + endTag);
+                roboter2.animatedSay(start + currentBlock.getQuestion(1).getAnswer(AnswerNumber).getGesture() + endTag + currentBlock.getQuestion(1).getAnswer(AnswerNumber).getPhrase() + wait + endTag);
                 // Antwort auswählen und abspielen
 
                 while(pauseInterview == true)
