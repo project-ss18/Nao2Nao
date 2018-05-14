@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.Menu">
+  <grid id="27dc6" binding="panel" layout-manager="GridBagLayout">
+    <constraints>
+      <xy x="20" y="20" width="437" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="aded7" class="javax.swing.JButton" binding="roboterlisteButton" default-binding="true">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="1.0" weighty="1.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="99" height="35"/>
+          <preferredSize width="99" height="35"/>
+          <text value="Roboterliste"/>
+        </properties>
+      </component>
+      <component id="8f360" class="javax.swing.JButton" binding="interviewlisteButton" default-binding="true">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="1.0" weighty="1.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="105" height="35"/>
+          <preferredSize width="105" height="35"/>
+          <text value="Interviewliste"/>
+        </properties>
+      </component>
+      <component id="46785" class="javax.swing.JButton" binding="interviewPlayerButton" default-binding="true">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="1.0" weighty="1.0"/>
+        </constraints>
+        <properties>
+          <preferredSize width="116" height="35"/>
+          <text value="InterviewPlayer"/>
+        </properties>
+      </component>
+      <component id="f4cb7" class="javax.swing.JButton" binding="interviewEditorButton" default-binding="true">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="1.0" weighty="1.0"/>
+        </constraints>
+        <properties>
+          <preferredSize width="115" height="35"/>
+          <text value="InterviewEditor"/>
+        </properties>
+      </component>
+      <component id="eaf6d" class="javax.swing.JButton" binding="hilfeButton" default-binding="true">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="1.0" weighty="1.0"/>
+        </constraints>
+        <properties>
+          <preferredSize width="61" height="35"/>
+          <text value="Hilfe"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

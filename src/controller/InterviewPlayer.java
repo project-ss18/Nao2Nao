@@ -1,14 +1,14 @@
 package controller;
 
-import interview.Action;
-import interview.Block;
-import interview.ContentHandler;
-import interview.Interview;
+import model.interview.Block;
+import model.interview.ContentHandler;
+import model.interview.Interview;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
-import userInterface.Robot;
+
+import model.robot.Robot;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -63,11 +63,11 @@ public class InterviewPlayer {
             // Frage auslesen und abspielen
             Roboter1.say(currentBlock.getQuestion(1).getPhrase());
             int AnswerCount = currentBlock.getQuestion(1).getAnswerCount();
-            Thread.sleep(5000);
+            Thread.sleep(3000);
 
             int AnswerNumber = ThreadLocalRandom.current().nextInt(1, AnswerCount + 1);
             Roboter2.say(currentBlock.getQuestion(1).getAnswer(AnswerNumber).getPhrase());
-            Thread.sleep(5000);
+            Thread.sleep(3000);
             // Antwort auswählen und abspielen
         }
     }

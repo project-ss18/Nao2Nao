@@ -1,4 +1,4 @@
-package interview;
+package model.interview;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.Locator;
@@ -38,7 +38,7 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
 
     // Methode wird aufgerufen wenn der Parser zu einem Start-Tag kommt
     public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
-        if (localName.equals("interview")) {
+        if (localName.equals("model/interview")) {
             interview = new Interview(Integer.parseInt(atts.getValue("iid")));
         }
 

@@ -1,6 +1,5 @@
 import controller.InterviewPlayer;
-import org.omg.CORBA.Current;
-import userInterface.Robot;
+import model.robot.Robot;
 import java.util.ArrayList;
 import java.util.Scanner;
 

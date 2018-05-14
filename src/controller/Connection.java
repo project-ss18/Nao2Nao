@@ -14,12 +14,12 @@ public class Connection{
     private AnyObject ttsSay = null;
     private AnyObject ttsGesture = null;
 
-    private static boolean b = false;
+    private static boolean connected = false;
 
     public Connection(String IP_ADRESS, String[] args) throws Exception{
-            if(!b) {
+            if(!connected) {
                 app = new Application(args);
-                b = true;
+                connected = true;
             }
             session = new Session();
             fut = session.connect("tcp://" + IP_ADRESS + ":9559");

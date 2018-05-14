@@ -1,4 +1,4 @@
-package userInterface;
+package model.robot;
 
 import com.aldebaran.qi.helper.ALProxy;
 import com.aldebaran.qi.helper.proxies.ALRobotPosture;
