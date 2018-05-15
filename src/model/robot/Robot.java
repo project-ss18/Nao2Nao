@@ -2,15 +2,18 @@ package model.robot;
 
 import controller.Connection;
 
+import java.util.ArrayList;
+
 public class Robot {
+
     private static int id_Counter = 0;
-    private String[] args= new String[1];
+    private String[] args;
 
     private String name;
     private final String IP_ADDRESS;
     private final int ID;
 
-    private final Connection CONNECTION=null;
+    private  Connection CONNECTION;
     private final String PORT = "9559";
 
 
@@ -19,8 +22,11 @@ public class Robot {
         this.name=name;
         IP_ADDRESS = address;
         ID = id_Counter;
-        //CONNECTION = new Connection(this.IP_ADDRESS, args);
-
+        try {
+            CONNECTION = new Connection(this.IP_ADDRESS, args);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public String getIPAdress() {

@@ -9,6 +9,7 @@ public class Menu {
     private JFrame frame;
 
     public Menu() {
+
         roboterlisteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -21,6 +22,7 @@ public class Menu {
         frame.setContentPane(panel);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
         frame.pack();
         frame.setVisible(true);
 
