@@ -1,8 +1,9 @@
 import controller.InterviewPlayer;
-import org.omg.CORBA.Current;
-import userInterface.Robot;
+import model.interview.ContentHandler;
+import model.robot.Robot;
 import java.util.ArrayList;
 import java.util.Scanner;
+import model.interview.ContentHandler;
 
 
 public class Nao2Nao {
@@ -22,6 +23,8 @@ public class Nao2Nao {
         System.out.print("Bitte Interview-Namen angeben:");
         String InterviewName = s.next();
         currentInterviewPlayer = new InterviewPlayer("./res/" + InterviewName);
+        currentInterviewPlayer.interview.checkSyntax(InterviewName);
+
 
         //--------------------------Roboter 1 erstellen--------------------------\\
         System.out.print("IP-Adresse für Roboter 1: ");

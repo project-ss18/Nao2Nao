@@ -1,9 +1,9 @@
-package interview;
+package model.interview;
+
 
 import org.xml.sax.Attributes;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
-
 import java.util.ArrayList;
 
 public class ContentHandler implements org.xml.sax.ContentHandler {
@@ -33,9 +33,10 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
         this.interview = interview;
     }
 
+
     // Methode wird aufgerufen wenn der Parser zu einem Start-Tag kommt
     public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
-        if (localName.equals("interview")) {
+        if (localName.equals("model/interview")) {
             interview = new Interview(Integer.parseInt(atts.getValue("iid")));
         }
 

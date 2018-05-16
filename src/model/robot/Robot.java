@@ -1,4 +1,4 @@
-package userInterface;
+package model.robot;
 
 import controller.Connection;
 
