@@ -1,4 +1,4 @@
-package interview;
+package model.interview;
 
 public abstract class Action {
 
