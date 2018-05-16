@@ -1,6 +1,5 @@
 package controller;
 
-import interview.Action;
 import interview.Block;
 import interview.ContentHandler;
 import interview.Interview;
@@ -10,13 +9,13 @@ import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 import userInterface.Robot;
 
-
+import java.lang.Runnable;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class InterviewPlayer {
+public class InterviewPlayer implements Runnable{
 
     public Interview interview;
     public File XMLFile;
@@ -24,6 +23,25 @@ public class InterviewPlayer {
     private String start = "^start(animations/Stand/Gestures/";
     private String endTag = ")";
     private String wait = "^wait(animations/Stand/Gestures/";
+
+    private boolean pauseInterview = false;
+    private Robot roboter1;
+    private Robot roboter2;
+    private Thread rurrentInterview;
+    private boolean threadStarted = false;
+
+    // ---------- Getter and Setter ----------
+    public boolean isInterviewPaused() {
+        return pauseInterview;
+    }
+
+    public void pauseInterview() {
+        this.pauseInterview = true;
+    }
+    public void resumeInterview(boolean pauseInterview) {
+        this.pauseInterview = false;
+    }
+    // ---------- Getter and Setter ----------
 
     public InterviewPlayer(String FileName) {
         XMLFile = new File(FileName);
@@ -49,7 +67,7 @@ public class InterviewPlayer {
             // Parsen wird gestartet
             xmlReader.parse(inputSource);
 
-          interview = ContentHandler.getInterview();
+            interview = ContentHandler.getInterview();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -70,14 +88,15 @@ public class InterviewPlayer {
             rurrentInterview.start();
             threadStarted = true;
 
-            int AnswerNumber = ThreadLocalRandom.current().nextInt(1, AnswerCount + 1);
-            //Roboter2.say(currentBlock.getQuestion(1).getAnswer(AnswerNumber).getPhrase());
-            Roboter2.animatedSay(start + currentBlock.getQuestion(1).getAnswer(AnswerNumber).getGesture() + endTag + currentBlock.getQuestion(1).getAnswer(AnswerNumber).getPhrase() + wait + endTag);
-            Thread.sleep(2000);
-            // Antwort auswählen und abspielen
         }
+        else
+        {
+            pauseInterview = false;
+        }
+
     }
     public void PauseInterview() {
+        pauseInterview = true;
     }
 
     public static void print() {
@@ -97,7 +116,7 @@ public class InterviewPlayer {
         {
             if(currentInterview.isFile() && currentInterview.getName().endsWith(".xml"))
             {
-               InterviewObjects.add(new InterviewPlayer(PATH + currentInterview.getName()));
+                InterviewObjects.add(new InterviewPlayer(PATH + currentInterview.getName()));
             }
         }
         return InterviewObjects;
