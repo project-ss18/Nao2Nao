@@ -36,7 +36,7 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
 
     // Methode wird aufgerufen wenn der Parser zu einem Start-Tag kommt
     public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
-        if (localName.equals("model/interview")) {
+        if (localName.equals("interview")) {
             interview = new Interview(Integer.parseInt(atts.getValue("iid")));
         }
 
