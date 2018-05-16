@@ -1,8 +1,8 @@
 import controller.InterviewPlayer;
-import model.robot.Robot;
+
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import model.robot.*;
 
 public class Nao2Nao {
 

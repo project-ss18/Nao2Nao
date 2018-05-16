@@ -18,10 +18,10 @@ public class Robot {
 
 
     public Robot(String address, String name) throws Exception {
-        id_Counter++;
+
         this.name=name;
         IP_ADDRESS = address;
-        ID = id_Counter;
+        ID = id_Counter++;
         try {
             CONNECTION = new Connection(this.IP_ADDRESS, args);
         }catch(Exception e){
@@ -60,6 +60,14 @@ public class Robot {
     public String getIP_ADDRESS() {
         return IP_ADDRESS;
     }
+    public void animatedSay(String args)throws Exception{
+        CONNECTION.gesture(args);
+    }
 
-    //public void edit(String nam)
+    public void goToPosture(String args)throws Exception {
+        CONNECTION.posture(args);
+    }
+
+
+        //public void edit(String nam)
 }

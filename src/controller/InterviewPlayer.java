@@ -1,13 +1,12 @@
 package controller;
 
-import interview.Block;
-import interview.ContentHandler;
-import interview.Interview;
+import model.interview.*;
+import model.robot.*;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
-import userInterface.Robot;
+
 
 import java.lang.Runnable;
 import java.io.*;

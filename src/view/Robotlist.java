@@ -1,13 +1,13 @@
 package view;
 
+
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import model.robot.Robot;
+
 
 public class Robotlist {
     private JPanel panel;
@@ -16,7 +16,6 @@ public class Robotlist {
     private JScrollPane robotTableScrollPane;
     private JButton löschenButton;
     private JButton zurückButton;
-    private DefaultTableModel dTM;
 
     private static ArrayList<Robot> robotList = new ArrayList<Robot>();
 
