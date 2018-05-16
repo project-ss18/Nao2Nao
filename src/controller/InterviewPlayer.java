@@ -1,12 +1,13 @@
 package controller;
 
-import model.interview.*;
-import model.robot.*;
+import model.interview.Block;
+import model.interview.ContentHandler;
+import model.interview.Interview;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
-
+import model.robot.Robot;
 
 import java.lang.Runnable;
 import java.io.*;
@@ -47,18 +48,19 @@ public class InterviewPlayer implements Runnable{
         initialize(FileName);
     }
 
+
+
     private void initialize(String FileName) {
         try {
+
+
+
             // XMLReader erzeugen
             XMLReader xmlReader = XMLReaderFactory.createXMLReader();
 
             // Pfad zur resources Datei
             FileReader reader = new FileReader(FileName);
             InputSource inputSource = new InputSource(reader);
-
-
-            // DTD kann optional übergeben werden
-            // inputSource.setSystemId("X:\\personen.dtd");
 
             // PersonenContentHandler wird übergeben
             xmlReader.setContentHandler(new ContentHandler());

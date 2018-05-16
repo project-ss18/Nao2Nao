@@ -2,49 +2,95 @@
 
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
+	<xsd:element name="interview" type="interview" />
+
+	<!--Defining Structure of XSD-->
+
 	<xsd:complexType name="interview">
+
 		<xsd:sequence>
-            <xsd:element ref="iid"/>
 			<xsd:element ref="description"/>
 			<xsd:element ref="posture"/>
-			<xsd:element ref="interviewBlock" maxOccurs="unbounded"/>
+			<xsd:element ref="block" maxOccurs="unbounded"/>
 		</xsd:sequence>
+		<xsd:attribute ref="iid" />
 	</xsd:complexType>
 
-	<xsd:complexType name="interviewBlock">
+	<xsd:complexType name="block">
 		<xsd:sequence>
-			<xsd:element ref="bid"/>
 			<xsd:element ref="question"/>
 			<xsd:element ref="answer" maxOccurs="unbounded"/>
 		</xsd:sequence>
+		<xsd:attribute ref="bid"/>
 	</xsd:complexType>
-	
+
 	<xsd:complexType name="question">
 		<xsd:sequence>
-			<xsd:element ref="qid"/>
 			<xsd:element ref="phrase"/>
+			<xsd:element ref="gesture"/>
 		</xsd:sequence>
+		<xsd:attribute ref="qid"/>
 	</xsd:complexType>
 
 	<xsd:complexType name="answer">
 		<xsd:sequence>
-			<xsd:element ref="aid"/>
 			<xsd:element ref="phrase"/>
+			<xsd:element ref="gesture"/>
 		</xsd:sequence>
-	</xsd:complexType>	
-	
-	
-<xsd:element name="interview" type="interview" />
-<xsd:element name="iid" type="xsd:int" />
-<xsd:element name="description" type="xsd:string" />
-<xsd:element name="posture" type="xsd:string" />
-<xsd:element name="interviewBlock" type="interviewBlock" />
-<xsd:element name="bid" type="xsd:int" />
-<xsd:element name="question" type="question" />
-<xsd:element name="qid" type="xsd:int" />
-<xsd:element name="answer" type="answer" />
-<xsd:element name="aid" type="xsd:int" />
-<xsd:element name="phrase" type="xsd:string" />
+		<xsd:attribute ref="aid"/>
+	</xsd:complexType>
+
+	<xsd:attribute name="iid">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:int">
+				<xsd:pattern value="[1-999]"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:attribute>
+
+	<!--Defining Attributes-->
+
+	<xsd:element name="description" type="xsd:string" />
+
+	<xsd:element name="posture" type="xsd:string" />
+
+	<xsd:element name="block" type="block" />
+	<xsd:attribute name="bid">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:int">
+				<xsd:pattern value="[1-999]"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:attribute>
+
+	<xsd:element name="question" type="question" />
+	<xsd:attribute name="qid">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:int">
+				<xsd:pattern value="[1-999]"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:attribute>
+
+	<xsd:element name="answer" type="answer" />
+	<xsd:attribute name="aid">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:int">
+				<xsd:pattern value="[1-999]"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:attribute>
+
+	<xsd:element name="phrase"/>
+
+	<xsd:element name="gesture">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:enumeration value="BodyTalk_1"/>
+				<xsd:enumeration value="Excited_1"/>
+				<xsd:enumeration value="Excited_2"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
 
 </xsd:schema>
-
