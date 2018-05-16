@@ -18,6 +18,14 @@ public class Answer extends Action {
         return phrase;
     }
 
+    public void setGesture(String gesture) {
+        this.gesture=gesture;
+    }
+
+    public String getGesture(){
+        return gesture;
+    }
+
     public int getId(){
         return this.id;
     }
