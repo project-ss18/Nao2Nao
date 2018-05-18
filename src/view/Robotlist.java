@@ -22,7 +22,7 @@ public class Robotlist {
     private String[] columnNames = new String[]{"ID", "Robotername", "IP-Adresse"};
     private String[][] rowData;
 
-    Robotlist(JFrame frame) {
+    public Robotlist(JFrame frame) {
         refreshList();
 
         frame.setContentPane(panel);

@@ -7,7 +7,7 @@
 
 	<block bid ="1">
 		<question qid = "1">
-			<phrase>Wie geht es dir</phrase>
+			<prase>Wie geht es dir</prase>
 			<gesture>BodyTalk_1</gesture>
 		</question>
 		<answer aid = "1">
