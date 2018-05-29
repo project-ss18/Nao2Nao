@@ -21,12 +21,16 @@ public class Interview {
     private String posture;
     private Block interviewBlock;
     private final String PATH = "./res/";
-    private  String xsdFile = "interview_xsd.xsd";
+    private String xsdFile = "interview_xsd.xsd";
+    private int qCounter;
 
 
     public Interview(int id)
     {
         this.id=id;
+        qCounter = ContentHandler.qCounterInterviewList;
+        ContentHandler.qCounterInterviewList = 0;
+
     }
 
     public void addBlock(Block v)
@@ -64,6 +68,7 @@ public class Interview {
         }
     }
 
+
     public String getDescription() {
         return description;
     }
@@ -94,6 +99,16 @@ public class Interview {
 
     public void setPosture(String posture) {
         this.posture = posture;
+    }
+
+    public int getqCounter() {
+        return qCounter;
+    }
+
+    public String []toStringArray(){
+        String[] temp = new String[2];
+        temp = new String[]{Integer.toString(this.id), this.getDescription(), Integer.toString(this.qCounter), "2"};
+        return temp;
     }
 
 }

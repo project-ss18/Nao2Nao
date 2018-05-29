@@ -14,6 +14,10 @@ public class Nao2Nao {
 
     public static void main(String[] args) throws Exception {
 
+
+       // System.out.println(InterviewPlayer.getAllInterviews().get(0).interview.getDescription());
+
+
         //--------------------------Interview Liste ausgeben--------------------------\\
         Scanner s = new Scanner(System.in);
         System.out.println("Bitte wählen Sie eine InterviewPlayer-ID zum abspielen aus:");
