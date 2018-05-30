@@ -1,7 +1,6 @@
 package view;
 
 import controller.InterviewPlayer;
-import model.robot.*;
 import model.robot.Robot;
 
 import javax.swing.*;

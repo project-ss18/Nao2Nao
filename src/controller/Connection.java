@@ -1,6 +1,5 @@
 package controller;
 
-
 import com.aldebaran.qi.AnyObject;
 import com.aldebaran.qi.Application;
 import com.aldebaran.qi.Future;
