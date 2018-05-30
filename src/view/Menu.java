@@ -26,6 +26,13 @@ public class Menu {
                 new Robotlist(frame);
             }
         });
+        interviewlisteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                new InterviewList(frame);
+            }
+        });
         interviewPlayerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
