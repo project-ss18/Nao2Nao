@@ -51,6 +51,7 @@ public class InterviewList {
         openFileChooser.setFileFilter(new FileNameExtensionFilter("XML-Dateien", "xml"));
         //openFileChooser.setCurrentDirectory(new File("./res/"));
 
+
         zurueckButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

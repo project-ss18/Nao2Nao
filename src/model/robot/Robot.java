@@ -18,7 +18,7 @@ public class Robot {
         IP_ADDRESS = address;
         ID = id_Counter;
         try {
-           // CONNECTION = new Connection(this.IP_ADDRESS, args);
+            CONNECTION = new Connection(this.IP_ADDRESS, args);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
