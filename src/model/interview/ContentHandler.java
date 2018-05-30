@@ -16,6 +16,7 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
     private String currentValue;
     static int blockCounter=0;
     static int questCounter=0;
+    static int qCounterInterviewList = 0;
     static int answerCounter=0;
 
     private static boolean type = false;//false == question
@@ -48,6 +49,7 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
         if (localName.equals("question")) {
             type = false;
             questCounter++;
+            qCounterInterviewList++;
             questionList.add(new Question(Integer.parseInt(atts.getValue("qid")),blockList.get(blockCounter-1)));
         }
 
