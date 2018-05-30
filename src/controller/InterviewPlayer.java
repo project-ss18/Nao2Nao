@@ -97,15 +97,15 @@ public class InterviewPlayer implements Runnable{
     }
 
     public static void print() {
-        for (String interviewDescription : getAllInterviewDescriptions()){
+        for (Interview interviewDescription : getAllInterviews()){
             System.out.println("Interview: '" + interviewDescription + "'");
         }
     }
     // print
     // Static Functions
-    public static List<String> getAllInterviewDescriptions()
+    public static List<Interview> getAllInterviews()
     {
-        ArrayList<String> InterviewObjects = new ArrayList<String>();
+        ArrayList<Interview> InterviewObjects = new ArrayList<Interview>();
         File folder = new File(PATH);
         File[] listofInterviews = folder.listFiles();
 
@@ -113,13 +113,7 @@ public class InterviewPlayer implements Runnable{
         {
             if(currentInterview.isFile() && currentInterview.getName().endsWith(".xml"))
             {
-                //InterviewObjects.add(new InterviewPlayer(PATH + currentInterview.getName()));
-                String fileNameWithOutExtension = currentInterview.getName();
-                int index = fileNameWithOutExtension.lastIndexOf('.');
-                if (index != -1)
-                    fileNameWithOutExtension = fileNameWithOutExtension.substring(0, index);
-
-                InterviewObjects.add(fileNameWithOutExtension);
+                InterviewObjects.add(new InterviewPlayer(PATH + currentInterview.getName()).interview);
             }
         }
         return InterviewObjects;

@@ -25,14 +25,14 @@ public class InterviewPlayerView {
     private JComboBox comboBoxGoTo;
     private JButton goToButton;
 
-    InterviewPlayerView(JFrame frame, InterviewPlayer player) {
+    InterviewPlayerView(JFrame frame, Interview interviewP) {
 
         previewJTextPane.setEditable(false);
         previewJTextPane.setText("");
         frame.setContentPane(panel);
         frame.setPreferredSize(new Dimension(600, 350));
         progressBar.getModel().setValue(50);
-        Interview interview = player.interview;
+        Interview interview = interviewP;
 
         for (Block block : interview.getBlockList()) {
             previewJTextPane.setText(previewJTextPane.getText() + ("\nBlock " + String.valueOf(block.getBid()) + ": "));

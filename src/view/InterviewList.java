@@ -27,7 +27,7 @@ public class InterviewList {
     private JButton aktualisierenButton;
 
     //private static ArrayList<Interview> interviewArrayList = new ArrayList<Interview>();
-    private static List<InterviewPlayer> interviewList = InterviewPlayer.getAllInterviews();
+    private static List<Interview> interviewList = InterviewPlayer.getAllInterviews();
     private static JFileChooser openFileChooser;
     private static final String COPY_FILE_TO = "C:/Users/Manu/Desktop/Nao2Nao/res/manu.xml";
     private File target = new File(COPY_FILE_TO);
@@ -86,7 +86,7 @@ public class InterviewList {
         interviewList = InterviewPlayer.getAllInterviews();
         rowData = new String[interviewList.size()][];
         for (int i = 0; i < interviewList.size(); i++) {
-            rowData[i] = interviewList.get(i).interview.toStringArray();
+            rowData[i] = interviewList.get(i).toStringArray();
         }
         interviewTable = new JTable(rowData, columnNames) {
             @Override

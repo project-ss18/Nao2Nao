@@ -1,6 +1,7 @@
 package view;
 
 import controller.InterviewPlayer;
+import model.interview.Interview;
 import model.robot.Robot;
 
 import javax.swing.*;
@@ -23,8 +24,8 @@ public class InterviewSelection extends JFrame {
         }
         setContentPane(panel);
         setPreferredSize(new Dimension(300, 200));
-        for (InterviewPlayer interviewPlayer : InterviewPlayer.getAllInterviews()) {
-            comboBoxInterview.addItem(interviewPlayer.interview.getDescription());
+        for (Interview interview : InterviewPlayer.getAllInterviews()) {
+            comboBoxInterview.addItem(interview.getDescription());
         }
         for (Robot robot : Robotlist.getRobotList()) {
             comboBoxRole1.addItem(robot.getName());
@@ -46,15 +47,15 @@ public class InterviewSelection extends JFrame {
         bestaetigenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for (InterviewPlayer interviewPlayer : InterviewPlayer.getAllInterviews()) {
-                    if (comboBoxInterview.getSelectedItem().equals(interviewPlayer.interview.getDescription())) {
+                for (Interview interview : InterviewPlayer.getAllInterviews()) {
+                    if (comboBoxInterview.getSelectedItem().equals(interview.getDescription())) {
                         if (comboBoxRole1.getSelectedItem().equals(comboBoxRole2.getSelectedItem())) {
                             JOptionPane.showMessageDialog(null, "Fehler: Gleicher Roboter", "Fehler", JOptionPane.OK_CANCEL_OPTION);
                             setVisible(false);
                             new InterviewSelection(mainFrame);
                         } else {
                             setVisible(false);
-                            new InterviewPlayerView(mainFrame, interviewPlayer);
+                            new InterviewPlayerView(mainFrame, interview);
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "Fehler: Interview nicht Gefunden", "Fehler", JOptionPane.OK_CANCEL_OPTION);
