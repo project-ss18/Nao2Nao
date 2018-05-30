@@ -26,6 +26,7 @@
 
 	<xsd:complexType name="question">
 		<xsd:sequence>
+			<xsd:element ref="role"/>
 			<xsd:element ref="phrase"/>
 			<xsd:element ref="gesture"/>
 		</xsd:sequence>
@@ -34,6 +35,7 @@
 
 	<xsd:complexType name="answer">
 		<xsd:sequence>
+			<xsd:element ref="role"/>
 			<xsd:element ref="phrase"/>
 			<xsd:element ref="gesture"/>
 		</xsd:sequence>
@@ -92,7 +94,9 @@
 		</xsd:simpleType>
 	</xsd:attribute>
 
-	<xsd:element name="phrase"/>
+	<xsd:element name="role" type="xsd:string"/>
+
+	<xsd:element name="phrase" type="xsd:string"/>
 
 	<xsd:element name="gesture">
 		<xsd:simpleType>
