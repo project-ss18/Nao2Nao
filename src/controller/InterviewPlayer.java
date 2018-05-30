@@ -135,6 +135,14 @@ public class InterviewPlayer implements Runnable{
     // ---------- New Thread -----------
     // Playback Funktionen
     @Override public void run(){
+
+        try {    // Ausgangs Posture/Gestik
+            roboter1.goToPosture(interview.getPosture());
+            roboter2.goToPosture(interview.getPosture());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         for(Block currentBlock : interview.getBlockList()) {
             try
             {
@@ -157,6 +165,13 @@ public class InterviewPlayer implements Runnable{
             {
                 System.out.println(ex.getMessage());
             }
+        }
+            //Nur für Vorführung implementiert muss später wieder entfernt und über XML umgesetzt werden!
+        try {
+            roboter1.goToPosture("Sit");
+            roboter2.goToPosture("Sit");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     // ---------- New Thread -----------
