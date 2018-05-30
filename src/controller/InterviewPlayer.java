@@ -1,5 +1,4 @@
 package controller;
-
 import model.interview.Block;
 import model.interview.ContentHandler;
 import model.interview.Interview;
@@ -8,7 +7,6 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 import model.robot.Robot;
-
 import java.lang.Runnable;
 import java.io.*;
 import java.util.ArrayList;
@@ -23,6 +21,7 @@ public class InterviewPlayer implements Runnable{
     private String start = "^start(animations/Stand/Gestures/";
     private String endTag = ")";
     private String wait = "^wait(animations/Stand/Gestures/";
+
 
     private boolean pauseInterview = false;
     private Robot roboter1;
@@ -48,19 +47,18 @@ public class InterviewPlayer implements Runnable{
         initialize(FileName);
     }
 
-
-
     private void initialize(String FileName) {
         try {
-
-
-
             // XMLReader erzeugen
             XMLReader xmlReader = XMLReaderFactory.createXMLReader();
 
             // Pfad zur resources Datei
             FileReader reader = new FileReader(FileName);
             InputSource inputSource = new InputSource(reader);
+
+
+            // DTD kann optional übergeben werden
+            // inputSource.setSystemId("X:\\personen.dtd");
 
             // PersonenContentHandler wird übergeben
             xmlReader.setContentHandler(new ContentHandler());
@@ -88,28 +86,26 @@ public class InterviewPlayer implements Runnable{
             rurrentInterview = new Thread(this);
             rurrentInterview.start();
             threadStarted = true;
-
         }
         else
         {
             pauseInterview = false;
         }
-
     }
     public void PauseInterview() {
         pauseInterview = true;
     }
 
     public static void print() {
-        for (InterviewPlayer interviewPlayer : getAllInterviews()){
-            System.out.println("Interview: '" + interviewPlayer.XMLFile.getName() + "'");
+        for (String interviewDescription : getAllInterviewDescriptions()){
+            System.out.println("Interview: '" + interviewDescription + "'");
         }
     }
     // print
     // Static Functions
-    public static List<InterviewPlayer> getAllInterviews()
+    public static List<String> getAllInterviewDescriptions()
     {
-        ArrayList<InterviewPlayer> InterviewObjects = new ArrayList<InterviewPlayer>();
+        ArrayList<String> InterviewObjects = new ArrayList<String>();
         File folder = new File(PATH);
         File[] listofInterviews = folder.listFiles();
 
@@ -117,17 +113,16 @@ public class InterviewPlayer implements Runnable{
         {
             if(currentInterview.isFile() && currentInterview.getName().endsWith(".xml"))
             {
-                InterviewObjects.add(new InterviewPlayer(PATH + currentInterview.getName()));
+                //InterviewObjects.add(new InterviewPlayer(PATH + currentInterview.getName()));
+                String fileNameWithOutExtension = currentInterview.getName();
+                int index = fileNameWithOutExtension.lastIndexOf('.');
+                if (index != -1)
+                    fileNameWithOutExtension = fileNameWithOutExtension.substring(0, index);
+
+                InterviewObjects.add(fileNameWithOutExtension);
             }
         }
         return InterviewObjects;
-    }
-
-    public static InterviewPlayer findInterview(int ID, List<InterviewPlayer> alleInterviewPlayers) {
-        return new InterviewPlayer("");
-    }
-    public static InterviewPlayer findInterview(String Name, List<InterviewPlayer> alleInterviewPlayers) {
-        return new InterviewPlayer("");
     }
     // Static Functions
 
