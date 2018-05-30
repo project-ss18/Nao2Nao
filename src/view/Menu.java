@@ -1,5 +1,7 @@
 package view;
 
+import controller.InterviewPlayer;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,6 +9,13 @@ import java.awt.event.ActionListener;
 
 public class Menu {
     private JFrame frame;
+    private JPanel panel;
+    private JButton roboterlisteButton;
+    private JButton interviewlisteButton;
+    private JButton interviewPlayerButton;
+    private JButton interviewEditorButton;
+    private JButton hilfeButton;
+
 
     public Menu() {
 
@@ -17,6 +26,17 @@ public class Menu {
                 new Robotlist(frame);
             }
         });
+        interviewPlayerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               // frame.setVisible(false);
+
+                new InterviewSelection(frame);
+
+
+            }
+        });
+
         frame = new JFrame("Nao2Nao");
         frame.setPreferredSize(new Dimension(250, 400));
         frame.setContentPane(panel);
@@ -25,18 +45,7 @@ public class Menu {
         frame.setLocationRelativeTo(null);
         frame.pack();
         frame.setVisible(true);
-
     }
-
-
-
-
-    private JPanel panel;
-    private JButton roboterlisteButton;
-    private JButton interviewlisteButton;
-    private JButton interviewPlayerButton;
-    private JButton interviewEditorButton;
-    private JButton hilfeButton;
 
 
     {

@@ -43,4 +43,8 @@ public class Question extends Action {
     public int getId(){
         return this.id;
     }
+
+    public ArrayList<Answer> getAnswerList() {
+        return answerList;
+    }
 }

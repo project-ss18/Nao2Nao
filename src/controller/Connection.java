@@ -6,6 +6,7 @@ import com.aldebaran.qi.Application;
 import com.aldebaran.qi.Future;
 import com.aldebaran.qi.Session;
 import com.aldebaran.qi.helper.proxies.ALAnimatedSpeech;
+import com.aldebaran.qi.helper.proxies.ALLeds;
 import com.aldebaran.qi.helper.proxies.ALRobotPosture;
 
 public class Connection{
@@ -62,6 +63,10 @@ public class Connection{
             System.out.println("Could not ping TTS");
         } else {
             System.out.println("Ping ok");
+            ALLeds l = new ALLeds(session);
+            l.off( 	"RightFaceLeds");
+            this.wait(1000);
+            l.on( 	"RightFaceLeds");
         }
     }
 

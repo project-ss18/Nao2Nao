@@ -3,17 +3,29 @@ package model.robot;
 import controller.Connection;
 
 public class Robot {
+    private static int id_Counter = 0;
+    private String[] args;
 
     private final String IP_ADDRESS;
     private final int ID;
-    private final Connection CONNECTION;
+    private String name;
+    private Connection CONNECTION;
     private final String PORT = "9559";
 
-    public Robot(String address, int id, String[] args) throws Exception {
+    public Robot(String address, String name) throws Exception {
+        id_Counter++;
+        this.name=name;
         IP_ADDRESS = address;
-        ID = id;
-        CONNECTION = new Connection(this.IP_ADDRESS, args);
+        ID = id_Counter;
+        try {
+           // CONNECTION = new Connection(this.IP_ADDRESS, args);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
 
+    public String getName() {
+        return name;
     }
 
     public String getIPAdress() {
@@ -38,5 +50,10 @@ public class Robot {
 
     public void goToPosture(String args)throws Exception{
         CONNECTION.posture(args);
+    }
+    public String []toStringArray(){
+        String[] temp = new String[2];
+        temp = new String[]{Integer.toString(this.ID), this.name, this.IP_ADDRESS};
+        return temp;
     }
 }

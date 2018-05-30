@@ -27,6 +27,10 @@ public class Block {
         return null;
     }
 
+    public ArrayList<Question> getQuestionList() {
+        return questionList;
+    }
+
     public int getBid()
     {
         return bid;

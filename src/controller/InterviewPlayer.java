@@ -1,5 +1,4 @@
 package controller;
-
 import model.interview.Block;
 import model.interview.ContentHandler;
 import model.interview.Interview;
@@ -8,7 +7,6 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 import model.robot.Robot;
-
 import java.lang.Runnable;
 import java.io.*;
 import java.util.ArrayList;
@@ -16,19 +14,25 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class InterviewPlayer implements Runnable{
+    private Robot roboter1;
+    private Robot roboter2;
 
     public Interview interview;
     public File XMLFile;
     private final static String PATH = "./res/";
+
     private String start = "^start(animations/Stand/Gestures/";
     private String endTag = ")";
     private String wait = "^wait(animations/Stand/Gestures/";
 
-    private boolean pauseInterview = false;
-    private Robot roboter1;
-    private Robot roboter2;
     private Thread rurrentInterview;
     private boolean threadStarted = false;
+    private boolean pauseInterview = false;
+
+    public InterviewPlayer(String FileName) {
+        XMLFile = new File(FileName);
+        initialize(FileName);
+    }
 
     // ---------- Getter and Setter ----------
     public boolean isInterviewPaused() {
@@ -43,24 +47,19 @@ public class InterviewPlayer implements Runnable{
     }
     // ---------- Getter and Setter ----------
 
-    public InterviewPlayer(String FileName) {
-        XMLFile = new File(FileName);
-        initialize(FileName);
-    }
-
-
 
     private void initialize(String FileName) {
         try {
-
-
-
             // XMLReader erzeugen
             XMLReader xmlReader = XMLReaderFactory.createXMLReader();
 
             // Pfad zur resources Datei
             FileReader reader = new FileReader(FileName);
             InputSource inputSource = new InputSource(reader);
+
+
+            // DTD kann optional übergeben werden
+            // inputSource.setSystemId("X:\\personen.dtd");
 
             // PersonenContentHandler wird übergeben
             xmlReader.setContentHandler(new ContentHandler());
@@ -88,13 +87,10 @@ public class InterviewPlayer implements Runnable{
             rurrentInterview = new Thread(this);
             rurrentInterview.start();
             threadStarted = true;
-
         }
-        else
-        {
+        else {
             pauseInterview = false;
         }
-
     }
     public void PauseInterview() {
         pauseInterview = true;
@@ -132,9 +128,10 @@ public class InterviewPlayer implements Runnable{
     // Static Functions
 
 
-    // ---------- New Thread -----------
+    // ---------- New Thread -----------\\
     // Playback Funktionen
-    @Override public void run(){
+    @Override
+    public void run(){
         for(Block currentBlock : interview.getBlockList()) {
             try
             {
@@ -159,5 +156,5 @@ public class InterviewPlayer implements Runnable{
             }
         }
     }
-    // ---------- New Thread -----------
+    // ---------- New Thread -----------\\
 }
