@@ -26,7 +26,7 @@ public class InterviewPlayer implements Runnable{
     private boolean pauseInterview = false;
     private Robot roboter1;
     private Robot roboter2;
-    private Thread rurrentInterview;
+    private Thread crurrentInterview;
     private boolean threadStarted = false;
 
     // ---------- Getter and Setter ----------
@@ -83,8 +83,8 @@ public class InterviewPlayer implements Runnable{
             roboter1 = _Roboter1;
             roboter2 = _Roboter2;
 
-            rurrentInterview = new Thread(this);
-            rurrentInterview.start();
+            crurrentInterview = new Thread(this);
+            crurrentInterview.start();
             threadStarted = true;
         }
         else
