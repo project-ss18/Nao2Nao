@@ -14,25 +14,20 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class InterviewPlayer implements Runnable{
-    private Robot roboter1;
-    private Robot roboter2;
 
     public Interview interview;
     public File XMLFile;
     private final static String PATH = "./res/";
-
     private String start = "^start(animations/Stand/Gestures/";
     private String endTag = ")";
     private String wait = "^wait(animations/Stand/Gestures/";
 
+
+    private boolean pauseInterview = false;
+    private Robot roboter1;
+    private Robot roboter2;
     private Thread rurrentInterview;
     private boolean threadStarted = false;
-    private boolean pauseInterview = false;
-
-    public InterviewPlayer(String FileName) {
-        XMLFile = new File(FileName);
-        initialize(FileName);
-    }
 
     // ---------- Getter and Setter ----------
     public boolean isInterviewPaused() {
@@ -47,6 +42,10 @@ public class InterviewPlayer implements Runnable{
     }
     // ---------- Getter and Setter ----------
 
+    public InterviewPlayer(String FileName) {
+        XMLFile = new File(FileName);
+        initialize(FileName);
+    }
 
     private void initialize(String FileName) {
         try {
@@ -88,7 +87,8 @@ public class InterviewPlayer implements Runnable{
             rurrentInterview.start();
             threadStarted = true;
         }
-        else {
+        else
+        {
             pauseInterview = false;
         }
     }
@@ -97,15 +97,15 @@ public class InterviewPlayer implements Runnable{
     }
 
     public static void print() {
-        for (InterviewPlayer interviewPlayer : getAllInterviews()){
-            System.out.println("Interview: '" + interviewPlayer.XMLFile.getName() + "'");
+        for (String interviewDescription : getAllInterviewDescriptions()){
+            System.out.println("Interview: '" + interviewDescription + "'");
         }
     }
     // print
     // Static Functions
-    public static List<InterviewPlayer> getAllInterviews()
+    public static List<String> getAllInterviewDescriptions()
     {
-        ArrayList<InterviewPlayer> InterviewObjects = new ArrayList<InterviewPlayer>();
+        ArrayList<String> InterviewObjects = new ArrayList<String>();
         File folder = new File(PATH);
         File[] listofInterviews = folder.listFiles();
 
@@ -113,25 +113,23 @@ public class InterviewPlayer implements Runnable{
         {
             if(currentInterview.isFile() && currentInterview.getName().endsWith(".xml"))
             {
-                InterviewObjects.add(new InterviewPlayer(PATH + currentInterview.getName()));
+                //InterviewObjects.add(new InterviewPlayer(PATH + currentInterview.getName()));
+                String fileNameWithOutExtension = currentInterview.getName();
+                int index = fileNameWithOutExtension.lastIndexOf('.');
+                if (index != -1)
+                    fileNameWithOutExtension = fileNameWithOutExtension.substring(0, index);
+
+                InterviewObjects.add(fileNameWithOutExtension);
             }
         }
         return InterviewObjects;
     }
-
-    public static InterviewPlayer findInterview(int ID, List<InterviewPlayer> alleInterviewPlayers) {
-        return new InterviewPlayer("");
-    }
-    public static InterviewPlayer findInterview(String Name, List<InterviewPlayer> alleInterviewPlayers) {
-        return new InterviewPlayer("");
-    }
     // Static Functions
 
 
-    // ---------- New Thread -----------\\
+    // ---------- New Thread -----------
     // Playback Funktionen
-    @Override
-    public void run(){
+    @Override public void run(){
         for(Block currentBlock : interview.getBlockList()) {
             try
             {
@@ -156,5 +154,5 @@ public class InterviewPlayer implements Runnable{
             }
         }
     }
-    // ---------- New Thread -----------\\
+    // ---------- New Thread -----------
 }
