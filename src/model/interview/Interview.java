@@ -18,7 +18,6 @@ public class Interview {
 
     private int id;
     private String description;
-    private String posture;
     private Block interviewBlock;
     private final String PATH = "./res/";
     private  String xsdFile = "interview_xsd.xsd";
@@ -86,14 +85,6 @@ public class Interview {
 
     public void setInterviewBlock(Block interviewBlock) {
         this.interviewBlock = interviewBlock;
-    }
-
-    public String getPosture() {
-        return posture;
-    }
-
-    public void setPosture(String posture) {
-        this.posture = posture;
     }
 
 }

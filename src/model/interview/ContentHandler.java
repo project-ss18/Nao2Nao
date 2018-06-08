@@ -35,6 +35,7 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
 
 
     // Methode wird aufgerufen wenn der Parser zu einem Start-Tag kommt
+    // Objekte welche erstellt und weiterverwendet werden
     public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
         if (localName.equals("interview")) {
             interview = new Interview(Integer.parseInt(atts.getValue("iid")));
@@ -59,6 +60,7 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
     }
 
     // Methode wird aufgerufen wenn der Parser zu einem End-Tag kommt
+    //Attribute der Objekte
     public void endElement(String uri, String localName, String qName)
             throws SAXException {
 
@@ -67,7 +69,15 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
         }
 
         if (localName.equals("posture")) {
-            interview.setPosture(currentValue);
+            blockList.get(blockCounter -1).setPosture(currentValue);
+        }
+
+        if (localName.equals("role")) {
+            if(type){
+                answerList.get(answerCounter-1).role = currentValue;
+            }else if(type==false){
+                questionList.get(questCounter-1).role = currentValue;
+            }
         }
 
         if (localName.equals("phrase")) {

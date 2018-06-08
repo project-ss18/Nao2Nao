@@ -2,73 +2,56 @@
 
 <interview iid = "1">
 
-	<description>Fußball Interview</description>
-	<posture>StandInit</posture>
+	<description>Erstes Interview</description>
 
 	<block bid ="1">
+		<posture>Stand</posture>
 		<question qid = "1">
-			<phrase>Hallo Herr Löw, in knapp einem Monat startet die Fußball-Weltmeisterschaft in Russland, Wie viele Minuten oder Sekunden am Tag denken Sie zurZeit nicht an Fußball</phrase>
+			<role>Enes</role>
+			<phrase>Wie geht es dir</phrase>
 			<gesture>BodyTalk_1</gesture>
 		</question>
 		<answer aid = "1">
-			<phrase>Während einer Weltmeisterschaft übernimmt der Fußball Tag und Nacht meinen Geist und meinen Körper. Selbst wenn ich mitten in der Nacht aufwache, ist das nächste oder letzte Spiel sofort präsent. Ich habe aber gelernt, in den Wochen ohne Wettkampf nach zwei, drei Stunden konzentrierter Arbeit im Büro ganz bewusst eine Pause einzulegen. Ich schalte dann den Computer und das Telefon aus und gehe einen Espresso trinken oder ein bisschen laufen. Ich habe gelernt, mir bewusst Freiräume zu nehmen. Nur so kann ich mein Pensum bewältigen.</phrase>
+			<role>Manu</role>
+			<phrase>Mir geht es gut</phrase>
 			<gesture>Excited_2</gesture>
+		</answer>
+		<answer aid = "2">
+			<role>Manu</role>
+			<phrase>Mir geht es schlecht</phrase>
+			<gesture>Excited_1</gesture>
 		</answer>
 	</block>
 
 	<block bid = "2">
+		<posture></posture>
 		<question qid = "1">
-			<phrase>Der ehemalige argentinische Nationaltrainer César Luis Menotti sagte einmal sinngemäß, rechter Fußball sei der Terror der Taktik, beim linken Fußball gehe es auch um die Ästhetik des Spiels und die Freude der Menschen. Ist Deutschlands Fußball linker geworden</phrase>
+			<role>Enes</role>
+			<phrase>Wie heißt du</phrase>
 			<gesture>BodyTalk_1</gesture>
 		</question>
 		<answer aid = "1">
-			<phrase>Mir ist wichtig, dass meine Spieler mit links und rechts gut schießen können</phrase>
+			<role>Manu</role>
+			<phrase>Ich heiße NAO</phrase>
 			<gesture>Excited_1</gesture>
 		</answer>
 	</block>
 
 	<block bid = "3">
+		<posture>Sit</posture>
 		<question qid = "1">
-			<phrase>Wie sprechen die Spieler Sie an, Sie, Du, Trainer</phrase>
+			<role>Enes</role>
+			<phrase>War das schon das ganze Interview</phrase>
 			<gesture>BodyTalk_1</gesture>
 		</question>
 		<answer aid = "1">
-			<phrase>Ein Trainer hat nicht mehr oder weniger Autorität, weil er sich siezen oder duzen lässt. Und mit Herr Löw muss mich ganz sicher keiner ansprechen. Manche duzen mich, zum Beispiel Lukas Podolski, weil der mich noch aus der Zeit als Assistenztrainer von Jürgen Klinsmann kennt. Die meisten sagen einfach Trainer, um das Du zu umgehen.</phrase>
+			<role>Manu</role>
+			<phrase>Ja das war eine kleine Kostprobe, es wird noch viel kommen</phrase>
 			<gesture>Excited_1</gesture>
 		</answer>
 	</block>
 
-	<block bid = "4">
-		<question qid = "1">
-			<phrase>Werden Titel im Fußball überschätzt?</phrase>
-			<gesture>BodyTalk_1</gesture>
-		</question>
-		<answer aid = "1">
-			<phrase>Nein. Titel sind das Wichtigste, für einen Trainer wie für die Fans. Nur Titel verschaffen vollkommene Zufriedenheit. Für mich als Trainer gibt es aber auch jenseits von Pokalen eine große Befriedigung, Wenn ich das Gefühl habe, dass die Elf oder auch einzelne Spieler besser geworden sind. 2004 war Deutschland weit weg von den besten Mannschaften der Welt, die Nationalelf lag am Boden. Damals haben wir gesagt, Wir müssen unseren Spielstil umstellen, wir müssen die anderen auch mal fußballerisch, nicht nur kämpferisch vor Probleme stellen. Inzwischen gehören auch Kreativität, Technik und Spielwitz zu den deutschen Tugenden, und das gibt mir schon ein gutes Gefühl.</phrase>
-			<gesture>Excited_1</gesture>
-		</answer>
-	</block>
 
-	<block bid = "5">
-		<question qid = "1">
-			<phrase>Warum ist Ihre Frau nie bei einem Spiel dabei</phrase>
-			<gesture>BodyTalk_1</gesture>
-		</question>
-		<answer aid = "1">
-			<phrase>Sie täuschen sich. Meine Frau ist relativ häufig dabei. 2012 in Polen, 2010 in Südafrika und bei der EM 2008 in Österreich und der Schweiz war sie bei fast jedem unserer Spiele im Stadion. Allerdings sitzt sie meistens nicht auf der VIP-Tribüne, sondern irgendwo mit Freunden.</phrase>
-			<gesture>Excited_1</gesture>
-		</answer>
-	</block>
 
-	<block bid = "6">
-		<question qid = "1">
-			<phrase>Viele Fußballspiele haben eine irre spannende Dramaturgie. Natürlich auch deswegen, weil sie sich, im Gegensatz zum Kino, niemand ausgedacht hat. Denken Sie, dass Sie die Dramaturgie eines Spiels voll im Griff haben?</phrase>
-			<gesture>BodyTalk_1</gesture>
-		</question>
-		<answer aid = "1">
-			<phrase>Während des Spiels kann ich nur bedingt Einfluss darauf nehmen, was auf dem Platz passiert. Ich stelle die Mannschaft ein, entwerfe einen Plan, versuche die Übersicht zu bewahren, und muss am Ende doch improvisieren, weil sich die Dinge auch mal ganz anders entwickeln. Bei diesen Änderungen in der Hitze des Spiels entscheide ich meistens nicht rational, sondern intuitiv. Es ist genau diese Unberechenbarkeit, die Fußball so faszinierend macht. Im Handball oder Basketball ähneln sich die Spielzüge mehr, man kann sie besser planen und vorhersehen, weil wir Menschen einen Ball mit den Händen einfach besser kontrollieren können als mit den Füßen. Im Fußball stehe ich permanent vor der Frage: Was jetzt? Aber auch ins Kino gehen wir doch genau deshalb, weil wir das Ende des Films nicht kennen.</phrase>
-			<gesture>Excited_1</gesture>
-		</answer>
-	</block>
 </interview>
 			

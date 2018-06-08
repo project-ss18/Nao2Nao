@@ -9,35 +9,37 @@
 	<xsd:complexType name="interview">
 
 		<xsd:sequence>
-			<xsd:element ref="description"/>
-			<xsd:element ref="posture"/>
+			<xsd:element ref="description" />
 			<xsd:element ref="block" maxOccurs="unbounded"/>
 		</xsd:sequence>
-		<xsd:attribute ref="iid" />
+		<xsd:attribute ref="iid" use="required"/>
 	</xsd:complexType>
 
 	<xsd:complexType name="block">
 		<xsd:sequence>
+			<xsd:element ref="posture"/>
 			<xsd:element ref="question"/>
 			<xsd:element ref="answer" maxOccurs="unbounded"/>
 		</xsd:sequence>
-		<xsd:attribute ref="bid"/>
+		<xsd:attribute ref="bid" use="required"/>
 	</xsd:complexType>
 
 	<xsd:complexType name="question">
 		<xsd:sequence>
+			<xsd:element ref="role"/>
 			<xsd:element ref="phrase"/>
 			<xsd:element ref="gesture"/>
 		</xsd:sequence>
-		<xsd:attribute ref="qid"/>
+		<xsd:attribute ref="qid" use="required"/>
 	</xsd:complexType>
 
 	<xsd:complexType name="answer">
 		<xsd:sequence>
+			<xsd:element ref="role"/>
 			<xsd:element ref="phrase"/>
 			<xsd:element ref="gesture"/>
 		</xsd:sequence>
-		<xsd:attribute ref="aid"/>
+		<xsd:attribute ref="aid" use="required"/>
 	</xsd:complexType>
 
 	<xsd:attribute name="iid">
@@ -52,7 +54,7 @@
 
 	<xsd:element name="description" type="xsd:string" />
 
-	<xsd:element name="posture">
+	<xsd:element name="posture" default="Stand">
 		<xsd:simpleType>
 			<xsd:restriction base="xsd:string">
 				<xsd:enumeration value="Sit"/>
@@ -92,7 +94,9 @@
 		</xsd:simpleType>
 	</xsd:attribute>
 
-	<xsd:element name="phrase"/>
+	<xsd:element name="role" type="xsd:string"/>
+
+	<xsd:element name="phrase" type="xsd:string"/>
 
 	<xsd:element name="gesture">
 		<xsd:simpleType>

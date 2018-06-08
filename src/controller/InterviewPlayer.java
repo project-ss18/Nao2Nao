@@ -21,12 +21,11 @@ public class InterviewPlayer implements Runnable{
     private String start = "^start(animations/Stand/Gestures/";
     private String endTag = ")";
     private String wait = "^wait(animations/Stand/Gestures/";
-
-
+    private static int counterBlock = 1;
     private boolean pauseInterview = false;
     private Robot roboter1;
     private Robot roboter2;
-    private Thread rurrentInterview;
+    private Thread currentInterview;
     private boolean threadStarted = false;
 
     // ---------- Getter and Setter ----------
@@ -56,10 +55,6 @@ public class InterviewPlayer implements Runnable{
             FileReader reader = new FileReader(FileName);
             InputSource inputSource = new InputSource(reader);
 
-
-            // DTD kann optional übergeben werden
-            // inputSource.setSystemId("X:\\personen.dtd");
-
             // PersonenContentHandler wird übergeben
             xmlReader.setContentHandler(new ContentHandler());
 
@@ -83,8 +78,8 @@ public class InterviewPlayer implements Runnable{
             roboter1 = _Roboter1;
             roboter2 = _Roboter2;
 
-            rurrentInterview = new Thread(this);
-            rurrentInterview.start();
+            currentInterview = new Thread(this);
+            currentInterview.start();
             threadStarted = true;
         }
         else
@@ -124,25 +119,22 @@ public class InterviewPlayer implements Runnable{
         }
         return InterviewObjects;
     }
-    // Static Functions
-
 
     // ---------- New Thread -----------
     // Playback Funktionen
     @Override public void run(){
 
-        try {    // Ausgangs Posture/Gestik
-            roboter1.goToPosture(interview.getPosture());
-            roboter2.goToPosture(interview.getPosture());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         for(Block currentBlock : interview.getBlockList()) {
             try
             {
+                try {    //Posture jedes Blockes
+                  roboter1.goToPosture(interview.getBlock(counterBlock).getPosture());
+                  roboter1.goToPosture(interview.getBlock(counterBlock).getPosture());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 // Frage auslesen und abspielen
-                roboter1.animatedSay(start + currentBlock.getQuestion(1).getGesture() + endTag + currentBlock.getQuestion(1).getPhrase() + wait + endTag);
+                roboter1.animatedSay(start + currentBlock.getQuestion(1).getGesture() + endTag + currentBlock.getQuestion(1).getPhrase()  + wait + endTag);
                 int AnswerCount = currentBlock.getQuestion(1).getAnswerCount();
                 // Frage auslesen und abspielen
 
@@ -160,14 +152,8 @@ public class InterviewPlayer implements Runnable{
             {
                 System.out.println(ex.getMessage());
             }
-        }
-            //Nur für Vorführung implementiert muss später wieder entfernt und über XML umgesetzt werden!
-        try {
-            roboter1.goToPosture("Sit");
-            roboter2.goToPosture("Sit");
-        } catch (Exception e) {
-            e.printStackTrace();
+            //Block Counter für Posture
+            counterBlock++;
         }
     }
-    // ---------- New Thread -----------
 }

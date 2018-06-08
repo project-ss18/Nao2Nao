@@ -7,6 +7,7 @@ public class Block {
     private Interview interview;
     private ArrayList<Question> questionList = new ArrayList<Question>();
     private int bid;
+    private String posture;
 
 
     public Block(int blockID, Interview interview) {
@@ -43,4 +44,12 @@ public class Block {
         return "bid: " + this.bid;
     }
 
+
+    public String getPosture() {
+        return posture;
+    }
+
+    public void setPosture(String posture) {
+        this.posture = posture;
+    }
 }
