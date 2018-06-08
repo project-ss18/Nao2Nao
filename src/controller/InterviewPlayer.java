@@ -134,6 +134,7 @@ public class InterviewPlayer implements Runnable{
                     e.printStackTrace();
                 }
                 // Frage auslesen und abspielen
+                roboter1.setVolume(currentBlock.getQuestion(1).getVolume());
                 roboter1.animatedSay(start + currentBlock.getQuestion(1).getGesture() + endTag + currentBlock.getQuestion(1).getPhrase()  + wait + endTag);
                 int AnswerCount = currentBlock.getQuestion(1).getAnswerCount();
                 // Frage auslesen und abspielen

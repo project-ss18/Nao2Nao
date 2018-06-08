@@ -7,5 +7,6 @@ public abstract class Action {
     protected String phrase;
     protected String gesture;
     protected Block block;
+    protected int volume;
 
 }

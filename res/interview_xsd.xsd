@@ -31,6 +31,7 @@
 			<xsd:element ref="gesture"/>
 		</xsd:sequence>
 		<xsd:attribute ref="qid" use="required"/>
+		<xsd:attribute ref="volume"/>
 	</xsd:complexType>
 
 	<xsd:complexType name="answer">
@@ -40,6 +41,7 @@
 			<xsd:element ref="gesture"/>
 		</xsd:sequence>
 		<xsd:attribute ref="aid" use="required"/>
+		<xsd:attribute ref="volume"/>
 	</xsd:complexType>
 
 	<xsd:attribute name="iid">
@@ -78,12 +80,12 @@
 
 	<xsd:element name="question" type="question" />
 	<xsd:attribute name="qid">
-		<xsd:simpleType>
-			<xsd:restriction base="xsd:int">
-				<xsd:pattern value="[1-999]"/>
-			</xsd:restriction>
-		</xsd:simpleType>
-	</xsd:attribute>
+	<xsd:simpleType>
+		<xsd:restriction base="xsd:int">
+			<xsd:pattern value="[1-999]"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:attribute>
 
 	<xsd:element name="answer" type="answer" />
 	<xsd:attribute name="aid">
@@ -93,6 +95,14 @@
 			</xsd:restriction>
 		</xsd:simpleType>
 	</xsd:attribute>
+
+	<xsd:attribute name="volume" default="80">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:int">
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:attribute>
+
 
 	<xsd:element name="role" type="xsd:string"/>
 

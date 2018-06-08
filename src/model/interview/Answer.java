@@ -4,7 +4,8 @@ public class Answer extends Action {
 
     private Question question;
 
-    public Answer(int id, Question q){
+    public Answer(int id, Question q, int volume){
+        this.volume = volume;
         this.id = id;
         question = q;
         question.addAnswer(this);

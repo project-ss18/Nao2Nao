@@ -39,4 +39,12 @@ public class Robot {
     public void goToPosture(String args)throws Exception{
         CONNECTION.posture(args);
     }
+
+    public void setVolume(int args)throws Exception{
+        CONNECTION.setVolume(args);
+    }
+
+    public int getVolume()throws Exception{
+        return CONNECTION.getVolume();
+    }
 }

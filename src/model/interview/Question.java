@@ -6,9 +6,10 @@ public class Question extends Action {
 
     private ArrayList<Answer> answerList = new ArrayList<Answer>();
 
-    public Question(int id, Block v){
+    public Question(int id, Block v, int volume){
         this.id = id;
         this.block=v;
+        this.volume = volume;
         v.addQuestion(this);
     }
 
@@ -43,6 +44,8 @@ public class Question extends Action {
     public int getId(){
         return this.id;
     }
+
+    public int getVolume() {return this.volume;}
 
 
 }

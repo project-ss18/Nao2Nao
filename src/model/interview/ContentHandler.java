@@ -49,13 +49,13 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
         if (localName.equals("question")) {
             type = false;
             questCounter++;
-            questionList.add(new Question(Integer.parseInt(atts.getValue("qid")),blockList.get(blockCounter-1)));
+            questionList.add(new Question(Integer.parseInt(atts.getValue("qid")),blockList.get(blockCounter-1),Integer.parseInt(atts.getValue("volume"))));
         }
 
         if (localName.equals("answer")) {
             type=true;
             answerCounter++;
-            answerList.add(new Answer(Integer.parseInt(atts.getValue("aid")),questionList.get(questCounter-1)));
+            answerList.add(new Answer(Integer.parseInt(atts.getValue("aid")),questionList.get(questCounter-1), Integer.parseInt(atts.getValue("volume"))));
         }
     }
 

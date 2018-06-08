@@ -6,6 +6,7 @@ import com.aldebaran.qi.Application;
 import com.aldebaran.qi.Future;
 import com.aldebaran.qi.Session;
 import com.aldebaran.qi.helper.proxies.ALAnimatedSpeech;
+import com.aldebaran.qi.helper.proxies.ALAudioDevice;
 import com.aldebaran.qi.helper.proxies.ALRobotPosture;
 
 public class Connection{
@@ -15,10 +16,9 @@ public class Connection{
     private Session session;
     private Future<Void> fut;
     private AnyObject ttsSay = null;
-    private AnyObject ttsGesture = null;
-    private AnyObject doPosture = null;
     private ALAnimatedSpeech animatedSpeech;
     private ALRobotPosture robotPosture;
+    private ALAudioDevice audioDevice;
     private static boolean b = false;
 
 
@@ -40,9 +40,11 @@ public class Connection{
                 robotPosture = new ALRobotPosture(session);
             }catch (Exception ex){}
 
+            try {
+                audioDevice = new ALAudioDevice(session);
+             }catch (Exception ex){}
+
             ttsSay = session.service("ALTextToSpeech");
-            ttsGesture = session.service("ALAnimatedSpeech");
-            doPosture = session.service("ALRobotPosture");
 
     }
 
@@ -57,6 +59,14 @@ public class Connection{
     public void posture(String args)throws Exception{
         //robotPosture.applyPosture(args, (float) 1.0);
         robotPosture.goToPosture(args, (float) 1.0);
+    }
+
+    public void setVolume(int args)throws Exception{
+        audioDevice.setOutputVolume(args);
+    }
+
+    public int getVolume()throws Exception{
+        return audioDevice.getOutputVolume();
     }
 
     public void ping()throws Exception {
