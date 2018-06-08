@@ -14,6 +14,8 @@ public class Nao2Nao {
 
     public static void main(String[] args) throws Exception {
 
+        InterviewPlayer.getAllInterviewDescriptions();
+
         //--------------------------Interview Liste ausgeben--------------------------\\
         Scanner s = new Scanner(System.in);
         System.out.println("Bitte wählen Sie eine InterviewPlayer-ID zum abspielen aus:");
@@ -38,7 +40,7 @@ public class Nao2Nao {
 
         //--------------------------Interview ablaufen lassen--------------------------\\
         System.out.print("Drücken Sie eine Taste um das Interview zu starten.");
-        currentInterviewPlayer.startInterview(r,r1);
+        //currentInterviewPlayer.startInterview(); TODO
 
     }
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Question extends Action {
 
-    private ArrayList<Answer> answerList = new ArrayList<Answer>();
+    public ArrayList<Answer> answerList = new ArrayList<Answer>();
 
     public Question(int id, Block v, int volume){
         this.id = id;

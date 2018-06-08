@@ -1,7 +1,5 @@
 package controller;
-import model.interview.Block;
-import model.interview.ContentHandler;
-import model.interview.Interview;
+import model.interview.*;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -11,6 +9,7 @@ import java.lang.Runnable;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class InterviewPlayer implements Runnable{
@@ -23,9 +22,9 @@ public class InterviewPlayer implements Runnable{
     private String wait = "^wait(animations/Stand/Gestures/";
     private static int counterBlock = 1;
     private boolean pauseInterview = false;
-    private Robot roboter1;
-    private Robot roboter2;
-    private Thread currentInterview;
+    private ArrayList<Robot> roboter;
+
+    private Thread rurrentInterview;
     private boolean threadStarted = false;
 
     // ---------- Getter and Setter ----------
@@ -72,14 +71,51 @@ public class InterviewPlayer implements Runnable{
         }
     }
 
-    public void startInterview(Robot _Roboter1, Robot _Roboter2) throws Exception {
+    private Robot getRobot(int RobotID)
+    {
+        for(Robot CurrentRobot: roboter)
+        {
+            if(CurrentRobot.get_ID() == RobotID) {
+                return CurrentRobot;
+            }
+            }
+        return null;
+    }
+
+    private Answer answershuffler(Block selectedBlock,int QuestionID, int RobotID)
+    {
+        ArrayList<Answer> PossibleAwnsers = new ArrayList<Answer>();
+        for(Answer CurrentAnswer: selectedBlock.getQuestion(QuestionID).answerList)
+        {
+            if(CurrentAnswer.getId() == RobotID)
+            {
+                PossibleAwnsers.add(CurrentAnswer);
+            }
+        }
+        return PossibleAwnsers.get(ThreadLocalRandom.current().nextInt(1, PossibleAwnsers.size() + 1));
+    }
+
+    private ArrayList<Integer> getRobotSpeakAnswerOrder(Question selectedQuestion)
+    {
+        ArrayList<Integer> Order = new ArrayList<Integer>();
+        for(Answer CurrentAnswer: selectedQuestion.answerList)
+        {
+            if(!Order.contains(CurrentAnswer.getId())) {
+                Order.add(CurrentAnswer.getId());
+            }
+        }
+        return Order;
+    }
+
+
+    public void startInterview(ArrayList<Robot> _Roboter) throws Exception {
         if(threadStarted == false)
         {
-            roboter1 = _Roboter1;
-            roboter2 = _Roboter2;
+            roboter = new ArrayList<Robot>();
+            roboter.addAll(_Roboter);
 
-            currentInterview = new Thread(this);
-            currentInterview.start();
+            rurrentInterview = new Thread(this);
+            rurrentInterview.start();
             threadStarted = true;
         }
         else
@@ -92,13 +128,13 @@ public class InterviewPlayer implements Runnable{
     }
 
     public static void print() {
-        for (String interviewDescription : getAllInterviewDescriptions()){
+        for (String interviewDescription : getAllInterviewNames()){
             System.out.println("Interview: '" + interviewDescription + "'");
         }
     }
     // print
     // Static Functions
-    public static List<String> getAllInterviewDescriptions()
+    public static List<String> getAllInterviewNames()
     {
         ArrayList<String> InterviewObjects = new ArrayList<String>();
         File folder = new File(PATH);
@@ -119,30 +155,34 @@ public class InterviewPlayer implements Runnable{
         }
         return InterviewObjects;
     }
+    // Static Functions
+
 
     // ---------- New Thread -----------
     // Playback Funktionen
     @Override public void run(){
-
         for(Block currentBlock : interview.getBlockList()) {
             try
             {
-                try {    //Posture jedes Blockes
-                  roboter1.goToPosture(interview.getBlock(counterBlock).getPosture());
-                  roboter1.goToPosture(interview.getBlock(counterBlock).getPosture());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
                 // Frage auslesen und abspielen
-                roboter1.setVolume(currentBlock.getQuestion(1).getVolume());
-                roboter1.animatedSay(start + currentBlock.getQuestion(1).getGesture() + endTag + currentBlock.getQuestion(1).getPhrase()  + wait + endTag);
-                int AnswerCount = currentBlock.getQuestion(1).getAnswerCount();
+                    getRobot(currentBlock.getQuestion(1).getId()).setVolume(currentBlock.getQuestion(1).getVolume());
+                    getRobot(currentBlock.getQuestion(1).getId()).animatedSay(start + currentBlock.getQuestion(1).getGesture() + endTag + currentBlock.getQuestion(1).getPhrase()  + wait + endTag);
                 // Frage auslesen und abspielen
 
                 // Antwort auswählen und abspielen
-                int AnswerNumber = ThreadLocalRandom.current().nextInt(1, AnswerCount + 1);
-                roboter2.animatedSay(start + currentBlock.getQuestion(1).getAnswer(AnswerNumber).getGesture() + endTag + currentBlock.getQuestion(1).getAnswer(AnswerNumber).getPhrase() + wait + endTag);
+                // Suchen, wer als erstes antwortet
+                    ArrayList<Integer> AnswerOrder = getRobotSpeakAnswerOrder(currentBlock.getQuestion(1));
+                // Suchen, wer als erstes antwortet
+                // Roboter, die Antworten durchlaufen
+                    for(int RobotID: AnswerOrder)
+                    {
+                        Answer selectedAnswer = answershuffler(currentBlock,1,RobotID);
+                        getRobot(RobotID).animatedSay(start + selectedAnswer.getGesture() + endTag + selectedAnswer.getPhrase() + wait + endTag);
+                    }
+                // Roboter, die Antworten durchlaufen
                 // Antwort auswählen und abspielen
+
+
 
                 while(pauseInterview == true)
                 {
@@ -156,5 +196,13 @@ public class InterviewPlayer implements Runnable{
             //Block Counter für Posture
             counterBlock++;
         }
+            //Nur für Vorführung implementiert muss später wieder entfernt und über XML umgesetzt werden!
+        try {
+            for (Robot CurrentRobot: roboter)
+            CurrentRobot.goToPosture("Sit");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+    // ---------- New Thread -----------
 }
