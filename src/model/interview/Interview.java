@@ -23,8 +23,7 @@ public class Interview {
     //---
 
 
-    public Interview(int id, int anzahlTeilnehmer) {
-        this.id=id;
+    public Interview(int anzahlTeilnehmer) {
         this.anzahlTeilnehmer = anzahlTeilnehmer;
     }
 

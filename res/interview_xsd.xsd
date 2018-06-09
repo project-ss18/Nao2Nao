@@ -10,7 +10,6 @@
 			<xsd:element ref="description" />
 			<xsd:element ref="block" maxOccurs="unbounded"/>
 		</xsd:sequence>
-		<xsd:attribute ref="iid" use="required"/>
 		<xsd:attribute ref="anzahlTeilnehmer" use="required"/>
 	</xsd:complexType>
 
@@ -48,15 +47,6 @@
 	<!--Defining Attributes-->
 
 	<xsd:element name="interview" type="interview" />
-
-	<xsd:attribute name="iid">
-		<xsd:simpleType>
-			<xsd:restriction base="xsd:int">
-				<xsd:minInclusive value="1"/>
-				<xsd:maxInclusive value="999"/>
-			</xsd:restriction>
-		</xsd:simpleType>
-	</xsd:attribute>
 
 	<xsd:element name="description" type="xsd:string" />
 
