@@ -13,21 +13,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Interview {
-
+    //---Attribute---\
+    public static ArrayList<Interview> allInterviews = new ArrayList<Interview>();
     public ArrayList<Block> blockList = new ArrayList<Block>();
-
-
     private int id;
     private String description;
-    private String posture;
     private Block interviewBlock;
-    private final String PATH = "./res/";
-    private String xsdFile = "interview_xsd.xsd";
-    private int qCounter;
+    private int anzahlTeilnehmer;
+    //---
 
 
-    public Interview(int id) {
+    public Interview(int id, int anzahlTeilnehmer) {
         this.id=id;
+        this.anzahlTeilnehmer = anzahlTeilnehmer;
     }
 
     public void addBlock(Block v)
@@ -46,23 +44,6 @@ public class Interview {
             }
         }
         return null;
-    }
-
-    public void checkSyntax(String xmlFile) {
-        //XML-Syntax Check mithilfe eines XSD Schema
-        File schemaFile = new File(PATH + xsdFile);
-        Source xmlFileSource = new StreamSource(new File(PATH + xmlFile));
-        SchemaFactory schemaFactory = SchemaFactory
-                .newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        try {
-            Schema schema = schemaFactory.newSchema(schemaFile);
-            Validator validator = schema.newValidator();
-            validator.validate(xmlFileSource);
-            System.out.println("Die XML Datei '" + xmlFile + "' ist valide");
-        } catch (SAXException e) {
-            System.out.println(xmlFileSource.getSystemId() + " Die XML Datei '"+ xmlFile + "' ist nicht valide!, Error:" + e);
-        } catch (IOException e) {
-        }
     }
 
 
@@ -90,26 +71,11 @@ public class Interview {
         this.interviewBlock = interviewBlock;
     }
 
-    public String getPosture() {
-        return posture;
+    public int getAnzahlTeilnehmer() {
+        return anzahlTeilnehmer;
     }
 
-    public void setPosture(String posture) {
-        this.posture = posture;
+    public void setAnzahlTeilnehmer(int anzahlTeilnehmer) {
+        this.anzahlTeilnehmer = anzahlTeilnehmer;
     }
-
-    public int getqCounter() {
-        return qCounter;
-    }
-
-    public String[] toStringArray(){
-        int questCounter=0;
-        for(Block b : blockList){
-            for(Question q : b.getQuestionList()){
-                questCounter++;
-            }
-        }
-         return new String[]{Integer.toString(this.id), this.getDescription(), Integer.toString(questCounter),"2"};
-    }
-
 }

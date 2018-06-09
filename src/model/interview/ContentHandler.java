@@ -35,9 +35,10 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
 
 
     // Methode wird aufgerufen wenn der Parser zu einem Start-Tag kommt
+    // Objekte welche erstellt und weiterverwendet werden
     public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
         if (localName.equals("interview")) {
-            interview = new Interview(Integer.parseInt(atts.getValue("iid")));
+            interview = new Interview(Integer.parseInt(atts.getValue("iid")), (Integer.parseInt(atts.getValue("anzahlTeilnehmer"))));
         }
 
         if (localName.equals("block")) {
@@ -48,17 +49,18 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
         if (localName.equals("question")) {
             type = false;
             questCounter++;
-            questionList.add(new Question(Integer.parseInt(atts.getValue("qid")),blockList.get(blockCounter-1)));
+            questionList.add(new Question(Integer.parseInt(atts.getValue("qid")),blockList.get(blockCounter-1),Integer.parseInt(atts.getValue("volume"))));
         }
 
         if (localName.equals("answer")) {
             type=true;
             answerCounter++;
-            answerList.add(new Answer(Integer.parseInt(atts.getValue("aid")),questionList.get(questCounter-1)));
+            answerList.add(new Answer(Integer.parseInt(atts.getValue("aid")),questionList.get(questCounter-1), Integer.parseInt(atts.getValue("volume"))));
         }
     }
 
     // Methode wird aufgerufen wenn der Parser zu einem End-Tag kommt
+    //Attribute der Objekte
     public void endElement(String uri, String localName, String qName)
             throws SAXException {
 
@@ -67,7 +69,15 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
         }
 
         if (localName.equals("posture")) {
-            interview.setPosture(currentValue);
+            blockList.get(blockCounter -1).setPosture(currentValue);
+        }
+
+        if (localName.equals("role")) {
+            if(type){
+                answerList.get(answerCounter-1).role = currentValue;
+            }else if(type==false){
+                questionList.get(questCounter-1).role = currentValue;
+            }
         }
 
         if (localName.equals("phrase")) {

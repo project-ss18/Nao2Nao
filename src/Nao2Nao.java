@@ -1,7 +1,11 @@
+import controller.InterviewLoader;
 import controller.InterviewPlayer;
+import model.interview.ContentHandler;
+import model.interview.Interview;
 import model.robot.Robot;
 import java.util.ArrayList;
 import java.util.Scanner;
+import model.interview.ContentHandler;
 
 
 public class Nao2Nao {
@@ -9,34 +13,40 @@ public class Nao2Nao {
 
     public static ArrayList<Robot> robotList;
     public static InterviewPlayer currentInterviewPlayer;
+    public static Interview interview;
 
     public static void main(String[] args) throws Exception {
 
         //--------------------------Interview Liste ausgeben--------------------------\\
         Scanner s = new Scanner(System.in);
         System.out.println("Bitte wählen Sie eine InterviewPlayer-ID zum abspielen aus:");
-        InterviewPlayer.print();
+        InterviewLoader.printFileNames();
 
         //--------------------------Selektiertes Interview eingliedern--------------------------\\
         System.out.print("Bitte Interview-Namen angeben:");
         String InterviewName = s.next();
-        currentInterviewPlayer = new InterviewPlayer("./res/" + InterviewName);
-        currentInterviewPlayer.interview.checkSyntax(InterviewName);
+
+        interview = InterviewLoader.initializeInterview(InterviewName);
+        if(interview == null){
+            System.out.println("Interview ist null: CheckSyntax.fail");
+            return ;
+        }
+        currentInterviewPlayer = new InterviewPlayer(interview);
 
 
         //--------------------------Roboter 1 erstellen--------------------------\\
         System.out.print("IP-Adresse für Roboter 1: ");
         String ipRobot1 = s.next();
-        Robot r = new Robot(ipRobot1, "pan");
+        Robot r = new Robot(ipRobot1,"Peter");
 
         //--------------------------Roboter 2 erstellen--------------------------\\
         System.out.print("IP-Adresse für Roboter 2: ");
         String ipRobot2 = s.next();
-        Robot r1=new Robot(ipRobot2, "Peter");
+        Robot r1=new Robot(ipRobot2, "pan");
 
         //--------------------------Interview ablaufen lassen--------------------------\\
         System.out.print("Drücken Sie eine Taste um das Interview zu starten.");
-        currentInterviewPlayer.startInterview(r,r1);
+        //currentInterviewPlayer.startInterview(); TODO
 
     }
 }

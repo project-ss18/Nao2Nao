@@ -5,8 +5,9 @@ import com.aldebaran.qi.Application;
 import com.aldebaran.qi.Future;
 import com.aldebaran.qi.Session;
 import com.aldebaran.qi.helper.proxies.ALAnimatedSpeech;
-import com.aldebaran.qi.helper.proxies.ALLeds;
+import com.aldebaran.qi.helper.proxies.ALAudioDevice;
 import com.aldebaran.qi.helper.proxies.ALRobotPosture;
+import com.aldebaran.qi.helper.proxies.ALTextToSpeech;
 
 public class Connection{
 
@@ -14,10 +15,10 @@ public class Connection{
     private Session session;
     private Future<Void> fut;
     private AnyObject ttsSay = null;
-    private AnyObject ttsGesture = null;
-    private AnyObject doPosture = null;
+    private ALTextToSpeech textToSpeech;
     private ALAnimatedSpeech animatedSpeech;
     private ALRobotPosture robotPosture;
+    private ALAudioDevice audioDevice;
     private static boolean b = false;
 
     public Connection(String IP_ADRESS, String[] args) throws Exception{
@@ -29,14 +30,23 @@ public class Connection{
             fut = session.connect("tcp://" + IP_ADRESS + ":9559");
             fut.get();
 
-            animatedSpeech = new ALAnimatedSpeech(session);
+            try {
+                animatedSpeech = new ALAnimatedSpeech(session);
+            } catch (Exception ex){}
 
-            robotPosture = new ALRobotPosture(session);
+            try {
+                robotPosture = new ALRobotPosture(session);
+            }catch (Exception ex){}
 
+            try {
+                audioDevice = new ALAudioDevice(session);
+             }catch (Exception ex){}
 
-            ttsSay = session.service("ALTextToSpeech");
-            ttsGesture = session.service("ALAnimatedSpeech");
-            doPosture = session.service("ALRobotPosture");
+        try {
+            textToSpeech = new ALTextToSpeech(session);
+        } catch (Exception ex){}
+
+           ttsSay = session.service("ALTextToSpeech");
 
     }
 
@@ -53,17 +63,24 @@ public class Connection{
         robotPosture.goToPosture(args, (float) 1.0);
     }
 
+    public void setVolume(int args)throws Exception{
+        audioDevice.setOutputVolume(args);
+    }
+
+    public int getVolume()throws Exception{
+        return audioDevice.getOutputVolume();
+    }
+
+    public void setSpeechSpeed(float args)throws Exception{
+        textToSpeech.setParameter("speed", args);
+    }
+
     public void ping()throws Exception {
         boolean ping = ttsSay.<Boolean>call("ping").get();
         if (!ping) {
             System.out.println("Could not ping TTS");
         } else {
             System.out.println("Ping ok");
-            ALLeds l = new ALLeds(session);
-            l.off( 	"RightFaceLeds");
-            Thread.sleep(1000);
-            l.on( 	"RightFaceLeds");
         }
     }
-
 }

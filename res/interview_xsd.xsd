@@ -2,26 +2,25 @@
 
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
-	<xsd:element name="interview" type="interview" />
-
 	<!--Defining Structure of XSD-->
 
 	<xsd:complexType name="interview">
 
 		<xsd:sequence>
-			<xsd:element ref="description"/>
-			<xsd:element ref="posture"/>
+			<xsd:element ref="description" />
 			<xsd:element ref="block" maxOccurs="unbounded"/>
 		</xsd:sequence>
-		<xsd:attribute ref="iid" />
+		<xsd:attribute ref="iid" use="required"/>
+		<xsd:attribute ref="anzahlTeilnehmer" use="required"/>
 	</xsd:complexType>
 
 	<xsd:complexType name="block">
 		<xsd:sequence>
+			<xsd:element ref="posture"/>
 			<xsd:element ref="question"/>
 			<xsd:element ref="answer" maxOccurs="unbounded"/>
 		</xsd:sequence>
-		<xsd:attribute ref="bid"/>
+		<xsd:attribute ref="bid" use="required"/>
 	</xsd:complexType>
 
 	<xsd:complexType name="question">
@@ -30,7 +29,9 @@
 			<xsd:element ref="phrase"/>
 			<xsd:element ref="gesture"/>
 		</xsd:sequence>
-		<xsd:attribute ref="qid"/>
+		<xsd:attribute ref="qid" use="required"/>
+		<xsd:attribute ref="volume" use="required"/>
+		<xsd:attribute ref="SpeechSpeed" use="required"/>
 	</xsd:complexType>
 
 	<xsd:complexType name="answer">
@@ -39,22 +40,34 @@
 			<xsd:element ref="phrase"/>
 			<xsd:element ref="gesture"/>
 		</xsd:sequence>
-		<xsd:attribute ref="aid"/>
+		<xsd:attribute ref="aid" use="required"/>
+		<xsd:attribute ref="volume" use="required"/>
+		<xsd:attribute ref="SpeechSpeed" use="required"/>
 	</xsd:complexType>
+
+	<!--Defining Attributes-->
+
+	<xsd:element name="interview" type="interview" />
 
 	<xsd:attribute name="iid">
 		<xsd:simpleType>
 			<xsd:restriction base="xsd:int">
-				<xsd:pattern value="[1-999]"/>
+				<xsd:minInclusive value="1"/>
+				<xsd:maxInclusive value="999"/>
 			</xsd:restriction>
 		</xsd:simpleType>
 	</xsd:attribute>
 
-	<!--Defining Attributes-->
-
 	<xsd:element name="description" type="xsd:string" />
 
-	<xsd:element name="posture">
+	<xsd:attribute name="anzahlTeilnehmer">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:int">
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:attribute>
+
+	<xsd:element name="posture" default="Stand">
 		<xsd:simpleType>
 			<xsd:restriction base="xsd:string">
 				<xsd:enumeration value="Sit"/>
@@ -68,28 +81,52 @@
 	</xsd:element>
 
 	<xsd:element name="block" type="block" />
+
 	<xsd:attribute name="bid">
 		<xsd:simpleType>
 			<xsd:restriction base="xsd:int">
-				<xsd:pattern value="[1-999]"/>
+				<xsd:minInclusive value="1"/>
+				<xsd:maxInclusive value="999"/>
 			</xsd:restriction>
 		</xsd:simpleType>
 	</xsd:attribute>
 
 	<xsd:element name="question" type="question" />
+
 	<xsd:attribute name="qid">
+	<xsd:simpleType>
+		<xsd:restriction base="xsd:int">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="999"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:attribute>
+
+	<xsd:element name="answer" type="answer" />
+
+	<xsd:attribute name="aid">
 		<xsd:simpleType>
 			<xsd:restriction base="xsd:int">
-				<xsd:pattern value="[1-999]"/>
+				<xsd:minInclusive value="1"/>
+				<xsd:maxInclusive value="999"/>
 			</xsd:restriction>
 		</xsd:simpleType>
 	</xsd:attribute>
 
-	<xsd:element name="answer" type="answer" />
-	<xsd:attribute name="aid">
+	<xsd:attribute name="volume">
 		<xsd:simpleType>
 			<xsd:restriction base="xsd:int">
-				<xsd:pattern value="[1-999]"/>
+				<xsd:minInclusive value="50"/>
+				<xsd:maxInclusive value="100"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:attribute>
+
+	<xsd:attribute name="SpeechSpeed">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:int">
+				<xsd:minInclusive value="50"/>
+				<xsd:maxInclusive value="400"/>
 			</xsd:restriction>
 		</xsd:simpleType>
 	</xsd:attribute>
