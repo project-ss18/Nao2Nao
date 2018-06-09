@@ -38,7 +38,7 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
     // Objekte welche erstellt und weiterverwendet werden
     public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
         if (localName.equals("interview")) {
-            interview = new Interview(Integer.parseInt(atts.getValue("iid")));
+            interview = new Interview(Integer.parseInt(atts.getValue("iid")), (Integer.parseInt(atts.getValue("anzahlTeilnehmer"))));
         }
 
         if (localName.equals("block")) {
