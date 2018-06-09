@@ -6,17 +6,17 @@
 
 	<block bid ="1">
 		<posture>Stand</posture>
-		<question qid = "1" volume = "80">
+		<question qid = "1" volume = "50" SpeechSpeed = "200">
 			<role>Enes</role>
 			<phrase>Wie geht es dir</phrase>
 			<gesture>BodyTalk_1</gesture>
 		</question>
-		<answer aid = "1" volume = "80">
+		<answer aid = "1" volume = "92" SpeechSpeed = "200">
 			<role>Manu</role>
 			<phrase>Mir geht es gut</phrase>
 			<gesture>Excited_2</gesture>
 		</answer>
-		<answer aid = "2" volume = "80">
+		<answer aid = "2" volume = "93" SpeechSpeed = "200">
 			<role>Manu</role>
 			<phrase>Mir geht es schlecht</phrase>
 			<gesture>Excited_1</gesture>
@@ -25,13 +25,12 @@
 
 	<block bid = "2">
 		<posture></posture>
-		<question qid = "1" volume = "80">
+		<question qid = "1" volume = "94" SpeechSpeed = "200">
 			<role>Enes</role>
 			<phrase>Wie heißt du</phrase>
 			<gesture>BodyTalk_1</gesture>
 		</question>
-		<answer aid = "1" volume = "80">
-
+		<answer aid = "1" volume = "95" SpeechSpeed = "200">
 			<role>Manu</role>
 			<phrase>Ich heiße NAO</phrase>
 			<gesture>Excited_1</gesture>
@@ -40,12 +39,12 @@
 
 	<block bid = "3">
 		<posture>Sit</posture>
-		<question qid = "1" volume = "80">
+		<question qid = "1" volume = "96" SpeechSpeed = "200">
 			<role>Enes</role>
 			<phrase>War das schon das ganze Interview</phrase>
 			<gesture>BodyTalk_1</gesture>
 		</question>
-		<answer aid = "1" volume = "80">
+		<answer aid = "1" volume = "97" SpeechSpeed = "200">
 			<role>Manu</role>
 			<phrase>Ja das war eine kleine Kostprobe, es wird noch viel kommen</phrase>
 			<gesture>Excited_1</gesture>
