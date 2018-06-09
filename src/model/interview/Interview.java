@@ -19,6 +19,7 @@ public class Interview {
     private int id;
     private String description;
     private Block interviewBlock;
+    private int anzahlTeilnehmer;
     //---
 
 
