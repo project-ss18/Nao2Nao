@@ -103,6 +103,9 @@ public class InterviewPlayer implements Runnable{
             try {
                 // Frage auslesen und abspielen
                     getRobot(currentBlock.getQuestion(1).getId()).setVolume(currentBlock.getQuestion(1).getVolume());
+                    getRobot(currentBlock.getQuestion(1).getId()).setSpeechSpeed(currentBlock.getQuestion(1).getSpeechSpeed());
+                    getRobot(currentBlock.getQuestion(1).getId()).setVoicePitch(currentBlock.getQuestion(1).getVoicePitch());
+
                     getRobot(currentBlock.getQuestion(1).getId()).animatedSay(start + currentBlock.getQuestion(1).getGesture() + endTag + currentBlock.getQuestion(1).getPhrase()  + wait + endTag);
                 // Frage auslesen und abspielen
 
@@ -113,12 +116,14 @@ public class InterviewPlayer implements Runnable{
                 // Roboter, die Antworten durchlaufen
                     for(int RobotID: AnswerOrder) {
                         Answer selectedAnswer = answershuffler(currentBlock,1,RobotID);
+                        getRobot(RobotID).setVolume(selectedAnswer.getVolume());
+                        getRobot(RobotID).setSpeechSpeed(selectedAnswer.getSpeechSpeed());
+                        getRobot(RobotID).setVoicePitch(selectedAnswer.getVoicePitch());
+
                         getRobot(RobotID).animatedSay(start + selectedAnswer.getGesture() + endTag + selectedAnswer.getPhrase() + wait + endTag);
                     }
                 // Roboter, die Antworten durchlaufen
                 // Antwort auswählen und abspielen
-
-
 
                 while(pauseInterview == true) {
                     Thread.sleep(1000);

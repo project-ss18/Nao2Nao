@@ -4,10 +4,12 @@ public class Answer extends Action {
 
     private Question question;
 
-    public Answer(int id, Question q, int volume){
-        this.volume = volume;
+    public Answer(int id, Question q, int volume, int speechSpeed, float voicePitch){
         this.id = id;
         question = q;
+        this.volume = volume;
+        this.speechSpeed = speechSpeed;
+        this.voicePitch = voicePitch;
         question.addAnswer(this);
     }
 
@@ -30,4 +32,10 @@ public class Answer extends Action {
     public int getId(){
         return this.id;
     }
+
+    public int getVolume() {return this.volume;}
+
+    public int getSpeechSpeed(){return this.speechSpeed;}
+
+    public float getVoicePitch() {return this.voicePitch;}
 }

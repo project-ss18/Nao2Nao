@@ -43,19 +43,27 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
 
         if (localName.equals("block")) {
             blockCounter++;
-            blockList.add (new Block(Integer.parseInt(atts.getValue("bid")), interview));
+            blockList.add(new Block(Integer.parseInt(atts.getValue("bid")), interview));
         }
 
         if (localName.equals("question")) {
             type = false;
             questCounter++;
-            questionList.add(new Question(Integer.parseInt(atts.getValue("qid")),blockList.get(blockCounter-1),Integer.parseInt(atts.getValue("volume"))));
+            try {
+                questionList.add(new Question(Integer.parseInt(atts.getValue("qid")), blockList.get(blockCounter - 1), Integer.parseInt(atts.getValue("volume")), Integer.parseInt(atts.getValue("SpeechSpeed")), Float.parseFloat(atts.getValue("VoicePitch"))));
+            } catch (java.lang.NumberFormatException e1) {
+                questionList.add(new Question(Integer.parseInt(atts.getValue("qid")), blockList.get(blockCounter - 1), 70, 100, 0));
+            }
         }
 
         if (localName.equals("answer")) {
-            type=true;
+            type = true;
             answerCounter++;
-            answerList.add(new Answer(Integer.parseInt(atts.getValue("aid")),questionList.get(questCounter-1), Integer.parseInt(atts.getValue("volume"))));
+            try {
+                answerList.add(new Answer(Integer.parseInt(atts.getValue("aid")), questionList.get(questCounter - 1), Integer.parseInt(atts.getValue("volume")), Integer.parseInt(atts.getValue("SpeechSpeed")), Float.parseFloat(atts.getValue("VoicePitch"))));
+            } catch (java.lang.NumberFormatException e2) {
+                    answerList.add(new Answer(Integer.parseInt(atts.getValue("aid")), questionList.get(questCounter - 1), 70, 100, 0));
+            }
         }
     }
 

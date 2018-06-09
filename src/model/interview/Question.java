@@ -6,10 +6,12 @@ public class Question extends Action {
 
     public ArrayList<Answer> answerList = new ArrayList<Answer>();
 
-    public Question(int id, Block v, int volume){
+    public Question(int id, Block v, int volume, int speechSpeed, float voicePitch){
         this.id = id;
         this.block=v;
         this.volume = volume;
+        this.speechSpeed = speechSpeed;
+        this.voicePitch = voicePitch;
         v.addQuestion(this);
     }
 
@@ -46,6 +48,10 @@ public class Question extends Action {
     }
 
     public int getVolume() {return this.volume;}
+
+    public int getSpeechSpeed(){return this.speechSpeed;}
+
+    public float getVoicePitch() {return this.voicePitch;}
 
 
 }

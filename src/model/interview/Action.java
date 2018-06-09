@@ -8,5 +8,7 @@ public abstract class Action {
     protected String gesture;
     protected Block block;
     protected int volume;
+    protected int speechSpeed;
+    protected float voicePitch;
 
 }

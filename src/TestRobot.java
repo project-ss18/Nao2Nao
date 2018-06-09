@@ -28,9 +28,10 @@ public class TestRobot {
 
 
 
-        r.setVolume(100);
-        r.setSpeechSpeed(80);
-        r.say("okay");
+        r.setVolume(80);
+        r.setSpeechSpeed(100);
+        r.setVoicePitch(0);
+        r.say("Hallo das ist ein Test");
 
 
 

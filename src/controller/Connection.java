@@ -75,6 +75,18 @@ public class Connection{
         textToSpeech.setParameter("speed", args);
     }
 
+    public float getSpeechSpeed()throws Exception{
+        return textToSpeech.getParameter("speed");
+    }
+
+    public void setVoicePitch(float args)throws Exception{
+        textToSpeech.setParameter("pitchShift", args);
+    }
+
+    public float getVoicePitch()throws Exception{
+        return textToSpeech.getParameter("pitchShift");
+    }
+
     public void ping()throws Exception {
         boolean ping = ttsSay.<Boolean>call("ping").get();
         if (!ping) {
