@@ -9,7 +9,6 @@ import java.lang.Runnable;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class InterviewPlayer implements Runnable{
@@ -23,6 +22,7 @@ public class InterviewPlayer implements Runnable{
     private static int counterBlock = 1;
     private boolean pauseInterview = false;
     private ArrayList<Robot> roboter;
+    private static ArrayList<String> InterviewNamen = new ArrayList<String>();
 
     private Thread rurrentInterview;
     private boolean threadStarted = false;
@@ -42,10 +42,10 @@ public class InterviewPlayer implements Runnable{
 
     public InterviewPlayer(String FileName) {
         XMLFile = new File(FileName);
-        initialize(FileName);
+        interview = initializeInverew(FileName);
     }
 
-    private void initialize(String FileName) {
+    private static Interview initializeInverew(String FileName) {
         try {
             // XMLReader erzeugen
             XMLReader xmlReader = XMLReaderFactory.createXMLReader();
@@ -60,7 +60,7 @@ public class InterviewPlayer implements Runnable{
             // Parsen wird gestartet
             xmlReader.parse(inputSource);
 
-            interview = ContentHandler.getInterview();
+            return ContentHandler.getInterview();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -69,6 +69,7 @@ public class InterviewPlayer implements Runnable{
         } catch (SAXException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     private Robot getRobot(int RobotID)
@@ -128,32 +129,49 @@ public class InterviewPlayer implements Runnable{
     }
 
     public static void print() {
-        for (String interviewDescription : getAllInterviewNames()){
-            System.out.println("Interview: '" + interviewDescription + "'");
+        for (String CurrentInterview : getAllInterviewNames(false)){
+            System.out.println("Interview: '" + CurrentInterview + "'");
         }
     }
     // print
     // Static Functions
-    public static List<String> getAllInterviewNames()
+    public static List<Interview> getAllInterviews(boolean forceReload)
     {
-        ArrayList<String> InterviewObjects = new ArrayList<String>();
-        File folder = new File(PATH);
-        File[] listofInterviews = folder.listFiles();
-
-        for(File currentInterview : listofInterviews)
+        if(Interview.allInterviews.size() == 0 || forceReload == true)
         {
-            if(currentInterview.isFile() && currentInterview.getName().endsWith(".xml"))
-            {
-                //InterviewObjects.add(new InterviewPlayer(PATH + currentInterview.getName()));
-                String fileNameWithOutExtension = currentInterview.getName();
-                int index = fileNameWithOutExtension.lastIndexOf('.');
-                if (index != -1)
-                    fileNameWithOutExtension = fileNameWithOutExtension.substring(0, index);
+            ArrayList<Interview> InterviewObjects = new ArrayList<Interview>();
+            File folder = new File(PATH);
+            File[] listofInterviews = folder.listFiles();
 
-                InterviewObjects.add(fileNameWithOutExtension);
+            for(File currentInterview : listofInterviews)
+            {
+                if(currentInterview.isFile() && currentInterview.getName().endsWith(".xml"))
+                {
+                    InterviewObjects.add(initializeInverew(currentInterview.getPath()));
+                    InterviewNamen.add(currentInterview.getName());
+                }
             }
+            Interview.allInterviews.clear();
+            Interview.allInterviews.addAll(InterviewObjects);
         }
-        return InterviewObjects;
+        return Interview.allInterviews;
+    }
+    public static List<String> getAllInterviewNames(boolean forcereload)
+    {
+        if(InterviewNamen.size() == 0 || forcereload == true) {
+            ArrayList<String> _InterviewNamen = new ArrayList<String>();
+            File folder = new File(PATH);
+            File[] listofInterviews = folder.listFiles();
+
+            for (File currentInterview : listofInterviews) {
+                if (currentInterview.isFile() && currentInterview.getName().endsWith(".xml")) {
+                    _InterviewNamen.add(currentInterview.getName());
+                }
+            }
+            InterviewNamen.clear();
+            InterviewNamen.addAll(_InterviewNamen);
+            }
+        return InterviewNamen;
     }
     // Static Functions
 

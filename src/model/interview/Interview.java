@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 public class Interview {
 
+    public static ArrayList<Interview> allInterviews = new ArrayList<Interview>();
+
     public ArrayList<Block> blockList = new ArrayList<Block>();
 
     private int id;
