@@ -13,20 +13,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Interview {
-
+    //---Attribute---\
     public static ArrayList<Interview> allInterviews = new ArrayList<Interview>();
-
     public ArrayList<Block> blockList = new ArrayList<Block>();
-
     private int id;
     private String description;
     private Block interviewBlock;
-    private final String PATH = "./res/";
-    private  String xsdFile = "interview_xsd.xsd";
+    //---
 
 
-    public Interview(int id)
-    {
+    public Interview(int id) {
         this.id=id;
     }
 
@@ -48,22 +44,6 @@ public class Interview {
         return null;
     }
 
-    public void checkSyntax(String xmlFile) {
-        //XML-Syntax Check mithilfe eines XSD Schema
-        File schemaFile = new File(PATH + xsdFile);
-        Source xmlFileSource = new StreamSource(new File(PATH + xmlFile));
-        SchemaFactory schemaFactory = SchemaFactory
-                .newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        try {
-            Schema schema = schemaFactory.newSchema(schemaFile);
-            Validator validator = schema.newValidator();
-            validator.validate(xmlFileSource);
-            System.out.println("Die XML Datei '" + xmlFile + "' ist valide");
-        } catch (SAXException e) {
-            System.out.println(xmlFileSource.getSystemId() + " Die XML Datei '"+ xmlFile + "' ist nicht valide!, Error:" + e);
-        } catch (IOException e) {
-        }
-    }
 
     public String getDescription() {
         return description;

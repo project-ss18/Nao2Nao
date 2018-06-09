@@ -1,31 +1,31 @@
 package controller;
+
 import model.interview.*;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.XMLReaderFactory;
 import model.robot.Robot;
-import java.lang.Runnable;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import java.lang.Runnable;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class InterviewPlayer implements Runnable{
-
+    //----Attribute---\\
     public Interview interview;
-    public File XMLFile;
-    private final static String PATH = "./res/";
-    private String start = "^start(animations/Stand/Gestures/";
-    private String endTag = ")";
-    private String wait = "^wait(animations/Stand/Gestures/";
-    private static int counterBlock = 1;
-    private boolean pauseInterview = false;
-    private ArrayList<Robot> roboter;
-    private static ArrayList<String> InterviewNamen = new ArrayList<String>();
+    private List<Robot> robots;
 
-    private Thread rurrentInterview;
+    //--------Befehl-Tags-------\\
+    private final String start = "^start(animations/Stand/Gestures/";
+    private final char endTag = ')';
+    private String wait = "^wait(animations/Stand/Gestures/";
+
+    private static int counterBlock = 1;
+
+    //----Thread----\\
+    private Thread currentInterview;
     private boolean threadStarted = false;
+    private boolean pauseInterview = false;
 
     // ---------- Getter and Setter ----------
     public boolean isInterviewPaused() {
@@ -40,42 +40,12 @@ public class InterviewPlayer implements Runnable{
     }
     // ---------- Getter and Setter ----------
 
-    public InterviewPlayer(String FileName) {
-        XMLFile = new File(FileName);
-        interview = initializeInverew(FileName);
+    public InterviewPlayer(Interview interview){
+        this.interview = interview;
     }
 
-    private static Interview initializeInverew(String FileName) {
-        try {
-            // XMLReader erzeugen
-            XMLReader xmlReader = XMLReaderFactory.createXMLReader();
-
-            // Pfad zur resources Datei
-            FileReader reader = new FileReader(FileName);
-            InputSource inputSource = new InputSource(reader);
-
-            // PersonenContentHandler wird übergeben
-            xmlReader.setContentHandler(new ContentHandler());
-
-            // Parsen wird gestartet
-            xmlReader.parse(inputSource);
-
-            return ContentHandler.getInterview();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    private Robot getRobot(int RobotID)
-    {
-        for(Robot CurrentRobot: roboter)
-        {
+    private Robot getRobot(int RobotID) {
+        for(Robot CurrentRobot: robots) {
             if(CurrentRobot.get_ID() == RobotID) {
                 return CurrentRobot;
             }
@@ -83,8 +53,7 @@ public class InterviewPlayer implements Runnable{
         return null;
     }
 
-    private Answer answershuffler(Block selectedBlock,int QuestionID, int RobotID)
-    {
+    private Answer answershuffler(Block selectedBlock,int QuestionID, int RobotID) {
         ArrayList<Answer> PossibleAwnsers = new ArrayList<Answer>();
         for(Answer CurrentAnswer: selectedBlock.getQuestion(QuestionID).answerList)
         {
@@ -96,8 +65,7 @@ public class InterviewPlayer implements Runnable{
         return PossibleAwnsers.get(ThreadLocalRandom.current().nextInt(1, PossibleAwnsers.size() + 1));
     }
 
-    private ArrayList<Integer> getRobotSpeakAnswerOrder(Question selectedQuestion)
-    {
+    private ArrayList<Integer> getRobotSpeakAnswerOrder(Question selectedQuestion) {
         ArrayList<Integer> Order = new ArrayList<Integer>();
         for(Answer CurrentAnswer: selectedQuestion.answerList)
         {
@@ -108,15 +76,14 @@ public class InterviewPlayer implements Runnable{
         return Order;
     }
 
-
     public void startInterview(ArrayList<Robot> _Roboter) throws Exception {
         if(threadStarted == false)
         {
-            roboter = new ArrayList<Robot>();
-            roboter.addAll(_Roboter);
+            robots = new ArrayList<Robot>();
+            robots.addAll(_Roboter);
 
-            rurrentInterview = new Thread(this);
-            rurrentInterview.start();
+            currentInterview = new Thread(this);
+            currentInterview.start();
             threadStarted = true;
         }
         else
@@ -124,64 +91,16 @@ public class InterviewPlayer implements Runnable{
             pauseInterview = false;
         }
     }
+
     public void PauseInterview() {
         pauseInterview = true;
     }
-
-    public static void print() {
-        for (String CurrentInterview : getAllInterviewNames(false)){
-            System.out.println("Interview: '" + CurrentInterview + "'");
-        }
-    }
-    // print
-    // Static Functions
-    public static List<Interview> getAllInterviews(boolean forceReload)
-    {
-        if(Interview.allInterviews.size() == 0 || forceReload == true)
-        {
-            ArrayList<Interview> InterviewObjects = new ArrayList<Interview>();
-            File folder = new File(PATH);
-            File[] listofInterviews = folder.listFiles();
-
-            for(File currentInterview : listofInterviews)
-            {
-                if(currentInterview.isFile() && currentInterview.getName().endsWith(".xml"))
-                {
-                    InterviewObjects.add(initializeInverew(currentInterview.getPath()));
-                    InterviewNamen.add(currentInterview.getName());
-                }
-            }
-            Interview.allInterviews.clear();
-            Interview.allInterviews.addAll(InterviewObjects);
-        }
-        return Interview.allInterviews;
-    }
-    public static List<String> getAllInterviewNames(boolean forcereload)
-    {
-        if(InterviewNamen.size() == 0 || forcereload == true) {
-            ArrayList<String> _InterviewNamen = new ArrayList<String>();
-            File folder = new File(PATH);
-            File[] listofInterviews = folder.listFiles();
-
-            for (File currentInterview : listofInterviews) {
-                if (currentInterview.isFile() && currentInterview.getName().endsWith(".xml")) {
-                    _InterviewNamen.add(currentInterview.getName());
-                }
-            }
-            InterviewNamen.clear();
-            InterviewNamen.addAll(_InterviewNamen);
-            }
-        return InterviewNamen;
-    }
-    // Static Functions
-
 
     // ---------- New Thread -----------
     // Playback Funktionen
     @Override public void run(){
         for(Block currentBlock : interview.getBlockList()) {
-            try
-            {
+            try {
                 // Frage auslesen und abspielen
                     getRobot(currentBlock.getQuestion(1).getId()).setVolume(currentBlock.getQuestion(1).getVolume());
                     getRobot(currentBlock.getQuestion(1).getId()).animatedSay(start + currentBlock.getQuestion(1).getGesture() + endTag + currentBlock.getQuestion(1).getPhrase()  + wait + endTag);
@@ -192,8 +111,7 @@ public class InterviewPlayer implements Runnable{
                     ArrayList<Integer> AnswerOrder = getRobotSpeakAnswerOrder(currentBlock.getQuestion(1));
                 // Suchen, wer als erstes antwortet
                 // Roboter, die Antworten durchlaufen
-                    for(int RobotID: AnswerOrder)
-                    {
+                    for(int RobotID: AnswerOrder) {
                         Answer selectedAnswer = answershuffler(currentBlock,1,RobotID);
                         getRobot(RobotID).animatedSay(start + selectedAnswer.getGesture() + endTag + selectedAnswer.getPhrase() + wait + endTag);
                     }
@@ -202,8 +120,7 @@ public class InterviewPlayer implements Runnable{
 
 
 
-                while(pauseInterview == true)
-                {
+                while(pauseInterview == true) {
                     Thread.sleep(1000);
                 }
             }
@@ -216,7 +133,7 @@ public class InterviewPlayer implements Runnable{
         }
             //Nur für Vorführung implementiert muss später wieder entfernt und über XML umgesetzt werden!
         try {
-            for (Robot CurrentRobot: roboter)
+            for (Robot CurrentRobot: robots)
             CurrentRobot.goToPosture("Sit");
         } catch (Exception e) {
             e.printStackTrace();

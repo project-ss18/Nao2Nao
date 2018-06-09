@@ -3,17 +3,26 @@ package model.robot;
 import controller.Connection;
 
 public class Robot {
+    private static int id_Counter = 0;
+    private String[] args = {};
 
     private final String IP_ADDRESS;
     private final int ID;
-    private final Connection CONNECTION;
+    private String name;
+    private Connection CONNECTION;
     private final String PORT = "9559";
 
-    public Robot(String address, int id, String[] args) throws Exception {
-        IP_ADDRESS = address;
-        ID = id;
-        CONNECTION = new Connection(this.IP_ADDRESS, args);
+    public Robot(String address, String name) throws Exception {
+       id_Counter++;
+       this.name=name;
+       IP_ADDRESS = address;
+       ID = id_Counter;
 
+       CONNECTION = new Connection(this.IP_ADDRESS, args);
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getIPAdress() {
