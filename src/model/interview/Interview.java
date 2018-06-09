@@ -23,8 +23,9 @@ public class Interview {
     //---
 
 
-    public Interview(int id) {
+    public Interview(int id, int anzahlTeilnehmer) {
         this.id=id;
+        this.anzahlTeilnehmer = anzahlTeilnehmer;
     }
 
     public void addBlock(Block v)
@@ -70,4 +71,11 @@ public class Interview {
         this.interviewBlock = interviewBlock;
     }
 
+    public int getAnzahlTeilnehmer() {
+        return anzahlTeilnehmer;
+    }
+
+    public void setAnzahlTeilnehmer(int anzahlTeilnehmer) {
+        this.anzahlTeilnehmer = anzahlTeilnehmer;
+    }
 }

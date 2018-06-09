@@ -1,3 +1,4 @@
+import controller.InterviewLoader;
 import model.robot.Robot;
 import model.interview.*;
 import org.xml.sax.InputSource;
@@ -13,20 +14,24 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class TestRobot {
     public static void main(String[] args) throws Exception {
-        Robot r = new Robot("141.28.75.148", 1, args);
+       Robot r = new Robot("141.28.75.148", "1");
         //r.goToPosture("SitRelax");
         //r.setVolume(80);
-
-        r.setSpeechSpeed(50);
-
-        r.say("Hallo, was geht ab, Bitch!");
+        //r.setSpeechSpeed(200);
+        //r.say("Hallo, was geht ab, Bitch!");
 
 
 
-        /*
-        r.setVolume(50);
-        r.say("Hallo, jetzt müsste ich leise sein");
-        */
+        //Interview i1 = InterviewLoader.initializeInterview("interview.xml");
+        //System.out.println(i1.getAnzahlTeilnehmer());
+
+
+
+
+        r.setVolume(100);
+        r.setSpeechSpeed(80);
+        r.say("okay");
+
 
 
      //   System.out.println("SpeedSpeech: " + r.getSpeedSpeech());
