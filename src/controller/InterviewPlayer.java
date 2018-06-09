@@ -103,8 +103,7 @@ public class InterviewPlayer implements Runnable{
     }
     // print
     // Static Functions
-    public static List<Interview> getAllInterviews()
-    {
+    public static List<Interview> getAllInterviews() {
         ArrayList<Interview> InterviewObjects = new ArrayList<Interview>();
         File folder = new File(PATH);
         File[] listofInterviews = folder.listFiles();
@@ -125,8 +124,7 @@ public class InterviewPlayer implements Runnable{
     // Playback Funktionen
     @Override public void run(){
         for(Block currentBlock : interview.getBlockList()) {
-            try
-            {
+            try {
                 // Frage auslesen und abspielen
                 roboter1.animatedSay(start + currentBlock.getQuestion(1).getGesture() + endTag + currentBlock.getQuestion(1).getPhrase() + wait + endTag);
                 int AnswerCount = currentBlock.getQuestion(1).getAnswerCount();
@@ -137,13 +135,10 @@ public class InterviewPlayer implements Runnable{
                 roboter2.animatedSay(start + currentBlock.getQuestion(1).getAnswer(AnswerNumber).getGesture() + endTag + currentBlock.getQuestion(1).getAnswer(AnswerNumber).getPhrase() + wait + endTag);
                 // Antwort auswählen und abspielen
 
-                while(pauseInterview == true)
-                {
+                while(pauseInterview == true) {
                     Thread.sleep(1000);
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }
         }

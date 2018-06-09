@@ -13,6 +13,14 @@ public class NewRobot extends JFrame {
 
     NewRobot(Robotlist robotlist) {
         setPreferredSize(new Dimension(200, 150));
+        setSize(new Dimension(200, 150));
+
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+
+        int dx = (ge.getCenterPoint().x - getSize().width / 2);
+        int dy = (ge.getCenterPoint().y - getSize().height / 2);
+        setLocation(dx, dy);
+
         setContentPane(panel);
         pack();
         setVisible(true);

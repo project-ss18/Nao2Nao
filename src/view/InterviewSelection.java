@@ -1,6 +1,5 @@
 package view;
 
-import controller.InterviewPlayer;
 import model.interview.Interview;
 import model.robot.Robot;
 
@@ -18,13 +17,24 @@ public class InterviewSelection extends JFrame {
     private JComboBox comboBoxInterview;
 
     InterviewSelection(JFrame mainFrame) {
-        if (InterviewPlayer.getAllInterviews().size() == 0 || Robotlist.getRobotList().size() == 0) {
-            JOptionPane.showMessageDialog(null, "Fehler: Kein Interview oder keine Roboter vorhanden", "Fehler", JOptionPane.OK_CANCEL_OPTION);
+        if (controller.InterviewPlayer.getAllInterviews().size() == 0) {
+            JOptionPane.showMessageDialog(null, "Fehler: Kein Interview vorhanden", "Fehler", JOptionPane.OK_CANCEL_OPTION);
+            return;
+        } else if (Robotlist.getRobotList().size() == 0) {
+            JOptionPane.showMessageDialog(null, "Fehler: Keine Roboter vorhanden", "Fehler", JOptionPane.OK_CANCEL_OPTION);
             return;
         }
         setContentPane(panel);
         setPreferredSize(new Dimension(300, 200));
-        for (Interview interview : InterviewPlayer.getAllInterviews()) {
+        setSize(new Dimension(300, 200));
+
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+
+        int dx = (ge.getCenterPoint().x - getSize().width / 2);
+        int dy = (ge.getCenterPoint().y - getSize().height / 2);
+        setLocation(dx, dy);
+
+        for (Interview interview : controller.InterviewPlayer.getAllInterviews()) {
             comboBoxInterview.addItem(interview.getDescription());
         }
         for (Robot robot : Robotlist.getRobotList()) {
@@ -47,7 +57,7 @@ public class InterviewSelection extends JFrame {
         bestaetigenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for (Interview interview : InterviewPlayer.getAllInterviews()) {
+                for (Interview interview : controller.InterviewPlayer.getAllInterviews()) {
                     if (comboBoxInterview.getSelectedItem().equals(interview.getDescription())) {
                         if (comboBoxRole1.getSelectedItem().equals(comboBoxRole2.getSelectedItem())) {
                             JOptionPane.showMessageDialog(null, "Fehler: Gleicher Roboter", "Fehler", JOptionPane.OK_CANCEL_OPTION);
@@ -55,7 +65,7 @@ public class InterviewSelection extends JFrame {
                             new InterviewSelection(mainFrame);
                         } else {
                             setVisible(false);
-                            new InterviewPlayerView(mainFrame, interview);
+                            new InterviewPlayer(mainFrame, interview);
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "Fehler: Interview nicht Gefunden", "Fehler", JOptionPane.OK_CANCEL_OPTION);

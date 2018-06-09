@@ -1,6 +1,5 @@
 package view;
 
-import controller.InterviewPlayer;
 import model.interview.Answer;
 import model.interview.Block;
 import model.interview.Interview;
@@ -10,10 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
-public class InterviewPlayerView {
+public class InterviewPlayer {
 
     private JPanel panel;
     private JButton playButton;
@@ -25,7 +22,7 @@ public class InterviewPlayerView {
     private JComboBox comboBoxGoTo;
     private JButton goToButton;
 
-    InterviewPlayerView(JFrame frame, Interview interviewP) {
+    InterviewPlayer(JFrame frame, Interview interviewP) {
 
         previewJTextPane.setEditable(false);
         previewJTextPane.setText("");
@@ -61,7 +58,7 @@ public class InterviewPlayerView {
         playButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(previewJTextPane.getSelectedText());
+
             }
         });
     }

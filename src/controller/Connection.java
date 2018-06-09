@@ -29,13 +29,10 @@ public class Connection{
             fut = session.connect("tcp://" + IP_ADRESS + ":9559");
             fut.get();
 
-            try {
-                animatedSpeech = new ALAnimatedSpeech(session);
-            } catch (Exception ex){}
+            animatedSpeech = new ALAnimatedSpeech(session);
 
-            try {
-                robotPosture = new ALRobotPosture(session);
-            }catch (Exception ex){}
+            robotPosture = new ALRobotPosture(session);
+
 
             ttsSay = session.service("ALTextToSpeech");
             ttsGesture = session.service("ALAnimatedSpeech");
@@ -64,7 +61,7 @@ public class Connection{
             System.out.println("Ping ok");
             ALLeds l = new ALLeds(session);
             l.off( 	"RightFaceLeds");
-            this.wait(1000);
+            Thread.sleep(1000);
             l.on( 	"RightFaceLeds");
         }
     }

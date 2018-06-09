@@ -4,7 +4,7 @@ import controller.Connection;
 
 public class Robot {
     private static int id_Counter = 0;
-    private String[] args;
+    private String[] args = {};
 
     private final String IP_ADDRESS;
     private final int ID;
@@ -17,11 +17,9 @@ public class Robot {
         this.name=name;
         IP_ADDRESS = address;
         ID = id_Counter;
-        try {
-            CONNECTION = new Connection(this.IP_ADDRESS, args);
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
+
+        //CONNECTION = new Connection(this.IP_ADDRESS, args);
+
     }
 
     public String getName() {

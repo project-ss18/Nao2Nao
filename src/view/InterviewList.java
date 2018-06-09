@@ -29,8 +29,8 @@ public class InterviewList {
     //private static ArrayList<Interview> interviewArrayList = new ArrayList<Interview>();
     private static List<Interview> interviewList = InterviewPlayer.getAllInterviews();
     private static JFileChooser openFileChooser;
-    private static final String COPY_FILE_TO = "C:/Users/Manu/Desktop/Nao2Nao/res/manu.xml";
-    private File target = new File(COPY_FILE_TO);
+    private final static String copyPath = "./res/";
+    private File target;
     //File source = new File("C:/Users/Manu/Desktop/manu.xml");
 
     private String[] columnNames = new String[]{"ID", "Interviewname", "Anzahl Fragen", "Anzahl Roboter"};
@@ -65,12 +65,13 @@ public class InterviewList {
             public void actionPerformed(ActionEvent e) {
                 int returnValue = openFileChooser.showOpenDialog(openFileButton);
                 if (returnValue == JFileChooser.APPROVE_OPTION) {
+                    String newFile = copyPath + openFileChooser.getSelectedFile().getName();
+                    target = new File(newFile);
 
-                    File currentXML = openFileChooser.getSelectedFile();
-                    messageLabel.setText("XML file successfully loaded!");
                     try {
                         copyFileUsingChannel(openFileChooser.getSelectedFile(), target);
                         refreshList();
+                        messageLabel.setText("XML file successfully loaded!");
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
@@ -85,8 +86,9 @@ public class InterviewList {
     public void refreshList() {
         interviewList = InterviewPlayer.getAllInterviews();
         rowData = new String[interviewList.size()][];
-        for (int i = 0; i < interviewList.size(); i++) {
-            rowData[i] = interviewList.get(i).toStringArray();
+        for (Interview v : interviewList) {
+            int index = interviewList.indexOf(v);
+            rowData[index] = interviewList.get(index).toStringArray();
         }
         interviewTable = new JTable(rowData, columnNames) {
             @Override

@@ -16,6 +16,7 @@ public class Interview {
 
     public ArrayList<Block> blockList = new ArrayList<Block>();
 
+
     private int id;
     private String description;
     private String posture;
@@ -25,12 +26,8 @@ public class Interview {
     private int qCounter;
 
 
-    public Interview(int id)
-    {
+    public Interview(int id) {
         this.id=id;
-        qCounter = ContentHandler.qCounterInterviewList;
-        ContentHandler.qCounterInterviewList = 0;
-
     }
 
     public void addBlock(Block v)
@@ -105,10 +102,14 @@ public class Interview {
         return qCounter;
     }
 
-    public String []toStringArray(){
-        String[] temp = new String[2];
-        temp = new String[]{Integer.toString(this.id), this.getDescription(), Integer.toString(this.qCounter), "2"};
-        return temp;
+    public String[] toStringArray(){
+        int questCounter=0;
+        for(Block b : blockList){
+            for(Question q : b.getQuestionList()){
+                questCounter++;
+            }
+        }
+         return new String[]{Integer.toString(this.id), this.getDescription(), Integer.toString(questCounter),"2"};
     }
 
 }
