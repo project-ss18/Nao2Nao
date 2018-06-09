@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<interview iid = "1">
+<interview iid = "1" anzahlTeilnehmer = "2">
 
 	<description>Erstes Interview</description>
 

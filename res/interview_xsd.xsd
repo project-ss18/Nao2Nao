@@ -13,6 +13,7 @@
 			<xsd:element ref="block" maxOccurs="unbounded"/>
 		</xsd:sequence>
 		<xsd:attribute ref="iid" use="required"/>
+		<xsd:attribute ref="anzahlTeilnehmer" use="required"/>
 	</xsd:complexType>
 
 	<xsd:complexType name="block">
@@ -55,6 +56,13 @@
 	<!--Defining Attributes-->
 
 	<xsd:element name="description" type="xsd:string" />
+
+	<xsd:attribute name="anzahlTeilnehmer">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:int">
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:attribute>
 
 	<xsd:element name="posture" default="Stand">
 		<xsd:simpleType>

@@ -19,15 +19,17 @@ public class Interview {
     public ArrayList<Block> blockList = new ArrayList<Block>();
 
     private int id;
+    private int anzahlTeilnehmer;
     private String description;
     private Block interviewBlock;
     private final String PATH = "./res/";
     private  String xsdFile = "interview_xsd.xsd";
 
 
-    public Interview(int id)
+    public Interview(int id, int anzahlTeilnehmer)
     {
         this.id=id;
+        this.anzahlTeilnehmer = anzahlTeilnehmer;
     }
 
     public void addBlock(Block v)
@@ -89,4 +91,11 @@ public class Interview {
         this.interviewBlock = interviewBlock;
     }
 
+    public int getAnzahlTeilnehmer() {
+        return anzahlTeilnehmer;
+    }
+
+    public void setAnzahlTeilnehmer(int anzahlTeilnehmer) {
+        this.anzahlTeilnehmer = anzahlTeilnehmer;
+    }
 }

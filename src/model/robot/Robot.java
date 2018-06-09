@@ -47,4 +47,9 @@ public class Robot {
     public int getVolume()throws Exception{
         return CONNECTION.getVolume();
     }
+    public void setSpeechSpeed(float args)throws Exception{
+        CONNECTION.setSpeechSpeed(args);
+    }
+
+
 }
