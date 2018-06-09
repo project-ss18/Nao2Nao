@@ -1,6 +1,5 @@
 package controller;
 
-
 import com.aldebaran.qi.AnyObject;
 import com.aldebaran.qi.Application;
 import com.aldebaran.qi.Future;
@@ -10,9 +9,7 @@ import com.aldebaran.qi.helper.proxies.ALAudioDevice;
 import com.aldebaran.qi.helper.proxies.ALRobotPosture;
 import com.aldebaran.qi.helper.proxies.ALTextToSpeech;
 
-
 public class Connection{
-
 
     private static Application app;
     private Session session;
@@ -23,8 +20,6 @@ public class Connection{
     private ALRobotPosture robotPosture;
     private ALAudioDevice audioDevice;
     private static boolean b = false;
-
-
 
     public Connection(String IP_ADRESS, String[] args) throws Exception{
             if(!b) {
@@ -80,8 +75,6 @@ public class Connection{
         textToSpeech.setParameter("speed", args);
     }
 
-
-
     public void ping()throws Exception {
         boolean ping = ttsSay.<Boolean>call("ping").get();
         if (!ping) {
@@ -90,5 +83,4 @@ public class Connection{
             System.out.println("Ping ok");
         }
     }
-
 }
