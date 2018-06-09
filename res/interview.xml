@@ -7,14 +7,17 @@
 
 	<block bid ="1">
 		<question qid = "1">
+			<role>Enes</role>
 			<phrase>Wie geht es dir</phrase>
 			<gesture>BodyTalk_1</gesture>
 		</question>
 		<answer aid = "1">
+			<role>Manu</role>
 			<phrase>Mir geht es gut</phrase>
 			<gesture>Excited_2</gesture>
 		</answer>
 		<answer aid = "2">
+			<role>Manu</role>
 			<phrase>Mir geht es schlecht</phrase>
 			<gesture>Excited_1</gesture>
 		</answer>
@@ -22,10 +25,12 @@
 
 	<block bid = "2">
 		<question qid = "1">
+			<role>Enes</role>
 			<phrase>Wie heißt du</phrase>
 			<gesture>BodyTalk_1</gesture>
 		</question>
 		<answer aid = "1">
+			<role>Manu</role>
 			<phrase>Ich heiße NAO</phrase>
 			<gesture>Excited_1</gesture>
 		</answer>
@@ -33,10 +38,12 @@
 
 	<block bid = "3">
 		<question qid = "1">
+			<role>Enes</role>
 			<phrase>War das schon das ganze Interview</phrase>
 			<gesture>BodyTalk_1</gesture>
 		</question>
 		<answer aid = "1">
+			<role>Manu</role>
 			<phrase>Ja das war eine kleine Kostprobe, es wird noch viel kommen</phrase>
 			<gesture>Excited_1</gesture>
 		</answer>
