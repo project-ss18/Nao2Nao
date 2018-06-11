@@ -8,10 +8,14 @@ public class Question extends Action {
 
 
     //-----------------------Konstruktor-----------------------\\
-    public Question(int id, Block v, int volume){
+    public Question(int id, Block v, String gesture, String role, int volume, int speechSpeed, float voicePitch){
         this.id = id;
         this.block=v;
+        this.gesture = gesture;
+        this.role = role;
         this.volume = volume;
+        this.speechSpeed = speechSpeed;
+        this.voicePitch = voicePitch;
         v.addQuestion(this);
     }
 
@@ -20,7 +24,6 @@ public class Question extends Action {
     public void addAnswer(Answer a){
         answerList.add(a);
     }
-
     //----------------------Getter//Setter----------------------\\
     public ArrayList<Answer> getAnswerList() {
         return answerList;
@@ -33,6 +36,7 @@ public class Question extends Action {
     public Answer getAnswer(int index){
         return answerList.get(index-1);
     }
+
 
     public void setPhrase(String phrase) {
         this.phrase=phrase;
@@ -56,13 +60,17 @@ public class Question extends Action {
 
     public int getVolume() {return this.volume;}
 
+    public int getSpeechSpeed(){return this.speechSpeed;}
+
+    public float getVoicePitch() {return this.voicePitch;}
+
+    public String getRole(){
+        return this.role;
+    }
     public ArrayList<Answer> getAnswers(){
         return answerList;
     }
 
-    public String getRole(){
-        return role;
-    }
 
     public void setRole(String tempRole){
         role = tempRole;

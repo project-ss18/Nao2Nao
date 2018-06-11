@@ -26,7 +26,8 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
 
     private static boolean type = false;//false == question
 
-    public void characters(char[] ch, int start, int length) throws SAXException {
+    public void characters(char[] ch, int start, int length)
+            throws SAXException {
         currentValue = new String(ch, start, length);
     }
 
@@ -38,34 +39,52 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
         this.interview = interview;
     }
 
+
     // Methode wird aufgerufen wenn der Parser zu einem Start-Tag kommt
     // Objekte welche erstellt und weiterverwendet werden
     public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
         if (localName.equals("interview")) {
-            interview = new Interview(Integer.parseInt(atts.getValue("iid")), (Integer.parseInt(atts.getValue("anzahlTeilnehmer"))));
+            interview = new Interview((Integer.parseInt(atts.getValue("anzahlTeilnehmer"))));
         }
 
         if (localName.equals("block")) {
             blockCounter++;
-            blockList.add (new Block(Integer.parseInt(atts.getValue("bid")), interview));
+            blockList.add(new Block(Integer.parseInt(atts.getValue("bid")), interview));
         }
 
         if (localName.equals("question")) {
             type = false;
             questCounter++;
-            questionList.add(new Question(Integer.parseInt(atts.getValue("qid")),blockList.get(blockCounter-1),Integer.parseInt(atts.getValue("volume"))));
+            try {
+                questionList.add(new Question(Integer.parseInt(atts.getValue("qid")), blockList.get(blockCounter - 1),atts.getValue("gesture"),atts.getValue("role"), Integer.parseInt(atts.getValue("volume")), Integer.parseInt(atts.getValue("SpeechSpeed")), Float.parseFloat(atts.getValue("VoicePitch"))));
+            } catch (java.lang.NumberFormatException e1) {
+                questionList.add(new Question(Integer.parseInt(atts.getValue("qid")), blockList.get(blockCounter - 1),atts.getValue("gesture"),atts.getValue("role"), 70, 100, 0));
+            }
+            String currentQuestionRole = atts.getValue("role");
+            if (!interview.allRoles.contains(currentQuestionRole) && currentQuestionRole != null){
+                interview.allRoles.add(currentQuestionRole);
+            }
         }
 
         if (localName.equals("answer")) {
-            type=true;
+            type = true;
             answerCounter++;
-            answerList.add(new Answer(Integer.parseInt(atts.getValue("aid")),questionList.get(questCounter-1), Integer.parseInt(atts.getValue("volume"))));
+            try {
+                answerList.add(new Answer(Integer.parseInt(atts.getValue("aid")), questionList.get(questCounter - 1),atts.getValue("gesture"),atts.getValue("role") , Integer.parseInt(atts.getValue("volume")), Integer.parseInt(atts.getValue("SpeechSpeed")), Float.parseFloat(atts.getValue("VoicePitch"))));
+            } catch (java.lang.NumberFormatException e2) {
+                    answerList.add(new Answer(Integer.parseInt(atts.getValue("aid")), questionList.get(questCounter - 1),atts.getValue("gesture"),atts.getValue("role"), 70, 100, 0));
+            }
+        }
+        String currentAnswerRole = atts.getValue("role");
+        if (!interview.allRoles.contains(currentAnswerRole)&& currentAnswerRole != null){
+            interview.allRoles.add(currentAnswerRole);
         }
     }
 
     // Methode wird aufgerufen wenn der Parser zu einem End-Tag kommt
     //Attribute der Objekte
-    public void endElement(String uri, String localName, String qName) throws SAXException {
+    public void endElement(String uri, String localName, String qName)
+            throws SAXException {
 
         if (localName.equals("description")) {
             interview.setDescription(currentValue);
@@ -75,14 +94,6 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
             blockList.get(blockCounter -1).setPosture(currentValue);
         }
 
-        if (localName.equals("role")) {
-            if(type){
-                answerList.get(answerCounter-1).setRole(currentValue);
-            }else if(type==false){
-                questionList.get(questCounter-1).setRole(currentValue);
-            }
-        }
-
         if (localName.equals("phrase")) {
             if(type){
                 answerList.get(answerCounter-1).setPhrase(currentValue);
@@ -90,29 +101,17 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
                 questionList.get(questCounter-1).setPhrase(currentValue);
             }
         }
-
-        if (localName.equals("gesture")) {
-            if(type){
-                answerList.get(answerCounter-1).setGesture(currentValue);
-            }else if(type==false){
-                questionList.get(questCounter-1).setGesture(currentValue);
-            }
-        }
     }
 
     public void endDocument() throws SAXException {}
-
     public void endPrefixMapping(String prefix) throws SAXException {}
-
-    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {}
-
-    public void processingInstruction(String target, String data) throws SAXException {}
-
+    public void ignorableWhitespace(char[] ch, int start, int length)
+            throws SAXException {}
+    public void processingInstruction(String target, String data)
+            throws SAXException {}
     public void setDocumentLocator(Locator locator) {  }
-
     public void skippedEntity(String name) throws SAXException {}
-
     public void startDocument() throws SAXException {}
-
-    public void startPrefixMapping(String prefix, String uri) throws SAXException {}
+    public void startPrefixMapping(String prefix, String uri)
+            throws SAXException {}
 }

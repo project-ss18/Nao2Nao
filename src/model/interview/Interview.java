@@ -13,6 +13,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Interview {
+    //---Attribute---\
+    public static ArrayList<Interview> allInterviews = new ArrayList<Interview>();
+    public ArrayList<Block> blockList = new ArrayList<Block>();
+    public ArrayList<String> allRoles = new ArrayList<>();
     public static ArrayList<Interview> getAllInterviews() {
         return allInterviews;
     }
@@ -26,10 +30,13 @@ public class Interview {
     private String description;
     private Block interviewBlock;
     private int anzahlTeilnehmer;
+    //---
 
     //-----------------------Konstruktor-----------------------\\
     public Interview(int id, int anzahlTeilnehmer) {
-        this.id=id;
+        this.id = id;
+    }
+    public Interview(int anzahlTeilnehmer) {
         this.anzahlTeilnehmer = anzahlTeilnehmer;
     }
 
@@ -62,6 +69,7 @@ public class Interview {
         return null;
     }
 
+
     public String getDescription() {
         return description;
     }
@@ -92,13 +100,5 @@ public class Interview {
 
     public void setAnzahlTeilnehmer(int anzahlTeilnehmer) {
         this.anzahlTeilnehmer = anzahlTeilnehmer;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
     }
 }

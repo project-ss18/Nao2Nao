@@ -10,22 +10,22 @@ public class Robot {
 
     private static int id_Counter = 0;
     private String[] args = {};
-    private final String PORT = "9559";
+
     private final String IP_ADDRESS;
     private final int ID;
     private String name;
     private String role;
 
     private Connection CONNECTION;
-
+    private final String PORT = "9559";
 
     public Robot(String address, String name) throws Exception {
-        id_Counter++;
-        this.name=name;
-        IP_ADDRESS = address;
-        ID = id_Counter;
+       id_Counter++;
+       this.name=name;
+       IP_ADDRESS = address;
+       ID = id_Counter;
 
-       //CONNECTION = new Connection(this.IP_ADDRESS, args);
+       CONNECTION = new Connection(this.IP_ADDRESS, args);
     }
 
     public String getName() {
@@ -84,6 +84,17 @@ public class Robot {
         return temp;
     }
 
+    public float getSpeechSpeed()throws Exception{
+        return CONNECTION.getSpeechSpeed();
+    }
+
+    public void setVoicePitch(float args)throws Exception{
+        CONNECTION.setVoicePitch(args);
+    }
+
+    public float getVoicePitch()throws Exception{
+        return CONNECTION.getVoicePitch();
+    }
     public String toString(){
         return ( this.get_ID() + ": " + this.getName());
     }

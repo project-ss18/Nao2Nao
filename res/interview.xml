@@ -1,53 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<interview iid = "1" anzahlTeilnehmer = "2">
+<interview anzahlTeilnehmer = "2">
 
-	<description>Erstes Interview</description>
+	<description>interview</description>
 
 	<block bid ="1">
 		<posture>Stand</posture>
-		<question qid = "1" volume = "50" SpeechSpeed = "100">
-			<role>Enes</role>
+		<question qid = "1" gesture="BodyTalk_1" role="Rolle1" volume="90" SpeechSpeed="100" VoicePitch="3">
 			<phrase>Wie geht es dir</phrase>
-			<gesture>BodyTalk_1</gesture>
 		</question>
-		<answer aid = "1" volume = "90" SpeechSpeed = "200">
-			<role>Manu</role>
+		<answer aid = "1" gesture="Excited_2" role="Rolle2" >
 			<phrase>Mir geht es gut</phrase>
-			<gesture>Excited_2</gesture>
 		</answer>
-		<answer aid = "2" volume = "90" SpeechSpeed = "200">
-			<role>Manu</role>
+		<answer aid = "2" gesture="Excited_1" role="Rolle2">
 			<phrase>Mir geht es schlecht</phrase>
-			<gesture>Excited_1</gesture>
 		</answer>
 	</block>
 
 	<block bid = "2">
 		<posture></posture>
-		<question qid = "1" volume = "50" SpeechSpeed = "100">
-			<role>Enes</role>
+		<question qid = "1" gesture="BodyTalk_1" role="Rolle1">
 			<phrase>Wie heißt du</phrase>
-			<gesture>BodyTalk_1</gesture>
 		</question>
-		<answer aid = "1" volume = "50" SpeechSpeed = "100">
-			<role>Manu</role>
+		<answer aid = "1" gesture="Excited_1" role="Rolle2">
 			<phrase>Ich heiße NAO</phrase>
-			<gesture>Excited_1</gesture>
 		</answer>
 	</block>
 
 	<block bid = "3">
 		<posture>Sit</posture>
-		<question qid = "1" volume = "90" SpeechSpeed = "300">
-			<role>Enes</role>
+		<question qid = "1" gesture="BodyTalk_1" role="Rolle1" volume="70" SpeechSpeed="100" VoicePitch="0">
 			<phrase>War das schon das ganze Interview</phrase>
-			<gesture>BodyTalk_1</gesture>
 		</question>
-		<answer aid = "1" volume = "90" SpeechSpeed = "300">
-			<role>Manu</role>
+		<answer aid = "1" gesture="Excited_1" role="Rolle2">
 			<phrase>Ja das war eine kleine Kostprobe, es wird noch viel kommen</phrase>
-			<gesture>Excited_1</gesture>
 		</answer>
 	</block>
 </interview>

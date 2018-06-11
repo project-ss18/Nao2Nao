@@ -5,12 +5,10 @@
 	<!--Defining Structure of XSD-->
 
 	<xsd:complexType name="interview">
-
 		<xsd:sequence>
 			<xsd:element ref="description" />
 			<xsd:element ref="block" maxOccurs="unbounded"/>
 		</xsd:sequence>
-		<xsd:attribute ref="iid" use="required"/>
 		<xsd:attribute ref="anzahlTeilnehmer" use="required"/>
 	</xsd:complexType>
 
@@ -23,46 +21,49 @@
 		<xsd:attribute ref="bid" use="required"/>
 	</xsd:complexType>
 
+	<xsd:element name="phrase" type="xsd:string"/>
+
+
 	<xsd:complexType name="question">
 		<xsd:sequence>
-			<xsd:element ref="role"/>
 			<xsd:element ref="phrase"/>
-			<xsd:element ref="gesture"/>
 		</xsd:sequence>
 		<xsd:attribute ref="qid" use="required"/>
-		<xsd:attribute ref="volume" use="required"/>
-		<xsd:attribute ref="SpeechSpeed" use="required"/>
+		<xsd:attribute ref="gesture" use="required"/>
+		<xsd:attribute ref="role" use="required"/>
+		<xsd:attribute ref="volume"/>
+		<xsd:attribute ref="SpeechSpeed" />
+		<xsd:attribute ref="VoicePitch" />
 	</xsd:complexType>
 
 	<xsd:complexType name="answer">
 		<xsd:sequence>
-			<xsd:element ref="role"/>
 			<xsd:element ref="phrase"/>
-			<xsd:element ref="gesture"/>
 		</xsd:sequence>
 		<xsd:attribute ref="aid" use="required"/>
-		<xsd:attribute ref="volume" use="required"/>
-		<xsd:attribute ref="SpeechSpeed" use="required"/>
+		<xsd:attribute ref="gesture" use="required"/>
+		<xsd:attribute ref="role" use="required"/>
+		<xsd:attribute ref="volume"/>
+		<xsd:attribute ref="SpeechSpeed" />
+		<xsd:attribute ref="VoicePitch" />
 	</xsd:complexType>
 
 	<!--Defining Attributes-->
 
 	<xsd:element name="interview" type="interview" />
 
-	<xsd:attribute name="iid">
-		<xsd:simpleType>
-			<xsd:restriction base="xsd:int">
-				<xsd:minInclusive value="1"/>
-				<xsd:maxInclusive value="999"/>
-			</xsd:restriction>
-		</xsd:simpleType>
-	</xsd:attribute>
-
 	<xsd:element name="description" type="xsd:string" />
 
 	<xsd:attribute name="anzahlTeilnehmer">
 		<xsd:simpleType>
 			<xsd:restriction base="xsd:int">
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:attribute>
+
+	<xsd:attribute name="role">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
 			</xsd:restriction>
 		</xsd:simpleType>
 	</xsd:attribute>
@@ -113,7 +114,7 @@
 		</xsd:simpleType>
 	</xsd:attribute>
 
-	<xsd:attribute name="volume">
+	<xsd:attribute name="volume" default="70">
 		<xsd:simpleType>
 			<xsd:restriction base="xsd:int">
 				<xsd:minInclusive value="50"/>
@@ -122,7 +123,7 @@
 		</xsd:simpleType>
 	</xsd:attribute>
 
-	<xsd:attribute name="SpeechSpeed">
+	<xsd:attribute name="SpeechSpeed" default="100">
 		<xsd:simpleType>
 			<xsd:restriction base="xsd:int">
 				<xsd:minInclusive value="50"/>
@@ -131,11 +132,18 @@
 		</xsd:simpleType>
 	</xsd:attribute>
 
+	<xsd:attribute name="VoicePitch" default="0">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:int">
+				<xsd:minInclusive value="0"/>
+				<xsd:maxInclusive value="4"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:attribute>
+
 	<xsd:element name="role" type="xsd:string"/>
 
-	<xsd:element name="phrase" type="xsd:string"/>
-
-	<xsd:element name="gesture">
+	<xsd:attribute name="gesture">
 		<xsd:simpleType>
 			<xsd:restriction base="xsd:string">
 				<xsd:enumeration value="BodyTalk_1"/>
@@ -143,6 +151,6 @@
 				<xsd:enumeration value="Excited_2"/>
 			</xsd:restriction>
 		</xsd:simpleType>
-	</xsd:element>
+	</xsd:attribute>
 
 </xsd:schema>
