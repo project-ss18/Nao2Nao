@@ -22,7 +22,7 @@ import java.util.List;
 
 public class InterviewLoader {
     private final static String PATH = "./res/";
-    private final static String xsdFile = "interview_xsd.xsd";
+    private final static String xsdFile = "validation.xsd";
     private static ArrayList<String> InterviewNamen = new ArrayList<String>();
 
     public static Interview initializeInterview(String FileName) {
