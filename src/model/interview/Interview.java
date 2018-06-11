@@ -26,14 +26,27 @@ public class Interview {
     private Block interviewBlock;
     private int anzahlTeilnehmer;
 
+    //-----------------------Konstruktor-----------------------\\
     public Interview(int id, int anzahlTeilnehmer) {
         this.id=id;
         this.anzahlTeilnehmer = anzahlTeilnehmer;
     }
 
+    //-------------------------Methoden-------------------------\\
+    public String[] toStringArray(){
+        int questCounter=0;
+        for(Block b : blockList){
+            for(Question q : b.getQuestionList()){
+                questCounter++;
+            }
+        }
+        return new String[]{Integer.toString(this.id), this.getDescription(), Integer.toString(questCounter),"2"};
+    }
     public void addBlock(Block v) {
         blockList.add(v);
     }
+
+    //----------------------Getter//Setter----------------------\\
 
     public ArrayList<Block> getBlockList() {
         return blockList;
@@ -80,13 +93,4 @@ public class Interview {
         this.anzahlTeilnehmer = anzahlTeilnehmer;
     }
 
-    public String[] toStringArray(){
-        int questCounter=0;
-        for(Block b : blockList){
-            for(Question q : b.getQuestionList()){
-                questCounter++;
-            }
-        }
-        return new String[]{Integer.toString(this.id), this.getDescription(), Integer.toString(questCounter),"2"};
-    }
 }

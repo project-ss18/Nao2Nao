@@ -16,10 +16,18 @@ public class Block {
         this.interview.addBlock(this);
     }
 
+    //-------------------------Methoden-------------------------\\
+    @Override
+    public String toString()
+    {
+        return "bid: " + this.bid;
+    }
+
     public void addQuestion(Question v){
         questionList.add(v);
     }
 
+    //----------------------Getter//Setter----------------------\\
     public Question getQuestion(int id){
         for(Question q: questionList){
             if(q.getId()==id){
@@ -43,12 +51,6 @@ public class Block {
         this.bid = bid;
     }
 
-    @Override
-    public String toString()
-    {
-        return "bid: " + this.bid;
-    }
-
     public String getPosture() {
         return posture;
     }
@@ -56,4 +58,6 @@ public class Block {
     public void setPosture(String posture) {
         this.posture = posture;
     }
+
+
 }

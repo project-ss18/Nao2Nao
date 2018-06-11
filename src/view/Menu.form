@@ -39,24 +39,24 @@
           <text value="InterviewPlayer"/>
         </properties>
       </component>
-      <component id="f4cb7" class="javax.swing.JButton" binding="interviewEditorButton" default-binding="true">
+      <component id="f4cb7" class="javax.swing.JButton" binding="hilfeButton">
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag weightx="1.0" weighty="1.0"/>
         </constraints>
         <properties>
           <preferredSize width="115" height="35"/>
-          <text value="InterviewEditor"/>
+          <text value="Hilfe"/>
         </properties>
       </component>
-      <component id="eaf6d" class="javax.swing.JButton" binding="hilfeButton" default-binding="true">
+      <component id="eaf6d" class="javax.swing.JButton" binding="schliessenButton">
         <constraints>
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag weightx="1.0" weighty="1.0"/>
         </constraints>
         <properties>
           <preferredSize width="61" height="35"/>
-          <text value="Hilfe"/>
+          <text value="Schließen"/>
         </properties>
       </component>
     </children>

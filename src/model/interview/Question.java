@@ -6,15 +6,24 @@ public class Question extends Action {
     //------------------------Attribute------------------------\\\
     public ArrayList<Answer> answerList = new ArrayList<Answer>();
 
-    public ArrayList<Answer> getAnswerList() {
-        return answerList;
-    }
 
+    //-----------------------Konstruktor-----------------------\\
     public Question(int id, Block v, int volume){
         this.id = id;
         this.block=v;
         this.volume = volume;
         v.addQuestion(this);
+    }
+
+
+    //-------------------------Methoden-------------------------\\
+    public void addAnswer(Answer a){
+        answerList.add(a);
+    }
+
+    //----------------------Getter//Setter----------------------\\
+    public ArrayList<Answer> getAnswerList() {
+        return answerList;
     }
 
     public int getAnswerCount() {
@@ -23,10 +32,6 @@ public class Question extends Action {
 
     public Answer getAnswer(int index){
         return answerList.get(index-1);
-    }
-
-    public void addAnswer(Answer a){
-        answerList.add(a);
     }
 
     public void setPhrase(String phrase) {

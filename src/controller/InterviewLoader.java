@@ -26,7 +26,7 @@ public class InterviewLoader {
     private static ArrayList<String> InterviewNamen = new ArrayList<String>();
 
     public static Interview initializeInterview(String FileName) {
-        if(checkSyntax(FileName)==false){
+        if(!checkSyntax(FileName)){
             return null;
         }
         try {
@@ -43,15 +43,9 @@ public class InterviewLoader {
             // Parsen wird gestartet
             xmlReader.parse(inputSource);
 
-            Interview tempInterview = ContentHandler.getInterview();
+            return ContentHandler.getInterview();
 
-            return tempInterview ;
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
+        } catch (IOException | SAXException e) {
             e.printStackTrace();
         }
         return null;
@@ -69,7 +63,7 @@ public class InterviewLoader {
             System.out.println("Die XML Datei '" + xmlFile + "' ist valide");
         } catch (SAXException e) {
             System.out.println(xmlFileSource.getSystemId() + " Die XML Datei '"+ xmlFile + "' ist nicht valide!, Error:" + e);
-            JOptionPane.showMessageDialog(null, e, "Fehler", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(null, e, "Fehler", JOptionPane.ERROR_MESSAGE);
             return false;
         } catch (IOException e) {
             System.out.println(e);
@@ -86,11 +80,12 @@ public class InterviewLoader {
 
     public static List<String> getAllInterviewNames(boolean forcereload)
     {
-        if(InterviewNamen.size() == 0 || forcereload == true) {
+        if(InterviewNamen.size() == 0 || forcereload) {
             ArrayList<String> _InterviewNamen = new ArrayList<String>();
             File folder = new File(PATH);
             File[] listofInterviews = folder.listFiles();
 
+            assert listofInterviews != null;
             for (File currentInterview : listofInterviews) {
                 if (currentInterview.isFile() && currentInterview.getName().endsWith(".xml")) {
                     _InterviewNamen.add(currentInterview.getName());
@@ -102,12 +97,13 @@ public class InterviewLoader {
         return InterviewNamen;
     }
     public static List<Interview> getAllInterviews(boolean forceReload) {
-        if(Interview.getAllInterviews().size() == 0 || forceReload == true) {
+        if(Interview.getAllInterviews().size() == 0 || forceReload) {
 
             ArrayList<Interview> InterviewObjects = new ArrayList<Interview>();
             File folder = new File(PATH);
             File[] listofInterviews = folder.listFiles();
 
+            assert listofInterviews != null;
             for(File currentInterview : listofInterviews)
             {
                 if(currentInterview.isFile() && currentInterview.getName().endsWith(".xml"))

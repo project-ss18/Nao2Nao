@@ -1,7 +1,5 @@
 package view;
 
-import controller.InterviewPlayer;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -16,8 +14,8 @@ public class Menu {
     private JButton roboterlisteButton;
     private JButton interviewlisteButton;
     private JButton interviewPlayerButton;
-    private JButton interviewEditorButton;
     private JButton hilfeButton;
+    private JButton schliessenButton;
     private Dimension frameDimension;
 
 
@@ -58,8 +56,7 @@ public class Menu {
             //https://www.iconspng.com/image/90792/head-of-nao-robot
             ImageIcon imageIcon = new ImageIcon(new ImageIcon("icon.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
             frame.setIconImage(ImageIO.read(new File("res/head-of-nao-robot.png")));
-        }
-        catch (IOException exc) {
+        } catch (IOException exc) {
             exc.printStackTrace();
         }
 
@@ -70,6 +67,18 @@ public class Menu {
         frame.repaint();
         frame.pack();
         frame.setVisible(true);
+        hilfeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        schliessenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
     }
 
     private void centerFrame() {
@@ -133,26 +142,26 @@ public class Menu {
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panel.add(interviewPlayerButton, gbc);
-        interviewEditorButton = new JButton();
-        interviewEditorButton.setPreferredSize(new Dimension(115, 35));
-        interviewEditorButton.setText("InterviewEditor");
+        hilfeButton = new JButton();
+        hilfeButton.setPreferredSize(new Dimension(115, 35));
+        hilfeButton.setText("Hilfe");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        panel.add(interviewEditorButton, gbc);
-        hilfeButton = new JButton();
-        hilfeButton.setPreferredSize(new Dimension(61, 35));
-        hilfeButton.setText("Hilfe");
+        panel.add(hilfeButton, gbc);
+        schliessenButton = new JButton();
+        schliessenButton.setPreferredSize(new Dimension(61, 35));
+        schliessenButton.setText("Schließen");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        panel.add(hilfeButton, gbc);
+        panel.add(schliessenButton, gbc);
     }
 
     /**
