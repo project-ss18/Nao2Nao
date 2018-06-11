@@ -1,38 +1,60 @@
 package view;
 
 
+import model.interview.Interview;
+import model.robot.Robot;
+
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class RobotSelection {
-    private JButton zurueckButton;
-    private JPanel panel1;
+public class RobotSelection extends JFrame {
+    private JPanel panel;
+    private JComboBox[] comboxes;
+    private JLabel[] lables;
+    private JButton bestaetigenButton;
 
 
-    public RobotSelection(JFrame frame) {
-
-        frame.setContentPane(panel1);
-        frame.setPreferredSize(new Dimension(200, 200));
-        frame.pack();
-        frame.repaint();
-        frame.setResizable(false);
-        frame.setVisible(true);
+    public RobotSelection(JFrame mainFrame, Interview interview) {
+        setContentPane(panel);
+        setPreferredSize(new Dimension(200, 300));
+        setResizable(false);
 
         //Mittige Ausrichtugn
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        int dx = (ge.getCenterPoint().x - frame.getSize().width / 2);
-        int dy = (ge.getCenterPoint().y - frame.getSize().height / 2);
-        frame.setLocation(dx, dy);
+        int dx = (ge.getCenterPoint().x - getSize().width / 2);
+        int dy = (ge.getCenterPoint().y - getSize().height / 2);
+        setLocation(dx, dy);
 
-        zurueckButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.setVisible(false);
-                new InterviewList(frame);
+        comboxes = new JComboBox[interview.getAnzahlTeilnehmer()];
+        lables = new JLabel[interview.getAnzahlTeilnehmer()];
+
+        for (JLabel label : lables) {
+            label = new JLabel("Name");
+            panel.add(label);
+        }
+
+        for (JComboBox cB : comboxes) {
+            cB = new JComboBox();
+            cB.setSize(new Dimension(100, 50));
+            DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
+            cB.setModel(defaultComboBoxModel1);
+            for (Robot r : Robot.getRobotList()) {
+                System.out.println(r.getName());
+                cB.addItem(r);
             }
-        });
+            panel.add(BorderLayout.EAST, cB);
+        }
+
+
+        bestaetigenButton = new JButton("Bestätigen");
+        panel.add(BorderLayout.SOUTH, bestaetigenButton);
+        setResizable(false);
+        setVisible(true);
+        repaint();
+        pack();
     }
 
     {
@@ -50,18 +72,15 @@ public class RobotSelection {
      * @noinspection ALL
      */
     private void $$$setupUI$$$() {
-        panel1 = new JPanel();
-        panel1.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        zurueckButton = new JButton();
-        zurueckButton.setText("Zurück");
-        panel1.add(zurueckButton, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel = new JPanel();
+        panel.setLayout(new BorderLayout(0, 0));
     }
 
     /**
      * @noinspection ALL
      */
     public JComponent $$$getRootComponent$$$() {
-        return panel1;
+        return panel;
     }
 }
 

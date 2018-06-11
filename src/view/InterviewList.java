@@ -15,7 +15,7 @@ import java.nio.file.NoSuchFileException;
 import java.util.List;
 import java.nio.channels.FileChannel;
 
-public class InterviewList  {
+public class InterviewList {
     private JButton buttonTest;
     private JPanel panel;
     private JButton zurueckButton;
@@ -123,7 +123,14 @@ public class InterviewList  {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.setVisible(false);
-                new RobotSelection(frame);
+                int selectedRow = interviewTable.getSelectedRow();
+                String tempDescription = (String) interviewTable.getValueAt(selectedRow, 1);
+                for (Interview v : Interview.getAllInterviews()) {
+                    if (v.getDescription().equals(tempDescription)) {
+                        new RobotSelection(frame, v);
+                    }
+                }
+
             }
         });
     }

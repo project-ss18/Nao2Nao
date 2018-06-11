@@ -84,4 +84,8 @@ public class Robot {
         return temp;
     }
 
+    public String toString(){
+        return ( this.get_ID() + ": " + this.getName());
+    }
+
 }
