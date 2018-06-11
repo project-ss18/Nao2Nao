@@ -3,6 +3,7 @@ package model.robot;
 import controller.Connection;
 
 public class Robot {
+
     private static int id_Counter = 0;
     private String[] args = {};
 
@@ -18,8 +19,7 @@ public class Robot {
         IP_ADDRESS = address;
         ID = id_Counter;
 
-        //CONNECTION = new Connection(this.IP_ADDRESS, args);
-
+       //CONNECTION = new Connection(this.IP_ADDRESS, args);
     }
 
     public String getName() {
@@ -49,9 +49,21 @@ public class Robot {
     public void goToPosture(String args)throws Exception{
         CONNECTION.posture(args);
     }
+
+    public void setVolume(int args)throws Exception{
+        CONNECTION.setVolume(args);
+    }
+
+    public int getVolume()throws Exception{
+        return CONNECTION.getVolume();
+    }
+    public void setSpeechSpeed(float args)throws Exception{
+        CONNECTION.setSpeechSpeed(args);
+    }
     public String []toStringArray(){
         String[] temp = new String[2];
         temp = new String[]{Integer.toString(this.ID), this.name, this.IP_ADDRESS};
         return temp;
     }
+
 }

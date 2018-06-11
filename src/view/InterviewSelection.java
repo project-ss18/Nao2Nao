@@ -1,5 +1,6 @@
 package view;
 
+import controller.InterviewLoader;
 import model.interview.Interview;
 import model.robot.Robot;
 
@@ -7,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.KeyStoreException;
 
 
 public class InterviewSelection extends JFrame {
@@ -17,11 +19,11 @@ public class InterviewSelection extends JFrame {
     private JComboBox comboBoxInterview;
 
     InterviewSelection(JFrame mainFrame) {
-        if (controller.InterviewPlayer.getAllInterviews().size() == 0) {
-            JOptionPane.showMessageDialog(null, "Fehler: Kein Interview vorhanden", "Fehler", JOptionPane.OK_CANCEL_OPTION);
+        if (InterviewLoader.getAllInterviews(true).size() == 0) {
+            JOptionPane.showMessageDialog(null, "Fehler: Kein Interview vorhanden", "Fehler", JOptionPane.OK_OPTION);
             return;
         } else if (Robotlist.getRobotList().size() == 0) {
-            JOptionPane.showMessageDialog(null, "Fehler: Keine Roboter vorhanden", "Fehler", JOptionPane.OK_CANCEL_OPTION);
+            JOptionPane.showMessageDialog(null, "Fehler: Keine Roboter vorhanden", "Fehler", JOptionPane.OK_OPTION);
             return;
         }
         setContentPane(panel);
@@ -34,7 +36,7 @@ public class InterviewSelection extends JFrame {
         int dy = (ge.getCenterPoint().y - getSize().height / 2);
         setLocation(dx, dy);
 
-        for (Interview interview : controller.InterviewPlayer.getAllInterviews()) {
+        for (Interview interview : InterviewLoader.getAllInterviews(false)) {
             comboBoxInterview.addItem(interview.getDescription());
         }
         for (Robot robot : Robotlist.getRobotList()) {
@@ -57,15 +59,22 @@ public class InterviewSelection extends JFrame {
         bestaetigenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for (Interview interview : controller.InterviewPlayer.getAllInterviews()) {
+                for (Interview interview : InterviewLoader.getAllInterviews(true)) {
                     if (comboBoxInterview.getSelectedItem().equals(interview.getDescription())) {
                         if (comboBoxRole1.getSelectedItem().equals(comboBoxRole2.getSelectedItem())) {
                             JOptionPane.showMessageDialog(null, "Fehler: Gleicher Roboter", "Fehler", JOptionPane.OK_CANCEL_OPTION);
                             setVisible(false);
                             new InterviewSelection(mainFrame);
                         } else {
+                            Robot[] robots = new Robot[3];
+                            int i = 0;
+                            for (Robot robot : Robotlist.getRobotList()) {
+                                if (robot.getName().equals(comboBoxRole1.getSelectedItem()) || robot.getName().equals(comboBoxRole2)) {
+                                    robots[i++] = robot;
+                                }
+                            }
                             setVisible(false);
-                            new InterviewPlayer(mainFrame, interview);
+                            new InterviewPlayer(mainFrame, interview, robots);
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "Fehler: Interview nicht Gefunden", "Fehler", JOptionPane.OK_CANCEL_OPTION);

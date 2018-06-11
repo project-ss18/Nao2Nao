@@ -3,13 +3,13 @@ package model.interview;
 import java.util.ArrayList;
 
 public class Block {
-
+    //------------------------Attribute------------------------\\
     private Interview interview;
     private ArrayList<Question> questionList = new ArrayList<Question>();
     private int bid;
     private String posture;
 
-
+    //-----------------------Konstruktor-----------------------\\
     public Block(int blockID, Interview interview) {
         bid =blockID;
         this.interview = interview;
@@ -19,6 +19,7 @@ public class Block {
     public void addQuestion(Question v){
         questionList.add(v);
     }
+
     public Question getQuestion(int id){
         for(Question q: questionList){
             if(q.getId()==id){
@@ -47,7 +48,6 @@ public class Block {
     {
         return "bid: " + this.bid;
     }
-
 
     public String getPosture() {
         return posture;

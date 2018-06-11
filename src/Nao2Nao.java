@@ -1,11 +1,9 @@
 import controller.InterviewLoader;
 import controller.InterviewPlayer;
-import model.interview.ContentHandler;
 import model.interview.Interview;
 import model.robot.Robot;
 import java.util.ArrayList;
 import java.util.Scanner;
-import model.interview.ContentHandler;
 
 
 public class Nao2Nao {

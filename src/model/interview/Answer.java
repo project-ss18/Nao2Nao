@@ -1,9 +1,10 @@
 package model.interview;
 
 public class Answer extends Action {
-
+    //------------------------Attribute------------------------\\
     private Question question;
 
+    //-----------------------Konstruktor-----------------------\\
     public Answer(int id, Question q, int volume){
         this.volume = volume;
         this.id = id;
@@ -11,16 +12,17 @@ public class Answer extends Action {
         question.addAnswer(this);
     }
 
+    //----------------------Getter//Setter----------------------\\
     public void setPhrase(String phrase) {
         this.phrase=phrase;
     }
 
-    public String getPhrase(){
-        return phrase;
-    }
-
     public void setGesture(String gesture) {
         this.gesture=gesture;
+    }
+
+    public String getPhrase(){
+        return phrase;
     }
 
     public String getGesture(){
@@ -29,5 +31,9 @@ public class Answer extends Action {
 
     public int getId(){
         return this.id;
+    }
+
+    public String getRole(){
+        return role;
     }
 }

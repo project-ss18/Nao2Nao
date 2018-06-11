@@ -13,23 +13,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Interview {
-    //---Attribute---\
-    public static ArrayList<Interview> allInterviews = new ArrayList<Interview>();
-    public ArrayList<Block> blockList = new ArrayList<Block>();
+    public static ArrayList<Interview> getAllInterviews() {
+        return allInterviews;
+    }
+
+    //------------------------Attribute------------------------\\
+    private static ArrayList<Interview> allInterviews = new ArrayList<Interview>();
+
+    private ArrayList<Block> blockList = new ArrayList<Block>();
     private int id;
     private String description;
     private Block interviewBlock;
     private int anzahlTeilnehmer;
-    //---
-
 
     public Interview(int id, int anzahlTeilnehmer) {
         this.id=id;
         this.anzahlTeilnehmer = anzahlTeilnehmer;
     }
 
-    public void addBlock(Block v)
-    {
+    public void addBlock(Block v) {
         blockList.add(v);
     }
 
@@ -45,7 +47,6 @@ public class Interview {
         }
         return null;
     }
-
 
     public String getDescription() {
         return description;
@@ -77,5 +78,15 @@ public class Interview {
 
     public void setAnzahlTeilnehmer(int anzahlTeilnehmer) {
         this.anzahlTeilnehmer = anzahlTeilnehmer;
+    }
+
+    public String[] toStringArray(){
+        int questCounter=0;
+        for(Block b : blockList){
+            for(Question q : b.getQuestionList()){
+                questCounter++;
+            }
+        }
+        return new String[]{Integer.toString(this.id), this.getDescription(), Integer.toString(questCounter),"2"};
     }
 }

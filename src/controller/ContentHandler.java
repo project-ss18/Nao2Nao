@@ -1,6 +1,10 @@
-package model.interview;
+package controller;
 
 
+import model.interview.Answer;
+import model.interview.Block;
+import model.interview.Interview;
+import model.interview.Question;
 import org.xml.sax.Attributes;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
@@ -8,11 +12,13 @@ import java.util.ArrayList;
 
 public class ContentHandler implements org.xml.sax.ContentHandler {
 
+    //------------------------Attribute------------------------\\
     private static Interview interview;
     private static ArrayList<Block> blockList = new ArrayList<Block>();
     private static ArrayList<Question> questionList = new ArrayList<Question>();
     private static ArrayList<Answer> answerList = new ArrayList<Answer>();
 
+    //-----------------------LokaleVariablen-----------------------\\
     private String currentValue;
     static int blockCounter=0;
     static int questCounter=0;
@@ -20,8 +26,7 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
 
     private static boolean type = false;//false == question
 
-    public void characters(char[] ch, int start, int length)
-            throws SAXException {
+    public void characters(char[] ch, int start, int length) throws SAXException {
         currentValue = new String(ch, start, length);
     }
 
@@ -32,7 +37,6 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
     public void setInterview(Interview interview) {
         this.interview = interview;
     }
-
 
     // Methode wird aufgerufen wenn der Parser zu einem Start-Tag kommt
     // Objekte welche erstellt und weiterverwendet werden
@@ -61,8 +65,7 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
 
     // Methode wird aufgerufen wenn der Parser zu einem End-Tag kommt
     //Attribute der Objekte
-    public void endElement(String uri, String localName, String qName)
-            throws SAXException {
+    public void endElement(String uri, String localName, String qName) throws SAXException {
 
         if (localName.equals("description")) {
             interview.setDescription(currentValue);
@@ -74,7 +77,7 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
 
         if (localName.equals("role")) {
             if(type){
-                answerList.get(answerCounter-1).role = currentValue;
+                answerList.get(answerCounter-1).getRole() = currentValue;
             }else if(type==false){
                 questionList.get(questCounter-1).role = currentValue;
             }
@@ -98,14 +101,18 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
     }
 
     public void endDocument() throws SAXException {}
+
     public void endPrefixMapping(String prefix) throws SAXException {}
-    public void ignorableWhitespace(char[] ch, int start, int length)
-            throws SAXException {}
-    public void processingInstruction(String target, String data)
-            throws SAXException {}
+
+    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {}
+
+    public void processingInstruction(String target, String data) throws SAXException {}
+
     public void setDocumentLocator(Locator locator) {  }
+
     public void skippedEntity(String name) throws SAXException {}
+
     public void startDocument() throws SAXException {}
-    public void startPrefixMapping(String prefix, String uri)
-            throws SAXException {}
+
+    public void startPrefixMapping(String prefix, String uri) throws SAXException {}
 }

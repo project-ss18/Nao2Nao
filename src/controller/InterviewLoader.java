@@ -1,12 +1,12 @@
 package controller;
 
-import model.interview.ContentHandler;
 import model.interview.Interview;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 
+import javax.swing.*;
 import javax.xml.XMLConstants;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
@@ -26,13 +26,15 @@ public class InterviewLoader {
     private static ArrayList<String> InterviewNamen = new ArrayList<String>();
 
     public static Interview initializeInterview(String FileName) {
-        File XMLFile = new File(FileName);
+        if(checkSyntax(FileName)==false){
+            return null;
+        }
         try {
             // XMLReader erzeugen
             XMLReader xmlReader = XMLReaderFactory.createXMLReader();
 
             // Pfad zur resources Datei
-            FileReader reader = new FileReader(PATH + FileName);
+            FileReader reader = new FileReader(FileName);
             InputSource inputSource = new InputSource(reader);
 
             // PersonenContentHandler wird übergeben
@@ -43,9 +45,6 @@ public class InterviewLoader {
 
             Interview tempInterview = ContentHandler.getInterview();
 
-            if(checkSyntax(FileName)==false){
-                return null;
-            }
             return tempInterview ;
 
         } catch (FileNotFoundException e) {
@@ -60,7 +59,7 @@ public class InterviewLoader {
     public static boolean checkSyntax(String xmlFile) {
         //XML-Syntax Check mithilfe eines XSD Schema
         File schemaFile = new File(PATH + xsdFile);
-        Source xmlFileSource = new StreamSource(new File(PATH + xmlFile));
+        Source xmlFileSource = new StreamSource(new File(xmlFile));
         SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 
         try {
@@ -70,6 +69,7 @@ public class InterviewLoader {
             System.out.println("Die XML Datei '" + xmlFile + "' ist valide");
         } catch (SAXException e) {
             System.out.println(xmlFileSource.getSystemId() + " Die XML Datei '"+ xmlFile + "' ist nicht valide!, Error:" + e);
+            JOptionPane.showMessageDialog(null, e, "Fehler", JOptionPane.OK_OPTION);
             return false;
         } catch (IOException e) {
             System.out.println(e);
@@ -102,7 +102,7 @@ public class InterviewLoader {
         return InterviewNamen;
     }
     public static List<Interview> getAllInterviews(boolean forceReload) {
-        if(Interview.allInterviews.size() == 0 || forceReload == true) {
+        if(Interview.getAllInterviews().size() == 0 || forceReload == true) {
 
             ArrayList<Interview> InterviewObjects = new ArrayList<Interview>();
             File folder = new File(PATH);
@@ -116,9 +116,10 @@ public class InterviewLoader {
                     InterviewNamen.add(currentInterview.getName());
                 }
             }
-            Interview.allInterviews.clear();
-            Interview.allInterviews.addAll(InterviewObjects);
+            Interview.getAllInterviews().clear();
+            Interview.getAllInterviews().addAll(InterviewObjects);
         }
-        return Interview.allInterviews;
+
+        return Interview.getAllInterviews();
     }
 }

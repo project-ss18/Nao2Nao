@@ -49,13 +49,13 @@ public class InterviewPlayer implements Runnable{
             if(CurrentRobot.get_ID() == RobotID) {
                 return CurrentRobot;
             }
-            }
+        }
         return null;
     }
 
     private Answer answershuffler(Block selectedBlock,int QuestionID, int RobotID) {
         ArrayList<Answer> PossibleAwnsers = new ArrayList<Answer>();
-        for(Answer CurrentAnswer: selectedBlock.getQuestion(QuestionID).answerList)
+        for(Answer CurrentAnswer: selectedBlock.getQuestion(QuestionID).getAnswerList())
         {
             if(CurrentAnswer.getId() == RobotID)
             {
@@ -67,7 +67,7 @@ public class InterviewPlayer implements Runnable{
 
     private ArrayList<Integer> getRobotSpeakAnswerOrder(Question selectedQuestion) {
         ArrayList<Integer> Order = new ArrayList<Integer>();
-        for(Answer CurrentAnswer: selectedQuestion.answerList)
+        for(Answer CurrentAnswer: selectedQuestion.getAnswerList())
         {
             if(!Order.contains(CurrentAnswer.getId())) {
                 Order.add(CurrentAnswer.getId());
@@ -76,7 +76,7 @@ public class InterviewPlayer implements Runnable{
         return Order;
     }
 
-    public void startInterview(ArrayList<Robot> _Roboter) throws Exception {
+    public void startInterview(List<Robot> _Roboter) throws Exception {
         if(threadStarted == false)
         {
             robots = new ArrayList<Robot>();
@@ -102,19 +102,19 @@ public class InterviewPlayer implements Runnable{
         for(Block currentBlock : interview.getBlockList()) {
             try {
                 // Frage auslesen und abspielen
-                    getRobot(currentBlock.getQuestion(1).getId()).setVolume(currentBlock.getQuestion(1).getVolume());
-                    getRobot(currentBlock.getQuestion(1).getId()).animatedSay(start + currentBlock.getQuestion(1).getGesture() + endTag + currentBlock.getQuestion(1).getPhrase()  + wait + endTag);
+                getRobot(currentBlock.getQuestion(1).getId()).setVolume(currentBlock.getQuestion(1).getVolume());
+                getRobot(currentBlock.getQuestion(1).getId()).animatedSay(start + currentBlock.getQuestion(1).getGesture() + endTag + currentBlock.getQuestion(1).getPhrase()  + wait + endTag);
                 // Frage auslesen und abspielen
 
                 // Antwort auswählen und abspielen
                 // Suchen, wer als erstes antwortet
-                    ArrayList<Integer> AnswerOrder = getRobotSpeakAnswerOrder(currentBlock.getQuestion(1));
+                ArrayList<Integer> AnswerOrder = getRobotSpeakAnswerOrder(currentBlock.getQuestion(1));
                 // Suchen, wer als erstes antwortet
                 // Roboter, die Antworten durchlaufen
-                    for(int RobotID: AnswerOrder) {
-                        Answer selectedAnswer = answershuffler(currentBlock,1,RobotID);
-                        getRobot(RobotID).animatedSay(start + selectedAnswer.getGesture() + endTag + selectedAnswer.getPhrase() + wait + endTag);
-                    }
+                for(int RobotID: AnswerOrder) {
+                    Answer selectedAnswer = answershuffler(currentBlock,1,RobotID);
+                    getRobot(RobotID).animatedSay(start + selectedAnswer.getGesture() + endTag + selectedAnswer.getPhrase() + wait + endTag);
+                }
                 // Roboter, die Antworten durchlaufen
                 // Antwort auswählen und abspielen
 
@@ -131,10 +131,10 @@ public class InterviewPlayer implements Runnable{
             //Block Counter für Posture
             counterBlock++;
         }
-            //Nur für Vorführung implementiert muss später wieder entfernt und über XML umgesetzt werden!
+        //Nur für Vorführung implementiert muss später wieder entfernt und über XML umgesetzt werden!
         try {
             for (Robot CurrentRobot: robots)
-            CurrentRobot.goToPosture("Sit");
+                CurrentRobot.goToPosture("Sit");
         } catch (Exception e) {
             e.printStackTrace();
         }

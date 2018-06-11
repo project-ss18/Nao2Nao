@@ -1,5 +1,6 @@
 package view;
 
+import controller.InterviewLoader;
 import controller.InterviewPlayer;
 import model.interview.Interview;
 import model.robot.Robot;
@@ -27,7 +28,7 @@ public class InterviewList {
     private JButton aktualisierenButton;
 
     //private static ArrayList<Interview> interviewArrayList = new ArrayList<Interview>();
-    private static List<Interview> interviewList = InterviewPlayer.getAllInterviews();
+    private static List<Interview> interviewList;
     private static JFileChooser openFileChooser;
     private final static String copyPath = "./res/";
     private File target;
@@ -66,6 +67,10 @@ public class InterviewList {
                 int returnValue = openFileChooser.showOpenDialog(openFileButton);
                 if (returnValue == JFileChooser.APPROVE_OPTION) {
                     String newFile = copyPath + openFileChooser.getSelectedFile().getName();
+                    if (!InterviewLoader.checkSyntax(openFileChooser.getSelectedFile().getPath())) {
+                        return;
+                    }
+                    ;
                     target = new File(newFile);
 
                     try {
@@ -84,7 +89,7 @@ public class InterviewList {
     }
 
     public void refreshList() {
-        interviewList = InterviewPlayer.getAllInterviews();
+        interviewList = InterviewLoader.getAllInterviews(true);
         rowData = new String[interviewList.size()][];
         for (Interview v : interviewList) {
             int index = interviewList.indexOf(v);

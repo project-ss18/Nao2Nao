@@ -45,8 +45,6 @@ public class Menu {
                 // frame.setVisible(false);
 
                 new InterviewSelection(frame);
-
-
             }
         });
 

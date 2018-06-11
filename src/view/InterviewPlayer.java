@@ -4,11 +4,14 @@ import model.interview.Answer;
 import model.interview.Block;
 import model.interview.Interview;
 import model.interview.Question;
+import model.robot.Robot;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class InterviewPlayer {
 
@@ -22,14 +25,21 @@ public class InterviewPlayer {
     private JComboBox comboBoxGoTo;
     private JButton goToButton;
 
-    InterviewPlayer(JFrame frame, Interview interviewP) {
+    private controller.InterviewPlayer interviewPlayer;
+    private List<Robot> robotList = new ArrayList<Robot>();
 
+    InterviewPlayer(JFrame frame, Interview interview, Robot[] robots) {
+
+        for (Robot r : robots) {
+            this.robotList.add(r);
+        }
         previewJTextPane.setEditable(false);
         previewJTextPane.setText("");
         frame.setContentPane(panel);
         frame.setPreferredSize(new Dimension(600, 350));
         progressBar.getModel().setValue(50);
-        Interview interview = interviewP;
+
+        interviewPlayer = new controller.InterviewPlayer(interview);
 
         for (Block block : interview.getBlockList()) {
             previewJTextPane.setText(previewJTextPane.getText() + ("\nBlock " + String.valueOf(block.getBid()) + ": "));
@@ -58,7 +68,11 @@ public class InterviewPlayer {
         playButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                try {
+                    interviewPlayer.startInterview(robotList);
+                } catch (Exception exc) {
+                    System.out.println(exc);
+                }
             }
         });
     }
