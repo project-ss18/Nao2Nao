@@ -3,7 +3,6 @@ package controller;
 import model.interview.*;
 import model.robot.Robot;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +26,11 @@ public class InterviewPlayer implements Runnable{
     private boolean threadStarted = false;
     private boolean pauseInterview = false;
 
+    //------Konstruktor------\\
+    public InterviewPlayer(Interview interview){
+        this.interview = interview;
+    }
+
     // ---------- Getter and Setter ----------
     public boolean isInterviewPaused() {
         return pauseInterview;
@@ -39,10 +43,6 @@ public class InterviewPlayer implements Runnable{
         this.pauseInterview = false;
     }
     // ---------- Getter and Setter ----------
-
-    public InterviewPlayer(Interview interview){
-        this.interview = interview;
-    }
 
     private Robot getRobot(int RobotID) {
         for(Robot CurrentRobot: robots) {
@@ -77,17 +77,14 @@ public class InterviewPlayer implements Runnable{
     }
 
     public void startInterview(List<Robot> _Roboter) throws Exception {
-        if(threadStarted == false)
-        {
+        if(!threadStarted) {
             robots = new ArrayList<Robot>();
             robots.addAll(_Roboter);
 
             currentInterview = new Thread(this);
             currentInterview.start();
             threadStarted = true;
-        }
-        else
-        {
+        } else {
             pauseInterview = false;
         }
     }

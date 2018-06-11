@@ -20,10 +20,10 @@ public class InterviewSelection extends JFrame {
 
     InterviewSelection(JFrame mainFrame) {
         if (InterviewLoader.getAllInterviews(true).size() == 0) {
-            JOptionPane.showMessageDialog(null, "Fehler: Kein Interview vorhanden", "Fehler", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(null, "Fehler: Kein Interview vorhanden", "Fehler", JOptionPane.ERROR_MESSAGE);
             return;
-        } else if (Robotlist.getRobotList().size() == 0) {
-            JOptionPane.showMessageDialog(null, "Fehler: Keine Roboter vorhanden", "Fehler", JOptionPane.OK_OPTION);
+        } else if (Robot.getRobotList().size() == 0) {
+            JOptionPane.showMessageDialog(null, "Fehler: Keine Roboter vorhanden", "Fehler", JOptionPane.ERROR_MESSAGE);
             return;
         }
         setContentPane(panel);
@@ -39,7 +39,7 @@ public class InterviewSelection extends JFrame {
         for (Interview interview : InterviewLoader.getAllInterviews(false)) {
             comboBoxInterview.addItem(interview.getDescription());
         }
-        for (Robot robot : Robotlist.getRobotList()) {
+        for (Robot robot : Robot.getRobotList()) {
             comboBoxRole1.addItem(robot.getName());
             comboBoxRole2.addItem(robot.getName());
         }
@@ -50,7 +50,7 @@ public class InterviewSelection extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (comboBoxRole2.getSelectedItem().equals(comboBoxRole1.getSelectedItem())) {
-                    JOptionPane.showMessageDialog(null, "Fehler: Gleicher Roboter", "Fehler", JOptionPane.OK_CANCEL_OPTION);
+                    JOptionPane.showMessageDialog(null, "Fehler: Gleicher Roboter", "Fehler", JOptionPane.ERROR_MESSAGE);
                     setVisible(false);
                     new InterviewSelection(mainFrame);
                 }
@@ -62,13 +62,13 @@ public class InterviewSelection extends JFrame {
                 for (Interview interview : InterviewLoader.getAllInterviews(true)) {
                     if (comboBoxInterview.getSelectedItem().equals(interview.getDescription())) {
                         if (comboBoxRole1.getSelectedItem().equals(comboBoxRole2.getSelectedItem())) {
-                            JOptionPane.showMessageDialog(null, "Fehler: Gleicher Roboter", "Fehler", JOptionPane.OK_CANCEL_OPTION);
+                            JOptionPane.showMessageDialog(null, "Fehler: Gleicher Roboter", "Fehler", JOptionPane.ERROR_MESSAGE);
                             setVisible(false);
                             new InterviewSelection(mainFrame);
                         } else {
                             Robot[] robots = new Robot[3];
                             int i = 0;
-                            for (Robot robot : Robotlist.getRobotList()) {
+                            for (Robot robot : Robot.getRobotList()) {
                                 if (robot.getName().equals(comboBoxRole1.getSelectedItem()) || robot.getName().equals(comboBoxRole2)) {
                                     robots[i++] = robot;
                                 }
@@ -77,7 +77,7 @@ public class InterviewSelection extends JFrame {
                             new InterviewPlayer(mainFrame, interview, robots);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Fehler: Interview nicht Gefunden", "Fehler", JOptionPane.OK_CANCEL_OPTION);
+                        JOptionPane.showMessageDialog(null, "Fehler: Interview nicht Gefunden", "Fehler", JOptionPane.ERROR_MESSAGE);
                         setVisible(false);
                         new InterviewSelection(mainFrame);
                     }

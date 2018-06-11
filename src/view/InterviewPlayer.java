@@ -53,7 +53,6 @@ public class InterviewPlayer {
             }
         }
 
-
         previewJTextPane.setVisible(true);
         frame.pack();
         frame.repaint();
