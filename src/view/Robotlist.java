@@ -18,7 +18,7 @@ public class Robotlist {
     private JButton zurückButton;
     private JButton pingButton;
 
-    private static ArrayList<Robot> robotList = new ArrayList<Robot>();
+
 
     private String[] columnNames = new String[]{"ID", "Robotername", "IP-Adresse"};
     private String[][] rowData;
@@ -56,16 +56,16 @@ public class Robotlist {
                 try {
                     int selectedRow = robotTable.getSelectedRow();
                     String tempID = (String) robotTable.getValueAt(selectedRow, 0);
-                    for (Robot r : robotList) {
+                    for (Robot r : Robot.getRobotList()) {
                         if (tempID.equals(String.valueOf(r.get_ID()))) {
-                            robotList.remove(r);
+                            Robot.getRobotList().remove(r);
                             refreshList();
                             return;
                         }
                     }
                 } catch (Exception ex) {
                     System.out.println(ex + "\n RobotList@löschenButton.actionPerformed");
-                    JOptionPane.showMessageDialog(null, "Fehler: Kein Roboter ausgewählt!", "Fehler", JOptionPane.OK_CANCEL_OPTION);
+                    JOptionPane.showMessageDialog(null, "Fehler: Kein Roboter ausgewählt!", "Fehler", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -82,7 +82,7 @@ public class Robotlist {
                 try {
                     int selectedRow = robotTable.getSelectedRow();
                     String tempID = (String) robotTable.getValueAt(selectedRow, 0);
-                    for (Robot r : robotList) {
+                    for (Robot r : Robot.getRobotList()) {
                         if (tempID.equals(String.valueOf(r.get_ID()))) {
                             r.ping();
                             return;
@@ -96,14 +96,10 @@ public class Robotlist {
         });
     }
 
-    public static ArrayList<Robot> getRobotList() {
-        return robotList;
-    }
-
     public void refreshList() {
-        rowData = new String[robotList.size()][];
-        for (int i = 0; i < robotList.size(); i++) {
-            rowData[i] = robotList.get(i).toStringArray();
+        rowData = new String[Robot.getRobotList().size()][];
+        for (int i = 0; i < Robot.getRobotList().size(); i++) {
+            rowData[i] = Robot.getRobotList().get(i).toStringArray();
         }
         robotTable = new JTable(rowData, columnNames) {
             @Override
@@ -118,11 +114,11 @@ public class Robotlist {
 
     public void addRobot(String name, String IP) {
         try {
-            robotList.add(new Robot(IP, name));
+            Robot.getRobotList().add(new Robot(IP, name));
         } catch (Exception e) {
             System.out.println(e.getStackTrace());
-            for (Robot r : robotList) {
-                if (r.getName().equals(name)) robotList.remove(r);
+            for (Robot r : Robot.getRobotList()) {
+                if (r.getName().equals(name)) Robot.getRobotList().remove(r);
             }
             JOptionPane.showMessageDialog(null, e.getMessage(), "Fehler", JOptionPane.OK_CANCEL_OPTION);
         }

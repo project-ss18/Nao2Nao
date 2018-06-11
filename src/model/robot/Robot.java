@@ -2,7 +2,11 @@ package model.robot;
 
 import controller.Connection;
 
+import java.util.ArrayList;
+
 public class Robot {
+
+    private static ArrayList<Robot> robotList = new ArrayList<Robot>();
 
     private static int id_Counter = 0;
     private String[] args = {};
@@ -52,6 +56,10 @@ public class Robot {
 
     public void setVolume(int args)throws Exception{
         CONNECTION.setVolume(args);
+    }
+
+    public static ArrayList<Robot> getRobotList() {
+        return robotList;
     }
 
     public int getVolume()throws Exception{
