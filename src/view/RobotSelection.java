@@ -1,6 +1,8 @@
 package view;
 
 
+import model.robot.Robot;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,6 +11,8 @@ import java.awt.event.ActionListener;
 public class RobotSelection {
     private JButton zurueckButton;
     private JPanel panel1;
+    private JComboBox comboBox1;
+    private JComboBox comboBox2;
 
 
     public RobotSelection(JFrame frame) {
@@ -25,6 +29,7 @@ public class RobotSelection {
         int dx = (ge.getCenterPoint().x - frame.getSize().width / 2);
         int dy = (ge.getCenterPoint().y - frame.getSize().height / 2);
         frame.setLocation(dx, dy);
+
 
         zurueckButton.addActionListener(new ActionListener() {
             @Override
