@@ -21,6 +21,7 @@ public class Interview {
     private static ArrayList<Interview> allInterviews = new ArrayList<Interview>();
 
     private ArrayList<Block> blockList = new ArrayList<Block>();
+    private String fileName;
     private int id;
     private String description;
     private Block interviewBlock;
@@ -40,7 +41,7 @@ public class Interview {
                 questCounter++;
             }
         }
-        return new String[]{Integer.toString(this.id), this.getDescription(), Integer.toString(questCounter),"2"};
+        return new String[]{Integer.toString(this.id), this.getDescription(), Integer.toString(questCounter), String.valueOf(this.getAnzahlTeilnehmer())};
     }
     public void addBlock(Block v) {
         blockList.add(v);
@@ -93,4 +94,11 @@ public class Interview {
         this.anzahlTeilnehmer = anzahlTeilnehmer;
     }
 
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 }

@@ -1,9 +1,7 @@
 package view;
 
 import controller.InterviewLoader;
-import controller.InterviewPlayer;
 import model.interview.Interview;
-import model.robot.Robot;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -11,11 +9,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-import java.util.ArrayList;
+import java.nio.file.DirectoryNotEmptyException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.util.List;
 import java.nio.channels.FileChannel;
 
-public class InterviewList {
+public class InterviewList  {
     private JButton buttonTest;
     private JPanel panel;
     private JButton zurueckButton;
@@ -30,7 +30,7 @@ public class InterviewList {
     //private static ArrayList<Interview> interviewArrayList = new ArrayList<Interview>();
     private static List<Interview> interviewList;
     private static JFileChooser openFileChooser;
-    private final static String copyPath = "./res/";
+    private final static String resPath = "./res/";
     private File target;
     //File source = new File("C:/Users/Manu/Desktop/manu.xml");
 
@@ -39,14 +39,19 @@ public class InterviewList {
 
 
     public InterviewList(JFrame frame) {
-
         refreshList();
         frame.setContentPane(panel);
-        frame.setPreferredSize(new Dimension(700, 400));
+        frame.setPreferredSize(new Dimension(500, 300));
         frame.pack();
         frame.repaint();
         frame.setResizable(false);
         frame.setVisible(true);
+
+        //Mittige Ausrichtugn
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        int dx = (ge.getCenterPoint().x - frame.getSize().width / 2);
+        int dy = (ge.getCenterPoint().y - frame.getSize().height / 2);
+        frame.setLocation(dx, dy);
 
         openFileChooser = new JFileChooser();
         openFileChooser.setFileFilter(new FileNameExtensionFilter("XML-Dateien", "xml"));
@@ -66,7 +71,7 @@ public class InterviewList {
             public void actionPerformed(ActionEvent e) {
                 int returnValue = openFileChooser.showOpenDialog(openFileButton);
                 if (returnValue == JFileChooser.APPROVE_OPTION) {
-                    String newFile = copyPath + openFileChooser.getSelectedFile().getName();
+                    String newFile = resPath + openFileChooser.getSelectedFile().getName();
                     if (!InterviewLoader.checkSyntax(openFileChooser.getSelectedFile().getPath())) {
                         return;
                     }
@@ -86,6 +91,41 @@ public class InterviewList {
             }
         });
 
+
+        interviewEntfernenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    int selectedRow = interviewTable.getSelectedRow();
+                    String tempDescription = (String) interviewTable.getValueAt(selectedRow, 1);
+                    for (Interview i : interviewList) {
+                        if (tempDescription.equals(String.valueOf(i.getDescription()))) {
+                            interviewList.remove(i);
+                            //String tempFileName = i.getFileName();
+                            File file = new File(i.getFileName());
+                            if (file.exists()) {
+                                file.delete();
+                            } else {
+                                System.err.println(
+                                        "I cannot find '" + file + "' ('" + file.getAbsolutePath() + "')");
+                            }
+                            refreshList();
+                            return;
+                        }
+                    }
+                } catch (Exception ex) {
+                    System.out.println(ex + "\n InterviewList@interviewEntfernenButton.actionPerformed");
+                    JOptionPane.showMessageDialog(null, "Fehler: Kein Interview ausgewählt!", "Fehler", JOptionPane.OK_CANCEL_OPTION);
+                }
+            }
+        });
+        interviewAbspielenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                new RobotSelection(frame);
+            }
+        });
     }
 
     public void refreshList() {
@@ -103,6 +143,9 @@ public class InterviewList {
         };
         interviewTable.setPreferredScrollableViewportSize(new Dimension(300, 400));
         interviewTable.setRowHeight(25);
+        interviewTable.getColumnModel().getColumn(0).setPreferredWidth(2);
+        interviewTable.getColumnModel().getColumn(2).setPreferredWidth(2);
+        interviewTable.getColumnModel().getColumn(3).setPreferredWidth(2);
         interviewScrollPane.setViewportView(interviewTable);
     }
 
