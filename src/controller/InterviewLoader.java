@@ -43,7 +43,9 @@ public class InterviewLoader {
             // Parsen wird gestartet
             xmlReader.parse(inputSource);
 
-            return ContentHandler.getInterview();
+            Interview temp = ContentHandler.getInterview();
+            temp.setFileName(FileName);
+            return temp;
 
         } catch (IOException | SAXException e) {
             e.printStackTrace();
