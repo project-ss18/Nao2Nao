@@ -16,6 +16,7 @@ public class Interview {
     //---Attribute---\
     public static ArrayList<Interview> allInterviews = new ArrayList<Interview>();
     public ArrayList<Block> blockList = new ArrayList<Block>();
+    public ArrayList<String> allRoles = new ArrayList<>();
     private int id;
     private String description;
     private Block interviewBlock;

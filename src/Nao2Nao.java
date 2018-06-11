@@ -37,12 +37,12 @@ public class Nao2Nao {
         //--------------------------Roboter 1 erstellen--------------------------\\
         System.out.print("IP-Adresse für Roboter 1: ");
         String ipRobot1 = s.next();
-        teilnehmendeRoboter.add(new Robot(ipRobot1,"Peter"));
+        teilnehmendeRoboter.add(new Robot(ipRobot1,"Rolle1"));
 
         //--------------------------Roboter 2 erstellen--------------------------\\
         System.out.print("IP-Adresse für Roboter 2: ");
         String ipRobot2 = s.next();
-        teilnehmendeRoboter.add(new Robot(ipRobot2, "pan"));
+        teilnehmendeRoboter.add(new Robot(ipRobot2, "Rolle2"));
 
         //--------------------------Interview ablaufen lassen--------------------------\\
         System.out.print("Drücken Sie eine Taste um das Interview zu starten.");

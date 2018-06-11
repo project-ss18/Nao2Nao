@@ -6,7 +6,7 @@
 
 	<block bid ="1">
 		<posture>Stand</posture>
-		<question qid = "1" gesture="BodyTalk_1" role="Rolle1" volume="80" SpeechSpeed="150" VoicePitch="1">
+		<question qid = "1" gesture="BodyTalk_1" role="Rolle1" volume="90" SpeechSpeed="100" VoicePitch="3">
 			<phrase>Wie geht es dir</phrase>
 		</question>
 		<answer aid = "1" gesture="Excited_2" role="Rolle2" >

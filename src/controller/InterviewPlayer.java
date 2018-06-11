@@ -44,12 +44,14 @@ public class InterviewPlayer implements Runnable{
         this.interview = interview;
     }
 
-    private Robot getRobot(String RobotName) {
+    private Robot getRobot(String RobotName)  {
         for(Robot CurrentRobot: robots) {
-            if(CurrentRobot.getName() == RobotName) {
+            String CurrentRobotName = CurrentRobot.getName().toString();
+            if(RobotName.equals(CurrentRobotName)) {
                 return CurrentRobot;
             }
             }
+            //throw new Exception("Kein Roboter mit der Rolle: '" + RobotName + "' gefunden!");
         return null;
     }
 
@@ -62,7 +64,8 @@ public class InterviewPlayer implements Runnable{
                 PossibleAwnsers.add(CurrentAnswer);
             }
         }
-        return PossibleAwnsers.get(ThreadLocalRandom.current().nextInt(1, PossibleAwnsers.size() + 1));
+        int RandomeInteger = ThreadLocalRandom.current().nextInt(0, PossibleAwnsers.size());
+        return PossibleAwnsers.get(RandomeInteger);
     }
 
     private ArrayList<String> getRobotSpeakAnswerOrder(Question selectedQuestion) {
