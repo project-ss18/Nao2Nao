@@ -6,9 +6,11 @@ public class Question extends Action {
 
     public ArrayList<Answer> answerList = new ArrayList<Answer>();
 
-    public Question(int id, Block v, int volume, int speechSpeed, float voicePitch){
+    public Question(int id, Block v, String gesture, String role, int volume, int speechSpeed, float voicePitch){
         this.id = id;
         this.block=v;
+        this.gesture = gesture;
+        this.role = role;
         this.volume = volume;
         this.speechSpeed = speechSpeed;
         this.voicePitch = voicePitch;
@@ -35,10 +37,6 @@ public class Question extends Action {
         return phrase;
     }
 
-    public void setGesture(String gesture) {
-        this.gesture=gesture;
-    }
-
     public String getGesture(){
         return gesture;
     }
@@ -53,5 +51,8 @@ public class Question extends Action {
 
     public float getVoicePitch() {return this.voicePitch;}
 
+    public String getRole(){
+        return this.role;
+    }
 
 }

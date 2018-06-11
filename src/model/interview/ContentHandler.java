@@ -50,9 +50,9 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
             type = false;
             questCounter++;
             try {
-                questionList.add(new Question(Integer.parseInt(atts.getValue("qid")), blockList.get(blockCounter - 1), Integer.parseInt(atts.getValue("volume")), Integer.parseInt(atts.getValue("SpeechSpeed")), Float.parseFloat(atts.getValue("VoicePitch"))));
+                questionList.add(new Question(Integer.parseInt(atts.getValue("qid")), blockList.get(blockCounter - 1),atts.getValue("gesture"),atts.getValue("role"), Integer.parseInt(atts.getValue("volume")), Integer.parseInt(atts.getValue("SpeechSpeed")), Float.parseFloat(atts.getValue("VoicePitch"))));
             } catch (java.lang.NumberFormatException e1) {
-                questionList.add(new Question(Integer.parseInt(atts.getValue("qid")), blockList.get(blockCounter - 1), 70, 100, 0));
+                questionList.add(new Question(Integer.parseInt(atts.getValue("qid")), blockList.get(blockCounter - 1),atts.getValue("gesture"),atts.getValue("role"), 70, 100, 0));
             }
         }
 
@@ -60,9 +60,9 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
             type = true;
             answerCounter++;
             try {
-                answerList.add(new Answer(Integer.parseInt(atts.getValue("aid")), questionList.get(questCounter - 1), Integer.parseInt(atts.getValue("volume")), Integer.parseInt(atts.getValue("SpeechSpeed")), Float.parseFloat(atts.getValue("VoicePitch"))));
+                answerList.add(new Answer(Integer.parseInt(atts.getValue("aid")), questionList.get(questCounter - 1),atts.getValue("gesture"),atts.getValue("role") , Integer.parseInt(atts.getValue("volume")), Integer.parseInt(atts.getValue("SpeechSpeed")), Float.parseFloat(atts.getValue("VoicePitch"))));
             } catch (java.lang.NumberFormatException e2) {
-                    answerList.add(new Answer(Integer.parseInt(atts.getValue("aid")), questionList.get(questCounter - 1), 70, 100, 0));
+                    answerList.add(new Answer(Integer.parseInt(atts.getValue("aid")), questionList.get(questCounter - 1),atts.getValue("gesture"),atts.getValue("role"), 70, 100, 0));
             }
         }
     }
@@ -80,27 +80,11 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
             blockList.get(blockCounter -1).setPosture(currentValue);
         }
 
-        if (localName.equals("role")) {
-            if(type){
-                answerList.get(answerCounter-1).role = currentValue;
-            }else if(type==false){
-                questionList.get(questCounter-1).role = currentValue;
-            }
-        }
-
         if (localName.equals("phrase")) {
             if(type){
                 answerList.get(answerCounter-1).setPhrase(currentValue);
             }else if(type==false){
                 questionList.get(questCounter-1).setPhrase(currentValue);
-            }
-        }
-
-        if (localName.equals("gesture")) {
-            if(type){
-                answerList.get(answerCounter-1).setGesture(currentValue);
-            }else if(type==false){
-                questionList.get(questCounter-1).setGesture(currentValue);
             }
         }
     }

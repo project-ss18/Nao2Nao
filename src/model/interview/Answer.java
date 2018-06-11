@@ -4,9 +4,11 @@ public class Answer extends Action {
 
     private Question question;
 
-    public Answer(int id, Question q, int volume, int speechSpeed, float voicePitch){
+    public Answer(int id, Question q, String gesture, String role, int volume, int speechSpeed, float voicePitch){
         this.id = id;
         question = q;
+        this.gesture = gesture;
+        this.role = role;
         this.volume = volume;
         this.speechSpeed = speechSpeed;
         this.voicePitch = voicePitch;
@@ -21,10 +23,6 @@ public class Answer extends Action {
         return phrase;
     }
 
-    public void setGesture(String gesture) {
-        this.gesture=gesture;
-    }
-
     public String getGesture(){
         return gesture;
     }
@@ -33,9 +31,14 @@ public class Answer extends Action {
         return this.id;
     }
 
+    public String getRole(){
+        return this.role;
+    }
+
     public int getVolume() {return this.volume;}
 
     public int getSpeechSpeed(){return this.speechSpeed;}
 
     public float getVoicePitch() {return this.voicePitch;}
+
 }

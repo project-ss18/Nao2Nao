@@ -33,7 +33,6 @@ public class Nao2Nao {
         }
         currentInterviewPlayer = new InterviewPlayer(interview);
 
-
         //--------------------------Roboter 1 erstellen--------------------------\\
         System.out.print("IP-Adresse für Roboter 1: ");
         String ipRobot1 = s.next();
