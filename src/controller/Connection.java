@@ -4,10 +4,7 @@ import com.aldebaran.qi.AnyObject;
 import com.aldebaran.qi.Application;
 import com.aldebaran.qi.Future;
 import com.aldebaran.qi.Session;
-import com.aldebaran.qi.helper.proxies.ALAnimatedSpeech;
-import com.aldebaran.qi.helper.proxies.ALAudioDevice;
-import com.aldebaran.qi.helper.proxies.ALRobotPosture;
-import com.aldebaran.qi.helper.proxies.ALTextToSpeech;
+import com.aldebaran.qi.helper.proxies.*;
 
 public class Connection{
 
@@ -93,6 +90,11 @@ public class Connection{
             System.out.println("Could not ping TTS");
         } else {
             System.out.println("Ping ok");
+            ALLeds l = new ALLeds(session);
+            l.off( 	"RightFaceLeds");
+            Thread.sleep(1000);
+            l.on( 	"RightFaceLeds");
         }
     }
+
 }

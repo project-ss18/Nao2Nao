@@ -5,21 +5,23 @@ import model.interview.Interview;
 import model.robot.Robot;
 
 import javax.swing.*;
-import javax.swing.border.Border;
+
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class RobotSelection extends JFrame {
     private JPanel panel;
     private JComboBox[] comboxes;
     private JLabel[] lables;
+    private JPanel[] panels;
     private JButton bestaetigenButton;
+
+    private GridBagConstraints gbc = new GridBagConstraints();
 
 
     public RobotSelection(JFrame mainFrame, Interview interview) {
-        setContentPane(panel);
-        setPreferredSize(new Dimension(200, 300));
+
+
+        setPreferredSize(new Dimension(200, 100));
         setResizable(false);
 
         //Mittige Ausrichtugn
@@ -30,31 +32,43 @@ public class RobotSelection extends JFrame {
 
         comboxes = new JComboBox[interview.getAnzahlTeilnehmer()];
         lables = new JLabel[interview.getAnzahlTeilnehmer()];
+        panels = new JPanel[interview.getAnzahlTeilnehmer()];
 
-        for (JLabel label : lables) {
-            label = new JLabel("Name");
+        int i = 0;
+        for (String role : interview.getAllRoles()) {
+            lables[i] = new JLabel(role);
+            panel.add(lables[i]);
+            comboxes[i] = new JComboBox();
+            comboxes[i].setSize(new Dimension(100, 50));
+            DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
+            comboxes[i].setModel(defaultComboBoxModel1);
+            for (Robot r : Robot.getRobotList()) {
+                comboxes[i].addItem(r);
+            }
+            panel.add(comboxes[i]);
+
+            i++;
+        }
+
+        /* for (JLabel label : lables) {
+
             panel.add(label);
         }
 
-        for (JComboBox cB : comboxes) {
-            cB = new JComboBox();
-            cB.setSize(new Dimension(100, 50));
-            DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
-            cB.setModel(defaultComboBoxModel1);
-            for (Robot r : Robot.getRobotList()) {
-                System.out.println(r.getName());
-                cB.addItem(r);
-            }
-            panel.add(BorderLayout.EAST, cB);
+       for (JComboBox cB : comboxes) {
+
+
         }
 
-
+*/
         bestaetigenButton = new JButton("Bestätigen");
-        panel.add(BorderLayout.SOUTH, bestaetigenButton);
+        panel.add(bestaetigenButton);
+        setContentPane(panel);
         setResizable(false);
         setVisible(true);
-        repaint();
         pack();
+        repaint();
+
     }
 
     {
@@ -73,7 +87,7 @@ public class RobotSelection extends JFrame {
      */
     private void $$$setupUI$$$() {
         panel = new JPanel();
-        panel.setLayout(new BorderLayout(0, 0));
+        panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
     }
 
     /**

@@ -106,4 +106,12 @@ public class Interview {
     public void setAnzahlTeilnehmer(int anzahlTeilnehmer) {
         this.anzahlTeilnehmer = anzahlTeilnehmer;
     }
+
+    public ArrayList<String> getAllRoles() {
+        return allRoles;
+    }
+
+    public void setAllRoles(ArrayList<String> allRoles) {
+        this.allRoles = allRoles;
+    }
 }
