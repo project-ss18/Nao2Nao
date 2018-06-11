@@ -26,7 +26,7 @@ public class InterviewPlayer {
     private JButton goToButton;
 
     private controller.InterviewPlayer interviewPlayer;
-    private List<Robot> robotList = new ArrayList<Robot>();
+    private ArrayList<Robot> robotList = new ArrayList<Robot>();
 
     InterviewPlayer(JFrame frame, Interview interview, Robot[] robots) {
 

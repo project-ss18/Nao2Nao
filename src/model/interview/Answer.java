@@ -43,4 +43,8 @@ public class Answer extends Action {
 
     public float getVoicePitch() {return this.voicePitch;}
 
+    public String getPhrase(){
+        return phrase;
+    }
+
 }

@@ -22,9 +22,6 @@ public class Interview {
     }
 
     //------------------------Attribute------------------------\\
-    private static ArrayList<Interview> allInterviews = new ArrayList<Interview>();
-
-    private ArrayList<Block> blockList = new ArrayList<Block>();
     private String fileName;
     private int id;
     private String description;
@@ -55,6 +52,14 @@ public class Interview {
     }
 
     //----------------------Getter//Setter----------------------\\
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 
     public ArrayList<Block> getBlockList() {
         return blockList;
