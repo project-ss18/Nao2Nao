@@ -1,6 +1,7 @@
 package view;
 
 import controller.InterviewLoader;
+import javafx.scene.control.ComboBox;
 import model.interview.Interview;
 import model.robot.Robot;
 
@@ -16,9 +17,11 @@ public class InterviewSelection extends JFrame {
     private JButton bestaetigenButton;
     private JComboBox comboBoxRole1;
     private JComboBox comboBoxRole2;
+    //private JComboBox[] comboxes; TODO
     private JComboBox comboBoxInterview;
 
     InterviewSelection(JFrame mainFrame) {
+
         if (InterviewLoader.getAllInterviews(true).size() == 0) {
             JOptionPane.showMessageDialog(null, "Fehler: Kein Interview vorhanden", "Fehler", JOptionPane.ERROR_MESSAGE);
             return;
@@ -82,6 +85,23 @@ public class InterviewSelection extends JFrame {
                         new InterviewSelection(mainFrame);
                     }
                 }
+
+            }
+        });
+        comboBoxInterview.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               /* for (Interview v : Interview.getAllInterviews()) { TODO
+                    if (comboBoxInterview.getSelectedItem().toString().equals(v.getDescription())) {
+                        comboxes = new JComboBox[v.getAnzahlTeilnehmer()];
+                        for (JComboBox cB : comboxes) {
+                            panel.add(cB);
+                            pack();
+                            repaint();
+                        }
+                    }
+                }*/
+
 
             }
         });

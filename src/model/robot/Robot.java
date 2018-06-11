@@ -10,12 +10,14 @@ public class Robot {
 
     private static int id_Counter = 0;
     private String[] args = {};
-
+    private final String PORT = "9559";
     private final String IP_ADDRESS;
     private final int ID;
     private String name;
+    private String role;
+
     private Connection CONNECTION;
-    private final String PORT = "9559";
+
 
     public Robot(String address, String name) throws Exception {
         id_Counter++;
@@ -60,6 +62,14 @@ public class Robot {
 
     public static ArrayList<Robot> getRobotList() {
         return robotList;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public int getVolume()throws Exception{
