@@ -33,8 +33,6 @@ public class TestRobot {
         r.setVoicePitch(0);
         r.say("Hallo das ist ein Test");
 
-
-
      //   System.out.println("SpeedSpeech: " + r.getSpeedSpeech());
     }
 }

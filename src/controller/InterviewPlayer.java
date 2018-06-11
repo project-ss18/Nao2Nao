@@ -44,20 +44,20 @@ public class InterviewPlayer implements Runnable{
         this.interview = interview;
     }
 
-    private Robot getRobot(int RobotID) {
+    private Robot getRobot(String RobotName) {
         for(Robot CurrentRobot: robots) {
-            if(CurrentRobot.get_ID() == RobotID) {
+            if(CurrentRobot.getName() == RobotName) {
                 return CurrentRobot;
             }
             }
         return null;
     }
 
-    private Answer answershuffler(Block selectedBlock,int QuestionID, int RobotID) {
+    private Answer answershuffler(Block selectedBlock,int QuestionID, String RobotName) {
         ArrayList<Answer> PossibleAwnsers = new ArrayList<Answer>();
         for(Answer CurrentAnswer: selectedBlock.getQuestion(QuestionID).answerList)
         {
-            if(CurrentAnswer.getId() == RobotID)
+            if(CurrentAnswer.getRole() == RobotName)
             {
                 PossibleAwnsers.add(CurrentAnswer);
             }
@@ -65,18 +65,31 @@ public class InterviewPlayer implements Runnable{
         return PossibleAwnsers.get(ThreadLocalRandom.current().nextInt(1, PossibleAwnsers.size() + 1));
     }
 
-    private ArrayList<Integer> getRobotSpeakAnswerOrder(Question selectedQuestion) {
-        ArrayList<Integer> Order = new ArrayList<Integer>();
+    private ArrayList<String> getRobotSpeakAnswerOrder(Question selectedQuestion) {
+        ArrayList<String> Order = new ArrayList<String>();
         for(Answer CurrentAnswer: selectedQuestion.answerList)
         {
-            if(!Order.contains(CurrentAnswer.getId())) {
-                Order.add(CurrentAnswer.getId());
+            if(!Order.contains(CurrentAnswer.getRole())) {
+                Order.add(CurrentAnswer.getRole());
             }
         }
         return Order;
     }
 
     public void startInterview(ArrayList<Robot> _Roboter) throws Exception {
+
+        // ----- Testen der Rollen der Roboter -----
+
+        for(Robot CurrentRobot: _Roboter)
+        {
+            if(CurrentRobot.getName() == "" || CurrentRobot.getName() == null)
+            {
+                throw new Exception("Roboter Rolle wurde nicht definiert!");
+            }
+        }
+
+        // ----- Testen der Rollen der Roboter -----
+
         if(threadStarted == false)
         {
             robots = new ArrayList<Robot>();
@@ -102,25 +115,25 @@ public class InterviewPlayer implements Runnable{
         for(Block currentBlock : interview.getBlockList()) {
             try {
                 // Frage auslesen und abspielen
-                    getRobot(currentBlock.getQuestion(1).getId()).setVolume(currentBlock.getQuestion(1).getVolume());
-                    getRobot(currentBlock.getQuestion(1).getId()).setSpeechSpeed(currentBlock.getQuestion(1).getSpeechSpeed());
-                    getRobot(currentBlock.getQuestion(1).getId()).setVoicePitch(currentBlock.getQuestion(1).getVoicePitch());
+                    getRobot(currentBlock.getQuestion(1).getRole()).setVolume(currentBlock.getQuestion(1).getVolume());
+                    getRobot(currentBlock.getQuestion(1).getRole()).setSpeechSpeed(currentBlock.getQuestion(1).getSpeechSpeed());
+                    getRobot(currentBlock.getQuestion(1).getRole()).setVoicePitch(currentBlock.getQuestion(1).getVoicePitch());
 
-                    getRobot(currentBlock.getQuestion(1).getId()).animatedSay(start + currentBlock.getQuestion(1).getGesture() + endTag + currentBlock.getQuestion(1).getPhrase()  + wait + endTag);
+                    getRobot(currentBlock.getQuestion(1).getRole()).animatedSay(start + currentBlock.getQuestion(1).getGesture() + endTag + currentBlock.getQuestion(1).getPhrase()  + wait + endTag);
                 // Frage auslesen und abspielen
 
                 // Antwort auswählen und abspielen
                 // Suchen, wer als erstes antwortet
-                    ArrayList<Integer> AnswerOrder = getRobotSpeakAnswerOrder(currentBlock.getQuestion(1));
+                    ArrayList<String> AnswerOrder = getRobotSpeakAnswerOrder(currentBlock.getQuestion(1));
                 // Suchen, wer als erstes antwortet
                 // Roboter, die Antworten durchlaufen
-                    for(int RobotID: AnswerOrder) {
-                        Answer selectedAnswer = answershuffler(currentBlock,1,RobotID);
-                        getRobot(RobotID).setVolume(selectedAnswer.getVolume());
-                        getRobot(RobotID).setSpeechSpeed(selectedAnswer.getSpeechSpeed());
-                        getRobot(RobotID).setVoicePitch(selectedAnswer.getVoicePitch());
+                    for(String RobotName: AnswerOrder) {
+                        Answer selectedAnswer = answershuffler(currentBlock,1,RobotName);
+                        getRobot(RobotName).setVolume(selectedAnswer.getVolume());
+                        getRobot(RobotName).setSpeechSpeed(selectedAnswer.getSpeechSpeed());
+                        getRobot(RobotName).setVoicePitch(selectedAnswer.getVoicePitch());
 
-                        getRobot(RobotID).animatedSay(start + selectedAnswer.getGesture() + endTag + selectedAnswer.getPhrase() + wait + endTag);
+                        getRobot(RobotName).animatedSay(start + selectedAnswer.getGesture() + endTag + selectedAnswer.getPhrase() + wait + endTag);
                     }
                 // Roboter, die Antworten durchlaufen
                 // Antwort auswählen und abspielen

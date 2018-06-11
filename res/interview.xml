@@ -2,7 +2,7 @@
 
 <interview anzahlTeilnehmer = "2">
 
-	<description>Erstes Interview</description>
+	<description>interview</description>
 
 	<block bid ="1">
 		<posture>Stand</posture>
