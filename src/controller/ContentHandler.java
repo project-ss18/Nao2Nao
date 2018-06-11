@@ -77,9 +77,9 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
 
         if (localName.equals("role")) {
             if(type){
-                answerList.get(answerCounter-1).getRole() = currentValue;
+                answerList.get(answerCounter-1).setRole(currentValue);
             }else if(type==false){
-                questionList.get(questCounter-1).role = currentValue;
+                questionList.get(questCounter-1).setRole(currentValue);
             }
         }
 

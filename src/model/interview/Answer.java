@@ -36,4 +36,9 @@ public class Answer extends Action {
     public String getRole(){
         return role;
     }
+
+    public void setRole(String tempRole){
+        role = tempRole;
+    }
+
 }
