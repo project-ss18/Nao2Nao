@@ -109,10 +109,6 @@ public class InterviewPlayer implements Runnable{
         }
     }
 
-    public void PauseInterview() {
-        pauseInterview = true;
-    }
-
     // ---------- New Thread -----------
     // Playback Funktionen
     @Override public void run(){
@@ -149,6 +145,7 @@ public class InterviewPlayer implements Runnable{
             catch (Exception ex)
             {
                 System.out.println(ex.getMessage());
+                threadStarted = false;
             }
             //Block Counter für Posture
             counterBlock++;
@@ -159,7 +156,9 @@ public class InterviewPlayer implements Runnable{
             CurrentRobot.goToPosture("Sit");
         } catch (Exception e) {
             e.printStackTrace();
+            threadStarted = false;
         }
+        threadStarted = false;
     }
     // ---------- New Thread -----------
 }
