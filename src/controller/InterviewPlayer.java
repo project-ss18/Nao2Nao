@@ -13,7 +13,11 @@ public class InterviewPlayer implements Runnable{
     //----Attribute---\\
     public Interview interview;
     private List<Robot> robots;
-
+    //----GOTO---\\
+    private boolean gotoLocation = false;
+    private int gotoBlock;
+    private String gotoPhraseType;
+    private int gotoPosition;
     //--------Befehl-Tags-------\\
     private final String start = "^start(animations/Stand/Gestures/";
     private final char endTag = ')';
@@ -79,11 +83,21 @@ public class InterviewPlayer implements Runnable{
         return Order;
     }
 
+    public void setGotoLocation(int GotoBlock, String PhraseType, int Position) {
+    gotoBlock = GotoBlock;
+    gotoPosition = Position;
+    gotoPhraseType = PhraseType;
+    }
+
     public void startInterview(ArrayList<Robot> _Roboter) throws Exception {
 
         if(!testAllRolesAreDefined(_Roboter))
         {
             throw new Exception("Es wurden nicht für alle Roboter Rollen definiert.");
+        }
+        if(!(interview.getAnzahlTeilnehmer() == robots.size()))
+        {
+            throw new Exception("Es wurden zu viele, oder zu wenige Roboter für das angegebene Interview definiert.");
         }
 
         if(threadStarted == false)
@@ -122,18 +136,25 @@ public class InterviewPlayer implements Runnable{
     @Override public void run(){
         for(Block currentBlock : interview.getBlockList()) {
             try {
-
-                PauseHandler();
-                DoQuestion(currentBlock);
-                PauseHandler();
+                if(gotoLocation)
+                {
+                   if(FindPosition(currentBlock))
+                   {
+                       gotoLocation = false;
+                   }
+                }
+                if(!gotoLocation) {
+                    PauseHandler();
+                    DoQuestion(currentBlock);
+                    PauseHandler();
 
                     ArrayList<String> AnswerOrder = getRobotSpeakAnswerOrder(currentBlock.getQuestion(1));
-                    for(String RobotName: AnswerOrder)
-                    {
-                        Answer selectedAnswer = answershuffler(currentBlock,1,RobotName);
-                        DoAnswer(RobotName,selectedAnswer);
+                    for (String RobotName : AnswerOrder) {
+                        Answer selectedAnswer = answershuffler(currentBlock, 1, RobotName);
+                        DoAnswer(RobotName, selectedAnswer);
                         PauseHandler();
                     }
+                }
                 }
                 catch (Exception ex)
                 {
@@ -153,6 +174,31 @@ public class InterviewPlayer implements Runnable{
         }
         threadStarted = false;
         System.out.println("Interview-Thread finished");
+    }
+
+    private boolean FindPosition(Block currentBlock)
+    {
+        if(currentBlock.getBid() == gotoBlock)
+        {
+            if(gotoPhraseType == "Question")
+            {
+                if(currentBlock.getQuestion(1).getId() == gotoPosition)
+                {
+                    return true;
+                }
+            }
+            if(gotoPhraseType == "Answer")
+            {
+                for(Answer CurrentAnswer: currentBlock.getQuestion(1).getAnswerList())
+                {
+                    if(CurrentAnswer.getId() == gotoPosition)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     private void DoQuestion(Block currentBlock)
