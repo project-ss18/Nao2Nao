@@ -7,21 +7,22 @@ import model.robot.Robot;
 import javax.swing.*;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class RobotSelection extends JFrame {
     private JPanel panel;
     private JComboBox[] comboxes;
     private JLabel[] lables;
-    private JPanel[] panels;
     private JButton bestaetigenButton;
 
     private GridBagConstraints gbc = new GridBagConstraints();
 
 
     public RobotSelection(JFrame mainFrame, Interview interview) {
-
-
-        setPreferredSize(new Dimension(200, 100));
+        super("Rollenverteilung");
+        setPreferredSize(new Dimension(150, 150));
         setResizable(false);
 
         //Mittige Ausrichtugn
@@ -32,7 +33,6 @@ public class RobotSelection extends JFrame {
 
         comboxes = new JComboBox[interview.getAnzahlTeilnehmer()];
         lables = new JLabel[interview.getAnzahlTeilnehmer()];
-        panels = new JPanel[interview.getAnzahlTeilnehmer()];
 
         int i = 0;
         for (String role : interview.getAllRoles()) {
@@ -46,23 +46,29 @@ public class RobotSelection extends JFrame {
                 comboxes[i].addItem(r);
             }
             panel.add(comboxes[i]);
-
             i++;
         }
 
-        /* for (JLabel label : lables) {
-
-            panel.add(label);
-        }
-
-       for (JComboBox cB : comboxes) {
-
-
-        }
-
-*/
         bestaetigenButton = new JButton("Bestätigen");
         panel.add(bestaetigenButton);
+
+        bestaetigenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<Robot> temp = new ArrayList<>();
+                for (int i = 0; i < interview.getAnzahlTeilnehmer(); i++) {
+                    for (Robot r : Robot.getRobotList()) {
+                        if (r.getName().equals(comboxes[i].getSelectedItem())) {
+                            r.setRole(lables[i].getText());
+                            temp.add(r);
+                        }
+                    }
+
+                }
+                new InterviewPlayer(mainFrame, interview, temp);
+            }
+        });
+
         setContentPane(panel);
         setResizable(false);
         setVisible(true);

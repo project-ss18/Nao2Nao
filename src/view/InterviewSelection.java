@@ -49,8 +49,8 @@ public class InterviewSelection extends JFrame {
                 for (Interview i : Interview.getAllInterviews()) {
                     if (i.getDescription().equals(comboBoxInterview.getSelectedItem().toString())) {
                         if (InterviewLoader.checkSyntax(i.getFileName())) {
-                            //new RobotSelection(mainFrame, i);
-                            new InterviewPlayer(mainFrame, i, Robot.getRobotList());
+                            new RobotSelection(mainFrame, i);
+                            //new InterviewPlayer(mainFrame, i, Robot.getRobotList());
                         }
                     }
                 }

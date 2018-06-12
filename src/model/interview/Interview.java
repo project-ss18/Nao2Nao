@@ -103,10 +103,6 @@ public class Interview {
         return anzahlTeilnehmer;
     }
 
-    public void setAnzahlTeilnehmer(int anzahlTeilnehmer) {
-        this.anzahlTeilnehmer = anzahlTeilnehmer;
-    }
-
     public ArrayList<String> getAllRoles() {
         return allRoles;
     }

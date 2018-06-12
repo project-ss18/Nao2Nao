@@ -13,11 +13,13 @@ public class InterviewPlayer implements Runnable{
     //----Attribute---\\
     public Interview interview;
     private List<Robot> robots;
+
     //----GOTO---\\
     private boolean gotoLocation = false;
     private int gotoBlock;
     private String gotoPhraseType;
     private int gotoPosition;
+
     //--------Befehl-Tags-------\\
     private final String start = "^start(animations/Stand/Gestures/";
     private final char endTag = ')';
@@ -39,15 +41,12 @@ public class InterviewPlayer implements Runnable{
     public boolean isInterviewPaused() {
         return pauseInterview;
     }
-
     public void pauseInterview() {
         this.pauseInterview = true;
     }
     public void resumeInterview() {
         this.pauseInterview = false;
     }
-    // ---------- Getter and Setter ----------
-
 
     private Robot getRobot(String RobotName) {
         for(Robot CurrentRobot: robots) {
@@ -55,7 +54,7 @@ public class InterviewPlayer implements Runnable{
             if(RobotName.equals(CurrentRobotName)) {
                 return CurrentRobot;
             }
-            }
+        }
         return null;
     }
 
@@ -84,10 +83,10 @@ public class InterviewPlayer implements Runnable{
     }
 
     public void setGotoLocation(int GotoBlock, String PhraseType, int Position) {
-    gotoBlock = GotoBlock;
-    gotoPosition = Position;
-    gotoPhraseType = PhraseType;
-    gotoLocation = true;
+        gotoBlock = GotoBlock;
+        gotoPosition = Position;
+        gotoPhraseType = PhraseType;
+        gotoLocation = true;
     }
 
     public void startInterview(ArrayList<Robot> _Roboter) throws Exception {
@@ -134,8 +133,10 @@ public class InterviewPlayer implements Runnable{
         return true;
         // ----- Testen der Rollen der Roboter -----
     }
+
     // ---------- New Thread -----------
     // Playback Funktionen
+
     @Override public void run(){
         for(Block currentBlock : interview.getBlockList()) {
             try {
@@ -179,23 +180,16 @@ public class InterviewPlayer implements Runnable{
         System.out.println("Interview-Thread finished");
     }
 
-    private boolean FindPosition(Block currentBlock)
-    {
-        if(currentBlock.getBid() == gotoBlock)
-        {
-            if(gotoPhraseType == "Question")
-            {
-                if(currentBlock.getQuestion(1).getId() == gotoPosition)
-                {
+    private boolean FindPosition(Block currentBlock) {
+        if(currentBlock.getBid() == gotoBlock) {
+            if(gotoPhraseType == "Question") {
+                if(currentBlock.getQuestion(1).getId() == gotoPosition) {
                     return true;
                 }
             }
-            if(gotoPhraseType == "Answer")
-            {
-                for(Answer CurrentAnswer: currentBlock.getQuestion(1).getAnswerList())
-                {
-                    if(CurrentAnswer.getId() == gotoPosition)
-                    {
+            if(gotoPhraseType == "Answer") {
+                for(Answer CurrentAnswer: currentBlock.getQuestion(1).getAnswerList()) {
+                    if(CurrentAnswer.getId() == gotoPosition) {
                         return true;
                     }
                 }

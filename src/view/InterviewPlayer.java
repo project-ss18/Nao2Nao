@@ -27,6 +27,7 @@ public class InterviewPlayer {
 
     private controller.InterviewPlayer interviewPlayer;
     private ArrayList<Robot> robotList = new ArrayList<Robot>();
+    List<String> liste = new ArrayList<>();
 
 
     InterviewPlayer(JFrame frame, Interview interview, ArrayList<Robot> robots) {
@@ -41,14 +42,16 @@ public class InterviewPlayer {
         progressBar.getModel().setValue(50);
 
         interviewPlayer = new controller.InterviewPlayer(interview);
-
         for (Block block : interview.getBlockList()) {
+            //Block id, answer/question [id]
             previewJTextPane.setText(previewJTextPane.getText() + ("\nBlock " + String.valueOf(block.getBid()) + ": "));
             for (Question question : block.getQuestionList()) {
                 previewJTextPane.setText(previewJTextPane.getText() + "\n\tFrage " + (String.valueOf(question.getId()) + ":\t" + question.getPhrase()));
+                liste.add(block.getBid()+ "  Question: " + question.getId());
                 comboBoxGoTo.addItem(("B " + block.getBid() + ": " + "Frage " + question.getId()));
                 for (Answer answer : question.getAnswerList()) {
                     previewJTextPane.setText(previewJTextPane.getText() + "\n\t\tAntwort " + (String.valueOf(answer.getId()) + ":\t" + answer.getPhrase()));
+                    liste.add(block.getBid()+ "  Answer: " + answer.getId());
                     comboBoxGoTo.addItem(("B " + block.getBid() + "  F" + question.getId() + ": " + "Antwort " + answer.getId()));
                 }
             }

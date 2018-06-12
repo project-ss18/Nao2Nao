@@ -25,7 +25,7 @@ public class Robot {
        IP_ADDRESS = address;
        ID = id_Counter;
 
-       CONNECTION = new Connection(this.IP_ADDRESS, args);
+       //CONNECTION = new Connection(this.IP_ADDRESS, args);
     }
 
     public String getName() {
@@ -96,7 +96,7 @@ public class Robot {
         return CONNECTION.getVoicePitch();
     }
     public String toString(){
-        return ( this.get_ID() + ": " + this.getName());
+        return ( this.getName());
     }
 
 }
