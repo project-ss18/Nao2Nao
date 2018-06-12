@@ -1,5 +1,6 @@
 package view;
 
+import model.interview.Action;
 import model.interview.Answer;
 import model.interview.Block;
 import model.interview.Interview;
@@ -27,14 +28,12 @@ public class InterviewPlayer {
 
     private controller.InterviewPlayer interviewPlayer;
     private ArrayList<Robot> robotList = new ArrayList<Robot>();
-    List<String> liste = new ArrayList<>();
+    private List<Action> goToListe = new ArrayList<>();
 
 
     InterviewPlayer(JFrame frame, Interview interview, ArrayList<Robot> robots) {
 
-        for (Robot r : robots) {
-            this.robotList.add(r);
-        }
+        this.robotList.addAll(robots);
         previewJTextPane.setEditable(false);
         previewJTextPane.setText("");
         frame.setContentPane(panel);
@@ -47,11 +46,11 @@ public class InterviewPlayer {
             previewJTextPane.setText(previewJTextPane.getText() + ("\nBlock " + String.valueOf(block.getBid()) + ": "));
             for (Question question : block.getQuestionList()) {
                 previewJTextPane.setText(previewJTextPane.getText() + "\n\tFrage " + (String.valueOf(question.getId()) + ":\t" + question.getPhrase()));
-                liste.add(block.getBid()+ "  Question: " + question.getId());
+                goToListe.add(question);
                 comboBoxGoTo.addItem(("B " + block.getBid() + ": " + "Frage " + question.getId()));
                 for (Answer answer : question.getAnswerList()) {
                     previewJTextPane.setText(previewJTextPane.getText() + "\n\t\tAntwort " + (String.valueOf(answer.getId()) + ":\t" + answer.getPhrase()));
-                    liste.add(block.getBid()+ "  Answer: " + answer.getId());
+                    goToListe.add(answer);
                     comboBoxGoTo.addItem(("B " + block.getBid() + "  F" + question.getId() + ": " + "Antwort " + answer.getId()));
                 }
             }
