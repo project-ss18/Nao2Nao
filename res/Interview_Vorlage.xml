@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--Jedes Interview benötigt eine Anzahl an Teilnehmern und eine Beschreibung-->
+<!--Jeder Block benötigt eine BlockID, die Posture ist Optional. -->
+<!--Wenn keine Posture angeben wurde, dann ist diese standardmäßig "Stand".-->
+<!--Jede Interview Aktion (Frage/Antwort)eine QuestionID / AnswerID, eine zugehörige Geste und eine zugewiesene Rolle.-->
+<!--Wenn keine Lautstärke, Sprachgeschwindigkeit und Tonhöhe bei einer Interview Aktion definiert wurden sind diese wie folgt standardmäßig definiert.-->
+<!--volume="70" SpeechSpeed="100" VoicePitch="0"-->
+<!--Falls eines der Attribute Lautstärke, Sprachgeschwindigkeit oder Tonhöhe definiert werden soll, müssen alle drei definiert werden!-->
+<!--Volume[50-100], Speed[100-400], Pitch[0-4]-->
+
+<interview anzahlTeilnehmer = "2">
+	<description>Interviewbeschreibung</description>
+	
+	<block bid ="1">
+		<question qid = "1" gesture="BodyTalk_1" role="Rolle1" volume="80" SpeechSpeed="120" VoicePitch="1">
+			<phrase>Hallo das ist ein Test</phrase>
+		</question>
+		<answer aid = "1" gesture="Excited_2" role="Rolle2" >
+			<phrase>Hallo das ist ein Test</phrase>
+		</answer>
+		<answer aid = "2" gesture="Excited_1" role="Rolle2">
+			<phrase>Hallo das ist ein Test</phrase>
+		</answer>
+	</block>
+
+	<block bid = "2">
+		<question qid = "1" gesture="BodyTalk_1" role="Rolle1">
+			<phrase>Hallo das ist ein Test</phrase>
+		</question>
+		<answer aid = "1" gesture="Excited_1" role="Rolle2">
+			<phrase>Hallo das ist ein Test</phrase>
+		</answer>
+	</block>
+
+	<block bid = "3" posture = "Sit">
+		<question qid = "1" gesture="BodyTalk_1" role="Rolle1" volume="70" SpeechSpeed="100" VoicePitch="0">
+			<phrase>Hallo das ist ein Test</phrase>
+		</question>
+		<answer aid = "1" gesture="Excited_1" role="Rolle2">
+			<phrase>Hallo das ist ein Test</phrase>
+		</answer>
+	</block>
+	<!--...-->
+</interview>

@@ -5,7 +5,8 @@
 	<description>interview</description>
 
 	<block bid ="1">
-		<question qid = "1" gesture="BodyTalk_1" role="Rolle1" volume="70" SpeechSpeed="120" VoicePitch="1">
+		<posture>Stand</posture>
+		<question qid = "1" gesture="BodyTalk_1" role="Rolle1" volume="90" SpeechSpeed="100" VoicePitch="3">
 			<phrase>Wie geht es dir</phrase>
 		</question>
 		<answer aid = "1" gesture="Excited_2" role="Rolle2" >
@@ -17,6 +18,7 @@
 	</block>
 
 	<block bid = "2">
+		<posture></posture>
 		<question qid = "1" gesture="BodyTalk_1" role="Rolle1">
 			<phrase>Wie heißt du</phrase>
 		</question>
@@ -25,7 +27,8 @@
 		</answer>
 	</block>
 
-	<block bid = "3" posture = "Sit">
+	<block bid = "3">
+		<posture>Sit</posture>
 		<question qid = "1" gesture="BodyTalk_1" role="Rolle1" volume="70" SpeechSpeed="100" VoicePitch="0">
 			<phrase>War das schon das ganze Interview</phrase>
 		</question>
@@ -34,3 +37,4 @@
 		</answer>
 	</block>
 </interview>
+			
