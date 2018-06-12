@@ -14,11 +14,11 @@
 
 	<xsd:complexType name="block">
 		<xsd:sequence>
-			<xsd:element ref="posture"/>
 			<xsd:element ref="question"/>
 			<xsd:element ref="answer" maxOccurs="unbounded"/>
 		</xsd:sequence>
 		<xsd:attribute ref="bid" use="required"/>
+		<xsd:attribute ref="posture"/>
 	</xsd:complexType>
 
 	<xsd:element name="phrase" type="xsd:string"/>
@@ -68,7 +68,7 @@
 		</xsd:simpleType>
 	</xsd:attribute>
 
-	<xsd:element name="posture" default="Stand">
+	<xsd:attribute name="posture" default="Stand">
 		<xsd:simpleType>
 			<xsd:restriction base="xsd:string">
 				<xsd:enumeration value="Sit"/>
@@ -79,7 +79,7 @@
 				<xsd:enumeration value="LyingBack"/>
 			</xsd:restriction>
 		</xsd:simpleType>
-	</xsd:element>
+	</xsd:attribute>
 
 	<xsd:element name="block" type="block" />
 

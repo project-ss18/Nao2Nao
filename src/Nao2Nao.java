@@ -24,7 +24,7 @@ public class Nao2Nao {
         System.out.print("Bitte Interview-Namen angeben:");
         String InterviewName = s.next();
 
-        interview = InterviewLoader.initializeInterview(InterviewName);
+        interview = InterviewLoader.initializeInterview("./res/" + InterviewName);
         if(interview == null){
             System.out.println("Interview ist null: CheckSyntax.fail");
             return ;

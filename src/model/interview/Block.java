@@ -10,8 +10,9 @@ public class Block {
     private String posture;
 
     //-----------------------Konstruktor-----------------------\\
-    public Block(int blockID, Interview interview) {
-        bid =blockID;
+    public Block(int blockID, String posture, Interview interview) {
+        bid = blockID;
+        this.posture = posture;
         this.interview = interview;
         this.interview.addBlock(this);
     }

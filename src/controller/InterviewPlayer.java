@@ -91,7 +91,9 @@ public class InterviewPlayer implements Runnable{
     }
 
     public void startInterview(ArrayList<Robot> _Roboter) throws Exception {
-
+        robots = null;
+        robots = new ArrayList<Robot>();
+        robots.addAll(_Roboter);
         if(!testAllRolesAreDefined(_Roboter))
         {
             throw new Exception("Es wurden nicht für alle Roboter Rollen definiert.");
@@ -152,7 +154,7 @@ public class InterviewPlayer implements Runnable{
                     ArrayList<String> AnswerOrder = getRobotSpeakAnswerOrder(currentBlock.getQuestion(1));
                     for (String RobotName : AnswerOrder) {
                         Answer selectedAnswer = answershuffler(currentBlock, 1, RobotName);
-                        DoAnswer(RobotName, selectedAnswer);
+                        DoAnswer(RobotName, selectedAnswer, currentBlock);      //ToDO: Konstruktor wurde angepasst, testen.
                         PauseHandler();
                     }
                 }
@@ -205,6 +207,7 @@ public class InterviewPlayer implements Runnable{
     private void DoQuestion(Block currentBlock)
     {
         try {
+            getRobot(currentBlock.getQuestion(1).getRole()).goToPosture(currentBlock.getPosture());
             getRobot(currentBlock.getQuestion(1).getRole()).setVolume(currentBlock.getQuestion(1).getVolume());
             getRobot(currentBlock.getQuestion(1).getRole()).setSpeechSpeed(currentBlock.getQuestion(1).getSpeechSpeed());
             getRobot(currentBlock.getQuestion(1).getRole()).setVoicePitch(currentBlock.getQuestion(1).getVoicePitch());
@@ -214,9 +217,11 @@ public class InterviewPlayer implements Runnable{
             System.out.println(ex.getMessage());
         }
     }
-    private void DoAnswer(String robotName, Answer selectedAnswer)
+    private void DoAnswer(String robotName, Answer selectedAnswer, Block currentBlock)
     {
     try {
+
+        getRobot(robotName).goToPosture(currentBlock.getPosture()); //ToDo: testen
         getRobot(robotName).setVolume(selectedAnswer.getVolume());
         getRobot(robotName).setSpeechSpeed(selectedAnswer.getSpeechSpeed());
         getRobot(robotName).setVoicePitch(selectedAnswer.getVoicePitch());
