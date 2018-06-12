@@ -87,6 +87,21 @@ public class InterviewPlayer {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                interviewPlayer.stopInterview();
+
+                Action selectedAction = goToListe.get(comboBoxGoTo.getSelectedIndex());
+                if (selectedAction instanceof Question) {
+                    interviewPlayer.setGotoLocation(selectedAction.getBlock().getBid(), "Question", ((Question) selectedAction).getId());
+                }
+                if (selectedAction instanceof Answer) {
+                    interviewPlayer.setGotoLocation(selectedAction.getBlock().getBid(), "Answer", ((Answer) selectedAction).getId());
+                }
+                try {
+                    interviewPlayer.startInterview(robotList);
+                } catch (Exception ex) {
+                    System.out.println(ex.getStackTrace());
+                }
+
             }
         });
     }

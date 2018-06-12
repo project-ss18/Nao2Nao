@@ -11,5 +11,8 @@ public abstract class Action {
     protected int speechSpeed;
     protected float voicePitch;
 
+    public Block getBlock() {
+        return block;
+    }
 
 }

@@ -141,6 +141,12 @@ public class InterviewPlayer implements Runnable{
     // ---------- New Thread -----------
     // Playback Funktionen
 
+    public void stopInterview()
+    {
+        currentInterview.interrupt();
+        threadStarted = false;
+    }
+
     @Override public void run(){
         for(Block currentBlock : interview.getBlockList()) {
             try {
