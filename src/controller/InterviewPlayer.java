@@ -3,7 +3,6 @@ package controller;
 import model.interview.*;
 import model.robot.Robot;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,71 +81,65 @@ public class InterviewPlayer implements Runnable{
 
     public void startInterview(ArrayList<Robot> _Roboter) throws Exception {
 
-        // ----- Testen der Rollen der Roboter -----
-
-        for(Robot CurrentRobot: _Roboter)
+        if(!testAllRolesAreDefined(_Roboter))
         {
-            if(CurrentRobot.getName() == "" || CurrentRobot.getName() == null)
-            {
-                throw new Exception("Roboter Rolle wurde nicht definiert!");
-            }
+            throw new Exception("Es wurden nicht für alle Roboter Rollen definiert.");
         }
-
-        // ----- Testen der Rollen der Roboter -----
 
         if(threadStarted == false)
         {
+            System.out.println("Starting up new Interview-Thread");
+            robots = null;
             robots = new ArrayList<Robot>();
             robots.addAll(_Roboter);
 
+            currentInterview = null;
             currentInterview = new Thread(this);
             currentInterview.start();
             threadStarted = true;
         }
         else
         {
+            System.out.println("Resume Interview-Thread");
             pauseInterview = false;
         }
     }
-
+    private boolean testAllRolesAreDefined(ArrayList<Robot> _Roboter)
+    {
+        // ----- Testen der Rollen der Roboter -----
+        for(Robot CurrentRobot: _Roboter)
+        {
+            if(CurrentRobot.getName() == "" || CurrentRobot.getName() == null)
+            {
+                return false;
+            }
+        }
+        return true;
+        // ----- Testen der Rollen der Roboter -----
+    }
     // ---------- New Thread -----------
     // Playback Funktionen
     @Override public void run(){
         for(Block currentBlock : interview.getBlockList()) {
             try {
-                // Frage auslesen und abspielen
-                    getRobot(currentBlock.getQuestion(1).getRole()).setVolume(currentBlock.getQuestion(1).getVolume());
-                    getRobot(currentBlock.getQuestion(1).getRole()).setSpeechSpeed(currentBlock.getQuestion(1).getSpeechSpeed());
-                    getRobot(currentBlock.getQuestion(1).getRole()).setVoicePitch(currentBlock.getQuestion(1).getVoicePitch());
 
-                    getRobot(currentBlock.getQuestion(1).getRole()).animatedSay(start + currentBlock.getQuestion(1).getGesture() + endTag + currentBlock.getQuestion(1).getPhrase()  + wait + endTag);
-                // Frage auslesen und abspielen
+                PauseHandler();
+                DoQuestion(currentBlock);
+                PauseHandler();
 
-                // Antwort auswählen und abspielen
-                // Suchen, wer als erstes antwortet
                     ArrayList<String> AnswerOrder = getRobotSpeakAnswerOrder(currentBlock.getQuestion(1));
-                // Suchen, wer als erstes antwortet
-                // Roboter, die Antworten durchlaufen
-                    for(String RobotName: AnswerOrder) {
+                    for(String RobotName: AnswerOrder)
+                    {
                         Answer selectedAnswer = answershuffler(currentBlock,1,RobotName);
-                        getRobot(RobotName).setVolume(selectedAnswer.getVolume());
-                        getRobot(RobotName).setSpeechSpeed(selectedAnswer.getSpeechSpeed());
-                        getRobot(RobotName).setVoicePitch(selectedAnswer.getVoicePitch());
-
-                        getRobot(RobotName).animatedSay(start + selectedAnswer.getGesture() + endTag + selectedAnswer.getPhrase() + wait + endTag);
+                        DoAnswer(RobotName,selectedAnswer);
+                        PauseHandler();
                     }
-                // Roboter, die Antworten durchlaufen
-                // Antwort auswählen und abspielen
-
-                while(pauseInterview == true) {
-                    Thread.sleep(1000);
                 }
-            }
-            catch (Exception ex)
-            {
-                System.out.println(ex.getMessage());
-                threadStarted = false;
-            }
+                catch (Exception ex)
+                {
+                    System.out.println(ex.getMessage());
+                    threadStarted = false;
+                }
             //Block Counter für Posture
             counterBlock++;
         }
@@ -159,6 +152,44 @@ public class InterviewPlayer implements Runnable{
             threadStarted = false;
         }
         threadStarted = false;
+        System.out.println("Interview-Thread finished");
+    }
+
+    private void DoQuestion(Block currentBlock)
+    {
+        try {
+            getRobot(currentBlock.getQuestion(1).getRole()).setVolume(currentBlock.getQuestion(1).getVolume());
+            getRobot(currentBlock.getQuestion(1).getRole()).setSpeechSpeed(currentBlock.getQuestion(1).getSpeechSpeed());
+            getRobot(currentBlock.getQuestion(1).getRole()).setVoicePitch(currentBlock.getQuestion(1).getVoicePitch());
+            getRobot(currentBlock.getQuestion(1).getRole()).animatedSay(start + currentBlock.getQuestion(1).getGesture() + endTag + currentBlock.getQuestion(1).getPhrase()  + wait + endTag);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    private void DoAnswer(String robotName, Answer selectedAnswer)
+    {
+    try {
+        getRobot(robotName).setVolume(selectedAnswer.getVolume());
+        getRobot(robotName).setSpeechSpeed(selectedAnswer.getSpeechSpeed());
+        getRobot(robotName).setVoicePitch(selectedAnswer.getVoicePitch());
+        getRobot(robotName).animatedSay(start + selectedAnswer.getGesture() + endTag + selectedAnswer.getPhrase() + wait + endTag);
+    }
+    catch (Exception ex) {
+        System.out.println(ex.getMessage());
+    }
+    }
+    private void PauseHandler()
+    {
+        try {
+            while(pauseInterview == true) {
+                Thread.sleep(1000);
+            }
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
+
     }
     // ---------- New Thread -----------
 }
