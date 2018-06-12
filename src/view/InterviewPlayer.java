@@ -29,7 +29,7 @@ public class InterviewPlayer {
     private controller.InterviewPlayer interviewPlayer;
     private ArrayList<Robot> robotList = new ArrayList<Robot>();
     private List<Action> goToListe = new ArrayList<>();
-
+    //--//
 
     InterviewPlayer(JFrame frame, Interview interview, ArrayList<Robot> robots) {
 
