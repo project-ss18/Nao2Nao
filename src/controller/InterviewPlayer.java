@@ -90,9 +90,13 @@ public class InterviewPlayer implements Runnable{
     }
 
     public void startInterview(ArrayList<Robot> _Roboter) throws Exception {
-        robots = null;
-        robots = new ArrayList<Robot>();
-        robots.addAll(_Roboter);
+        if(robots == null)
+        {
+            robots = null;
+            robots = new ArrayList<Robot>();
+            robots.addAll(_Roboter);
+        }
+
         if(!testAllRolesAreDefined(_Roboter))
         {
             throw new Exception("Es wurden nicht für alle Roboter Rollen definiert.");

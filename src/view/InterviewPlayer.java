@@ -84,6 +84,12 @@ public class InterviewPlayer {
                 interviewPlayer.pauseInterview();
             }
         });
+        goToButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
     {
