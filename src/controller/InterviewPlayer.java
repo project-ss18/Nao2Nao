@@ -87,6 +87,7 @@ public class InterviewPlayer implements Runnable{
     gotoBlock = GotoBlock;
     gotoPosition = Position;
     gotoPhraseType = PhraseType;
+    gotoLocation = true;
     }
 
     public void startInterview(ArrayList<Robot> _Roboter) throws Exception {
