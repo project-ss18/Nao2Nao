@@ -40,7 +40,7 @@ public class InterviewPlayer implements Runnable{
     public void pauseInterview() {
         this.pauseInterview = true;
     }
-    public void resumeInterview(boolean pauseInterview) {
+    public void resumeInterview() {
         this.pauseInterview = false;
     }
     // ---------- Getter and Setter ----------

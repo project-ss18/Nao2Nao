@@ -28,7 +28,8 @@ public class InterviewPlayer {
     private controller.InterviewPlayer interviewPlayer;
     private ArrayList<Robot> robotList = new ArrayList<Robot>();
 
-    InterviewPlayer(JFrame frame, Interview interview, Robot[] robots) {
+
+    InterviewPlayer(JFrame frame, Interview interview, ArrayList<Robot> robots) {
 
         for (Robot r : robots) {
             this.robotList.add(r);
@@ -72,6 +73,12 @@ public class InterviewPlayer {
                 } catch (Exception exc) {
                     System.out.println(exc);
                 }
+            }
+        });
+        pauseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                interviewPlayer.pauseInterview();
             }
         });
     }
