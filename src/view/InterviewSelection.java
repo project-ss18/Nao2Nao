@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.security.KeyStoreException;
 
 
-public class InterviewSelection extends JFrame {
+public class InterviewSelection extends JDialog {
     private JPanel panel;
     private JButton bestaetigenButton;
 

@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class RobotSelection extends JFrame {
+public class RobotSelection extends JDialog {
     private JPanel panel;
     private JComboBox[] comboxes;
     private JLabel[] lables;
@@ -21,7 +21,6 @@ public class RobotSelection extends JFrame {
 
 
     public RobotSelection(JFrame mainFrame, Interview interview) {
-        super("Rollenverteilung");
         setPreferredSize(new Dimension(150, 150));
         setResizable(false);
 

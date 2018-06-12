@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class NewRobot extends JFrame {
+public class NewRobot extends JDialog {
     private JTextField textFieldRobotName;
     private JTextField textFieldIP;
     private JButton bestätigenButton;
@@ -14,7 +14,7 @@ public class NewRobot extends JFrame {
     NewRobot(Robotlist robotlist) {
         setPreferredSize(new Dimension(200, 150));
         setSize(new Dimension(200, 150));
-
+        getRootPane().setDefaultButton(bestätigenButton);
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 
         int dx = (ge.getCenterPoint().x - getSize().width / 2);
@@ -28,8 +28,9 @@ public class NewRobot extends JFrame {
         bestätigenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                robotlist.addRobot(textFieldRobotName.getText(), textFieldIP.getText());
                 setVisible(false);
+                robotlist.addRobot(textFieldRobotName.getText(), textFieldIP.getText());
+
             }
         });
     }
