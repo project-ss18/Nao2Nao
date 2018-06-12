@@ -58,7 +58,7 @@ public class RobotSelection extends JFrame {
                 ArrayList<Robot> temp = new ArrayList<>();
                 for (int i = 0; i < interview.getAnzahlTeilnehmer(); i++) {
                     for (Robot r : Robot.getRobotList()) {
-                        if (r.getName().equals(comboxes[i].getSelectedItem())) {
+                        if (comboxes[i].getSelectedItem().toString().equals(r.getName())) {
                             r.setRole(lables[i].getText());
                             temp.add(r);
                         }
@@ -66,6 +66,7 @@ public class RobotSelection extends JFrame {
 
                 }
                 new InterviewPlayer(mainFrame, interview, temp);
+                setVisible(false);
             }
         });
 

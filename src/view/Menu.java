@@ -79,12 +79,6 @@ public class Menu {
                 System.exit(0);
             }
         });
-        hilfeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
     }
 
     private void centerFrame() {
