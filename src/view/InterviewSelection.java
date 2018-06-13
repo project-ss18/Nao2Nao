@@ -48,10 +48,16 @@ public class InterviewSelection extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 for (Interview i : Interview.getAllInterviews()) {
                     if (i.getDescription().equals(comboBoxInterview.getSelectedItem().toString())) {
-                        if (InterviewLoader.checkSyntax(i.getFileName())) {
-                            new RobotSelection(mainFrame, i);
-                            setVisible(false);
-                            //new InterviewPlayer(mainFrame, i, Robot.getRobotList());
+                        if (!InterviewLoader.checkSyntax(i.getFileName())) {
+                            if (i.getAnzahlTeilnehmer() == Robot.getRobotList().size()) {
+                                new RobotSelection(mainFrame, i);
+                                setVisible(false);
+                                //new InterviewPlayer(mainFrame, i, Robot.getRobotList());
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Es müssen " + i.getAnzahlTeilnehmer() + " Roboter angemeldet sein", "Fehler", JOptionPane.ERROR_MESSAGE);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Fehler: Syntax des ausgewählten Interviews ist nicht Korrekt", "Fehler", JOptionPane.ERROR_MESSAGE);
                         }
                     }
                 }
