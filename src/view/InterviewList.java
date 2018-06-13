@@ -34,7 +34,7 @@ public class InterviewList {
     private File target;
     //File source = new File("C:/Users/Manu/Desktop/manu.xml");
 
-    private String[] columnNames = new String[]{"ID", "Interviewname", "Anzahl Fragen", "Anzahl Roboter"};
+    private String[] columnNames = new String[]{"Interviewname", "Anzahl Fragen", "Anzahl Roboter"};
     private String[][] rowData;
 
 
@@ -56,7 +56,6 @@ public class InterviewList {
         openFileChooser = new JFileChooser();
         openFileChooser.setFileFilter(new FileNameExtensionFilter("XML-Dateien", "xml"));
         //openFileChooser.setCurrentDirectory(new File("./res/"));
-
 
         zurueckButton.addActionListener(new ActionListener() {
             @Override
@@ -115,7 +114,7 @@ public class InterviewList {
                     }
                 } catch (Exception ex) {
                     System.out.println(ex + "\n InterviewList@interviewEntfernenButton.actionPerformed");
-                    JOptionPane.showMessageDialog(null, "Fehler: Kein Interview ausgewählt!", "Fehler", JOptionPane.OK_CANCEL_OPTION);
+                    JOptionPane.showMessageDialog(null, "Fehler: Kein Interview ausgewählt!", "Fehler", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -152,7 +151,7 @@ public class InterviewList {
         interviewTable.setRowHeight(25);
         interviewTable.getColumnModel().getColumn(0).setPreferredWidth(2);
         interviewTable.getColumnModel().getColumn(2).setPreferredWidth(2);
-        interviewTable.getColumnModel().getColumn(3).setPreferredWidth(2);
+
         interviewScrollPane.setViewportView(interviewTable);
     }
 

@@ -45,7 +45,7 @@ public class Interview {
                 questCounter++;
             }
         }
-        return new String[]{Integer.toString(this.id), this.getDescription(), Integer.toString(questCounter), String.valueOf(this.getAnzahlTeilnehmer())};
+        return new String[]{this.getDescription(), Integer.toString(questCounter), String.valueOf(this.getAnzahlTeilnehmer())};
     }
     public void addBlock(Block v) {
         blockList.add(v);
