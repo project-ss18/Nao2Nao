@@ -28,7 +28,7 @@ public class InterviewPlayer {
 
     private controller.InterviewPlayer interviewPlayer;
     private ArrayList<Robot> robotList = new ArrayList<Robot>();
-    private List<Action> goToListe = new ArrayList<>();
+    private List<Question> goToListe = new ArrayList<>();
     //--//+
 
     InterviewPlayer(JFrame frame, Interview interview, ArrayList<Robot> robots) {
@@ -40,7 +40,12 @@ public class InterviewPlayer {
         frame.setPreferredSize(new Dimension(600, 350));
         progressBar.getModel().setValue(50);
 
-        interviewPlayer = new controller.InterviewPlayer(interview);
+        try {
+            interviewPlayer = new controller.InterviewPlayer(interview, robotList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         for (Block block : interview.getBlockList()) {
             //Block id, answer/question [id]
             previewJTextPane.setText(previewJTextPane.getText() + ("\nBlock " + String.valueOf(block.getBid()) + ": "));
@@ -50,8 +55,6 @@ public class InterviewPlayer {
                 comboBoxGoTo.addItem(("B " + block.getBid() + ": " + "Frage " + question.getId()));
                 for (Answer answer : question.getAnswerList()) {
                     previewJTextPane.setText(previewJTextPane.getText() + "\n\t\tAntwort " + (String.valueOf(answer.getId()) + ":\t" + answer.getPhrase()));
-                    goToListe.add(answer);
-                    comboBoxGoTo.addItem(("B " + block.getBid() + "  F" + question.getId() + ": " + "Antwort " + answer.getId()));
                 }
             }
         }
@@ -71,7 +74,7 @@ public class InterviewPlayer {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    interviewPlayer.startInterview(robotList);
+                    interviewPlayer.startInterview();
                 } catch (Exception exc) {
                     System.out.println(exc);
                 }
@@ -86,22 +89,15 @@ public class InterviewPlayer {
         goToButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Question temp = goToListe.get(comboBoxGoTo.getSelectedIndex());
 
+                interviewPlayer.goToQuestion(temp.getId(), temp.getBlock().getBid());
+            }
+        });
+        stopButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 interviewPlayer.stopInterview();
-
-                Action selectedAction = goToListe.get(comboBoxGoTo.getSelectedIndex());
-                if (selectedAction instanceof Question) {
-                    interviewPlayer.setGotoLocation(selectedAction.getBlock().getBid(), "Question", ((Question) selectedAction).getId());
-                }
-                if (selectedAction instanceof Answer) {
-                    interviewPlayer.setGotoLocation(selectedAction.getBlock().getBid(), "Answer", ((Answer) selectedAction).getId());
-                }
-                try {
-                    interviewPlayer.startInterview(robotList);
-                } catch (Exception ex) {
-                    System.out.println(ex.getStackTrace());
-                }
-
             }
         });
     }

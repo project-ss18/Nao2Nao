@@ -8,9 +8,10 @@ public class Question extends Action {
 
 
     //-----------------------Konstruktor-----------------------\\
-    public Question(int id, Block v, String gesture, String role, int volume, int speechSpeed, float voicePitch){
+    public Question(int id, Block v, String posture, String gesture, String role, int volume, int speechSpeed, float voicePitch){
         this.id = id;
         this.block=v;
+        this.posture = posture;
         this.gesture = gesture;
         this.role = role;
         this.volume = volume;

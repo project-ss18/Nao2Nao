@@ -5,10 +5,11 @@ public class Answer extends Action {
     private Question question;
 
     //-----------------------Konstruktor-----------------------\\
-    public Answer(int id, Question q, String gesture, String role, int volume, int speechSpeed, float voicePitch){
+    public Answer(int id, Question q, String posture, String gesture, String role, int volume, int speechSpeed, float voicePitch){
         this.id = id;
         question = q;
         block=question.getBlock();
+        this.posture = posture;
         this.gesture = gesture;
         this.role = role;
         this.volume = volume;

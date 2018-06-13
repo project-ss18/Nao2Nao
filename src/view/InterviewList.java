@@ -105,8 +105,7 @@ public class InterviewList {
                             if (file.exists()) {
                                 file.delete();
                             } else {
-                                System.err.println(
-                                        "I cannot find '" + file + "' ('" + file.getAbsolutePath() + "')");
+                                System.err.println("I cannot find '" + file + "' ('" + file.getAbsolutePath() + "')");
                             }
                             refreshList();
                             return;

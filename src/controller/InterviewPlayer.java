@@ -1,248 +1,112 @@
 package controller;
 
-import model.interview.*;
+import model.interview.Answer;
+import model.interview.Block;
+import model.interview.Interview;
+import model.interview.Question;
 import model.robot.Robot;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import java.lang.Runnable;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class InterviewPlayer implements Runnable{
-    //----Attribute---\\
-    public Interview interview;
+public class InterviewPlayer implements Runnable {
+
+    private Interview interview;
     private List<Robot> robots;
 
-    //----GOTO---\\
-    private boolean gotoLocation = false;
-    private int gotoBlock;
-    private String gotoPhraseType;
-    private int gotoPosition;
+    private Thread interviewThread;
+    private boolean pauseInterview;
+    private boolean isRunning;
+
+    private boolean goTo;
+    private int goToBid;
+    private int gotToQid;
 
     //--------Befehl-Tags-------\\
     private final String start = "^start(animations/Stand/Gestures/";
     private final char endTag = ')';
     private String wait = "^wait(animations/Stand/Gestures/";
 
-    private static int counterBlock = 1;
-
-    //----Thread----\\
-    private Thread currentInterview;
-    private boolean threadStarted = false;
-    private boolean pauseInterview = false;
-
     //------Konstruktor------\\
-    public InterviewPlayer(Interview interview){
+    public InterviewPlayer(Interview interview, ArrayList<Robot> robots) throws Exception {
         this.interview = interview;
+        this.robots = robots;
+        if(!(interview.getAnzahlTeilnehmer() == robots.size())) throw new Exception("Es wurden zu viele, oder zu wenige Roboter für das angegebene Interview definiert.");
+        if(!checkRolesDefined(robots)) throw new Exception("Es wurden nicht für alle Roboter Rollen definiert.");
+        pauseInterview=false;
+        isRunning=false;
+        goTo=false;
     }
 
-    // ---------- Getter and Setter ----------
-    public boolean isInterviewPaused() {
-        return pauseInterview;
-    }
-    public void pauseInterview() {
-        this.pauseInterview = true;
-    }
-    public void resumeInterview() {
-        this.pauseInterview = false;
-    }
-
-    private Robot getRobot(String RobotName) {
-        for(Robot CurrentRobot: robots) {
-            String CurrentRobotName = CurrentRobot.getRole().toString();
-            if(RobotName.equals(CurrentRobotName)) {
-                return CurrentRobot;
-            }
+    public void stopInterview(){
+        if(isRunning) {
+            interviewThread.stop();
         }
-        return null;
+        isRunning = false;
     }
 
-    private Answer answershuffler(Block selectedBlock,int QuestionID, String RobotName) {
-        ArrayList<Answer> PossibleAwnsers = new ArrayList<Answer>();
-        for(Answer CurrentAnswer: selectedBlock.getQuestion(QuestionID).answerList)
-        {
-            if(CurrentAnswer.getRole() == RobotName)
-            {
-                PossibleAwnsers.add(CurrentAnswer);
-            }
-        }
-        int RandomeInteger = ThreadLocalRandom.current().nextInt(0, PossibleAwnsers.size());
-        return PossibleAwnsers.get(RandomeInteger);
-    }
-
-    private ArrayList<String> getRobotSpeakAnswerOrder(Question selectedQuestion) {
-        ArrayList<String> Order = new ArrayList<String>();
-        for(Answer CurrentAnswer: selectedQuestion.answerList)
-        {
-            if(!Order.contains(CurrentAnswer.getRole())) {
-                Order.add(CurrentAnswer.getRole());
-            }
-        }
-        return Order;
-    }
-
-    public void setGotoLocation(int GotoBlock, String PhraseType, int Position) {
-        gotoBlock = GotoBlock;
-        gotoPosition = Position;
-        gotoPhraseType = PhraseType;
-        gotoLocation = true;
-    }
-
-    public void startInterview(ArrayList<Robot> _Roboter) throws Exception {
-        if(robots == null)
-        {
-            robots = null;
-            robots = new ArrayList<Robot>();
-            robots.addAll(_Roboter);
-        }
-
-        if(!testAllRolesAreDefined(_Roboter))
-        {
-            throw new Exception("Es wurden nicht für alle Roboter Rollen definiert.");
-        }
-        if(!(interview.getAnzahlTeilnehmer() == robots.size()))
-        {
-            throw new Exception("Es wurden zu viele, oder zu wenige Roboter für das angegebene Interview definiert.");
-        }
-
-        if(threadStarted == false)
-        {
-            System.out.println("Starting up new Interview-Thread");
-            robots = null;
-            robots = new ArrayList<Robot>();
-            robots.addAll(_Roboter);
-
-            currentInterview = null;
-            currentInterview = new Thread(this);
-            currentInterview.start();
-            threadStarted = false;
-        }
-        else
-        {
-            System.out.println("Resume Interview-Thread");
-            pauseInterview = false;
+    public void startInterview(){
+        if(!isRunning) {
+            interviewThread = new Thread(this);
+            isRunning=true;
+            interviewThread.start();
+        } else{
+            pauseInterview=false;
         }
     }
-    private boolean testAllRolesAreDefined(ArrayList<Robot> _Roboter)
-    {
+
+    public void goToQuestion(int qID, int bID){
+        goTo = true;
+        goToBid=bID;
+        gotToQid=qID;
+        stopInterview();
+        startInterview();
+    }
+
+
+    private boolean checkRolesDefined(ArrayList<Robot> robots) {
         // ----- Testen der Rollen der Roboter -----
-        for(Robot CurrentRobot: _Roboter)
-        {
-            if(CurrentRobot.getRole() == "" || CurrentRobot.getRole() == null)
-            {
-                return false;
-            }
+        for(Robot CurrentRobot: robots) {
+            if(CurrentRobot.getRole() == "" || CurrentRobot.getRole() == null) return false;
         }
         return true;
         // ----- Testen der Rollen der Roboter -----
     }
-
-    // ---------- New Thread -----------
-    // Playback Funktionen
-
-    public void stopInterview()
-    {
-        if(threadStarted == true)
-        {
-            currentInterview.interrupt();
-        }
-        threadStarted = false;
-    }
-
-    @Override public void run(){
-        for(Block currentBlock : interview.getBlockList()) {
-            try {
-                if(gotoLocation)
-                {
-                   if(FindPosition(currentBlock))
-                   {
-                       gotoLocation = false;
-                   }
-                }
-                if(!gotoLocation) {
-                    PauseHandler();
-                    DoQuestion(currentBlock);
-                    PauseHandler();
-
-                    ArrayList<String> AnswerOrder = getRobotSpeakAnswerOrder(currentBlock.getQuestion(1));
-                    for (String RobotName : AnswerOrder) {
-                        Answer selectedAnswer = answershuffler(currentBlock, 1, RobotName);
-                        DoAnswer(RobotName, selectedAnswer, currentBlock);      //ToDO: Konstruktor wurde angepasst, testen.
-                        PauseHandler();
-                    }
-                }
-                }
-                catch (Exception ex)
-                {
-                    System.out.println(ex.getMessage());
-                    threadStarted = false;
-                }
-            //Block Counter für Posture
-            counterBlock++;
-        }
-            //Nur für Vorführung implementiert muss später wieder entfernt und über XML umgesetzt werden!
+    private void doQuestion(Question question) {
         try {
-            for (Robot CurrentRobot: robots)
-            CurrentRobot.goToPosture("Sit");
-        } catch (Exception e) {
-            e.printStackTrace();
-            threadStarted = false;
-        }
-        threadStarted = false;
-        System.out.println("Interview-Thread finished");
-    }
-
-    private boolean FindPosition(Block currentBlock) {
-        if(currentBlock.getBid() == gotoBlock) {
-            if(gotoPhraseType == "Question") {
-                if(currentBlock.getQuestion(1).getId() == gotoPosition) {
-                    return true;
-                }
-            }
-            if(gotoPhraseType == "Answer") {
-                for(Answer CurrentAnswer: currentBlock.getQuestion(1).getAnswerList()) {
-                    if(CurrentAnswer.getId() == gotoPosition) {
-                        // ----- Answer -----
-                        DoAnswer(CurrentAnswer.getRole(), CurrentAnswer, currentBlock);
-                        // ----- Answer -----
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-    private void DoQuestion(Block currentBlock)
-    {
-        try {
-            getRobot(currentBlock.getQuestion(1).getRole()).goToPosture(currentBlock.getPosture());
-            getRobot(currentBlock.getQuestion(1).getRole()).setVolume(currentBlock.getQuestion(1).getVolume());
-            getRobot(currentBlock.getQuestion(1).getRole()).setSpeechSpeed(currentBlock.getQuestion(1).getSpeechSpeed());
-            getRobot(currentBlock.getQuestion(1).getRole()).setVoicePitch(currentBlock.getQuestion(1).getVoicePitch());
-            getRobot(currentBlock.getQuestion(1).getRole()).animatedSay(start + currentBlock.getQuestion(1).getGesture() + endTag + currentBlock.getQuestion(1).getPhrase()  + wait + endTag);
+            getRobot(question.getRole()).goToPosture(question.getPosture());
+            getRobot(question.getRole()).setVolume(question.getVolume());
+            getRobot(question.getRole()).setSpeechSpeed(question.getSpeechSpeed());
+            getRobot(question.getRole()).setVoicePitch(question.getVoicePitch());
+            getRobot(question.getRole()).animatedSay(start + question.getGesture() + endTag + question.getPhrase()  + wait + endTag);
         }
         catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
     }
-    private void DoAnswer(String robotName, Answer selectedAnswer, Block currentBlock)
-    {
-    try {
-
-        getRobot(robotName).goToPosture(currentBlock.getPosture()); //ToDo: testen
-        getRobot(robotName).setVolume(selectedAnswer.getVolume());
-        getRobot(robotName).setSpeechSpeed(selectedAnswer.getSpeechSpeed());
-        getRobot(robotName).setVoicePitch(selectedAnswer.getVoicePitch());
-        getRobot(robotName).animatedSay(start + selectedAnswer.getGesture() + endTag + selectedAnswer.getPhrase() + wait + endTag);
+    private void doAnswer(Answer selectedAnswer) {
+        try {
+            getRobot(selectedAnswer.getRole()).goToPosture(selectedAnswer.getPosture());
+            getRobot(selectedAnswer.getRole()).setVolume(selectedAnswer.getVolume());
+            getRobot(selectedAnswer.getRole()).setSpeechSpeed(selectedAnswer.getSpeechSpeed());
+            getRobot(selectedAnswer.getRole()).setVoicePitch(selectedAnswer.getVoicePitch());
+            getRobot(selectedAnswer.getRole()).animatedSay(start + selectedAnswer.getGesture() + endTag + selectedAnswer.getPhrase() + wait + endTag);
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
-    catch (Exception ex) {
-        System.out.println(ex.getMessage());
+    private Robot getRobot(String robotRole) {
+        for(Robot currentRobot: robots) {
+            String role = currentRobot.getRole();
+            if(robotRole.equals(role)) {
+                return currentRobot;
+            }
+        }
+        return null;
     }
-    }
-    private void PauseHandler()
-    {
+    private void pauseHandler() {
         try {
             while(pauseInterview == true) {
                 Thread.sleep(1000);
@@ -253,5 +117,66 @@ public class InterviewPlayer implements Runnable{
         }
 
     }
-    // ---------- New Thread -----------
+
+    @Override
+    public void run() {
+        try {
+            for (Block currentBlock : interview.getBlockList()) {
+                for (Question question : currentBlock.getQuestionList()) {
+                    if (goTo){
+                        if((currentBlock.getBid() == goToBid) && (question.getId() == gotToQid)){
+                            goTo=false;
+                        }
+                    }
+                    if(!goTo) {
+                        pauseHandler();
+                        doQuestion(question);
+                        ArrayList<String> answerOrder = getRobotSpeakAnswerOrder(question);
+                        for (String role : answerOrder) {
+                            ArrayList<Answer> robotAnswers = getRobotAnswers(role, question);
+                            pauseHandler();
+                            doAnswer(answershuffler(robotAnswers));
+                        }
+                    }
+                }
+            }
+        }finally {
+            isRunning = false;
+            for(Robot robot : robots){
+                try {
+                    robot.reset();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
+    private Answer answershuffler(ArrayList<Answer> answerList) {
+        int RandomeInteger = ThreadLocalRandom.current().nextInt(0, answerList.size());
+        return answerList.get(RandomeInteger);
+    }
+    private ArrayList<String> getRobotSpeakAnswerOrder(Question selectedQuestion) {
+        ArrayList<String> order = new ArrayList<String>();
+        for(Answer currentAnswer: selectedQuestion.answerList) {
+            if(!order.contains(currentAnswer.getRole())) {
+                order.add(currentAnswer.getRole());
+            }
+        }
+        return order;
+    }
+    private ArrayList<Answer> getRobotAnswers(String role, Question question){
+        ArrayList<Answer> temp = new ArrayList<>();
+        for(Answer answer : question.getAnswerList()){
+            if(answer.getRole().equals(role)){
+                temp.add(answer);
+            }
+        }
+        return temp;
+    }
+
+    public void pauseInterview(){
+        pauseInterview=true;
+    }
+
 }

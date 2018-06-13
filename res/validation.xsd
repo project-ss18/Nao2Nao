@@ -18,7 +18,6 @@
 			<xsd:element ref="answer" maxOccurs="unbounded"/>
 		</xsd:sequence>
 		<xsd:attribute ref="bid" use="required"/>
-		<xsd:attribute ref="posture"/>
 	</xsd:complexType>
 
 	<xsd:element name="phrase" type="xsd:string"/>
@@ -29,6 +28,7 @@
 			<xsd:element ref="phrase"/>
 		</xsd:sequence>
 		<xsd:attribute ref="qid" use="required"/>
+		<xsd:attribute ref="posture" use="required"/>
 		<xsd:attribute ref="gesture" use="required"/>
 		<xsd:attribute ref="role" use="required"/>
 		<xsd:attribute ref="volume"/>
@@ -41,6 +41,7 @@
 			<xsd:element ref="phrase"/>
 		</xsd:sequence>
 		<xsd:attribute ref="aid" use="required"/>
+		<xsd:attribute ref="posture" use="required"/>
 		<xsd:attribute ref="gesture" use="required"/>
 		<xsd:attribute ref="role" use="required"/>
 		<xsd:attribute ref="volume"/>

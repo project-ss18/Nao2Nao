@@ -5,6 +5,7 @@ public abstract class Action {
     protected int id;
     protected String role;
     protected String phrase;
+    protected String posture;
     protected String gesture;
     protected Block block;
     protected int volume;
@@ -15,4 +16,8 @@ public abstract class Action {
         return block;
     }
 
+
+    public String getPosture() {
+        return posture;
+    }
 }

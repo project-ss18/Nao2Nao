@@ -4,32 +4,32 @@
 
 	<description>interview</description>
 
-	<block bid ="1" posture="Stand">
-		<question qid = "1" gesture="BodyTalk_1" role="Rolle1" volume="90" SpeechSpeed="100" VoicePitch="3">
+	<block bid ="1">
+		<question qid = "1"  posture="Stand" gesture="BodyTalk_1" role="Rolle1" volume="90" SpeechSpeed="100" VoicePitch="0">
 			<phrase>Wie geht es dir</phrase>
 		</question>
-		<answer aid = "1" gesture="Excited_2" role="Rolle2" >
+		<answer aid = "1"  posture="Stand" gesture="Excited_2" role="Rolle2" >
 			<phrase>Mir geht es gut</phrase>
 		</answer>
-		<answer aid = "2" gesture="Excited_1" role="Rolle2">
+		<answer aid = "2"  posture="Stand" gesture="Excited_1" role="Rolle2">
 			<phrase>Mir geht es schlecht</phrase>
 		</answer>
 	</block>
 
 	<block bid = "2">
-		<question qid = "1" gesture="BodyTalk_1" role="Rolle1">
+		<question qid = "1"  posture="Stand" gesture="BodyTalk_1" role="Rolle1">
 			<phrase>Wie heißt du</phrase>
 		</question>
-		<answer aid = "1" gesture="Excited_1" role="Rolle2">
+		<answer aid = "1"  posture="Stand" gesture="Excited_1" role="Rolle2">
 			<phrase>Ich heiße NAO</phrase>
 		</answer>
 	</block>
 
-	<block bid = "3" posture = "Sit">
-		<question qid = "1" gesture="BodyTalk_1" role="Rolle1" volume="70" SpeechSpeed="100" VoicePitch="0">
+	<block bid = "3">
+		<question qid = "1"  posture="Sit" gesture="BodyTalk_1" role="Rolle1" volume="70" SpeechSpeed="100" VoicePitch="0">
 			<phrase>War das schon das ganze Interview</phrase>
 		</question>
-		<answer aid = "1" gesture="Excited_1" role="Rolle2">
+		<answer aid = "1"  posture="Stand" gesture="Excited_1" role="Rolle2">
 			<phrase>Ja das war eine kleine Kostprobe, es wird noch viel kommen</phrase>
 		</answer>
 	</block>

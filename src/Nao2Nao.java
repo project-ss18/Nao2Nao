@@ -22,29 +22,34 @@ public class Nao2Nao {
 
         //--------------------------Selektiertes Interview eingliedern--------------------------\\
         System.out.print("Bitte Interview-Namen angeben:");
-        String InterviewName = s.next();
 
-        interview = InterviewLoader.initializeInterview("./res/" + InterviewName);
+
+        interview = InterviewLoader.initializeInterview("./res/interview.xml");
         if(interview == null){
             System.out.println("Interview ist null: CheckSyntax.fail");
             return ;
         }
-        currentInterviewPlayer = new InterviewPlayer(interview);
 
         ArrayList<Robot> teilnehmendeRoboter = new ArrayList<Robot>();
         //--------------------------Roboter 1 erstellen--------------------------\\
         System.out.print("IP-Adresse für Roboter 1: ");
-        String ipRobot1 = s.next();
-        teilnehmendeRoboter.add(new Robot(ipRobot1,"Rolle1"));
+
+        teilnehmendeRoboter.add(new Robot("141.28.75.162","Rolle1"));
 
         //--------------------------Roboter 2 erstellen--------------------------\\
         System.out.print("IP-Adresse für Roboter 2: ");
-        String ipRobot2 = s.next();
-        teilnehmendeRoboter.add(new Robot(ipRobot2, "Rolle2"));
+
+        teilnehmendeRoboter.add(new Robot("141.28.75.148", "Rolle2"));
+        teilnehmendeRoboter.get(0).setRole("Rolle1");
+        teilnehmendeRoboter.get(1).setRole("Rolle2");
+        Thread.sleep(2000);
+        currentInterviewPlayer = new InterviewPlayer(interview,teilnehmendeRoboter);
+
+
 
         //--------------------------Interview ablaufen lassen--------------------------\\
         System.out.print("Drücken Sie eine Taste um das Interview zu starten.");
-        currentInterviewPlayer.startInterview(teilnehmendeRoboter);
+        currentInterviewPlayer.startInterview();
 
     }
 }

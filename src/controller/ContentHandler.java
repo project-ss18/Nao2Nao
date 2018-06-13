@@ -41,22 +41,17 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
         }
         if (localName.equals("block")) {
             blockCounter++;
-            try {
-                blockList.add(new Block(Integer.parseInt(atts.getValue("bid")), atts.getValue("posture"), interview));
-            }catch (java.lang.NumberFormatException e3){
-                //Exception falls keine posture in einem Block der XML definiert wurde.
-                blockList.add(new Block(Integer.parseInt(atts.getValue("bid")), "Stand", interview));
-            }
+            blockList.add(new Block(Integer.parseInt(atts.getValue("bid")),  interview));
         }
 
         if (localName.equals("question")) {
             type = false;
             questCounter++;
             try {
-                questionList.add(new Question(Integer.parseInt(atts.getValue("qid")), blockList.get(blockCounter - 1),atts.getValue("gesture"),atts.getValue("role"), Integer.parseInt(atts.getValue("volume")), Integer.parseInt(atts.getValue("SpeechSpeed")), Float.parseFloat(atts.getValue("VoicePitch"))));
+                questionList.add(new Question(Integer.parseInt(atts.getValue("qid")), blockList.get(blockCounter - 1),atts.getValue("posture"),atts.getValue("gesture"),atts.getValue("role"), Integer.parseInt(atts.getValue("volume")), Integer.parseInt(atts.getValue("SpeechSpeed")), Float.parseFloat(atts.getValue("VoicePitch"))));
             } catch (java.lang.NumberFormatException e1) {
                 //Exception falls volume, speechSpeed und voicePitch in einer Frage nicht definiert wurden.
-                questionList.add(new Question(Integer.parseInt(atts.getValue("qid")), blockList.get(blockCounter - 1),atts.getValue("gesture"),atts.getValue("role"), 70, 100, 0));
+                questionList.add(new Question(Integer.parseInt(atts.getValue("qid")), blockList.get(blockCounter - 1),atts.getValue("posture"),atts.getValue("gesture"),atts.getValue("role"), 70, 100, 0));
             }
             String currentQuestionRole = atts.getValue("role");
             if (!interview.allRoles.contains(currentQuestionRole) && currentQuestionRole != null){
@@ -68,10 +63,10 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
             type = true;
             answerCounter++;
             try {
-                answerList.add(new Answer(Integer.parseInt(atts.getValue("aid")), questionList.get(questCounter - 1),atts.getValue("gesture"),atts.getValue("role") , Integer.parseInt(atts.getValue("volume")), Integer.parseInt(atts.getValue("SpeechSpeed")), Float.parseFloat(atts.getValue("VoicePitch"))));
+                answerList.add(new Answer(Integer.parseInt(atts.getValue("aid")), questionList.get(questCounter - 1),atts.getValue("posture"),atts.getValue("gesture"),atts.getValue("role") , Integer.parseInt(atts.getValue("volume")), Integer.parseInt(atts.getValue("SpeechSpeed")), Float.parseFloat(atts.getValue("VoicePitch"))));
             } catch (java.lang.NumberFormatException e2) {
                 //Exception falls volume, speechSpeed und voicePitch in einer Antwort nicht definiert wurden.
-                answerList.add(new Answer(Integer.parseInt(atts.getValue("aid")), questionList.get(questCounter - 1),atts.getValue("gesture"),atts.getValue("role"), 70, 100, 0));
+                answerList.add(new Answer(Integer.parseInt(atts.getValue("aid")), questionList.get(questCounter - 1),atts.getValue("posture"),atts.getValue("gesture"),atts.getValue("role"), 70, 100, 0));
             }
         }
         String currentAnswerRole = atts.getValue("role");
