@@ -22,6 +22,7 @@ public class Interview {
     }
 
     //------------------------Attribute------------------------\\
+    private File file;
     private String fileName;
     private int id;
     private String description;
@@ -45,7 +46,7 @@ public class Interview {
                 questCounter++;
             }
         }
-        return new String[]{this.getDescription(), Integer.toString(questCounter), String.valueOf(this.getAnzahlTeilnehmer())};
+        return new String[]{this.file.getName(), Integer.toString(questCounter), String.valueOf(this.getAnzahlTeilnehmer())};
     }
     public void addBlock(Block v) {
         blockList.add(v);
@@ -54,11 +55,12 @@ public class Interview {
     //----------------------Getter//Setter----------------------\\
 
     public String getFileName() {
-        return fileName;
+        return file.getName();
     }
 
     public void setFileName(String fileName) {
         this.fileName = fileName;
+        this.file = new File(fileName);
     }
 
     public ArrayList<Block> getBlockList() {
@@ -110,4 +112,6 @@ public class Interview {
     public void setAllRoles(ArrayList<String> allRoles) {
         this.allRoles = allRoles;
     }
+
+
 }
