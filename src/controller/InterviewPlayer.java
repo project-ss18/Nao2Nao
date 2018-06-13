@@ -50,7 +50,7 @@ public class InterviewPlayer implements Runnable{
 
     private Robot getRobot(String RobotName) {
         for(Robot CurrentRobot: robots) {
-            String CurrentRobotName = CurrentRobot.getName().toString();
+            String CurrentRobotName = CurrentRobot.getRole().toString();
             if(RobotName.equals(CurrentRobotName)) {
                 return CurrentRobot;
             }
@@ -116,7 +116,7 @@ public class InterviewPlayer implements Runnable{
             currentInterview = null;
             currentInterview = new Thread(this);
             currentInterview.start();
-            threadStarted = true;
+            threadStarted = false;
         }
         else
         {
@@ -129,7 +129,7 @@ public class InterviewPlayer implements Runnable{
         // ----- Testen der Rollen der Roboter -----
         for(Robot CurrentRobot: _Roboter)
         {
-            if(CurrentRobot.getName() == "" || CurrentRobot.getName() == null)
+            if(CurrentRobot.getRole() == "" || CurrentRobot.getRole() == null)
             {
                 return false;
             }
@@ -143,7 +143,10 @@ public class InterviewPlayer implements Runnable{
 
     public void stopInterview()
     {
-        currentInterview.interrupt();
+        if(threadStarted == true)
+        {
+            currentInterview.interrupt();
+        }
         threadStarted = false;
     }
 
@@ -200,6 +203,9 @@ public class InterviewPlayer implements Runnable{
             if(gotoPhraseType == "Answer") {
                 for(Answer CurrentAnswer: currentBlock.getQuestion(1).getAnswerList()) {
                     if(CurrentAnswer.getId() == gotoPosition) {
+                        // ----- Answer -----
+                        DoAnswer(CurrentAnswer.getRole(), CurrentAnswer, currentBlock);
+                        // ----- Answer -----
                         return true;
                     }
                 }

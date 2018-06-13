@@ -8,6 +8,7 @@ public class Answer extends Action {
     public Answer(int id, Question q, String gesture, String role, int volume, int speechSpeed, float voicePitch){
         this.id = id;
         question = q;
+        block=question.getBlock();
         this.gesture = gesture;
         this.role = role;
         this.volume = volume;
