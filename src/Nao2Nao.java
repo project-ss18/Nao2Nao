@@ -43,7 +43,7 @@ public class Nao2Nao {
         teilnehmendeRoboter.get(0).setRole("Rolle1");
         teilnehmendeRoboter.get(1).setRole("Rolle2");
         Thread.sleep(2000);
-        currentInterviewPlayer = new InterviewPlayer(interview,teilnehmendeRoboter);
+        //currentInterviewPlayer = new InterviewPlayer(interview,teilnehmendeRoboter);
 
 
 

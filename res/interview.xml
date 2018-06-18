@@ -6,31 +6,51 @@
 
 	<block bid ="1">
 		<question qid = "1"  posture="Stand" gesture="BodyTalk_1" role="Rolle1" volume="90" SpeechSpeed="100" VoicePitch="0">
-			<phrase>Wie geht es dir</phrase>
+			<phrase>Wie wird das Wetter heute</phrase>
 		</question>
 		<answer aid = "1"  posture="Stand" gesture="Excited_2" role="Rolle2" >
-			<phrase>Mir geht es gut</phrase>
+			<phrase>Heute wird es Wolkig</phrase>
 		</answer>
 		<answer aid = "2"  posture="Stand" gesture="Excited_1" role="Rolle2">
-			<phrase>Mir geht es schlecht</phrase>
+			<phrase>Heute wird es Sonnnig</phrase>
 		</answer>
 	</block>
 
 	<block bid = "2">
 		<question qid = "1"  posture="Stand" gesture="BodyTalk_1" role="Rolle1">
-			<phrase>Wie heißt du</phrase>
+			<phrase>Was soll laut Vorhersagen, die höchste Gradzahl sein</phrase>
 		</question>
 		<answer aid = "1"  posture="Stand" gesture="Excited_1" role="Rolle2">
-			<phrase>Ich heiße NAO</phrase>
+			<phrase>Ich weis es leider nicht</phrase>
+		</answer>
+		<answer aid = "2"  posture="Stand" gesture="Excited_1" role="Rolle2">
+			<phrase>Es soll bis zu 30 Grad Celsius werden</phrase>
+		</answer>
+		<answer aid = "3"  posture="Stand" gesture="Excited_1" role="Rolle2">
+			<phrase>Es soll bis zu 20 Grad Celsius werden</phrase>
 		</answer>
 	</block>
 
 	<block bid = "3">
 		<question qid = "1"  posture="Sit" gesture="BodyTalk_1" role="Rolle1" volume="70" SpeechSpeed="100" VoicePitch="0">
-			<phrase>War das schon das ganze Interview</phrase>
+			<phrase>Gehst du heute hirfür ins Schwimmbad </phrase>
 		</question>
 		<answer aid = "1"  posture="Stand" gesture="Excited_1" role="Rolle2">
-			<phrase>Ja das war eine kleine Kostprobe, es wird noch viel kommen</phrase>
+			<phrase>Ja, ich gehe sehr gerne ins Schwimmbad</phrase>
+		</answer>
+		<answer aid = "2"  posture="Stand" gesture="Excited_1" role="Rolle2">
+			<phrase>Nein, ich gehe nicht gerne ins Schwimmbad</phrase>
+		</answer>
+	</block>
+	<block bid = "4">
+		<question qid = "1"  posture="Sit" gesture="BodyTalk_1" role="Rolle1" volume="70" SpeechSpeed="100" VoicePitch="0">
+			<phrase>Gehst du heute hirfür ins Schwimmbad </phrase>
+		</question>
+		<answer aid = "1"  posture="Stand" gesture="Excited_1" role="Rolle2">
+			<phrase>Ja, ich gehe sehr gerne ins Schwimmbad</phrase>
+		</answer>
+		<answer aid = "2"  posture="Stand" gesture="Excited_1" role="Rolle2">
+			<phrase>Nein, ich gehe nicht gerne ins Schwimmbad</phrase>
 		</answer>
 	</block>
 </interview>

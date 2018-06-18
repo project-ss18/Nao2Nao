@@ -13,6 +13,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class InterviewPlayer implements Runnable {
 
     private Interview interview;
+    private view.InterviewPlayer interviewPlayer;
     private List<Robot> robots;
 
     private Thread interviewThread;
@@ -29,8 +30,10 @@ public class InterviewPlayer implements Runnable {
     private String wait = "^wait(animations/Stand/Gestures/";
 
     //------Konstruktor------\\
-    public InterviewPlayer(Interview interview, ArrayList<Robot> robots) throws Exception {
+    public InterviewPlayer(Interview interview, ArrayList<Robot> robots,view.InterviewPlayer interviewPlayer) throws Exception {
         this.interview = interview;
+        this.interviewPlayer = interviewPlayer;
+        interviewPlayer.initProgressBar(interview.getBlockList().size());
         this.robots = robots;
         if(!(interview.getAnzahlTeilnehmer() == robots.size())) throw new Exception("Es wurden zu viele, oder zu wenige Roboter für das angegebene Interview definiert.");
         if(!checkRolesDefined(robots)) throw new Exception("Es wurden nicht für alle Roboter Rollen definiert.");
@@ -121,8 +124,10 @@ public class InterviewPlayer implements Runnable {
     @Override
     public void run() {
         try {
+            int i = 1;
             for (Block currentBlock : interview.getBlockList()) {
                 for (Question question : currentBlock.getQuestionList()) {
+                    interviewPlayer.setProgressBar(i);
                     if (goTo){
                         if((currentBlock.getBid() == goToBid) && (question.getId() == gotToQid)){
                             goTo=false;
@@ -139,6 +144,7 @@ public class InterviewPlayer implements Runnable {
                         }
                     }
                 }
+                i++;
             }
         }finally {
             isRunning = false;
