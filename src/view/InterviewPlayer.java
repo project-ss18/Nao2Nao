@@ -37,7 +37,7 @@ public class InterviewPlayer {
         previewJTextPane.setEditable(false);
         previewJTextPane.setText("");
         frame.setContentPane(panel);
-        frame.setPreferredSize(new Dimension(600, 350));
+        frame.setPreferredSize(new Dimension(750, 350));
         progressBar.getModel().setMinimum(0);
 
         try {
@@ -67,7 +67,17 @@ public class InterviewPlayer {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.setVisible(false);
-                new Menu();
+                try {
+                    new Menu();
+                } catch (ClassNotFoundException e1) {
+                    e1.printStackTrace();
+                } catch (UnsupportedLookAndFeelException e1) {
+                    e1.printStackTrace();
+                } catch (InstantiationException e1) {
+                    e1.printStackTrace();
+                } catch (IllegalAccessException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
         playButton.addActionListener(new ActionListener() {

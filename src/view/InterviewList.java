@@ -37,14 +37,14 @@ public class InterviewList {
     private File target;
     //File source = new File("C:/Users/Manu/Desktop/manu.xml");
 
-    private String[] columnNames = new String[]{"Dateiname", "Anzahl Fragen", "Anzahl Roboter"};
+    private String[] columnNames = new String[]{"Dateiname", "Beschreibung", "Anzahl Fragen", "Anzahl Roboter"};
     private String[][] rowData;
 
 
     public InterviewList(JFrame frame) {
         refreshList();
         frame.setContentPane(panel);
-        frame.setPreferredSize(new Dimension(500, 300));
+        frame.setPreferredSize(new Dimension(750, 350));
         frame.pack();
         frame.repaint();
         frame.setResizable(false);
@@ -64,7 +64,17 @@ public class InterviewList {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.setVisible(false);
-                new Menu();
+                try {
+                    new Menu();
+                } catch (ClassNotFoundException e1) {
+                    e1.printStackTrace();
+                } catch (UnsupportedLookAndFeelException e1) {
+                    e1.printStackTrace();
+                } catch (InstantiationException e1) {
+                    e1.printStackTrace();
+                } catch (IllegalAccessException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
 
@@ -97,27 +107,6 @@ public class InterviewList {
         interviewEntfernenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                /*try {
-                    int selectedRow = interviewTable.getSelectedRow();
-                    String tempDescription = (String) interviewTable.getValueAt(selectedRow, 1);
-                    for (Interview i : interviewList) {
-                        if (tempDescription.equals(String.valueOf(i.getDescription()))) {
-                            interviewList.remove(i);
-                            //String tempFileName = i.getFileName();
-                            File file = new File(i.getFileName());
-                            if (file.exists()) {
-                                file.delete();
-                            } else {
-                                System.err.println("I cannot find '" + file + "' ('" + file.getAbsolutePath() + "')");
-                            }
-                            refreshList();
-                            return;
-                        }
-                    }
-                } catch (Exception ex) {
-                    System.out.println(ex + "\n InterviewList@interviewEntfernenButton.actionPerformed");
-                    JOptionPane.showMessageDialog(null, "Fehler: Kein Interview ausgewählt!", "Fehler", JOptionPane.ERROR_MESSAGE);
-                }*/
                 try {
                     int selectedRow = interviewTable.getSelectedRow();
                     String tempFileName = (String) interviewTable.getValueAt(selectedRow, 0);
@@ -155,8 +144,6 @@ public class InterviewList {
                         } else {
                             JOptionPane.showMessageDialog(null, "Es müssen " + v.getAnzahlTeilnehmer() + " Roboter registriert sein für dieses Interview!", "Fehler", JOptionPane.ERROR_MESSAGE);
                         }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Kein Interview mit dem Dateinamen " + v.getFileName() + " vorhanden!", "Fehler", JOptionPane.ERROR_MESSAGE);
                     }
                 }
 

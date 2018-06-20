@@ -2,7 +2,7 @@
 
 <interview anzahlTeilnehmer = "2">
 
-	<description>interview</description>
+	<description>interviewWetter</description>
 
 	<block bid ="1">
 		<question qid = "1"  posture="Stand" gesture="BodyTalk_1" role="Rolle1" volume="90" SpeechSpeed="100" VoicePitch="0">

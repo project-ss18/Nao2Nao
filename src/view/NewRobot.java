@@ -32,7 +32,6 @@ public class NewRobot extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
                 robotlist.addRobot(textFieldRobotName.getText(), textFieldIP.getText());
-
             }
         });
         textFieldIP.addKeyListener(new KeyAdapter() {

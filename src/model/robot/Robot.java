@@ -17,7 +17,6 @@ public class Robot {
     private String role;
 
     private Connection CONNECTION;
-    private final String PORT = "9559";
 
     public Robot(String address, String name) throws Exception {
        id_Counter++;
@@ -99,11 +98,33 @@ public class Robot {
         return ( this.getName());
     }
 
+    public void reset(Robot r){
+        Thread temp = new Thread(new ResetRunnable(r));
+        temp.start();
+    }
+
     public void reset() throws Exception {
         CONNECTION.setSpeechSpeed(100);
         CONNECTION.setVoicePitch(0);
         CONNECTION.setVolume(70);
         CONNECTION.posture("SitRelax");
+    }
+
+    private class ResetRunnable implements Runnable{
+
+        Robot robot;
+
+        ResetRunnable(Robot robot){
+            this.robot=robot;
+        }
+        @Override
+        public void run() {
+            try {
+                robot.reset();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }

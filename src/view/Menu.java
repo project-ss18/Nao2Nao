@@ -13,15 +13,14 @@ public class Menu {
     private JPanel panel;
     private JButton roboterlisteButton;
     private JButton interviewlisteButton;
-    private JButton interviewPlayerButton;
     private JButton hilfeButton;
     private JButton schliessenButton;
     private Dimension frameDimension;
 
 
-    public Menu() {
-        //__Look_AND_Feel
-        //UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+    public Menu() throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
+
+        frame = new JFrame("Nao2Nao");
 
         roboterlisteButton.addActionListener(new ActionListener() {
             @Override
@@ -37,18 +36,8 @@ public class Menu {
                 new InterviewList(frame);
             }
         });
-        interviewPlayerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // frame.setVisible(false);
 
-                new InterviewSelection(frame);
-            }
-        });
-
-        frame = new JFrame("Nao2Nao");
-
-        frameDimension = new Dimension(250, 400);
+        frameDimension = new Dimension(250, 300);
         frame.setPreferredSize(frameDimension);
         frame.setSize(frameDimension);
 
@@ -67,6 +56,7 @@ public class Menu {
         frame.repaint();
         frame.pack();
         frame.setVisible(true);
+        //__Look_AND_Feel
         hilfeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -82,7 +72,6 @@ public class Menu {
     }
 
     private void centerFrame() {
-
         Dimension windowSize = this.frame.getSize();
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         Point centerPoint = ge.getCenterPoint();
@@ -115,53 +104,63 @@ public class Menu {
         roboterlisteButton.setText("Roboterliste");
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
-        gbc.gridx = 0;
+        gbc.gridx = 1;
         gbc.gridy = 0;
+        gbc.gridwidth = 3;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panel.add(roboterlisteButton, gbc);
-        interviewlisteButton = new JButton();
-        interviewlisteButton.setMaximumSize(new Dimension(105, 35));
-        interviewlisteButton.setPreferredSize(new Dimension(105, 35));
-        interviewlisteButton.setText("Interviewliste");
-        gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        panel.add(interviewlisteButton, gbc);
-        interviewPlayerButton = new JButton();
-        interviewPlayerButton.setPreferredSize(new Dimension(116, 35));
-        interviewPlayerButton.setText("InterviewPlayer");
-        gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        panel.add(interviewPlayerButton, gbc);
         hilfeButton = new JButton();
         hilfeButton.setPreferredSize(new Dimension(115, 35));
         hilfeButton.setText("Hilfe");
         gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridx = 1;
+        gbc.gridy = 2;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panel.add(hilfeButton, gbc);
         schliessenButton = new JButton();
         schliessenButton.setPreferredSize(new Dimension(61, 35));
-        schliessenButton.setText("Schließen");
+        schliessenButton.setText("Exit");
         gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridx = 3;
+        gbc.gridy = 2;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panel.add(schliessenButton, gbc);
+        interviewlisteButton = new JButton();
+        interviewlisteButton.setMaximumSize(new Dimension(105, 35));
+        interviewlisteButton.setPreferredSize(new Dimension(105, 35));
+        interviewlisteButton.setText("Interview einleiten");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.gridwidth = 3;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel.add(interviewlisteButton, gbc);
+        final JPanel spacer1 = new JPanel();
+        gbc = new GridBagConstraints();
+        gbc.gridx = 2;
+        gbc.gridy = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel.add(spacer1, gbc);
+        final JPanel spacer2 = new JPanel();
+        gbc = new GridBagConstraints();
+        gbc.gridx = 4;
+        gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel.add(spacer2, gbc);
+        final JPanel spacer3 = new JPanel();
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel.add(spacer3, gbc);
     }
 
     /**

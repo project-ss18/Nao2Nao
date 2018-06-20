@@ -150,7 +150,7 @@ public class InterviewPlayer implements Runnable {
             isRunning = false;
             for(Robot robot : robots){
                 try {
-                    robot.reset();
+                    robot.reset(robot);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

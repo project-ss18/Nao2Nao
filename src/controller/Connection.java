@@ -19,7 +19,8 @@ public class Connection{
     private static boolean b = false;
 
     public Connection(String IP_ADRESS, String[] args) throws Exception{
-            if(!b) {
+
+        if(!b) {
                 app = new Application(args);
                 b = true;
             }

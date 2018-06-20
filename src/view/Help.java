@@ -18,6 +18,10 @@ public class Help extends JFrame {
         Border border = panel.getBorder();
         Border margin = new LineBorder(Color.white, 6);
         panel.setBorder(new CompoundBorder(border, margin));
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        int dx = (ge.getCenterPoint().x - getSize().width / 2);
+        int dy = (ge.getCenterPoint().y - getSize().height / 2);
+        setLocation(dx, dy);
         pack();
         repaint();
         setVisible(true);
