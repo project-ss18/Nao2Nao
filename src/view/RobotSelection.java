@@ -21,7 +21,6 @@ public class RobotSelection extends JDialog {
 
 
     public RobotSelection(JFrame mainFrame, Interview interview) {
-        setPreferredSize(new Dimension(150, 150));
         setResizable(false);
 
         //Mittige Ausrichtugn
@@ -32,6 +31,7 @@ public class RobotSelection extends JDialog {
 
         comboxes = new JComboBox[interview.getAnzahlTeilnehmer()];
         lables = new JLabel[interview.getAnzahlTeilnehmer()];
+        setPreferredSize(new Dimension(150, interview.getAnzahlTeilnehmer() * 75));
 
         int i = 0;
         for (String role : interview.getAllRoles()) {

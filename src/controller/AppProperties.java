@@ -1,4 +1,4 @@
-package model;
+package controller;
 
 import javax.swing.*;
 import java.io.FileInputStream;
@@ -12,23 +12,23 @@ public class AppProperties {
     private static String propertiesFileName = "config.properties";
     private static java.util.Properties prop = new java.util.Properties();
 
-    public String getInterviewDirectory()
+    public static String getInterviewDirectory()
     {
         return getPropertieValue("InterviewDirectory");
     }
-    public String getInterviewValidationFile()
+    public static String getInterviewValidationFile()
     {
         return getPropertieValue("InterviewValidationFile");
     }
-    public String getRobotActionPath()
+    public static String getRobotActionPath()
     {
         return getPropertieValue("RobotActionPath");
     }
-    public String getRobotTCPPort()
+    public static String getRobotTCPPort()
     {
         return getPropertieValue("RobotTCPPort");
     }
-    public ArrayList<String> getPreSettedIPs()
+    public static ArrayList<String> getPreSettedIPs()
     {
         try {
             String allIPs = getPropertieValue("PreSettedIPs");
@@ -36,13 +36,13 @@ public class AppProperties {
         }
         catch (Exception ex)
         {
-            JOptionPane.showMessageDialog(null, "Information: Es konnten keine vordefinierten IP-Adressen geladen werden. Fehler in der Configuration Attribut 'PreSettedIPs'. Trennung mehrerer IP Adressen mit einem ';'.", "Information", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Es konnten keine vordefinierten IP-Adressen geladen werden. Fehler in der Configuration Attribut 'PreSettedIPs'. Trennung mehrerer IP Adressen mit einem ';'.", "Information", JOptionPane.INFORMATION_MESSAGE);
             return new ArrayList<String>();
         }
     }
 
 
-    private String getPropertieValue(String PropertyName)
+    private static String getPropertieValue(String PropertyName)
     {
         try
         {

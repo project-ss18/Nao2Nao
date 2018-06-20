@@ -9,20 +9,20 @@
 <!--Falls eines der Attribute Lautstärke, Sprachgeschwindigkeit oder Tonhöhe definiert werden soll, müssen alle drei definiert werden!-->
 <!--Volume[50-100], Speed[100-400], Pitch[0-4]-->
 
-<interview anzahlTeilnehmer = "2">
-	<description>Interviewbeschreibung</description>
+<interview anzahlTeilnehmer = "3">
+	<description>Politisches Interview</description>
 	
 	<block bid ="1">
 		<question qid = "1" posture="Stand" gesture="BodyTalk_1" role="WOLFGANG BRAUN" volume="80" SpeechSpeed="120" VoicePitch="1">
 			<phrase>Einen schönen guten Tag meine Damen und Herren. Die großen Drei um Drei. Ich darf Sie zu unserer Konfrontation der Kanzlerkandidaten hier im Linzer Design Center im Namen der Bundesländer-Zeitungen, der Vorarlberger Nachrichten, der Tiroler Tageszeitung, der Salzburger Nachrichten, der Kleinen Zeitung, der Oberösterreichischen Nachrichten und der Presse recht herzlich willkommen heißen.</phrase>
 		</question>
-		<answer aid = "1" posture="Stand" gesture="Excited_2" role="CLAUDIA GIGLER " >
+		<answer aid = "1" posture="Stand" gesture="Excited_2" role="CLAUDIA GIGLER" >
 			<phrase>Meine Damen und Herren. Österreich wählt. In ein einem Monat ist es soweit. Am 15. Oktober wird gewählt. Und selten noch war es so spannend, wie bei dieser Wahl. Drei Kandidaten stellen einen Kanzleranspruch. Drei Kandidaten möchten Erster werden. Und es ist uns gelungen zum ersten und einzigen Mal in diesem Wahlkampf alle drei in einem Saal auf eine Bühne zu bringen. Herzlich Willkommen.</phrase>
 		</answer>
 	</block>
 
 	<block bid = "2">
-		<question qid = "1" posture="Stand" gesture="BodyTalk_1" role="WOLFGANG BRAUN ">
+		<question qid = "1" posture="Stand" gesture="BodyTalk_1" role="WOLFGANG BRAUN">
 			<phrase>Ich bin Nr. 1</phrase>
 		</question>
 		<answer aid = "1" posture="Stand" gesture="Excited_1" role="CLAUDIA GIGLER">

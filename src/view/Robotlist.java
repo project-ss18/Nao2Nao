@@ -6,6 +6,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
+import controller.AppProperties;
 import model.robot.Robot;
 
 
@@ -17,7 +19,7 @@ public class Robotlist {
     private JButton löschenButton;
     private JButton zurückButton;
     private JButton pingButton;
-
+    private JButton insertPresetted;
 
 
     private String[] columnNames = new String[]{"ID", "Robotername", "IP-Adresse"};
@@ -90,7 +92,20 @@ public class Robotlist {
                     }
                 } catch (Exception ex) {
                     System.out.println(ex + "\n RobotList@löschenButton.actionPerformed");
-                    JOptionPane.showMessageDialog(null, "Fehler: Kein Roboter ausgewählt!", "Fehler", JOptionPane.OK_CANCEL_OPTION);
+                    JOptionPane.showMessageDialog(null, "Kein Roboter ausgewählt!", "Fehler", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        insertPresetted.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<String> ipList = AppProperties.getPreSettedIPs();
+                if (ipList.size() != 0) {
+                    for (String s : ipList) {
+                        addRobot("HFU_" + ipList.indexOf(s), s);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Keine vordefinierten IPs vorhanden!", "Fehler", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -113,15 +128,14 @@ public class Robotlist {
     }
 
     public void addRobot(String name, String IP) {
+        Robot robot;
         try {
-            Robot.getRobotList().add(new Robot(IP, name));
+            robot = new Robot(IP, name);
         } catch (Exception e) {
-            System.out.println(e.getStackTrace());
-            for (Robot r : Robot.getRobotList()) {
-                if (r.getName().equals(name)) Robot.getRobotList().remove(r);
-            }
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Fehler", JOptionPane.OK_CANCEL_OPTION);
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Fehler", JOptionPane.ERROR_MESSAGE);
+            return;
         }
+        Robot.getRobotList().add(robot);
         refreshList();
     }
 
@@ -142,14 +156,14 @@ public class Robotlist {
      */
     private void $$$setupUI$$$() {
         panel = new JPanel();
-        panel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(6, 2, new Insets(0, 0, 0, 0), -1, -1));
+        panel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(7, 2, new Insets(0, 0, 0, 0), -1, -1));
         buttonNewRobot = new JButton();
         buttonNewRobot.setText("Neuer Roboter");
         panel.add(buttonNewRobot, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer1 = new com.intellij.uiDesigner.core.Spacer();
         panel.add(spacer1, new com.intellij.uiDesigner.core.GridConstraints(3, 1, 2, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         robotTableScrollPane = new JScrollPane();
-        panel.add(robotTableScrollPane, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 6, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 1, false));
+        panel.add(robotTableScrollPane, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 7, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 1, false));
         robotTableScrollPane.setBorder(BorderFactory.createTitledBorder("Angemeldete Roboter"));
         robotTable = new JTable();
         robotTableScrollPane.setViewportView(robotTable);
@@ -158,10 +172,13 @@ public class Robotlist {
         panel.add(löschenButton, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         zurückButton = new JButton();
         zurückButton.setText("Zurück");
-        panel.add(zurückButton, new com.intellij.uiDesigner.core.GridConstraints(5, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel.add(zurückButton, new com.intellij.uiDesigner.core.GridConstraints(6, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         pingButton = new JButton();
         pingButton.setText("Ping");
         panel.add(pingButton, new com.intellij.uiDesigner.core.GridConstraints(2, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        insertPresetted = new JButton();
+        insertPresetted.setText("<html>\nVordefinier-\n<br>\nte Roboter\n<br>\nImportieren\n</html>");
+        panel.add(insertPresetted, new com.intellij.uiDesigner.core.GridConstraints(5, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

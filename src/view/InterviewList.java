@@ -2,9 +2,12 @@ package view;
 
 import controller.InterviewLoader;
 import model.interview.Interview;
+import model.robot.Robot;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -80,7 +83,7 @@ public class InterviewList {
                     try {
                         copyFileUsingChannel(openFileChooser.getSelectedFile(), target);
                         refreshList();
-                        messageLabel.setText("XML file successfully loaded!");
+                        messageLabel.setText("Successfully loaded!");
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
@@ -135,7 +138,7 @@ public class InterviewList {
                     }
                 } catch (Exception ex) {
                     System.out.println(ex + "\n InterviewList@interviewEntfernenButton.actionPerformed");
-                    JOptionPane.showMessageDialog(null, "Fehler: Kein Interview ausgewählt!", "Fehler", JOptionPane.OK_CANCEL_OPTION);
+                    JOptionPane.showMessageDialog(null, "Fehler: Kein Interview ausgewählt!", "Fehler", JOptionPane.ERROR_MESSAGE);
                 }
             }
 
@@ -143,12 +146,17 @@ public class InterviewList {
         interviewAbspielenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.setVisible(false);
                 int selectedRow = interviewTable.getSelectedRow();
-                String tempDescription = (String) interviewTable.getValueAt(selectedRow, 1);
+                String tempFileName = (String) interviewTable.getValueAt(selectedRow, 0);
                 for (Interview v : Interview.getAllInterviews()) {
-                    if (v.getDescription().equals(tempDescription)) {
-                        new RobotSelection(frame, v);
+                    if (v.getFileName().equals(tempFileName)) {
+                        if (v.getAnzahlTeilnehmer() <= Robot.getRobotList().size()) {
+                            new RobotSelection(frame, v);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Es müssen " + v.getAnzahlTeilnehmer() + " Roboter registriert sein für dieses Interview!", "Fehler", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Kein Interview mit dem Dateinamen " + v.getFileName() + " vorhanden!", "Fehler", JOptionPane.ERROR_MESSAGE);
                     }
                 }
 
@@ -171,10 +179,24 @@ public class InterviewList {
         };
         interviewTable.setPreferredScrollableViewportSize(new Dimension(300, 400));
         interviewTable.setRowHeight(25);
-        interviewTable.getColumnModel().getColumn(0).setPreferredWidth(2);
-        interviewTable.getColumnModel().getColumn(2).setPreferredWidth(2);
 
+        resizeColumnWidth(interviewTable);
         interviewScrollPane.setViewportView(interviewTable);
+    }
+
+    public void resizeColumnWidth(JTable table) {
+        final TableColumnModel columnModel = table.getColumnModel();
+        for (int column = 0; column < table.getColumnCount(); column++) {
+            int width = 15; // Min width
+            for (int row = 0; row < table.getRowCount(); row++) {
+                TableCellRenderer renderer = table.getCellRenderer(row, column);
+                Component comp = table.prepareRenderer(renderer, row, column);
+                width = Math.max(comp.getPreferredSize().width + 1, width);
+            }
+            if (width > 300)
+                width = 300;
+            columnModel.getColumn(column).setPreferredWidth(width);
+        }
     }
 
 
@@ -208,22 +230,13 @@ public class InterviewList {
      */
     private void $$$setupUI$$$() {
         panel = new JPanel();
-        panel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(8, 3, new Insets(0, 0, 0, 0), -1, -1));
+        panel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(7, 3, new Insets(0, 0, 0, 0), -1, -1));
         interviewScrollPane = new JScrollPane();
         panel.add(interviewScrollPane, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 7, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         interviewTable = new JTable();
         interviewScrollPane.setViewportView(interviewTable);
-        messageLabel = new JLabel();
-        messageLabel.setText("");
-        panel.add(messageLabel, new com.intellij.uiDesigner.core.GridConstraints(7, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        zurueckButton = new JButton();
-        zurueckButton.setText("Zurück");
-        panel.add(zurueckButton, new com.intellij.uiDesigner.core.GridConstraints(7, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        aktualisierenButton = new JButton();
-        aktualisierenButton.setText("Aktualisieren");
-        panel.add(aktualisierenButton, new com.intellij.uiDesigner.core.GridConstraints(6, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         openFileButton = new JButton();
-        openFileButton.setText("Interview öffnen...");
+        openFileButton.setText("Interview Importieren");
         panel.add(openFileButton, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         interviewAbspielenButton = new JButton();
         interviewAbspielenButton.setText("Interview Abspielen");
@@ -233,6 +246,15 @@ public class InterviewList {
         panel.add(interviewEntfernenButton, new com.intellij.uiDesigner.core.GridConstraints(1, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer1 = new com.intellij.uiDesigner.core.Spacer();
         panel.add(spacer1, new com.intellij.uiDesigner.core.GridConstraints(3, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        aktualisierenButton = new JButton();
+        aktualisierenButton.setText("Aktualisieren");
+        panel.add(aktualisierenButton, new com.intellij.uiDesigner.core.GridConstraints(4, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        zurueckButton = new JButton();
+        zurueckButton.setText("Zurück");
+        panel.add(zurueckButton, new com.intellij.uiDesigner.core.GridConstraints(5, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        messageLabel = new JLabel();
+        messageLabel.setText("");
+        panel.add(messageLabel, new com.intellij.uiDesigner.core.GridConstraints(6, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         messageLabel.setLabelFor(interviewScrollPane);
     }
 

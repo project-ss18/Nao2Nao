@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class NewRobot extends JDialog {
     private JTextField textFieldRobotName;
@@ -31,6 +33,15 @@ public class NewRobot extends JDialog {
                 setVisible(false);
                 robotlist.addRobot(textFieldRobotName.getText(), textFieldIP.getText());
 
+            }
+        });
+        textFieldIP.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (Character.isLetter(c) && !e.isAltDown()) {
+                    e.consume();
+                }
             }
         });
     }

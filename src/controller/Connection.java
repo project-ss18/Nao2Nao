@@ -24,7 +24,7 @@ public class Connection{
                 b = true;
             }
             session = new Session();
-            fut = session.connect("tcp://" + IP_ADRESS + ":9559");
+            fut = session.connect("tcp://" + IP_ADRESS + ":" + AppProperties.getRobotTCPPort());
             fut.get();
 
             try {

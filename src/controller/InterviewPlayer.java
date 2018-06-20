@@ -25,9 +25,9 @@ public class InterviewPlayer implements Runnable {
     private int gotToQid;
 
     //--------Befehl-Tags-------\\
-    private final String start = "^start(animations/Stand/Gestures/";
+    private final String start = "^start(";
     private final char endTag = ')';
-    private String wait = "^wait(animations/Stand/Gestures/";
+    private String wait = "^wait(";
 
     //------Konstruktor------\\
     public InterviewPlayer(Interview interview, ArrayList<Robot> robots,view.InterviewPlayer interviewPlayer) throws Exception {
@@ -82,7 +82,7 @@ public class InterviewPlayer implements Runnable {
             getRobot(question.getRole()).setVolume(question.getVolume());
             getRobot(question.getRole()).setSpeechSpeed(question.getSpeechSpeed());
             getRobot(question.getRole()).setVoicePitch(question.getVoicePitch());
-            getRobot(question.getRole()).animatedSay(start + question.getGesture() + endTag + question.getPhrase()  + wait + endTag);
+            getRobot(question.getRole()).animatedSay(start + AppProperties.getRobotActionPath() + question.getGesture() + endTag + question.getPhrase()  + wait + AppProperties.getRobotActionPath() + endTag);
         }
         catch (Exception ex) {
             ex.printStackTrace();

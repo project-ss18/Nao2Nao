@@ -21,8 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InterviewLoader {
-    private final static String PATH = "./res/";
-    private final static String xsdFile = "validation.xsd";
     private static ArrayList<String> InterviewNamen = new ArrayList<String>();
 
     public static Interview initializeInterview(String FileName) {
@@ -54,7 +52,7 @@ public class InterviewLoader {
     }
     public static boolean checkSyntax(String xmlFile) {
         //XML-Syntax Check mithilfe eines XSD Schema
-        File schemaFile = new File(PATH + xsdFile);
+        File schemaFile = new File(AppProperties.getInterviewValidationFile());
         Source xmlFileSource = new StreamSource(new File(xmlFile));
         SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 
@@ -84,7 +82,7 @@ public class InterviewLoader {
     {
         if(InterviewNamen.size() == 0 || forcereload) {
             ArrayList<String> _InterviewNamen = new ArrayList<String>();
-            File folder = new File(PATH);
+            File folder = new File(AppProperties.getInterviewDirectory());
             File[] listofInterviews = folder.listFiles();
 
             assert listofInterviews != null;
@@ -102,7 +100,7 @@ public class InterviewLoader {
         if(Interview.getAllInterviews().size() == 0 || forceReload) {
 
             ArrayList<Interview> InterviewObjects = new ArrayList<Interview>();
-            File folder = new File(PATH);
+            File folder = new File(AppProperties.getInterviewDirectory());
             File[] listofInterviews = folder.listFiles();
 
             assert listofInterviews != null;
