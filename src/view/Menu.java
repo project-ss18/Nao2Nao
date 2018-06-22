@@ -1,5 +1,7 @@
 package view;
 
+import controller.AppProperties;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +23,6 @@ public class Menu {
     public Menu() throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
 
         frame = new JFrame("Nao2Nao");
-
         roboterlisteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

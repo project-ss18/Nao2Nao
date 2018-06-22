@@ -1,5 +1,6 @@
 package model.robot;
 
+import controller.AppProperties;
 import controller.Connection;
 
 import java.util.ArrayList;
@@ -23,8 +24,8 @@ public class Robot {
        this.name=name;
        IP_ADDRESS = address;
        ID = id_Counter;
+       if(!AppProperties.getApplicationMode().equals("Test")){CONNECTION = new Connection(this.IP_ADDRESS, args);}
 
-       CONNECTION = new Connection(this.IP_ADDRESS, args);
     }
 
     public String getName() {

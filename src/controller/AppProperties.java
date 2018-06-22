@@ -28,10 +28,13 @@ public class AppProperties {
     {
         return getPropertieValue("RobotTCPPort");
     }
-    public static ArrayList<String> getPreSettedIPs()
-    {
+    public static ArrayList<String> getPreSettedIPs() {
         try {
             String allIPs = getPropertieValue("PreSettedIPs");
+            if(allIPs.equals(""))
+            {
+                return new ArrayList<String>();
+            }
             return new ArrayList<String>(Arrays.asList(allIPs.split(";")));
         }
         catch (Exception ex)
@@ -40,7 +43,10 @@ public class AppProperties {
             return new ArrayList<String>();
         }
     }
-
+    public static String getApplicationMode()
+    {
+        return getPropertieValue("AppMode");
+    }
 
     private static String getPropertieValue(String PropertyName)
     {

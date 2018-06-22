@@ -28,6 +28,8 @@ public class Connection{
             fut = session.connect("tcp://" + IP_ADRESS + ":" + AppProperties.getRobotTCPPort());
             fut.get();
 
+
+
             try {
                 animatedSpeech = new ALAnimatedSpeech(session);
             } catch (Exception ex){}
