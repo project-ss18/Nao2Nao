@@ -3,7 +3,7 @@ import view.Menu;
 
 import javax.swing.*;
 
-public class GuiMain {
+public class Nao2Nao {
     public static void main(String[] args){
 
 

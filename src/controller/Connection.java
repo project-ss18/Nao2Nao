@@ -1,9 +1,6 @@
 package controller;
 
-import com.aldebaran.qi.AnyObject;
-import com.aldebaran.qi.Application;
-import com.aldebaran.qi.Future;
-import com.aldebaran.qi.Session;
+import com.aldebaran.qi.*;
 import com.aldebaran.qi.helper.proxies.*;
 
 public class Connection{
@@ -16,38 +13,28 @@ public class Connection{
     private ALAnimatedSpeech animatedSpeech;
     private ALRobotPosture robotPosture;
     private ALAudioDevice audioDevice;
-    private static boolean b = false;
+    private ALMotion motion;
+    private static boolean applicationAvaliable = false;
 
     public Connection(String IP_ADRESS, String[] args) throws Exception{
 
-        if(!b) {
-                app = new Application(args);
-                b = true;
-            }
-            session = new Session();
-            fut = session.connect("tcp://" + IP_ADRESS + ":" + AppProperties.getRobotTCPPort());
-            fut.get();
+        if(!applicationAvaliable) {
+            app = new Application(args);
+            applicationAvaliable = true;
+        }
+        session = new Session();
+        fut = session.connect("tcp://" + IP_ADRESS + ":" + AppProperties.getRobotTCPPort());
+        fut.get();
+        animatedSpeech = new ALAnimatedSpeech(session);
+        robotPosture = new ALRobotPosture(session);
+        audioDevice = new ALAudioDevice(session);
+        textToSpeech = new ALTextToSpeech(session);
+        motion = new ALMotion(session);
+        ttsSay = session.service("ALTextToSpeech");
 
-
-
-            try {
-                animatedSpeech = new ALAnimatedSpeech(session);
-            } catch (Exception ex){}
-
-            try {
-                robotPosture = new ALRobotPosture(session);
-            }catch (Exception ex){}
-
-            try {
-                audioDevice = new ALAudioDevice(session);
-             }catch (Exception ex){}
-
-        try {
-            textToSpeech = new ALTextToSpeech(session);
-        } catch (Exception ex){}
-
-           ttsSay = session.service("ALTextToSpeech");
-
+    }
+    public void setStiffnes(double stiffnes) throws InterruptedException, CallError {
+        motion.setStiffnesses("Joints",stiffnes);
     }
 
     public void say(String args) throws Exception{

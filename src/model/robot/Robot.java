@@ -1,5 +1,6 @@
 package model.robot;
 
+import com.aldebaran.qi.CallError;
 import controller.AppProperties;
 import controller.Connection;
 
@@ -111,6 +112,7 @@ public class Robot {
         CONNECTION.setVoicePitch(0);
         CONNECTION.setVolume(70);
         CONNECTION.posture("SitRelax");
+        CONNECTION.setStiffnes(0.0);
     }
 
     private class ResetRunnable implements Runnable{
