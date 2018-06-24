@@ -135,7 +135,7 @@
 
 	<xsd:attribute name="VoicePitch" default="0">
 		<xsd:simpleType>
-			<xsd:restriction base="xsd:int">
+			<xsd:restriction base="xsd:float">
 				<xsd:minInclusive value="0"/>
 				<xsd:maxInclusive value="4"/>
 			</xsd:restriction>
