@@ -42,39 +42,28 @@ public class InterviewList {
 
 
     public InterviewList(JFrame frame) {
-        refreshList();
         frame.setContentPane(panel);
         frame.setPreferredSize(new Dimension(750, 350));
-        frame.pack();
-        frame.repaint();
-        frame.setResizable(false);
-        frame.setVisible(true);
-
         //Mittige Ausrichtugn
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         int dx = (ge.getCenterPoint().x - frame.getSize().width / 2);
         int dy = (ge.getCenterPoint().y - frame.getSize().height / 2);
         frame.setLocation(dx, dy);
-
         openFileChooser = new JFileChooser();
         openFileChooser.setFileFilter(new FileNameExtensionFilter("XML-Dateien", "xml"));
-        //openFileChooser.setCurrentDirectory(new File("./res/"));
+        openFileChooser.setCurrentDirectory(new File("./res/"));
+        frame.setResizable(false);
+        refreshList();
+        frame.pack();
+        frame.repaint();
+        frame.setVisible(true);
 
         zurueckButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.setVisible(false);
-                try {
-                    new Menu();
-                } catch (ClassNotFoundException e1) {
-                    e1.printStackTrace();
-                } catch (UnsupportedLookAndFeelException e1) {
-                    e1.printStackTrace();
-                } catch (InstantiationException e1) {
-                    e1.printStackTrace();
-                } catch (IllegalAccessException e1) {
-                    e1.printStackTrace();
-                }
+                new Menu();
+
             }
         });
 
@@ -194,6 +183,11 @@ public class InterviewList {
             sourceChannel = new FileInputStream(source).getChannel();
             destChannel = new FileOutputStream(dest).getChannel();
             destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Fehler", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Fehler", JOptionPane.ERROR_MESSAGE);
+
         } finally {
             sourceChannel.close();
             destChannel.close();
@@ -220,6 +214,7 @@ public class InterviewList {
         panel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(7, 3, new Insets(0, 0, 0, 0), -1, -1));
         interviewScrollPane = new JScrollPane();
         panel.add(interviewScrollPane, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 7, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        interviewScrollPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), "Interviews"));
         interviewTable = new JTable();
         interviewScrollPane.setViewportView(interviewTable);
         openFileButton = new JButton();

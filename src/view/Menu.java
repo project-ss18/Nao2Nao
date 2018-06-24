@@ -20,7 +20,7 @@ public class Menu {
     private Dimension frameDimension;
 
 
-    public Menu() throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
+    public Menu() {
 
         frame = new JFrame("Nao2Nao");
         roboterlisteButton.addActionListener(new ActionListener() {

@@ -14,7 +14,6 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,6 +21,8 @@ import java.util.List;
 
 public class InterviewLoader {
     private static ArrayList<String> InterviewNamen = new ArrayList<String>();
+
+    private InterviewLoader(){ }
 
     public static Interview initializeInterview(String FileName) {
         if(!checkSyntax(FileName)){
@@ -60,10 +61,10 @@ public class InterviewLoader {
             Schema schema = schemaFactory.newSchema(schemaFile);
             Validator validator = schema.newValidator();
             validator.validate(xmlFileSource);
-            System.out.println("Die XML Datei '" + xmlFile + "' ist valide");
+            //System.out.println("Die XML Datei '" + xmlFile + "' ist valide");
         } catch (SAXException e) {
             System.out.println(xmlFileSource.getSystemId() + " Die XML Datei '"+ xmlFile + "' ist nicht valide!, Error:" + e);
-            JOptionPane.showMessageDialog(null, e, "Fehler", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Fehler", JOptionPane.ERROR_MESSAGE);
             return false;
         } catch (IOException e) {
             System.out.println(e);
@@ -72,14 +73,7 @@ public class InterviewLoader {
         return true;
     }
 
-    public static void printFileNames() {
-        for (String CurrentInterview : getAllInterviewNames(false)){
-            System.out.println("Interview: '" + CurrentInterview + "'");
-        }
-    }
-
-    public static List<String> getAllInterviewNames(boolean forcereload)
-    {
+    public static List<String> getAllInterviewNames(boolean forcereload) {
         if(InterviewNamen.size() == 0 || forcereload) {
             ArrayList<String> _InterviewNamen = new ArrayList<String>();
             File folder = new File(AppProperties.getInterviewDirectory());

@@ -29,7 +29,7 @@ public class InterviewPlayer {
     private controller.InterviewPlayer interviewPlayer;
     private ArrayList<Robot> robotList = new ArrayList<Robot>();
     private List<Question> goToListe = new ArrayList<>();
-    //--//+
+
 
     InterviewPlayer(JFrame frame, Interview interview, ArrayList<Robot> robots) {
 
@@ -67,17 +67,7 @@ public class InterviewPlayer {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.setVisible(false);
-                try {
-                    new Menu();
-                } catch (ClassNotFoundException e1) {
-                    e1.printStackTrace();
-                } catch (UnsupportedLookAndFeelException e1) {
-                    e1.printStackTrace();
-                } catch (InstantiationException e1) {
-                    e1.printStackTrace();
-                } catch (IllegalAccessException e1) {
-                    e1.printStackTrace();
-                }
+                new Menu();
             }
         });
         playButton.addActionListener(new ActionListener() {
@@ -148,7 +138,7 @@ public class InterviewPlayer {
         pauseButton.setText("Pause");
         panel.add(pauseButton, new com.intellij.uiDesigner.core.GridConstraints(3, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         zuruckButton = new JButton();
-        zuruckButton.setText("Zurück");
+        zuruckButton.setText("Menu");
         panel.add(zuruckButton, new com.intellij.uiDesigner.core.GridConstraints(3, 4, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         progressBar = new JProgressBar();
         panel.add(progressBar, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 5, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));

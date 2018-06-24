@@ -21,6 +21,8 @@ public class Robotlist {
     private JButton pingButton;
     private JButton insertPresetted;
     private JButton robotReset;
+    private JLabel loadingLable;
+    private JFrame frame;
 
 
     private String[] columnNames = new String[]{"ID", "Robotername", "IP-Adresse"};
@@ -28,6 +30,7 @@ public class Robotlist {
 
     public Robotlist(JFrame frame) {
         refreshList();
+        this.frame = frame;
 
         frame.setContentPane(panel);
         robotTable.repaint();
@@ -50,7 +53,7 @@ public class Robotlist {
         buttonNewRobot.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new NewRobot(Robotlist.this);
+                new Thread(new NewRobot(Robotlist.this, false)).start();
             }
         });
         löschenButton.addActionListener(new ActionListener() {
@@ -76,17 +79,7 @@ public class Robotlist {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.setVisible(false);
-                try {
-                    new Menu();
-                } catch (ClassNotFoundException e1) {
-                    e1.printStackTrace();
-                } catch (UnsupportedLookAndFeelException e1) {
-                    e1.printStackTrace();
-                } catch (InstantiationException e1) {
-                    e1.printStackTrace();
-                } catch (IllegalAccessException e1) {
-                    e1.printStackTrace();
-                }
+                new Menu();
             }
         });
         pingButton.addActionListener(new ActionListener() {
@@ -110,14 +103,7 @@ public class Robotlist {
         insertPresetted.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ArrayList<String> ipList = AppProperties.getPreSettedIPs();
-                if (ipList.size() != 0) {
-                    for (String s : ipList) {
-                        addRobot("HFU_" + ipList.indexOf(s), s);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Keine vordefinierten IPs vorhanden!", "Fehler", JOptionPane.ERROR_MESSAGE);
-                }
+                new Thread(new NewRobot(Robotlist.this, true)).start();
             }
         });
         robotReset.addActionListener(new ActionListener() {
@@ -140,6 +126,15 @@ public class Robotlist {
         });
     }
 
+    void setBackButton(boolean state) {
+        if (!state) {
+            loadingLable.setText("<html><font color='red'>Bitte warten!<br>Lade Roboter...</font></html>");
+            loadingLable.setVisible(true);
+        }
+        zurückButton.setEnabled(state);
+        if (state) loadingLable.setVisible(false);
+    }
+
     public void refreshList() {
         rowData = new String[Robot.getRobotList().size()][];
         for (int i = 0; i < Robot.getRobotList().size(); i++) {
@@ -156,10 +151,11 @@ public class Robotlist {
         robotTableScrollPane.setViewportView(robotTable);
     }
 
-    public void addRobot(String name, String IP) {
+    void addRobot(String name, String IP) {
         Robot robot;
         try {
             robot = new Robot(IP, name);
+            JOptionPane.showMessageDialog(null, "Roboter mit " + robot.getIPAdress() + " eingerichtet!", "Roboter angelegt", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Fehler", JOptionPane.ERROR_MESSAGE);
             return;
@@ -185,14 +181,14 @@ public class Robotlist {
      */
     private void $$$setupUI$$$() {
         panel = new JPanel();
-        panel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(8, 2, new Insets(0, 0, 0, 0), -1, -1));
+        panel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(10, 2, new Insets(0, 0, 0, 0), -1, -1));
         buttonNewRobot = new JButton();
         buttonNewRobot.setText("Neuer Roboter");
         panel.add(buttonNewRobot, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer1 = new com.intellij.uiDesigner.core.Spacer();
-        panel.add(spacer1, new com.intellij.uiDesigner.core.GridConstraints(4, 1, 2, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel.add(spacer1, new com.intellij.uiDesigner.core.GridConstraints(4, 1, 3, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         robotTableScrollPane = new JScrollPane();
-        panel.add(robotTableScrollPane, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 8, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 1, false));
+        panel.add(robotTableScrollPane, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 10, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 1, false));
         robotTableScrollPane.setBorder(BorderFactory.createTitledBorder("Angemeldete Roboter"));
         robotTable = new JTable();
         robotTableScrollPane.setViewportView(robotTable);
@@ -201,16 +197,19 @@ public class Robotlist {
         panel.add(löschenButton, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         zurückButton = new JButton();
         zurückButton.setText("Zurück");
-        panel.add(zurückButton, new com.intellij.uiDesigner.core.GridConstraints(7, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel.add(zurückButton, new com.intellij.uiDesigner.core.GridConstraints(9, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         pingButton = new JButton();
         pingButton.setText("Ping");
         panel.add(pingButton, new com.intellij.uiDesigner.core.GridConstraints(2, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         insertPresetted = new JButton();
         insertPresetted.setText("<html>\nVordefinier-\n<br>\nte Roboter\n<br>\nImportieren\n</html>");
-        panel.add(insertPresetted, new com.intellij.uiDesigner.core.GridConstraints(6, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel.add(insertPresetted, new com.intellij.uiDesigner.core.GridConstraints(8, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         robotReset = new JButton();
         robotReset.setText("Reset Roboter");
         panel.add(robotReset, new com.intellij.uiDesigner.core.GridConstraints(3, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        loadingLable = new JLabel();
+        loadingLable.setText("");
+        panel.add(loadingLable, new com.intellij.uiDesigner.core.GridConstraints(7, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

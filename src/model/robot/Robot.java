@@ -24,7 +24,9 @@ public class Robot {
        this.name=name;
        IP_ADDRESS = address;
        ID = id_Counter;
-       if(!AppProperties.getApplicationMode().equals("Test")){CONNECTION = new Connection(this.IP_ADDRESS, args);}
+       if(!AppProperties.getApplicationMode().equals("Test")){
+           CONNECTION = new Connection(this.IP_ADDRESS, args);
+       }
 
     }
 

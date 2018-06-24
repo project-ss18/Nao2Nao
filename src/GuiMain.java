@@ -4,12 +4,19 @@ import view.Menu;
 import javax.swing.*;
 
 public class GuiMain {
-    public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
+    public static void main(String[] args){
+
+
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "UIManager", JOptionPane.ERROR_MESSAGE);
+        }
         if (AppProperties.getApplicationMode().equals("Test")) {
             JOptionPane.showMessageDialog(null, "Die Anwendung befindet sich im Test-Modus", "Information", JOptionPane.INFORMATION_MESSAGE);
         }
-        UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-        Menu m = new Menu();
+
+        new Menu();
     }
 
 
