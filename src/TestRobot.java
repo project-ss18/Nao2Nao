@@ -14,8 +14,10 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class TestRobot {
     public static void main(String[] args) throws Exception {
-       Robot r = new Robot("141.28.75.148", "1");
-        //r.goToPosture("SitRelax");
+       Robot r1 = new Robot("141.28.75.148", "1");
+       Robot r2 = new Robot("141.28.75.162", "2");
+        r1.goToPosture("SitRelax");
+        r2.goToPosture("SitRelax");
         //r.setVolume(80);
         //r.setSpeechSpeed(200);
         //r.say("Hallo, was geht ab, Bitch!");
@@ -31,8 +33,6 @@ public class TestRobot {
         //r.setVolume(70);
         //r.setSpeechSpeed(100);
 
-        r.setVoicePitch(1.3f);
-        r.say("Hallo Test");
 
 
 
