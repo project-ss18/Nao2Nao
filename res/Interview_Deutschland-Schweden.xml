@@ -23,18 +23,18 @@ weil wir in der zweiten Halbzeit weiterhin an uns geglaubt haben, weil wir dran 
 	</block>
 		<block bid ="2">
 		<question qid = "1" posture="Sit" gesture="BodyTalk_2" role="Moderator" >
-			<phrase>Das ist die ruhige Analyse, aber sie sind ja ein Vulkan habe ich gesehen.</phrase>
+			<phrase>Das ist eine ruhige Analyse, aber sie sind ja ein Vulkan habe ich gesehen.</phrase>
 		</question>
-		<answer aid = "1" posture="Sit" gesture="Explain_2" role="Löw" volume="80" SpeechSpeed="100" VoicePitch="1.1">
+		<answer aid = "1" posture="Sit" gesture="Explain_2" role="Löw" volume="80" SpeechSpeed="100" VoicePitch="1">
 			<phrase>Ja klar bei so einem Spiel, natürlich gehen da die Emotionen schonmal mit einem durch.</phrase>
 		</answer>
 	</block>
 		<block bid ="3">
-		<question qid = "1" posture="Sit" gesture="BodyTalk_3" role="Moderator" volume="80" SpeechSpeed="100" VoicePitch="1.0">
+		<question qid = "1" posture="Sit" gesture="BodyTalk_3" role="Moderator" volume="80" SpeechSpeed="100" VoicePitch="1">
 			<phrase>Ja und völlig zurecht, weil es ja wirklich aufregend bis zu letzten Sekunde gewesen ist. Wir haben uns gefragt, was haben sie in der Halbzeit der Mannschaft gesagt.</phrase>
 		</question>
 		<answer aid = "1" posture="Sit" gesture="Explain_3" role="Löw" >
-			<phrase>Das sie aufjedenfall ruhig bleiben muss, das wir fünf und vierzig Minuten Zeit haben, das wir jetzt nicht die nerven verlieren und irgendwie alle überall rum rennen, sondern das wir weiterhin das Passpiel fortsetzten, das wir die Schweden müde spielen müssen, das wir weiterhin nach vorne gehen müssen und das wir noch mehr hinter die Abwehr kommen müssen, mit Bällen und mit Laufwegen und das dann irgendwann auch wieder die Chancen kommen.</phrase>
+			<phrase>Das die Mannschaft aufjedenfall ruhig bleiben muss, das wir fünf und vierzig Minuten Zeit haben, das wir jetzt nicht die Nerven verlieren und irgendwie alle überall rum rennen, sondern das wir weiterhin das Passpiel fortsetzten, dass wir die Schweden müde spielen müssen, dass wir weiterhin nach vorne gehen müssen und das wir noch mehr hinter die Abwehr kommen müssen, mit Bällen und mit Laufwegen und das dann irgendwann auch wieder die Chancen kommen.</phrase>
 		</answer>
 	</block>	
 	<block bid ="4">
@@ -55,7 +55,7 @@ Ich freue mich aber besonders für ihn das er in der letzten Minute irgendwie da
 		</answer>
 	</block>	
 	<block bid ="6">
-		<question qid = "1" posture="Sit" gesture="BodyTalk_6" role="Moderator" volume="80" SpeechSpeed="120" VoicePitch="1.5">
+		<question qid = "1" posture="Sit" gesture="BodyTalk_6" role="Moderator" volume="80" SpeechSpeed="110" VoicePitch="1.1">
 			<phrase>Hätte aber schon entscheidend sein können!</phrase>
 		</question>
 		<answer aid = "1" posture="Sit" gesture="Explain_6" role="Löw" >
@@ -64,20 +64,20 @@ Ich freue mich aber besonders für ihn das er in der letzten Minute irgendwie da
 	</block>	
 	<block bid ="7">
 		<question qid = "1" posture="Sit" gesture="BodyTalk_7" role="Moderator">
-			<phrase>Ja, sie haben die Manschafft ja auch vorher umgebaut, und auch erstmals bei einer WM oder EM war Özil nicht in der Startformation, das ist natürlich klar, das ärgert jeden Spieler. Was bedeuetet das für das weitere Tunier. Mehr Konkurenzkampf? Und vielleicht noch mehr Engagement von allen, erhoffen sie sich das daraus?</phrase>
+			<phrase>Ja, sie haben die Manschafft ja auch vorher umgebaut, und auch erstmals bei einer WM oder EM war Özil nicht in der Startformation, das ist natürlich klar, das ärgert jeden Spieler. Was bedeuetet das für das weitere Turnier. Mehr Konkurenzkampf? Und vielleicht noch mehr Engagement von allen, erhoffen sie sich das daraus?</phrase>
 		</question>
 		<answer aid = "1" posture="Sit" gesture="Explain_7" role="Löw" >
-			<phrase>Nein, das Engagement war heute aufjedenfall da, Konkurenzkampf den haben wir aufjedenfall. Für das weitere Tunier bedeutet das eins, das man sieht, das man nicht immer mit der gleichen Mannschaft spielen kann. 
-Und den Mezut Özil werden wir mit Sicherheit brauchen in diesem Tunier, seine Kreativität. Heute war mal eben auch der Tag wo ich gesagt habe ich treffe mal so eine Entscheidung,dann ist mal einer drausen und der ein oder andere spielt mal.
-Aber der Mezut wird gebraucht von uns.</phrase>
+			<phrase>Nein, das Engagement war heute aufjedenfall da, Konkurenzkampf den haben wir aufjedenfall. Für das weitere Turnier bedeutet das eins, man sieht man nicht immer mit der gleichen Mannschaft spielen.
+Und den Mezut werden wir mit Sicherheit brauchen in diesem Turnier, besonders seine Kreativität. Heute war mal eben auch der Tag wo ich gesagt habe ich treffe mal so eine Entscheidung, dann ist halt mal ein Stamm Spieler drausen und ein anderer besetzt seine Rolle.
+Aber der Mezut wird definitiv gebraucht von uns.</phrase>
 		</answer>
 	</block>	
 	<block bid ="8">
 		<question qid = "1" posture="Sit" gesture="BodyTalk_8" role="Moderator" >
-			<phrase>Und der Matts Hummels ja, also man hat gesehen gerade bei dem Schlusspfiff ist er gelaufen als hätte er selber das Tor geschossen. Zusätlich wird ja Jerome Boateng auch nicht dabei sein können. Das heißt wir brauchen Matts, wie weit ist er und sind sie relativ sicher das sie ihn bringen können?</phrase>
+			<phrase>Und der Matts Hummels ja, also man hat gesehen gerade bei dem Schlusspfiff ist er gerannt als hätte er selber das Tor geschossen. Zusätzlich wird ja Boateng auch nicht dabei sein können. Das heißt wir brauchen Matts, wie weit ist er und sind sie sich sicher das sie ihn bringen können?</phrase>
 		</question>
 		<answer aid = "1" posture="Sit" gesture="Explain_8" role="Löw" >
-			<phrase>Ja der Matts hätte ja gerne gespielt, aber der Arzt hat gesagt es wäre gefährlich bei Kopfballduellen, von diesen gab es ja heute viele weil die Schweden ja eigentlich nur lange Bälle nach vorne spielen. Deswegen war es zu gefährlich, aber er war vor dem Spiel unnheimlich nervös, ich  hab kurz mal mit ihm gesprochen, er sagt er ist unheimlich angespannt. Aber natürlich brauchen wir ihn, er ist ein erfahrener Spielermit großer Klasse und jetzt sind wir froh das er mit großer wahrscheinlichkeit auch zurück kommt.</phrase>
+			<phrase>Ja der Matts hätte ja gerne gespielt, aber der Arzt hat gesagt es wäre gefährlich bei Kopfballduellen, von diesen gab es ja heute viele, weil die Schweden ja eigentlich nur lange Bälle nach vorne spielen. Deswegen war es zu gefährlich, aber er war vor dem Spiel unnheimlich nervös, ich  hab kurz mal mit ihm gesprochen, er sagt er ist unheimlich angespannt. Aber natürlich brauchen wir ihn, er ist ein erfahrener Spieler, mit großer Klasse und jetzt sind wir froh, dass er mit großer Wahrscheinlichkeit auch zurück kommt.</phrase>
 		</answer>
 	</block>	
 	<block bid ="9">
@@ -97,24 +97,24 @@ auch am Mittwoch spielen, muss man jetzt mal abwarten.</phrase>
 			<phrase>Bei dem Adrelanin hat er das glaube ich vom Schmerz her, gar nicht gemerkt.
 Adrelanin ist ein Stichwort für die Nacht, da kommt man ja jetzt gar nicht zur Ruhe geschweigeden in das Bett. Dann gehts jetzt noch weiter nach Watutinki.</phrase>
 		</question>
-		<answer aid = "1" posture="Sit" gesture="Explain_10" role="Löw" volume="90" SpeechSpeed="105" VoicePitch="1.2" >
+		<answer aid = "1" posture="Sit" gesture="Explain_10" role="Löw" volume="90" SpeechSpeed="105" VoicePitch="0.2" >
 			<phrase>Ja wir fliegen ja wahrscheinlich zwei bis zwei ein halb Stunden, darum denke ich mal das gegen drei halb vier daheim sind. Klar morgen ist ein Tag ruhe angesagt und dann gehts natürlich weiter wir haben noch ein Spiel und das heißt jetzt für uns natürlich auch gewinnen zu müssen!</phrase>
 		</answer>
 	</block>	
 	<block bid ="11">
 		<question qid = "1" posture="Sit" gesture="BodyTalk_11" role="Moderator" >
-			<phrase>Es ist nochmal gut gegangen, abschließend würden sie sagen jetzt sind wir drinnen im Tunier?</phrase>
+			<phrase>Es ist nochmal gut gegangen, abschließend würden sie sagen jetzt sind wir drinnen im Turnier?</phrase>
 		</question>
 		<answer aid = "1" posture="Sit" gesture="Explain_11" role="Löw" >
-			<phrase>Das kann ein gutes Signal sein für uns und das hat die Mannschaft jetzt auch mal gebraucht, so einen Sieg wo nach Rückstand aufgeholt wird, das gibt nochmal Moral. Ich hoffe das das einen Schub gibt für das Tunier.</phrase>
+			<phrase>Das kann ein gutes Signal sein für uns und das hat die Mannschaft jetzt auch mal gebraucht, so einen Sieg wo nach Rückstand aufgeholt wird, das gibt nochmal Moral. Ich hoffe das das einen Schub gibt für das Turnier.</phrase>
 		</answer>
 	</block>	
 	<block bid ="12">
 		<question qid = "1" posture="Sit" gesture="BodyTalk_12" role="Moderator">
-			<phrase>Ja das hoffen wir alle. Ein Krimi ist zwar schön aber muss nicht so auf die letzte Sekunde sein, beim nächsten Mal herzlichen Dank.</phrase>
+			<phrase>Ja das hoffen wir alle. Ein Krimi ist zwar schön aber muss nicht so auf die letzte Sekunde sein. Herzlichen Dank.</phrase>
 		</question>
 		<answer aid = "1" posture="Sit" gesture="Explain_12" role="Löw" >
-			<phrase>So sind eben Spiele, vielen Dank.</phrase>
+			<phrase>So sind eben Spiele, danke auch, auf wiedersehen.</phrase>
 		</answer>
 		</block>
 </interview>
