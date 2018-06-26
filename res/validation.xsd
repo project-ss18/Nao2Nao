@@ -133,11 +133,11 @@
 		</xsd:simpleType>
 	</xsd:attribute>
 
-	<xsd:attribute name="VoicePitch" default="0">
+	<xsd:attribute name="VoicePitch" default="1">
 		<xsd:simpleType>
 			<xsd:restriction base="xsd:float">
-				<xsd:minInclusive value="0"/>
-				<xsd:maxInclusive value="4"/>
+				<xsd:minInclusive value="1"/>
+				<xsd:maxInclusive value="2"/>
 			</xsd:restriction>
 		</xsd:simpleType>
 	</xsd:attribute>

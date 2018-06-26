@@ -31,24 +31,9 @@ public class TestRobot {
         //r.setVolume(70);
         //r.setSpeechSpeed(100);
 
-        r.setVoicePitch(1.7f);
+        r.setVoicePitch(1.3f);
         r.say("Hallo Test");
-        r.setVoicePitch(1.8f);
-        r.say("Hallo Test");
-        r.setVoicePitch(1.9f);
-        r.say("Hallo Test");
-        r.setVoicePitch(2.0f);
-        r.say("Hallo Test");
-        r.setVoicePitch(2.1f);
-        r.say("Hallo Test");
-        r.setVoicePitch(2.2f);
-        r.say("Hallo Test");
-        r.setVoicePitch(2.3f);
-        r.say("Hallo Test");
-        r.setVoicePitch( 2.4f);
-        r.say("Hallo Test");
-        r.setVoicePitch(2.5f);
-        r.say("Hallo Test");
+
 
 
 
