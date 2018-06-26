@@ -35,6 +35,7 @@ public class InterviewLoader {
             // Pfad zur resources Datei
             FileReader reader = new FileReader(FileName);
             InputSource inputSource = new InputSource(reader);
+            inputSource.setEncoding("UTF-8");
 
             // PersonenContentHandler wird übergeben
             xmlReader.setContentHandler(new ContentHandler());

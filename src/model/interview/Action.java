@@ -29,6 +29,9 @@ public abstract class Action {
     public void setPhrase(String phrase) {
         this.phrase=phrase;
     }
+    public String getPhrase() {
+        return phrase;
+    }
     public String getPosture() {
         return posture;
     }

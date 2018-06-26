@@ -147,9 +147,9 @@
 	<xsd:attribute name="gesture">
 		<xsd:simpleType>
 			<xsd:restriction base="xsd:string">
-				<xsd:enumeration value="BodyTalk_1"/>
+				<!--<xsd:enumeration value="BodyTalk_1"/>
 				<xsd:enumeration value="Excited_1"/>
-				<xsd:enumeration value="Excited_2"/>
+				<xsd:enumeration value="Excited_2"/>-->
 			</xsd:restriction>
 		</xsd:simpleType>
 	</xsd:attribute>
