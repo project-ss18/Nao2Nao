@@ -40,6 +40,7 @@ public class NewRobot extends JDialog implements Runnable {
         bestätigenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("gedrückt");
                 bestaetigt = true;
             }
         });
@@ -69,12 +70,17 @@ public class NewRobot extends JDialog implements Runnable {
                 JOptionPane.showMessageDialog(null, "Keine vordefinierten IPs vorhanden!", "Fehler", JOptionPane.ERROR_MESSAGE);
             }
         } else {
+            System.out.println("waiting...");
             while (!bestaetigt) {
+                System.out.print("");
             }
+            System.out.println("Bestätigt!");
             robotlist.setBackButton(false);
             setVisible(false);
             robotlist.addRobot(textFieldRobotName.getText(), textFieldIP.getText());
             robotlist.setBackButton(true);
+
+            Thread.currentThread().stop();
 
         }
     }

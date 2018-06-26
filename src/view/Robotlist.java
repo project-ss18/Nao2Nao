@@ -132,6 +132,8 @@ public class Robotlist {
             loadingLable.setVisible(true);
         }
         zurückButton.setEnabled(state);
+        insertPresetted.setEnabled(state);
+        buttonNewRobot.setEnabled(state);
         if (state) loadingLable.setVisible(false);
     }
 

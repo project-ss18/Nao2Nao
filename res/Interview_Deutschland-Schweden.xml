@@ -13,107 +13,107 @@
 	<description>Interview Deutschland-Schweden</description>
 	
 	<block bid ="1">
-		<question qid = "1" posture="Stand" gesture="BodyTalk_1" role="Moderator" >
+		<question qid = "1" posture="Sit" gesture="BodyTalk_1" role="Moderator" >
 			<phrase>Ich glaube wir können uns anschauen und ersteinmal durchschnaufen, denn das gerade eben war anstrengend oder Jogi?</phrase>
 		</question>
-		<answer aid = "1" posture="Stand" gesture="Explain_1" role="Löw" >
+		<answer aid = "1" posture="Sit" gesture="Explain_1" role="Löw" >
 			<phrase>Ja klar, so wie der Sieg jetzt zu stande kam war es natürlich ein bisschen glücklich. In der Nachspielzeit und mit zehn Spielern auf dem Platz, aber ich glaube letztendlich war es schon auch verdient,
 weil wir in der zweiten Halbzeit weiterhin an uns geglaubt haben, weil wir dran geblieben sind, weil wir nach vorne gegangen sind. Wir waren teilweiße ein bisschen unglücklich im Abschluss, aber wir haben eine sehr, sehr gute Moral bewiesen.</phrase>
 		</answer>
 	</block>
 		<block bid ="2">
-		<question qid = "1" posture="Stand" gesture="BodyTalk_2" role="Moderator" >
+		<question qid = "1" posture="Sit" gesture="BodyTalk_2" role="Moderator" >
 			<phrase>Das ist die ruhige Analyse, aber sie sind ja ein Vulkan habe ich gesehen.</phrase>
 		</question>
-		<answer aid = "1" posture="Stand" gesture="Explain_2" role="Löw" volume="80" SpeechSpeed="100" VoicePitch="0.1">
+		<answer aid = "1" posture="Sit" gesture="Explain_2" role="Löw" volume="80" SpeechSpeed="100" VoicePitch="1.1">
 			<phrase>Ja klar bei so einem Spiel, natürlich gehen da die Emotionen schonmal mit einem durch.</phrase>
 		</answer>
 	</block>
 		<block bid ="3">
-		<question qid = "1" posture="Stand" gesture="BodyTalk_3" role="Moderator" volume="80" SpeechSpeed="100" VoicePitch="0">
+		<question qid = "1" posture="Sit" gesture="BodyTalk_3" role="Moderator" volume="80" SpeechSpeed="100" VoicePitch="1.0">
 			<phrase>Ja und völlig zurecht, weil es ja wirklich aufregend bis zu letzten Sekunde gewesen ist. Wir haben uns gefragt, was haben sie in der Halbzeit der Mannschaft gesagt.</phrase>
 		</question>
-		<answer aid = "1" posture="Stand" gesture="Explain_3" role="Löw" >
+		<answer aid = "1" posture="Sit" gesture="Explain_3" role="Löw" >
 			<phrase>Das sie aufjedenfall ruhig bleiben muss, das wir fünf und vierzig Minuten Zeit haben, das wir jetzt nicht die nerven verlieren und irgendwie alle überall rum rennen, sondern das wir weiterhin das Passpiel fortsetzten, das wir die Schweden müde spielen müssen, das wir weiterhin nach vorne gehen müssen und das wir noch mehr hinter die Abwehr kommen müssen, mit Bällen und mit Laufwegen und das dann irgendwann auch wieder die Chancen kommen.</phrase>
 		</answer>
 	</block>	
 	<block bid ="4">
-		<question qid = "1" posture="Stand" gesture="BodyTalk_4" role="Moderator">
+		<question qid = "1" posture="Sit" gesture="BodyTalk_4" role="Moderator">
 			<phrase>Aber das hat gerade zu Anfang ja, alles wunderbar geklappt und trotzdem, wenn man dann schon ein bisschen in die Psyche hineinschaut, lassen Sie uns doch mal ein bisschen daran teilhaben, nachdem sie den ersten Fehlpass gesehen beziehungsweiße den ersten Fehler gesehen haben von Rüdiger und dann nacher den von Toni Kroos. Gerade auch noch von so einem Mann, von dem man das ja überhaupt gar nicht kennt, geschweigeden Erwartet.</phrase>
 		</question>
-		<answer aid = "1" posture="Stand" gesture="Explain_4" role="Löw" >
+		<answer aid = "1" posture="Sit" gesture="Explain_4" role="Löw" >
 			<phrase>Klar, eigentlich hatten die Schweden ja nur zwei Möglichkeiten, daraus ist ein Tor entstanden, das wurde zwei mal durch einen klaren Fehlpass verursacht, natürlich das passiert auch mal einem Spieler wie Toni Kroos.
 Ich freue mich aber besonders für ihn das er in der letzten Minute irgendwie das Tor erzielt hat.</phrase>
 		</answer>
 	</block>	
 	<block bid ="5">
-		<question qid = "1" posture="Stand" gesture="BodyTalk_5" role="Moderator" >
+		<question qid = "1" posture="Sit" gesture="BodyTalk_5" role="Moderator" >
 			<phrase>Ja aber das haben wir in den letzten Wochen, ja schon immer wieder beobachtet. Bisher dachte man das passierte lediglich in den Freundschaftspielen, liegt das vielleicht daran das am Ende einer Session dann doch hier und da, nicht der Akku leer ist aber manchmal so ein bisschen der letzte Mentale, letzte Bringer fehlt?</phrase>
 		</question>
-		<answer aid = "1" posture="Stand" gesture="Explain_5" role="Löw" >
+		<answer aid = "1" posture="Sit" gesture="Explain_5" role="Löw" >
 			<phrase>Also heute haben wir bei weitem weniger Fehlpässe gesehen, als gegen Mexiko oder ein anderes Spiel.</phrase>
 		</answer>
 	</block>	
 	<block bid ="6">
-		<question qid = "1" posture="Stand" gesture="BodyTalk_6" role="Moderator" volume="80" SpeechSpeed="120" VoicePitch="0.5">
+		<question qid = "1" posture="Sit" gesture="BodyTalk_6" role="Moderator" volume="80" SpeechSpeed="120" VoicePitch="1.5">
 			<phrase>Hätte aber schon entscheidend sein können!</phrase>
 		</question>
-		<answer aid = "1" posture="Stand" gesture="Explain_6" role="Löw" >
+		<answer aid = "1" posture="Sit" gesture="Explain_6" role="Löw" >
 			<phrase>Ja Okay klar, bei unserem Spiel mit unserem offensivem Drang, ist es natürlich immer gefährlich und da kann natürlich mal ein Fehler zu einem Tor führen, na klar. Aber bei weitem haben wir heute nicht so viele Fehlpässe gespielt, wir haben schon viel besser aufgebaut, sind häufig ins letzte drittel gekommen und haben den Gegner schon unter einem enormen Druck gestellt.</phrase>
 		</answer>
 	</block>	
 	<block bid ="7">
-		<question qid = "1" posture="Stand" gesture="BodyTalk_7" role="Moderator">
+		<question qid = "1" posture="Sit" gesture="BodyTalk_7" role="Moderator">
 			<phrase>Ja, sie haben die Manschafft ja auch vorher umgebaut, und auch erstmals bei einer WM oder EM war Özil nicht in der Startformation, das ist natürlich klar, das ärgert jeden Spieler. Was bedeuetet das für das weitere Tunier. Mehr Konkurenzkampf? Und vielleicht noch mehr Engagement von allen, erhoffen sie sich das daraus?</phrase>
 		</question>
-		<answer aid = "1" posture="Stand" gesture="Explain_7" role="Löw" >
+		<answer aid = "1" posture="Sit" gesture="Explain_7" role="Löw" >
 			<phrase>Nein, das Engagement war heute aufjedenfall da, Konkurenzkampf den haben wir aufjedenfall. Für das weitere Tunier bedeutet das eins, das man sieht, das man nicht immer mit der gleichen Mannschaft spielen kann. 
 Und den Mezut Özil werden wir mit Sicherheit brauchen in diesem Tunier, seine Kreativität. Heute war mal eben auch der Tag wo ich gesagt habe ich treffe mal so eine Entscheidung,dann ist mal einer drausen und der ein oder andere spielt mal.
 Aber der Mezut wird gebraucht von uns.</phrase>
 		</answer>
 	</block>	
 	<block bid ="8">
-		<question qid = "1" posture="Stand" gesture="BodyTalk_8" role="Moderator" >
+		<question qid = "1" posture="Sit" gesture="BodyTalk_8" role="Moderator" >
 			<phrase>Und der Matts Hummels ja, also man hat gesehen gerade bei dem Schlusspfiff ist er gelaufen als hätte er selber das Tor geschossen. Zusätlich wird ja Jerome Boateng auch nicht dabei sein können. Das heißt wir brauchen Matts, wie weit ist er und sind sie relativ sicher das sie ihn bringen können?</phrase>
 		</question>
-		<answer aid = "1" posture="Stand" gesture="Explain_8" role="Löw" >
+		<answer aid = "1" posture="Sit" gesture="Explain_8" role="Löw" >
 			<phrase>Ja der Matts hätte ja gerne gespielt, aber der Arzt hat gesagt es wäre gefährlich bei Kopfballduellen, von diesen gab es ja heute viele weil die Schweden ja eigentlich nur lange Bälle nach vorne spielen. Deswegen war es zu gefährlich, aber er war vor dem Spiel unnheimlich nervös, ich  hab kurz mal mit ihm gesprochen, er sagt er ist unheimlich angespannt. Aber natürlich brauchen wir ihn, er ist ein erfahrener Spielermit großer Klasse und jetzt sind wir froh das er mit großer wahrscheinlichkeit auch zurück kommt.</phrase>
 		</answer>
 	</block>	
 	<block bid ="9">
-		<question qid = "1" posture="Stand" gesture="BodyTalk_9" role="Moderator" >
+		<question qid = "1" posture="Sit" gesture="BodyTalk_9" role="Moderator" >
 			<phrase>Er ist mindestens genau so froh wie Toni Kroos, das der gerade am Ende diesen Schlusspunkt setzt.
 Eine Frage müssen wir natürlich noch Stellen zu Sebastian Rudi, das sah alles andere als gut aus. Aber ich habe gerade schon gesehen er war schon zum Schlusspfiff wieder mit drausen? 
 </phrase>
 		</question>
-		<answer aid = "1" posture="Stand" gesture="Explain_9" role="Löw" >
+		<answer aid = "1" posture="Sit" gesture="Explain_9" role="Löw" >
 			<phrase>Er hat sich die Nase gebrochen. Jetzt müssen wir mal schauen was man da machen kann. Es hat geblutet und nicht aufgehört, dann musste man natürlich auch wechseln. Das war so eine Phase wo so eine unruhe aufkahm, 
 klar weils ja ein bisschen auch gedauert hat. Aber möglicherweiße kann er 
 auch am Mittwoch spielen, muss man jetzt mal abwarten.</phrase>
 		</answer>
 	</block>	
 	<block bid ="10">
-		<question qid = "1" posture="Stand" gesture="BodyTalk_10" role="Moderator" >
+		<question qid = "1" posture="Sit" gesture="BodyTalk_10" role="Moderator" >
 			<phrase>Bei dem Adrelanin hat er das glaube ich vom Schmerz her, gar nicht gemerkt.
 Adrelanin ist ein Stichwort für die Nacht, da kommt man ja jetzt gar nicht zur Ruhe geschweigeden in das Bett. Dann gehts jetzt noch weiter nach Watutinki.</phrase>
 		</question>
-		<answer aid = "1" posture="Stand" gesture="Explain_10" role="Löw" volume="90" SpeechSpeed="105" VoicePitch="0.2" >
+		<answer aid = "1" posture="Sit" gesture="Explain_10" role="Löw" volume="90" SpeechSpeed="105" VoicePitch="1.2" >
 			<phrase>Ja wir fliegen ja wahrscheinlich zwei bis zwei ein halb Stunden, darum denke ich mal das gegen drei halb vier daheim sind. Klar morgen ist ein Tag ruhe angesagt und dann gehts natürlich weiter wir haben noch ein Spiel und das heißt jetzt für uns natürlich auch gewinnen zu müssen!</phrase>
 		</answer>
 	</block>	
 	<block bid ="11">
-		<question qid = "1" posture="Stand" gesture="BodyTalk_11" role="Moderator" >
+		<question qid = "1" posture="Sit" gesture="BodyTalk_11" role="Moderator" >
 			<phrase>Es ist nochmal gut gegangen, abschließend würden sie sagen jetzt sind wir drinnen im Tunier?</phrase>
 		</question>
-		<answer aid = "1" posture="Stand" gesture="Explain_11" role="Löw" >
+		<answer aid = "1" posture="Sit" gesture="Explain_11" role="Löw" >
 			<phrase>Das kann ein gutes Signal sein für uns und das hat die Mannschaft jetzt auch mal gebraucht, so einen Sieg wo nach Rückstand aufgeholt wird, das gibt nochmal Moral. Ich hoffe das das einen Schub gibt für das Tunier.</phrase>
 		</answer>
 	</block>	
 	<block bid ="12">
-		<question qid = "1" posture="Stand" gesture="BodyTalk_12" role="Moderator">
+		<question qid = "1" posture="Sit" gesture="BodyTalk_12" role="Moderator">
 			<phrase>Ja das hoffen wir alle. Ein Krimi ist zwar schön aber muss nicht so auf die letzte Sekunde sein, beim nächsten Mal herzlichen Dank.</phrase>
 		</question>
-		<answer aid = "1" posture="Stand" gesture="Explain_12" role="Löw" >
+		<answer aid = "1" posture="Sit" gesture="Explain_12" role="Löw" >
 			<phrase>So sind eben Spiele, vielen Dank.</phrase>
 		</answer>
 		</block>
