@@ -97,7 +97,7 @@ auch am Mittwoch spielen, muss man jetzt mal abwarten.</phrase>
 			<phrase>Bei dem Adrelanin hat er das glaube ich vom Schmerz her, gar nicht gemerkt.
 Adrelanin ist ein Stichwort für die Nacht, da kommt man ja jetzt gar nicht zur Ruhe geschweigeden in das Bett. Dann gehts jetzt noch weiter nach Watutinki.</phrase>
 		</question>
-		<answer aid = "1" posture="Sit" gesture="Explain_10" role="Löw" volume="90" SpeechSpeed="105" VoicePitch="0.2" >
+		<answer aid = "1" posture="Sit" gesture="Explain_10" role="Löw" volume="90" SpeechSpeed="105" VoicePitch="1.2" >
 			<phrase>Ja wir fliegen ja wahrscheinlich zwei bis zwei ein halb Stunden, darum denke ich mal das gegen drei halb vier daheim sind. Klar morgen ist ein Tag ruhe angesagt und dann gehts natürlich weiter wir haben noch ein Spiel und das heißt jetzt für uns natürlich auch gewinnen zu müssen!</phrase>
 		</answer>
 	</block>	
