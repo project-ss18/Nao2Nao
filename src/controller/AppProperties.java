@@ -3,7 +3,6 @@ package controller;
 import javax.swing.*;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -48,21 +47,17 @@ public class AppProperties {
         return getPropertieValue("AppMode");
     }
 
-    private static String getPropertieValue(String PropertyName)
-    {
-        try
-        {
+    private static String getPropertieValue(String PropertyName) {
+        try {
             InputStream inStram = new FileInputStream(propertiesFileName);
 
-            if(inStram != null)
-            {
+            if(inStram != null) {
                 prop.load(inStram);
             }
             return prop.getProperty(PropertyName);
         }
-        catch(Exception ex)
-        {
-            ex.getStackTrace();
+        catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage() + " fehlt im Anwendungsverzeichnis!", "Information", JOptionPane.ERROR_MESSAGE);
         }
         return null;
     }

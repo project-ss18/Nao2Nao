@@ -75,8 +75,8 @@ public class InterviewPlayer {
             public void actionPerformed(ActionEvent e) {
                 try {
                     interviewPlayer.startInterview();
-                } catch (Exception exc) {
-                    System.out.println(exc);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Fehler", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

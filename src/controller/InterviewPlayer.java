@@ -6,6 +6,7 @@ import model.interview.Interview;
 import model.interview.Question;
 import model.robot.Robot;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -85,7 +86,7 @@ public class InterviewPlayer implements Runnable {
             getRobot(question.getRole()).animatedSay(start + AppProperties.getRobotActionPath() + question.getGesture() + endTag + question.getPhrase()  + wait + AppProperties.getRobotActionPath() + endTag);
         }
         catch (Exception ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Fehler", JOptionPane.ERROR_MESSAGE);
         }
     }
     private void doAnswer(Answer selectedAnswer) {
@@ -97,7 +98,7 @@ public class InterviewPlayer implements Runnable {
             getRobot(selectedAnswer.getRole()).animatedSay(start + selectedAnswer.getGesture() + endTag + selectedAnswer.getPhrase() + wait + endTag);
         }
         catch (Exception ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Fehler", JOptionPane.ERROR_MESSAGE);
         }
     }
     private Robot getRobot(String robotRole) {
@@ -111,12 +112,12 @@ public class InterviewPlayer implements Runnable {
     }
     private void pauseHandler() {
         try {
-            while(pauseInterview == true) {
+            while(pauseInterview) {
                 Thread.sleep(1000);
             }
         }
         catch (Exception ex){
-            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getLocalizedMessage(), "Fehler", JOptionPane.ERROR_MESSAGE);
         }
 
     }
@@ -152,7 +153,7 @@ public class InterviewPlayer implements Runnable {
                 try {
                     robot.reset(robot);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(null, e.getMessage(), "Fehler", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
@@ -164,7 +165,7 @@ public class InterviewPlayer implements Runnable {
     }
     private ArrayList<String> getRobotSpeakAnswerOrder(Question selectedQuestion) {
         ArrayList<String> order = new ArrayList<String>();
-        for(Answer currentAnswer: selectedQuestion.answerList) {
+        for(Answer currentAnswer: selectedQuestion.getAnswerList()) {
             if(!order.contains(currentAnswer.getRole())) {
                 order.add(currentAnswer.getRole());
             }

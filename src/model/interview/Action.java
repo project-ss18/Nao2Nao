@@ -3,7 +3,6 @@ package model.interview;
 public abstract class Action {
     //------------------------Attribute------------------------\\\
     protected int id;
-    protected Block block;
     protected String role;
     protected String phrase;
     protected String posture;
@@ -17,9 +16,6 @@ public abstract class Action {
     public int getId(){
         return this.id;
     };
-    public Block getBlock() {
-        return block;
-    }
     public String getRole(){
         return this.role;
     }
