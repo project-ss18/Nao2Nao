@@ -5,6 +5,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
+import view.Menu;
 
 import javax.swing.*;
 import javax.xml.XMLConstants;
@@ -62,10 +63,10 @@ public class InterviewLoader {
             Schema schema = schemaFactory.newSchema(schemaFile);
             Validator validator = schema.newValidator();
             validator.validate(xmlFileSource);
-            //System.out.println("Die XML Datei '" + xmlFile + "' ist valide");
+            System.out.println("Die XML Datei '" + xmlFile + "' ist valide");
         } catch (SAXException e) {
-            System.out.println(xmlFileSource.getSystemId() + " Die XML Datei '"+ xmlFile + "' ist nicht valide!, Error:" + e);
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Fehler", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Die XML Datei '"+ xmlFile + "' ist nicht valide! \nError: " + e.getMessage(), "Fehler", JOptionPane.ERROR_MESSAGE);
+            new Menu();
             return false;
         } catch (IOException e) {
             System.out.println(e);
