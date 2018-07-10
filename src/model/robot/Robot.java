@@ -43,7 +43,7 @@ public class Robot {
         CONNECTION.gesture(args);
     }
 
-    //Ausgangsposition
+    //Ändert die Haltung des Roboters
     public void goToPosture(String args)throws Exception{
         CONNECTION.posture(args);
     }
