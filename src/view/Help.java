@@ -10,9 +10,11 @@ import java.io.File;
 
 public class Help extends JFrame {
 
+    //------------------------Attribute------------------------\\
     private JPanel panel;
     private JLabel hfuLogo;
 
+    //-----------------------Konstruktor-----------------------\\
     Help() {
         this.setTitle("Hilfe");
         panel.setBackground(Color.white);

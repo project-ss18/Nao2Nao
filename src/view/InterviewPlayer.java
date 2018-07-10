@@ -16,6 +16,7 @@ import java.util.List;
 
 public class InterviewPlayer {
 
+    //------------------------Attribute------------------------\\
     private JPanel panel;
     private JButton playButton;
     private JButton stopButton;
@@ -26,11 +27,12 @@ public class InterviewPlayer {
     private JComboBox comboBoxGoTo;
     private JButton goToButton;
 
+    //------------------------Variablen------------------------\\
     private controller.InterviewPlayer interviewPlayer;
     private ArrayList<Robot> robotList = new ArrayList<Robot>();
     private List<Question> goToListe = new ArrayList<>();
 
-
+    //-----------------------Konstruktor-----------------------\\
     InterviewPlayer(JFrame frame, Interview interview, ArrayList<Robot> robots) {
 
         this.robotList.addAll(robots);
@@ -102,6 +104,7 @@ public class InterviewPlayer {
         });
     }
 
+    //-------------------------Methoden-------------------------\\
     public void initProgressBar(int i) {
         progressBar.getModel().setMaximum(i);
         progressBar.getModel().setValue(0);

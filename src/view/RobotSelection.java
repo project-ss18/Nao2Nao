@@ -12,14 +12,15 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class RobotSelection extends JDialog {
+
+    //------------------------Attribute------------------------\\
     private JPanel panel;
     private JComboBox[] comboxes;
     private JLabel[] lables;
     private JButton bestaetigenButton;
-
     private GridBagConstraints gbc = new GridBagConstraints();
 
-
+    //-----------------------Konstruktor-----------------------\\
     public RobotSelection(JFrame mainFrame, Interview interview) {
         setResizable(false);
 

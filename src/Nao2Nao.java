@@ -22,6 +22,4 @@ public class Nao2Nao {
 
         new Menu();
     }
-
-
 }

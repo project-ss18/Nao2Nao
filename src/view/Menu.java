@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Menu {
+    //------------------------Attribute------------------------\\
     private JFrame frame;
     private JPanel panel;
     private JButton roboterlisteButton;
@@ -19,7 +20,7 @@ public class Menu {
     private JButton schliessenButton;
     private Dimension frameDimension;
 
-
+    //-----------------------Konstruktor-----------------------\\
     public Menu() {
 
         frame = new JFrame("Nao2Nao");
@@ -72,6 +73,7 @@ public class Menu {
         });
     }
 
+    //-------------------------Methoden-------------------------\\
     private void centerFrame() {
         Dimension windowSize = this.frame.getSize();
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
