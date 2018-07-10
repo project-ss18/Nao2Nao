@@ -8,9 +8,11 @@ import java.util.Arrays;
 
 public class AppProperties {
 
+    //-----------------------Variablen-----------------------\\
     private static String propertiesFileName = "config.properties";
     private static java.util.Properties prop = new java.util.Properties();
 
+    //-----------------------Getter-----------------------\\
     public static String getInterviewDirectory()
     {
         return getPropertieValue("InterviewDirectory");
@@ -46,7 +48,6 @@ public class AppProperties {
     {
         return getPropertieValue("AppMode");
     }
-
     private static String getPropertieValue(String PropertyName) {
         try {
             InputStream inStram = new FileInputStream(propertiesFileName);

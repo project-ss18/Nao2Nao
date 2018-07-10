@@ -21,10 +21,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InterviewLoader {
+
+    //------------------------Attribute------------------------\\
     private static ArrayList<String> InterviewNamen = new ArrayList<String>();
 
+    //-----------------------Konstruktor-----------------------\\
     private InterviewLoader(){ }
 
+    //-------------------------Methoden-------------------------\\
+
+    //Initialisiert das Interview
     public static Interview initializeInterview(String FileName) {
         if(!checkSyntax(FileName)){
             return null;
@@ -53,8 +59,9 @@ public class InterviewLoader {
         }
         return null;
     }
+
+    //XML-Syntax Check mithilfe eines XSD Schema
     public static boolean checkSyntax(String xmlFile) {
-        //XML-Syntax Check mithilfe eines XSD Schema
         File schemaFile = new File(AppProperties.getInterviewValidationFile());
         Source xmlFileSource = new StreamSource(new File(xmlFile));
         SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
@@ -63,8 +70,10 @@ public class InterviewLoader {
             Schema schema = schemaFactory.newSchema(schemaFile);
             Validator validator = schema.newValidator();
             validator.validate(xmlFileSource);
+            //Falls XML-Datei valide ist, wird ein entsprechendes Label im InterviewLoader angezeigt.
             System.out.println("Die XML Datei '" + xmlFile + "' ist valide");
         } catch (SAXException e) {
+            //Dialogfenster mit Fehler wird angezeigt, falls eine XML-Datei nicht valide ist.
             JOptionPane.showMessageDialog(null, "Die XML Datei '"+ xmlFile + "' ist nicht valide! \nError: " + e.getMessage(), "Fehler", JOptionPane.ERROR_MESSAGE);
             new Menu();
             return false;
@@ -75,6 +84,7 @@ public class InterviewLoader {
         return true;
     }
 
+    //Liefert alle Bezeichnung der Interviews
     public static List<String> getAllInterviewNames(boolean forcereload) {
         if(InterviewNamen.size() == 0 || forcereload) {
             ArrayList<String> _InterviewNamen = new ArrayList<String>();
@@ -92,6 +102,8 @@ public class InterviewLoader {
         }
         return InterviewNamen;
     }
+
+    //Liefer alle Interviewobjekte in einer Liste
     public static List<Interview> getAllInterviews(boolean forceReload) {
         if(Interview.getAllInterviews().size() == 0 || forceReload) {
 

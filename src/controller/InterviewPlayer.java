@@ -13,24 +13,25 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class InterviewPlayer implements Runnable {
 
+    //------------------------Attribute------------------------\\
     private Interview interview;
     private view.InterviewPlayer interviewPlayer;
     private List<Robot> robots;
 
+    //------------------------Variablen------------------------\\
     private Thread interviewThread;
     private boolean pauseInterview;
     private boolean isRunning;
-
     private boolean goTo;
     private int goToBid;
     private int gotToQid;
 
-    //--------Befehl-Tags-------\\
+    //-----------------------Befehl-Tags-----------------------\\
     private final String start = "^start(";
     private final char endTag = ')';
     private String wait = "^wait(";
 
-    //------Konstruktor------\\
+    //-----------------------Konstruktor-----------------------\\
     public InterviewPlayer(Interview interview, ArrayList<Robot> robots,view.InterviewPlayer interviewPlayer) throws Exception {
         this.interview = interview;
         this.interviewPlayer = interviewPlayer;
@@ -43,6 +44,9 @@ public class InterviewPlayer implements Runnable {
         goTo=false;
     }
 
+    //-------------------------Methoden-------------------------\\
+
+    //Stopppt das Interview
     public void stopInterview(){
         if(isRunning) {
             interviewThread.stop();
@@ -50,6 +54,7 @@ public class InterviewPlayer implements Runnable {
         isRunning = false;
     }
 
+    //Startet das Interview
     public void startInterview(){
         if(!isRunning) {
             interviewThread = new Thread(this);
@@ -60,6 +65,7 @@ public class InterviewPlayer implements Runnable {
         }
     }
 
+    //Springt zur ausgewählten Frage
     public void goToQuestion(int qID, int bID){
         goTo = true;
         goToBid=bID;
@@ -68,7 +74,7 @@ public class InterviewPlayer implements Runnable {
         startInterview();
     }
 
-
+    //Überprüft ob Rollen zugewiesen wurden
     private boolean checkRolesDefined(ArrayList<Robot> robots) {
         // ----- Testen der Rollen der Roboter -----
         for(Robot CurrentRobot: robots) {
@@ -77,6 +83,8 @@ public class InterviewPlayer implements Runnable {
         return true;
         // ----- Testen der Rollen der Roboter -----
     }
+
+    //Führt Frage aus
     private void doQuestion(Question question) {
         try {
             getRobot(question.getRole()).goToPosture(question.getPosture());
@@ -89,6 +97,8 @@ public class InterviewPlayer implements Runnable {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Fehler", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+    //Führt Antwort aus
     private void doAnswer(Answer selectedAnswer) {
         try {
             getRobot(selectedAnswer.getRole()).goToPosture(selectedAnswer.getPosture());
@@ -101,6 +111,8 @@ public class InterviewPlayer implements Runnable {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Fehler", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+    //
     private Robot getRobot(String robotRole) {
         for(Robot currentRobot: robots) {
             String role = currentRobot.getRole();
@@ -110,6 +122,8 @@ public class InterviewPlayer implements Runnable {
         }
         return null;
     }
+
+    //Pausiert das Interview
     private void pauseHandler() {
         try {
             while(pauseInterview) {
@@ -159,10 +173,14 @@ public class InterviewPlayer implements Runnable {
         }
 
     }
+
+    //Zufällige Auswahl der Antworten
     private Answer answershuffler(ArrayList<Answer> answerList) {
         int RandomeInteger = ThreadLocalRandom.current().nextInt(0, answerList.size());
         return answerList.get(RandomeInteger);
     }
+
+    //
     private ArrayList<String> getRobotSpeakAnswerOrder(Question selectedQuestion) {
         ArrayList<String> order = new ArrayList<String>();
         for(Answer currentAnswer: selectedQuestion.getAnswerList()) {
@@ -172,6 +190,8 @@ public class InterviewPlayer implements Runnable {
         }
         return order;
     }
+
+    //
     private ArrayList<Answer> getRobotAnswers(String role, Question question){
         ArrayList<Answer> temp = new ArrayList<>();
         for(Answer answer : question.getAnswerList()){
@@ -182,8 +202,12 @@ public class InterviewPlayer implements Runnable {
         return temp;
     }
 
+
+    //
     public void pauseInterview(){
         pauseInterview=true;
     }
+
+
 
 }

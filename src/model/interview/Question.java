@@ -3,8 +3,10 @@ package model.interview;
 import java.util.ArrayList;
 
 public class Question extends Action {
-    //------------------------Attribute------------------------\\\
+    //------------------------Attribute------------------------\\
     private Block block;
+
+    //------------------------Variablen------------------------\\
     private ArrayList<Answer> answerList = new ArrayList<Answer>();
 
     //-----------------------Konstruktor-----------------------\\
@@ -19,6 +21,7 @@ public class Question extends Action {
         this.voicePitch = voicePitch;
         block.addQuestion(this);
     }
+
     //----------------------Getter/Setter----------------------\\
     public void addAnswer(Answer a){
         answerList.add(a);

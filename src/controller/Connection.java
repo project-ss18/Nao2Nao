@@ -5,6 +5,7 @@ import com.aldebaran.qi.helper.proxies.*;
 
 public class Connection{
 
+    //-----------------------Variablen-----------------------\\
     private static Application app;
     private Session session;
     private Future<Void> fut;
@@ -16,6 +17,7 @@ public class Connection{
     private ALMotion motion;
     private static boolean applicationAvaliable = false;
 
+    //-----------------------Konstruktor-----------------------\\
     public Connection(String IP_ADRESS, String[] args) throws Exception{
 
         if(!applicationAvaliable) {
@@ -33,6 +35,8 @@ public class Connection{
         ttsSay = session.service("ALTextToSpeech");
 
     }
+
+    //-------------------------Methoden-------------------------\\
     public void setStiffnes(double stiffnes) throws InterruptedException, CallError {
         motion.setStiffnesses("Joints",stiffnes);
     }
@@ -50,6 +54,20 @@ public class Connection{
         robotPosture.goToPosture(args, (float) 1.0);
     }
 
+    public void ping()throws Exception {
+        boolean ping = ttsSay.<Boolean>call("ping").get();
+        if (!ping) {
+            System.out.println("Could not ping TTS");
+        } else {
+            System.out.println("Ping ok");
+            ALLeds l = new ALLeds(session);
+            l.off( 	"RightFaceLeds");
+            Thread.sleep(1000);
+            l.on( 	"RightFaceLeds");
+        }
+    }
+
+    //-----------------------Getter/Setter-----------------------\\
     public void setVolume(int args)throws Exception{
         audioDevice.setOutputVolume(args);
     }
@@ -74,16 +92,4 @@ public class Connection{
         return textToSpeech.getParameter("pitchShift");
     }
 
-    public void ping()throws Exception {
-        boolean ping = ttsSay.<Boolean>call("ping").get();
-        if (!ping) {
-            System.out.println("Could not ping TTS");
-        } else {
-            System.out.println("Ping ok");
-            ALLeds l = new ALLeds(session);
-            l.off( 	"RightFaceLeds");
-            Thread.sleep(1000);
-            l.on( 	"RightFaceLeds");
-        }
-    }
 }
