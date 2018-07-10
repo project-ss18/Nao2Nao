@@ -5,7 +5,7 @@ import com.aldebaran.qi.helper.proxies.*;
 
 public class Connection{
 
-    //-----------------------Variablen-----------------------\\
+    //-----------------------Attribute-----------------------\\
     private static Application app;
     private Session session;
     private Future<Void> fut;

@@ -13,73 +13,73 @@
 	<description>Interviewbeschreibung</description>
 	
 	<block bid ="1">
-		<question qid = "1" posture="Stand" gesture="BodyTalk_1" role="Student">
+		<question qid = "1" posture="Stand" gesture="BodyTalk_1" role="Student" volume="100" SpeechSpeed="100" VoicePitch="1">
 			<phrase>Hallo Professor, kann ich paar Fragen über das Smart Home Labor stellen?</phrase>
 		</question>
-		<answer aid = "1" posture="Stand" gesture="Excited_2" role="Professor" >
-			<phrase>Hallo Timo, ja gerne darfst du. Welche Fragen hast du denn?</phrase>
+		<answer aid = "1" posture="Stand" gesture="Excited_2" role="Professor" volume="100" SpeechSpeed="100" VoicePitch="1">
+			<phrase>Hallo Manu, ja gerne darfst du. Welche Fragen hast du denn?</phrase>
 		</answer>
 	</block>
 
 	<block bid ="2">
-		<question qid = "1" posture="Stand" gesture="BodyTalk_1" role="Student">
+		<question qid = "1" posture="Stand" gesture="BodyTalk_1" role="Student" volume="100" SpeechSpeed="100" VoicePitch="1">
 			<phrase>Was ist das Smart Home Labor genau?</phrase>
 		</question>
-		<answer aid = "1" posture="Stand" gesture="Excited_2" role="Professor" >
-			<phrase>Das Smart Home Labor der Hochschule Furtwangen ist eine Innovative Umgebung zum Lernen und zum Forschen. Es ist eingerichtet wie ein Zuhause und enthält sogenannte Smart Home Technologie.</phrase>
+		<answer aid = "1" posture="Stand" gesture="Excited_2" role="Professor" volume="100" SpeechSpeed="100" VoicePitch="1">
+			<phrase>Das Smart Home Labor der Hochschule Furtwangen Manu ist eine Innovative Umgebung zum Lernen und zum Forschen. Es ist eingerichtet wie ein Zuhause und enthält sogenannte Smart Home Technologie.</phrase>
 		</answer>
 	</block>
 
 	<block bid ="3">
-		<question qid = "1" posture="Stand" gesture="BodyTalk_1" role="Student">
+		<question qid = "1" posture="Stand" gesture="BodyTalk_1" role="Student" volume="100" SpeechSpeed="100" VoicePitch="1">
 			<phrase>Was für einen Nutzen hat das Smart Home Labor für Studenten?</phrase>
 		</question>
-		<answer aid = "1" posture="Stand" gesture="Excited_2" role="Professor" >
+		<answer aid = "1" posture="Stand" gesture="Excited_2" role="Professor" volume="100" SpeechSpeed="100" VoicePitch="1">
 			<phrase>Das Labor ermöglicht euch die Arbeit mit aktuellen Smart Home Technologien und die Forschung mit zukünftigen Technologien.</phrase>
 		</answer>
 	</block>	
 
 	<block bid ="4">
-		<question qid = "1" posture="Stand" gesture="BodyTalk_1" role="Student">
+		<question qid = "1" posture="Stand" gesture="BodyTalk_1" role="Student" volume="100" SpeechSpeed="100" VoicePitch="1">
 			<phrase>Und wo ist das Smart Home Labor.</phrase>
 		</question>
-		<answer aid = "1" posture="Stand" gesture="Excited_2" role="Professor" >
+		<answer aid = "1" posture="Stand" gesture="Excited_2" role="Professor" volume="100" SpeechSpeed="100" VoicePitch="1">
 			<phrase>Im B Bau neben dem Sekretariat der Fakultät Informatik. Allerdings benötigt man eine Einweisung bevor man hier arbeiten kann.</phrase>
 		</answer>
 	</block>	
 
 	<block bid ="5">
-		<question qid = "1" posture="Stand" gesture="BodyTalk_1" role="Student">
+		<question qid = "1" posture="Stand" gesture="BodyTalk_1" role="Student" volume="100" SpeechSpeed="100" VoicePitch="1">
 			<phrase>Das ist aber interessant! Seit wann gibt es das denn?</phrase>
 		</question>
-		<answer aid = "1" posture="Stand" gesture="Excited_2" role="Professor" >
+		<answer aid = "1" posture="Stand" gesture="Excited_2" role="Professor" volume="100" SpeechSpeed="100" VoicePitch="1">
 			<phrase>Wir haben das Smart home Labor 2016 für Studenten bereitgestellt.</phrase>
 		</answer>
 	</block>
 	
 	<block bid ="6">
-		<question qid = "1" posture="Stand" gesture="BodyTalk_1" role="Student">
+		<question qid = "1" posture="Stand" gesture="BodyTalk_1" role="Student" volume="100" SpeechSpeed="100" VoicePitch="1">
 			<phrase>Okay. Und welche interessanten Komponenten befinden sich in dem Labor.</phrase>
 		</question>
-		<answer aid = "1" posture="Stand" gesture="Excited_2" role="Professor" >
+		<answer aid = "1" posture="Stand" gesture="Excited_2" role="Professor" volume="100" SpeechSpeed="100" VoicePitch="1">
 			<phrase>Wir haben einen Roboter mit dem Namen Pepper, welcher der Buttler der Wohnung ist. Das Labor hat eine Sprachsteuerung von Amazon mit dem Namen Alexa mit der die ganze Wohnung gesteuert werden kann. Es ist eine Smarte Küche von Miele eingebaut, die über andere Geräte angesteuert werden kann. Das besondere an dem Ganzen ist also das alle Geräte in dem Labor über standardisierte Schnittstellen angesteuert werden.</phrase>
 		</answer>
 	</block>
 	
 	<block bid ="7">
-		<question qid = "1" posture="Stand" gesture="BodyTalk_1" role="Student">
+		<question qid = "1" posture="Stand" gesture="BodyTalk_1" role="Student" volume="100" SpeechSpeed="100" VoicePitch="1">
 			<phrase>Klasse sowas brauche ich auch. Wie viel kostet denn so etwas?</phrase>
 		</question>
-		<answer aid = "1" posture="Stand" gesture="Excited_2" role="Professor" >
+		<answer aid = "1" posture="Stand" gesture="Excited_2" role="Professor" volume="100" SpeechSpeed="100" VoicePitch="1">
 			<phrase>Das ist im Moment leider noch nicht ganz billig. Aber eines Tages wird jedes Haus mit solcher Technologie ausgestattet sein.</phrase>
 		</answer>
 	</block>	
 
 	<block bid ="8">
-		<question qid = "1" posture="Stand" gesture="BodyTalk_1" role="Student">
+		<question qid = "1" posture="Stand" gesture="BodyTalk_1" role="Student" volume="100" SpeechSpeed="100" VoicePitch="1">
 			<phrase>Und wie funktioniert das Smart Home Labor?</phrase>
 		</question>
-		<answer aid = "1" posture="Stand" gesture="Excited_2" role="Professor" >
+		<answer aid = "1" posture="Stand" gesture="Excited_2" role="Professor" volume="100" SpeechSpeed="100" VoicePitch="1">
 			<phrase>Wenn Sie die Technologie interessiert, schauen Sie doch einfach mal beim Smart Home Labor vorbei! Jetzt muss ich aber weiter in die Vorlesung zu Software Vertrieb und Marketing. Ich wünsche Ihnen noch einen schönen Tag!</phrase>
 		</answer>
 	</block>
