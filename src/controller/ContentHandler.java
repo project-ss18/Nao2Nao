@@ -60,6 +60,7 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
                 //Exception falls volume, speechSpeed und voicePitch in einer Frage nicht definiert wurden.
                 questionList.add(new Question(Integer.parseInt(atts.getValue("qid")), blockList.get(blockCounter - 1),atts.getValue("posture"),atts.getValue("gesture"),atts.getValue("role"), 70, 100, 1));
             }
+            //Liest die definierte Rolle aus der Frage aus.
             String currentQuestionRole = atts.getValue("role");
             if (!interview.allRoles.contains(currentQuestionRole) && currentQuestionRole != null){
                 interview.allRoles.add(currentQuestionRole);
@@ -77,6 +78,7 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
                 answerList.add(new Answer(Integer.parseInt(atts.getValue("aid")), questionList.get(questCounter - 1),atts.getValue("posture"),atts.getValue("gesture"),atts.getValue("role"), 70, 100, 1));
             }
         }
+        //Liest die definierte Rolle aus der Antwort aus.
         String currentAnswerRole = atts.getValue("role");
         if (!interview.allRoles.contains(currentAnswerRole)&& currentAnswerRole != null){
             interview.allRoles.add(currentAnswerRole);
@@ -86,11 +88,15 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
     // Methode wird aufgerufen wenn der Parser zu einem End-Tag kommt
     public void endElement(String uri, String localName, String qName)throws SAXException {
 
+        //Liest das XML-Element "description" ein und setzt entsprechend die String Variable description des Interviews.
         if (localName.equals("description")) {
             interview.setDescription(currentValue);
         }
 
+        //Liest das XML-Element "phrase" ein und setzt entsprechend die String Variable phrase dee Interview Action.
         if (localName.equals("phrase")) {
+
+            //Überprüfung ob die jeweilige Interview Action eine Frage oder eine Antwort ist.
             if(type){
                 answerList.get(answerCounter-1).setPhrase(currentValue);
             }else if(type==false){

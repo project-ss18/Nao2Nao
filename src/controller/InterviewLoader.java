@@ -36,18 +36,18 @@ public class InterviewLoader {
             return null;
         }
         try {
-            // XMLReader erzeugen
+            //XMLReader erzeugen
             XMLReader xmlReader = XMLReaderFactory.createXMLReader();
 
-            // Pfad zur resources Datei
+            //Pfad zur resources Datei
             FileReader reader = new FileReader(FileName);
             InputSource inputSource = new InputSource(reader);
             inputSource.setEncoding("UTF-8");
 
-            // PersonenContentHandler wird übergeben
+            //ContentHandler wird übergeben
             xmlReader.setContentHandler(new ContentHandler());
 
-            // Parsen wird gestartet
+            //Parsen wird gestartet
             xmlReader.parse(inputSource);
 
             Interview temp = ContentHandler.getInterview();
