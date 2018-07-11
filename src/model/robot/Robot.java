@@ -10,8 +10,6 @@ public class Robot {
     //------------------------Attribute------------------------\\
     private String name;
     private final String IP_ADDRESS;
-
-    //------------------------Variablen------------------------\\
     private static ArrayList<Robot> robotList = new ArrayList<Robot>();
     private static int id_Counter = 0;
     private String[] args = {};
@@ -43,7 +41,7 @@ public class Robot {
         CONNECTION.gesture(args);
     }
 
-    //Ändert die Haltung des Roboters
+    //Ausgangsposition
     public void goToPosture(String args)throws Exception{
         CONNECTION.posture(args);
     }
@@ -68,7 +66,7 @@ public class Robot {
     public String toString(){
         return ( this.getName());
     }
-
+    //startet einen neuen Thread um den übergebenen Roboter zurückzusetzten
     public void reset(Robot r){
         Thread temp = new Thread(new ResetRunnable(r));
         temp.start();
@@ -130,6 +128,7 @@ public class Robot {
         return CONNECTION.getVoicePitch();
     }
 
+    //Realisiert das parallele zurücksetzten von Robotern
     private class ResetRunnable implements Runnable{
 
         Robot robot;
