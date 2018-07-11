@@ -16,8 +16,6 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
     private static ArrayList<Block> blockList = new ArrayList<Block>();
     private static ArrayList<Question> questionList = new ArrayList<Question>();
     private static ArrayList<Answer> answerList = new ArrayList<Answer>();
-
-    //-----------------------Variablen-----------------------\\
     private String currentValue;
     static int blockCounter=0;
     static int questCounter=0;

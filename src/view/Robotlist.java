@@ -25,8 +25,6 @@ public class Robotlist {
     private JButton robotReset;
     private JLabel loadingLable;
     private JFrame frame;
-
-    //------------------------Variablen------------------------\\
     private String[] columnNames = new String[]{"ID", "Robotername", "IP-Adresse"};
     private String[][] rowData;
 
@@ -131,6 +129,7 @@ public class Robotlist {
     }
 
     //-------------------------Methoden-------------------------\\
+    //während die Verbindung zu einem Roboter aufgebaut wird, wird die Funktionalität des Fensters eingeschränkt(Buttons deaktivieren)
     void setBackButton(boolean state) {
         if (!state) {
             loadingLable.setText("<html><font color='red'>Bitte warten!<br>Lade Roboter...</font></html>");
@@ -141,7 +140,7 @@ public class Robotlist {
         buttonNewRobot.setEnabled(state);
         if (state) loadingLable.setVisible(false);
     }
-
+    //aktualisieret den Inhalt der Tabelle
     public void refreshList() {
         rowData = new String[Robot.getRobotList().size()][];
         for (int i = 0; i < Robot.getRobotList().size(); i++) {
@@ -157,7 +156,7 @@ public class Robotlist {
         robotTable.setRowHeight(25);
         robotTableScrollPane.setViewportView(robotTable);
     }
-
+    //neues Roboter-Objekt instanziieren
     void addRobot(String name, String IP) {
         Robot robot;
         try {

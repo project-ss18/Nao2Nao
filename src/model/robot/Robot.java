@@ -66,7 +66,8 @@ public class Robot {
     public String toString(){
         return ( this.getName());
     }
-    //startet einen neuen Thread um den übergebenen Roboter zurückzusetzten
+
+    //startet einen neuen Thread mit einem Runnable-Objekt, um den übergebenen Roboter zurückzusetzten
     public void reset(Robot r){
         Thread temp = new Thread(new ResetRunnable(r));
         temp.start();

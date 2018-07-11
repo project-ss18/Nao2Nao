@@ -11,14 +11,13 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class NewRobot extends JDialog implements Runnable {
+    //Asynchrones erstellen von Roboter_Objekten und deren Connection
 
     //------------------------Attribute------------------------\\
     private JTextField textFieldRobotName;
     private JTextField textFieldIP;
     private JButton bestätigenButton;
     private JPanel panel;
-
-    //------------------------Variablen------------------------\\
     private Robotlist robotlist;
     private boolean autoLoad;
     private boolean bestaetigt;

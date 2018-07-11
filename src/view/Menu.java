@@ -74,6 +74,7 @@ public class Menu {
     }
 
     //-------------------------Methoden-------------------------\\
+    //Fesnter wird Zentral auf dem Bildschirm plaziert
     private void centerFrame() {
         Dimension windowSize = this.frame.getSize();
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();

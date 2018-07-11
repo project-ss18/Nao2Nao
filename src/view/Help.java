@@ -9,6 +9,7 @@ import java.awt.*;
 import java.io.File;
 
 public class Help extends JFrame {
+    //Fenster enthält Projekt-Details
 
     //------------------------Attribute------------------------\\
     private JPanel panel;

@@ -17,8 +17,6 @@ public class InterviewPlayer implements Runnable {
     private Interview interview;
     private view.InterviewPlayer interviewPlayer;
     private List<Robot> robots;
-
-    //------------------------Variablen------------------------\\
     private Thread interviewThread;
     private boolean pauseInterview;
     private boolean isRunning;

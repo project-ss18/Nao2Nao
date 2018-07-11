@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class RobotSelection extends JDialog {
+    //Dieses Fenster ist für die Rollenzuweisung zuständig
 
     //------------------------Attribute------------------------\\
     private JPanel panel;

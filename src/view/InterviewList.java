@@ -31,9 +31,6 @@ public class InterviewList {
     private JButton interviewEntfernenButton;
     private JButton interviewAbspielenButton;
     private JButton aktualisierenButton;
-
-    //------------------------Variablen------------------------\\
-
     private static List<Interview> interviewList;
     private static JFileChooser openFileChooser;
     private final static String resPath = "./res/";
@@ -142,6 +139,7 @@ public class InterviewList {
     }
 
     //-------------------------Methoden-------------------------\\
+    //aktualisiert den Inhalt der Tabelle
     public void refreshList() {
         interviewList = InterviewLoader.getAllInterviews(true);
         rowData = new String[interviewList.size()][];
@@ -162,6 +160,7 @@ public class InterviewList {
         interviewScrollPane.setViewportView(interviewTable);
     }
 
+    //Zellen Breite wird auf den Inhalt angepasst
     public void resizeColumnWidth(JTable table) {
         final TableColumnModel columnModel = table.getColumnModel();
         for (int column = 0; column < table.getColumnCount(); column++) {
@@ -176,7 +175,7 @@ public class InterviewList {
             columnModel.getColumn(column).setPreferredWidth(width);
         }
     }
-
+    //Datei wird in das Ressourcenverzeichnis kopiert
     private static void copyFileUsingChannel(File source, File dest) throws IOException {
         FileChannel sourceChannel = null;
         FileChannel destChannel = null;

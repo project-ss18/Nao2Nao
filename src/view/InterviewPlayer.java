@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InterviewPlayer {
-
     //------------------------Attribute------------------------\\
     private JPanel panel;
     private JButton playButton;
@@ -26,8 +25,6 @@ public class InterviewPlayer {
     private JTextPane previewJTextPane;
     private JComboBox comboBoxGoTo;
     private JButton goToButton;
-
-    //------------------------Variablen------------------------\\
     private controller.InterviewPlayer interviewPlayer;
     private ArrayList<Robot> robotList = new ArrayList<Robot>();
     private List<Question> goToListe = new ArrayList<>();
