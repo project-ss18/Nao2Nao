@@ -42,6 +42,7 @@ public class InterviewPlayer implements Runnable {
         goTo=false;
     }
 
+    // Interview und somit Thread stoppen
     public void stopInterview(){
         if(isRunning) {
             interviewThread.stop();
@@ -49,6 +50,7 @@ public class InterviewPlayer implements Runnable {
         isRunning = false;
     }
 
+    // Thread ausführen und damit Interivew starten
     public void startInterview(){
         if(!isRunning) {
             interviewThread = new Thread(this);
@@ -59,6 +61,7 @@ public class InterviewPlayer implements Runnable {
         }
     }
 
+    // Zu einer Frage in dem Interview springen
     public void goToQuestion(int qID, int bID){
         goTo = true;
         goToBid=bID;
@@ -67,7 +70,7 @@ public class InterviewPlayer implements Runnable {
         startInterview();
     }
 
-
+    // Testen ob alle Rollen für das Interview belegt wurden
     private boolean checkRolesDefined(ArrayList<Robot> robots) {
         // ----- Testen der Rollen der Roboter -----
         for(Robot CurrentRobot: robots) {
@@ -100,6 +103,7 @@ public class InterviewPlayer implements Runnable {
             ex.printStackTrace();
         }
     }
+    // Die Funktion gibt einen Roboter, mit der für das Interview definierten Rolle zurück
     private Robot getRobot(String robotRole) {
         for(Robot currentRobot: robots) {
             String role = currentRobot.getRole();
@@ -109,6 +113,7 @@ public class InterviewPlayer implements Runnable {
         }
         return null;
     }
+    // Testen ob sich das Interview in Pause befindet. Pausieren des Threads während der Zeit
     private void pauseHandler() {
         try {
             while(pauseInterview == true) {
@@ -120,7 +125,7 @@ public class InterviewPlayer implements Runnable {
         }
 
     }
-
+    // Ausführen des Interview
     @Override
     public void run() {
         try {
@@ -158,6 +163,7 @@ public class InterviewPlayer implements Runnable {
         }
 
     }
+    // Finden einer zufälligen Antwort für eine Rolle in dem aktuellen Block
     private Answer answershuffler(ArrayList<Answer> answerList) {
         int RandomeInteger = ThreadLocalRandom.current().nextInt(0, answerList.size());
         return answerList.get(RandomeInteger);

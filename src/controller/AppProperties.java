@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class AppProperties {
+// Liest Werte aus der Config Datei
 
     private static String propertiesFileName = "config.properties";
     private static java.util.Properties prop = new java.util.Properties();
@@ -48,6 +49,7 @@ public class AppProperties {
         return getPropertieValue("AppMode");
     }
 
+    // Einen Wert aus der Configurationsdatei holen
     private static String getPropertieValue(String PropertyName)
     {
         try
