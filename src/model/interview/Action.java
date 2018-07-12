@@ -1,9 +1,8 @@
 package model.interview;
 
 public abstract class Action {
-    //------------------------Attribute------------------------\\\
+    //------------------------Attribute------------------------\\
     protected int id;
-    protected Block block;
     protected String role;
     protected String phrase;
     protected String posture;
@@ -12,14 +11,11 @@ public abstract class Action {
     protected int speechSpeed;
     protected float voicePitch;
 
-    //------------------------Getter/Setter------------------------\\\
+    //------------------------Getter/Setter------------------------\\
 
     public int getId(){
         return this.id;
     };
-    public Block getBlock() {
-        return block;
-    }
     public String getRole(){
         return this.role;
     }

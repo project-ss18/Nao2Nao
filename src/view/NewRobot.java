@@ -11,6 +11,9 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class NewRobot extends JDialog implements Runnable {
+    //Asynchrones erstellen von Roboter_Objekten und deren Connection
+
+    //------------------------Attribute------------------------\\
     private JTextField textFieldRobotName;
     private JTextField textFieldIP;
     private JButton bestätigenButton;
@@ -19,6 +22,7 @@ public class NewRobot extends JDialog implements Runnable {
     private boolean autoLoad;
     private boolean bestaetigt;
 
+    //-----------------------Konstruktor-----------------------\\
     NewRobot(Robotlist robotlist, boolean autoLoad) {
 
         setPreferredSize(new Dimension(200, 150));
@@ -55,7 +59,7 @@ public class NewRobot extends JDialog implements Runnable {
         });
     }
 
-
+    //-------------------------Methoden-------------------------\\
     @Override
     public void run() {
         if (autoLoad) {

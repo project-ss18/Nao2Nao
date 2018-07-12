@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--Jedes Interview benötigt eine Anzahl an Teilnehmern und eine Beschreibung-->
+<!--Jeder Block benötigt eine BlockID, die Posture ist Optional. -->
+<!--Wenn keine Posture angeben wurde, dann ist diese standardmäßig "Stand".-->
+<!--Jede Interview Aktion (Frage/Antwort)eine QuestionID / AnswerID, eine zugehörige Geste und eine zugewiesene Rolle.-->
+<!--Wenn keine Lautstärke, Sprachgeschwindigkeit und Tonhöhe bei einer Interview Aktion definiert wurden sind diese wie folgt standardmäßig definiert.-->
+<!--volume="70" SpeechSpeed="100" VoicePitch="0"-->
+<!--Falls eines der Attribute Lautstärke, Sprachgeschwindigkeit oder Tonhöhe definiert werden soll, müssen alle drei definiert werden!-->
+<!--Volume[50-100], Speed[100-400], Pitch[0-4]-->
+
+<interview anzahlTeilnehmer = "3">
+	<description>Interviewbeschreibung</description>
+	
+	<block bid ="1">
+		<question qid = "1" posture="Stand" gesture="BodyTalk_1" role="Moderator" volume="100" SpeechSpeed="100" VoicePitch="1">
+			<phrase>Nun spielen wir Ihnen ein Interview zwischen der Badischen Zeitung und Professor Doktor Cochlovius vom 17 August 2016 ab. Das Interview wurde in Freiburg zu dem Thema  Warum die Informationstechnik in Südbaden eine Schlüsselbranche ist geführt.</phrase>
+		</question>
+		<answer aid = "1" posture="Stand" gesture="Explain_2" role="Moderator" >
+			<phrase>
+			</phrase>
+		</answer>
+		
+	</block>
+	
+	<block bid ="2">
+		<question qid = "1" posture="Stand" gesture="BodyTalk_1" role="Journalist" volume="100" SpeechSpeed="100" VoicePitch="1">
+			<phrase>Herr Cochlovius, wird in zehn Jahren jeder Mensch programmieren können oder lernen?
+			</phrase>
+		</question>
+		<answer aid = "1" posture="Stand" gesture="Explain_2" role="Cochlovius" volume="100" SpeechSpeed="100" VoicePitch="1">
+			<phrase>Nein, das scheint mir etwas übertrieben. Eher denke ich, dass die Bedienung der Geräte und Systeme sich noch weiter vereinfachen muss. Damit sie auch von Laien verstanden wird. Etwa beim Smart Home.
+			</phrase>
+		</answer>
+	</block>
+	
+	<block bid = "3">
+		<question qid = "1" posture="Stand" gesture="BodyTalk_1" role="Journalist" volume="100" SpeechSpeed="100" VoicePitch="1">
+			<phrase>Also bei der digital vernetzten Haustechnik. Das sind zum Teil komplexe Systeme. Ursache und Wirkung sind da nicht immer so einfach wie: Ich lasse die Rollläden runter und es wird dunkler. Besteht nicht die Gefahr, dass Anwender überfordert werden?
+			</phrase>
+		</question>
+		<answer aid = "1" posture="Stand" gesture="Explain_3" role="Cochlovius" volume="100" SpeechSpeed="100" VoicePitch="1">
+			<phrase>Es heißt, Computer lösen Probleme, die wir ohne sie gar nicht hätten. Das ist die Herausforderung: Komplexe Systeme so einfach zu machen, dass auch der normale Mensch die Anwendungen beherrscht und deren Vor und Nachteile versteht.
+			</phrase>
+		</answer>
+	</block>
+	
+		<block bid = "4">
+		<question qid = "1" posture="Stand" gesture="BodyTalk_3" role="Journalist" volume="100" SpeechSpeed="100" VoicePitch="1">
+			<phrase>2015 wurden weltweit 1,5 Milliarden Smartphones verkauft – jedes ein Hochleistungscomputer. Für diese Zahl hat der PC 40 Jahre gebraucht. Das bedeutet doch: Wir erleben keine digitale Revolution, sondern eine mobile.
+			</phrase>
+		</question>
+		<answer aid = "1" posture="Stand" gesture="Explain_4" role="Cochlovius" volume="100" SpeechSpeed="100" VoicePitch="1">
+			<phrase>Die Mobilität beschleunigt sich und mit ihr die Rechenkapazität. Ein Smartphone von heute hat eine höhere Rechenleistung als das erste SpaceShuttle. Aber es gibt auch Sättigungstendenzen. Nicht nur Apple fragt sich: Was kommt eigentlich nach dem Smartphone? Eine Antwort könnte sein, dass wir die Rechner nicht mehr wahrnehmen, weil sie in unserer Umgebung verschwinden, zum Beispiel im Smart Home oder im vernetzten Automobil.
+			</phrase>
+		</answer>
+	</block>
+
+	<block bid = "5">
+		<question qid = "1" posture="Stand" gesture="BodyTalk_10" role="Journalist" volume="100" SpeechSpeed="100" VoicePitch="1">
+			<phrase>Was bedeutet das für die Wirtschaft in Südbaden?
+			</phrase>
+		</question>
+		<answer aid = "1" posture="Stand" gesture="Explain_1" role="Cochlovius" volume="100" SpeechSpeed="100" VoicePitch="1">
+		<phrase>Die Region hat schon mal einen Wandel erlebt. Nach dem Wegbrechen der Uhrenindustrie gerade im Schwarzwald wurden die vorhandenen Kompetenzen genutzt, um neue Technologien zu entwickeln. Diese Strukturen spürt man bis heute , mit vielen Playern aus der Feinwerktechnik, der Medizintechnik oder den Autozulieferern. Und natürlich braucht man hierfür aufgeschlossene, innovative Mitarbeiter.
+
+		</phrase>
+		</answer>
+	</block>
+	
+	<block bid = "6">
+		<question qid = "1" posture="Stand" gesture="Excited_2" role="Journalist" volume="100" SpeechSpeed="100" VoicePitch="1">
+			<phrase>Und weitsichtige Unternehmer.
+			</phrase>
+		</question>
+		<answer aid = "1" posture="Stand" gesture="BodyTalk_8" role="Cochlovius" volume="100" SpeechSpeed="100" VoicePitch="1">
+			<phrase>Dazu gibt es ein berühmtes Zitat von Thomas Watson, der 1943 als Chef von IBM mal gesagt hat, er sehe weltweit einen Markt für vielleicht fünf Computer.
+			</phrase>
+		</answer>
+	</block>
+	
+	<block bid = "7">
+		<question qid = "1" posture="Stand" gesture="BodyTalk_5" role="Journalist" volume="100" SpeechSpeed="100" VoicePitch="1">
+			<phrase>Okay. Jetzt sehen Sie sich mal in Ihrem Arbeitszimmer um. Wie viele Computer sehen Sie?
+			</phrase>
+		</question>
+		<answer aid = "1" posture="Stand" gesture="BodyTalk_4" role="Cochlovius" volume="100" SpeechSpeed="100" VoicePitch="1">
+			<phrase>Fünf. Und wenn ich die Tasche aufmache, sind da auch noch drei drin. Das ist auch ein Wandel. Aber wir haben nicht nur eine technologische Veränderung, sondern auch eine demografische. Und dann ist die Frage: Kann IT helfen, auch auf regionaler Ebene attraktive Lebensbedingungen zu schaffen? Dazu brauchen wir Breitband im ländlichen Raum. Ohne das gibt es auf dem Land keine vernetzte Industrie und sicher bald auch keine jungen Familien mehr.
+			</phrase>
+		</answer>
+	</block>
+	
+		<block bid = "8">
+		<question qid = "1" posture="Stand" gesture="BodyTalk_13" role="Journalist" volume="100" SpeechSpeed="100" VoicePitch="1">
+			<phrase>Es gibt heute Nassrasierer, die mit dem Internet verbunden sind. Wenn ich neue Klingen brauche, drücke ich fünf Sekunden auf einen Kopf und ein Chip gibt dem Händler ein Signal, dass er mir neue Klingen schicken muss.
+			</phrase>
+		</question>
+		<answer aid = "1" posture="Stand" gesture="BodyTalk_1" role="Cochlovius" volume="100" SpeechSpeed="100" VoicePitch="1">
+			<phrase>Da greife ich doch zum Trockenrasierer. Aber im Ernst: Bei diesem Grad der Vernetzung öffnen sich Fragen etwa zum Datenschutz und zur Sicherheit. Teilweise müssen Hersteller sich intensiver damit befassen, als sie es bisher getan haben.
+			</phrase>
+		</answer>
+	</block>
+	
+		<block bid = "9">
+		<question qid = "1" posture="Stand" gesture="BodyTalk_3" role="Journalist" volume="100" SpeechSpeed="100" VoicePitch="1">
+			<phrase>Sie sprechen vom Verantwortungsbewusstsein der Industrie.
+			</phrase>
+		</question>
+		<answer aid = "1" posture="Stand" gesture="BodyTalk_2" role="Cochlovius" volume="100" SpeechSpeed="100" VoicePitch="1">
+			<phrase>Auf jeden Fall. Die IT ist mächtiger geworden und damit auch gefährlicher. Schauen Sie nur auf Ihren Smart TV. Der verfügt heute oft schon über intelligente Kameras, die Ihre Umgebung per Gesichtserkennung oder an Gesten analysieren und diese Daten auch unbesehen in die Cloud schicken. Was da mit Ihren Daten geschieht, ist völlig intransparent. Facebook diskutiert in den USA darüber, ob über Chat Bots Einfluss auf den dortigen Wahlkampf genommen werden kann oder sogar muss. Diese Algorithmen entscheiden selbst, welche Nachrichten ein Anwender sieht, und welche nicht. Oder denken Sie ans selbst fahrende Auto: Wen soll das bei einem drohenden Unfall schützen den Fußgänger auf der Straße oder den Fahrer, indem es eben nicht durch einen Schwenk im Straßengraben landet?
+			</phrase>
+		</answer>
+		</block>
+		
+		<block bid = "10">
+		<question qid = "1" posture="Stand" gesture="BodyTalk_8" role="Journalist" volume="100" SpeechSpeed="100" VoicePitch="1">
+			<phrase>Also neben der Gefahr, dass uns zu viele Computer überfordern, sehen Sie auch die Gefahr, dass sie uns zu viele Entscheidungen abnehmen und wir unsere Verantwortung vergessen?
+			</phrase>
+		</question>
+		<answer aid = "1" posture="Stand" gesture="BodyTalk_2" role="Cochlovius" volume="100" SpeechSpeed="100" VoicePitch="1">
+			<phrase>Absolut richtig. Wer trägt denn die Verantwortung beim intelligenten Auto? Der Fahrer, der Autohersteller, der Zulieferer des Autoherstellers oder gar der einzelne Programmierer? Darauf gibt es noch keine tragfähigen Antworten.
+			</phrase>
+		</answer>
+		</block>
+		
+		<block bid = "11">
+		<question qid = "1" posture="Stand" gesture="Excited_1" role="Journalist" volume="100" SpeechSpeed="100" VoicePitch="1">
+			<phrase>Sind die jungen Informatiker noch davon angetrieben der nächste Bill Gates, Steve Jobs oder Mark Zuckerberg zu sein? Oder wollen die eher um acht zu Hause sein und die Kinder ins Bett bringen?
+			</phrase>
+		</question>
+		<answer aid = "1" posture="Stand" gesture="Excited_1" role="Cochlovius" volume="100" SpeechSpeed="100" VoicePitch="1">
+			<phrase>Meine Erfahrung mit Studierenden ist, dass auch junge Leute immer noch für ihr Fach brennen und große Themen voranbringen wollen. Aber nicht nur die Technik hat sich verändert, auch Produkte und Prozesse. Ich sehe da eine veränderte Kultur, mehr Professionalität schon auf lokaler Ebene. Wer mit den besten Leuten der Welt zusammenarbeiten will, muss dafür nicht mehr rund um die Welt fliegen. Das ist einer der wichtigsten Beiträge moderner IT.
+			</phrase>
+		</answer>
+		</block>
+		
+		<block bid = "12">
+		<question qid = "1" posture="Stand" gesture="Excited_1" role="Moderator" volume="100" SpeechSpeed="100" VoicePitch="1">
+			<phrase>Das war das Interview zwischen Professor Doktor Cochlovius und der badischen Zeitung, ich danke für Ihre Aufmerksamkeit.
+			</phrase>
+		</question>
+		<answer aid = "1" posture="Stand" gesture="Excited_1" role="Moderator" volume="100" SpeechSpeed="100" VoicePitch="1">
+			<phrase>
+					</phrase>
+		</answer>
+	</block>
+	<!--...-->
+</interview>

@@ -10,9 +10,11 @@ import java.util.Arrays;
 public class AppProperties {
 // Liest Werte aus der Config Datei
 
+    //-----------------------Attribute-----------------------\\
     private static String propertiesFileName = "config.properties";
     private static java.util.Properties prop = new java.util.Properties();
 
+    //-----------------------Getter-----------------------\\
     public static String getInterviewDirectory()
     {
         return getPropertieValue("InterviewDirectory");
@@ -62,9 +64,8 @@ public class AppProperties {
             }
             return prop.getProperty(PropertyName);
         }
-        catch(Exception ex)
-        {
-            ex.getStackTrace();
+        catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage() + " fehlt im Anwendungsverzeichnis!", "Information", JOptionPane.ERROR_MESSAGE);
         }
         return null;
     }

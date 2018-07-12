@@ -13,27 +13,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Interview {
-    //---Attribute---\
+    //------------------------Attribute------------------------\\
+    private int id;
+    private int anzahlTeilnehmer;
+
+    //------------------------Variablen------------------------\\
     public static ArrayList<Interview> allInterviews = new ArrayList<Interview>();
     public ArrayList<Block> blockList = new ArrayList<Block>();
     public ArrayList<String> allRoles = new ArrayList<>();
     public static ArrayList<Interview> getAllInterviews() {
         return allInterviews;
     }
-
-    //------------------------Attribute------------------------\\
     private File file;
     private String fileName;
-    private int id;
     private String description;
     private Block interviewBlock;
-    private int anzahlTeilnehmer;
-    //---
 
     //-----------------------Konstruktor-----------------------\\
     public Interview(int id, int anzahlTeilnehmer) {
         this.id = id;
     }
+
     public Interview(int anzahlTeilnehmer) {
         this.anzahlTeilnehmer = anzahlTeilnehmer;
     }
@@ -48,12 +48,12 @@ public class Interview {
         }
         return new String[]{this.file.getName(),this.description, Integer.toString(questCounter), String.valueOf(this.getAnzahlTeilnehmer())};
     }
+
     public void addBlock(Block v) {
         blockList.add(v);
     }
 
     //----------------------Getter//Setter----------------------\\
-
     public String getFileName() {
         return file.getName();
     }
@@ -75,7 +75,6 @@ public class Interview {
         }
         return null;
     }
-
 
     public String getDescription() {
         return description;
@@ -112,6 +111,5 @@ public class Interview {
     public void setAllRoles(ArrayList<String> allRoles) {
         this.allRoles = allRoles;
     }
-
 
 }

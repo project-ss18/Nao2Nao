@@ -16,8 +16,6 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
     private static ArrayList<Block> blockList = new ArrayList<Block>();
     private static ArrayList<Question> questionList = new ArrayList<Question>();
     private static ArrayList<Answer> answerList = new ArrayList<Answer>();
-
-    //-----------------------LokaleVariablen-----------------------\\
     private String currentValue;
     static int blockCounter=0;
     static int questCounter=0;
@@ -27,6 +25,8 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
     public void characters(char[] ch, int start, int length)throws SAXException {
         currentValue = new String(ch, start, length);
     }
+
+    //-----------------------Getter/Setter-----------------------\\
     public static Interview getInterview() {
         return interview;
     }
@@ -34,16 +34,21 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
         this.interview = interview;
     }
 
+
     // Methode wird aufgerufen wenn der Parser zu einem Start-Tag kommt
     public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
+
         if (localName.equals("interview")) {
+            //Erzeugt neues Interviewobjekt, liest Wert "anzahlTeilnehmer der XML ein und speichert diesen in dem Attribut des Interviewobjektes.
             interview = new Interview((Integer.parseInt(atts.getValue("anzahlTeilnehmer"))));
         }
         if (localName.equals("block")) {
             blockCounter++;
+            //Erzeugt neues Blockobjekt, liest Wert "bid der XML ein und speichert diesen in dem Attribut des Blockobjektes.
             blockList.add(new Block(Integer.parseInt(atts.getValue("bid")),  interview));
         }
 
+        //Liest alle Attribute ein, welche in dem Element "question" enthalten sind und erzeugt Objekt Question mit den zugehörigen Attributen.
         if (localName.equals("question")) {
             type = false;
             questCounter++;
@@ -53,12 +58,14 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
                 //Exception falls volume, speechSpeed und voicePitch in einer Frage nicht definiert wurden.
                 questionList.add(new Question(Integer.parseInt(atts.getValue("qid")), blockList.get(blockCounter - 1),atts.getValue("posture"),atts.getValue("gesture"),atts.getValue("role"), 70, 100, 1));
             }
+            //Liest die definierte Rolle aus der Frage aus.
             String currentQuestionRole = atts.getValue("role");
             if (!interview.allRoles.contains(currentQuestionRole) && currentQuestionRole != null){
                 interview.allRoles.add(currentQuestionRole);
             }
         }
 
+        //Liest alle Attribute ein, welche in dem Element "answer" enthalten sind und erzeugt Objekt Answer mit den zugehörigen Attributen.
         if (localName.equals("answer")) {
             type = true;
             answerCounter++;
@@ -69,6 +76,7 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
                 answerList.add(new Answer(Integer.parseInt(atts.getValue("aid")), questionList.get(questCounter - 1),atts.getValue("posture"),atts.getValue("gesture"),atts.getValue("role"), 70, 100, 1));
             }
         }
+        //Liest die definierte Rolle aus der Antwort aus.
         String currentAnswerRole = atts.getValue("role");
         if (!interview.allRoles.contains(currentAnswerRole)&& currentAnswerRole != null){
             interview.allRoles.add(currentAnswerRole);
@@ -78,11 +86,15 @@ public class ContentHandler implements org.xml.sax.ContentHandler {
     // Methode wird aufgerufen wenn der Parser zu einem End-Tag kommt
     public void endElement(String uri, String localName, String qName)throws SAXException {
 
+        //Liest das XML-Element "description" ein und setzt entsprechend die String Variable description des Interviews.
         if (localName.equals("description")) {
             interview.setDescription(currentValue);
         }
 
+        //Liest das XML-Element "phrase" ein und setzt entsprechend die String Variable phrase dee Interview Action.
         if (localName.equals("phrase")) {
+
+            //Überprüfung ob die jeweilige Interview Action eine Frage oder eine Antwort ist.
             if(type){
                 answerList.get(answerCounter-1).setPhrase(currentValue);
             }else if(type==false){

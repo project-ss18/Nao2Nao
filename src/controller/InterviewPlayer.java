@@ -6,30 +6,30 @@ import model.interview.Interview;
 import model.interview.Question;
 import model.robot.Robot;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class InterviewPlayer implements Runnable {
 
+    //------------------------Attribute------------------------\\
     private Interview interview;
     private view.InterviewPlayer interviewPlayer;
     private List<Robot> robots;
-
     private Thread interviewThread;
     private boolean pauseInterview;
     private boolean isRunning;
-
     private boolean goTo;
     private int goToBid;
     private int gotToQid;
 
-    //--------Befehl-Tags-------\\
+    //-----------------------Befehl-Tags-----------------------\\
     private final String start = "^start(";
     private final char endTag = ')';
     private String wait = "^wait(";
 
-    //------Konstruktor------\\
+    //-----------------------Konstruktor-----------------------\\
     public InterviewPlayer(Interview interview, ArrayList<Robot> robots,view.InterviewPlayer interviewPlayer) throws Exception {
         this.interview = interview;
         this.interviewPlayer = interviewPlayer;
@@ -42,7 +42,9 @@ public class InterviewPlayer implements Runnable {
         goTo=false;
     }
 
-    // Interview und somit Thread stoppen
+    //-------------------------Methoden-------------------------\\
+
+    //Stopppt das Interview
     public void stopInterview(){
         if(isRunning) {
             interviewThread.stop();
@@ -50,7 +52,7 @@ public class InterviewPlayer implements Runnable {
         isRunning = false;
     }
 
-    // Thread ausführen und damit Interivew starten
+    //Startet das Interview
     public void startInterview(){
         if(!isRunning) {
             interviewThread = new Thread(this);
@@ -61,7 +63,7 @@ public class InterviewPlayer implements Runnable {
         }
     }
 
-    // Zu einer Frage in dem Interview springen
+    //Springt zur ausgewählten Frage
     public void goToQuestion(int qID, int bID){
         goTo = true;
         goToBid=bID;
@@ -70,7 +72,7 @@ public class InterviewPlayer implements Runnable {
         startInterview();
     }
 
-    // Testen ob alle Rollen für das Interview belegt wurden
+    //Überprüft ob Rollen zugewiesen wurden
     private boolean checkRolesDefined(ArrayList<Robot> robots) {
         // ----- Testen der Rollen der Roboter -----
         for(Robot CurrentRobot: robots) {
@@ -79,6 +81,8 @@ public class InterviewPlayer implements Runnable {
         return true;
         // ----- Testen der Rollen der Roboter -----
     }
+
+    //Führt Frage aus
     private void doQuestion(Question question) {
         try {
             getRobot(question.getRole()).goToPosture(question.getPosture());
@@ -88,9 +92,11 @@ public class InterviewPlayer implements Runnable {
             getRobot(question.getRole()).animatedSay(start + AppProperties.getRobotActionPath() + question.getGesture() + endTag + question.getPhrase()  + wait + AppProperties.getRobotActionPath() + endTag);
         }
         catch (Exception ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Fehler", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+    //Führt Antwort aus
     private void doAnswer(Answer selectedAnswer) {
         try {
             getRobot(selectedAnswer.getRole()).goToPosture(selectedAnswer.getPosture());
@@ -100,10 +106,11 @@ public class InterviewPlayer implements Runnable {
             getRobot(selectedAnswer.getRole()).animatedSay(start + selectedAnswer.getGesture() + endTag + selectedAnswer.getPhrase() + wait + endTag);
         }
         catch (Exception ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Fehler", JOptionPane.ERROR_MESSAGE);
         }
     }
-    // Die Funktion gibt einen Roboter, mit der für das Interview definierten Rolle zurück
+
+    //
     private Robot getRobot(String robotRole) {
         for(Robot currentRobot: robots) {
             String role = currentRobot.getRole();
@@ -113,15 +120,16 @@ public class InterviewPlayer implements Runnable {
         }
         return null;
     }
-    // Testen ob sich das Interview in Pause befindet. Pausieren des Threads während der Zeit
+
+    //Pausiert das Interview
     private void pauseHandler() {
         try {
-            while(pauseInterview == true) {
+            while(pauseInterview) {
                 Thread.sleep(1000);
             }
         }
         catch (Exception ex){
-            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getLocalizedMessage(), "Fehler", JOptionPane.ERROR_MESSAGE);
         }
 
     }
@@ -157,7 +165,7 @@ public class InterviewPlayer implements Runnable {
                 try {
                     robot.reset(robot);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(null, e.getMessage(), "Fehler", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }

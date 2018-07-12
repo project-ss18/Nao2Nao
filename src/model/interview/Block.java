@@ -6,6 +6,8 @@ public class Block {
     //------------------------Attribute------------------------\\
     private int bid;
     private Interview interview;
+
+    //------------------------Variablen------------------------\\
     private ArrayList<Question> questionList = new ArrayList<Question>();
 
     //-----------------------Konstruktor-----------------------\\
@@ -33,9 +35,5 @@ public class Block {
     public ArrayList<Question> getQuestionList() {
         return questionList;
     }
-
-
-
-
 
 }
